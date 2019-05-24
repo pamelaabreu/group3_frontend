@@ -25,7 +25,7 @@ class Signup extends React.Component {
     e.preventDefault();
 
     const { inputs } = this.state;
-    const { email, password } = inputs;
+    const { email, password, username } = inputs;
 
     firebase.auth().createUserWithEmailAndPassword(email, password)
       .then(
@@ -35,8 +35,19 @@ class Signup extends React.Component {
         ({ message }) => this.setState({ firebaseCreateUserError: message })
       )
       .then(firebaseUid => {
-        // Logic for creating user in the backend
-      });
+            axios.post(
+                `${backendUrlConnect}/user/`, 
+                {
+                    uid: firebaseUid,
+                    username,
+                    email
+                }
+            );
+      },
+
+        // This is the error handling for creating a user in the backend
+        err => this.setState({ firebaseCreateUserError: "Trouble creating user. Please try again later!" })
+      )
   };
 
   render() {
