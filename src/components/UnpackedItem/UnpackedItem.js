@@ -42,7 +42,7 @@ export default props => {
       <div className="col-12">
         {/* Item Name */}
         <div className={"row align-items-center justify-content-center"}>
-          <span className="item--title--font">
+          <span className="item--title--font item--title--color">
             {name} <i className="fas fa-times item--count--size" /> 
             {
                 (modifyQuant)?
