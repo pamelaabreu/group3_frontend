@@ -2,6 +2,7 @@ import React from "react";
 
 import firebase from "../../firebase";
 import axios from "axios";
+import backendUrlConnect from "../../services/backendUrlConnect";
 
 class Signup extends React.Component {
   state = {
