@@ -1,6 +1,7 @@
 import React from "react";
 
 import firebase from "../../firebase";
+import axios from "axios";
 
 class Signup extends React.Component {
   state = {
