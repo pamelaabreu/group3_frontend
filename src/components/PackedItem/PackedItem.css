@@ -26,6 +26,10 @@
   text-align: right;
 }
 
+.item--icon--filler {
+    height: 24px;
+}
+
 .item--icon--packed {
   font-size: 12px;
   color: white;

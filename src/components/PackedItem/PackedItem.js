@@ -28,12 +28,12 @@ export default props => {
                 <i className="far fa-question-circle item--icon--packed" />
               ) : (
                 /* needs work */
-                <div style={{ height: "24px" }}> </div>
+                <div className='item--icon-filler'> </div>
               )
               /* needs work */
               }
             </div>
-            <div style={{ height: "24px" }}> </div>
+            <div className='item--icon-filler'> </div>
           </div>
         </div>
       </div>
@@ -71,7 +71,7 @@ export default props => {
                 <i className="far fa-question-circle item--icon--size" />
               ) : (
                 /* needs work */
-                <div style={{ height: "24px" }}> </div>
+                <div className='item--icon-filler'> </div>
               )
               /* needs work */
               }
