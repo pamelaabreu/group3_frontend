@@ -1,5 +1,5 @@
 import React from "react";
-import "./Item.css";
+import "./PackedItem.css";
 
 export default props => {
   const { fav, flag, handleChange, handleClick, image, modifyQuant, name, onKeyPress, packed, selected, quantity, index, } = props;
