@@ -1,9 +1,18 @@
 import React from 'react';
 
 class Login extends React.Component {
+    state = {
+        inputs: {
+          email: "",
+          password: ""
+        }
+      };
+
     render () {
         return (
-            <h1>Hello Login</h1>
+            <form>
+                
+            </form>
         );
     }
 }
