@@ -15,12 +15,17 @@ class Login extends React.Component {
     this.setState({ inputs });
   };
 
+  handleLoginSubmit = e => {
+    e.preventDefault();
+    
+  }
+
   render() {
     const { inputs } = this.state;
     const inputsArray = Object.entries(inputs);
 
     return (
-      <form>
+      <form onSubmit={this.handleLoginSubmit}>
         {inputsArray.map(([inputName, inputValue], index) => {
           const inputType =
             inputName.toLowerCase() === "password" ? "password" : "text";
