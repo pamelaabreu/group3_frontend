@@ -8,6 +8,13 @@ class Login extends React.Component {
         }
       };
 
+    handleInputChange = e => {
+        const { inputs } = {...this.state};
+        inputs[e.target.name] = e.target.value.trim();
+
+        this.setState({ inputs });
+    }
+
     render () {
         const { inputs } = this.state;
         const inputsArray = Object.entries(inputs);
@@ -21,6 +28,7 @@ class Login extends React.Component {
                     return (
                         <input
                         key={index}
+                        onChange={this.handleInputChange}
                         type={inputType}
                         value={inputValue}
                         name={inputName}
