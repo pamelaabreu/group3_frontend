@@ -12,9 +12,12 @@ class Login extends React.Component {
   };
 
   handleInputChange = e => {
+    // Copying state
     const { inputs } = { ...this.state };
+    // Directly modifying the input object from the copied state
     inputs[e.target.name] = e.target.value.trim();
 
+    // Set State the modified copied input object
     this.setState({ inputs });
   };
 
