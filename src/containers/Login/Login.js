@@ -9,6 +9,8 @@ class Login extends React.Component {
       };
 
     render () {
+        const { inputs } = this.state;
+        
         return (
             <form>
                 
