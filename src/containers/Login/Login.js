@@ -29,11 +29,12 @@ class Login extends React.Component {
   }
 
   render() {
-    const { inputs } = this.state;
+    const { inputs, firebaseLoginUserError } = this.state;
     const inputsArray = Object.entries(inputs);
 
     return (
       <form onSubmit={this.handleLoginSubmit}>
+        {!firebaseLoginUserError ? null : <p>{firebaseLoginUserError}</p>}
         {inputsArray.map(([inputName, inputValue], index) => {
           const inputType =
             inputName.toLowerCase() === "password" ? "password" : "text";
