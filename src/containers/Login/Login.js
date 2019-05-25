@@ -7,7 +7,8 @@ class Login extends React.Component {
     inputs: {
       email: "",
       password: ""
-    }
+    },
+    firebaseLoginUserError: ""
   };
 
   handleInputChange = e => {
@@ -24,7 +25,7 @@ class Login extends React.Component {
     const { email, password } = inputs;
 
     firebase.auth().signInWithEmailAndPassword(email, password)
-    .catch((err) => console.log(err))
+    .catch(({ message }) => this.setState({ firebaseLoginUserError: message }))
   }
 
   render() {
