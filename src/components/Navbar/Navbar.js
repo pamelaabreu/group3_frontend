@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { pushRotate as Menu } from "react-burger-menu";
 import "./Navbar.css";
 
 // Pages
