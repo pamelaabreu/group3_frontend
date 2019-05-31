@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 // import axios from "axios";
-// import BASEURL from "../../../services/backendUrlConnect";
+import BASEURL from "../../../services/backendUrlConnect";
 // import UnpackedItem from "../../../components/UnpackedItem/UnpackedItem";
 import BagSelector from "../../../components/BagSelectorCard/BagSelectorCard";
 import "./PackingPage.css";
+import axios from "axios";
 
 // const bag = (items = []) => {
 //   return (
@@ -21,6 +22,60 @@ import "./PackingPage.css";
 //   );
 // };
 
+// onComponentMount
+// gets all bag ids from parent
+// get ALL bag items for ALL bags
+// insertSort bag items by their item_id
+// check localStorage
+
+// if it doesnt exist in localStorage, store it
+// key: tripid-bagid / value: [{item}, {item}, {item}]
+// else ~*~*~*~*~*~*~*~
+
+// Clicking on bag
+// check localStorage
+// if exist in localStorage, use that array
+// else
+// get ALL bag items for bag in DB
+// insertSort bag items by their item_id
+// check localStorage
+
+// save to localStorage
+// compare to localStorage
+// save to localStorage
+//
+// key: tripid-bagid / value: [{item}, {item}, {item}]
+// update/check localStorage,
+// class will process this
+// store it in localStorage
+// any changes save to localStorage,
+
+// TODO
+// bag route to get all of its items
+// item route to read item
+// function that splits a bag.
+/* 
+BAG STRUCTURE:
+bag_id: {
+name: type_id
+items_unpacked: #,
+items:[]
+
+maybe make a bag class??
+sort: this will clean up the
+}
+
+
+State: {
+    currentBag: bag_id,
+    bags:[], all bag ids
+    bag_id: bag class
+    ... 
+
+}
+
+
+ */
 export default (class PackPage extends Component {
   constructor(props) {
     super(props);
@@ -37,7 +92,29 @@ export default (class PackPage extends Component {
     };
   }
 
-  componentDidMount() {}
+  async componentDidMount() {
+    console.log(this.props);
+    const { bagTypes } = this.state;
+    const { bags } = this.props;
+    const allBagPromise = [];
+    for (let bag of bags) {
+      allBagPromise.push(
+        axios({
+          method: "get",
+          url: `${BASEURL}/bag/${bag.bag_id}/all`
+        })
+      );
+    };
+    const allBags = await Promise.all(allBagPromise);
+    const addToState = {};
+    // console.log(allBags)
+    for (let i = 0; i < allBags.length; i++) {
+        const {data: items} = allBags[i];
+        const {trip_id, bag_id, type_id} = bags[i];
+        addToState[`${trip_id}-${bag_id}-${bagTypes[type_id]}`] = items;
+    }
+    this.setState({...addToState})
+  }
 
   handleOnClick = (name, index) => e => {
     console.log(name, index);
@@ -53,6 +130,11 @@ export default (class PackPage extends Component {
         return;
     }
   };
+
+  componentDidUpdate() {
+      console.log('state updated')
+      console.log(this.state)
+  }
 
   render() {
     const { bags } = this.props;
