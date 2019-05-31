@@ -18,11 +18,13 @@ const Navbar = props => {
   };
 
   return (
-    <div className="bundleNavbar">
-      <Link to="/">
+    <Menu>
+      {/* <Link to="/">
         <div className="bundleNavbarLogo">Logo</div>
+      </Link> */}
+      <Link className="menu-item" to="/">
+        Home
       </Link>
-      <Link to="/">Home</Link>
       <Link to="packHacks">Pack Hacks</Link>
       <Link to="/tsaGuides">TSA Guides</Link>
       <Link to="/about">About</Link>
@@ -31,7 +33,7 @@ const Navbar = props => {
       ) : (
         <button onClick={UserLogout}>Logout</button>
       )}
-    </div>
+    </Menu>
   );
 };
 
