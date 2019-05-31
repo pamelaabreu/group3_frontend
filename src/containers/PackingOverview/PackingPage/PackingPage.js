@@ -104,16 +104,23 @@ export default (class PackPage extends Component {
           url: `${BASEURL}/bag/${bag.bag_id}/all`
         })
       );
-    };
-    const allBags = await Promise.all(allBagPromise);
-    const addToState = {};
-    // console.log(allBags)
-    for (let i = 0; i < allBags.length; i++) {
-        const {data: items} = allBags[i];
-        const {trip_id, bag_id, type_id} = bags[i];
-        addToState[`${trip_id}-${bag_id}-${bagTypes[type_id]}`] = items;
     }
-    this.setState({...addToState})
+    try {
+      const allBags = await Promise.all(allBagPromise);
+      const addToState = {};
+      let displayBag = "";
+      // console.log(allBags)
+      for (let i = 0; i < allBags.length; i++) {
+        const { data: items } = allBags[i];
+        const { trip_id, bag_id, type_id } = bags[i];
+        const key = `${bagTypes[type_id].slice(0, 2)}${trip_id}${bag_id}`;
+        if (bagTypes[type_id] === "Personal") displayBag = key;
+        addToState[key] = items;
+      }
+      this.setState({ ...addToState, displayBag });
+    } catch (err) {
+      console.log("Componenet Mount Error: ", err);
+    }
   }
 
   handleOnClick = (name, index) => e => {
@@ -126,19 +133,23 @@ export default (class PackPage extends Component {
       case "reminders":
         this.setState({ page: name });
         break;
+      case "bag":
+        this.setState({ displayBag: index });
+        break;
       default:
         return;
     }
   };
 
   componentDidUpdate() {
-      console.log('state updated')
-      console.log(this.state)
+    console.log("state updated");
+    console.log(this.state);
   }
 
   render() {
     const { bags } = this.props;
-    const { bagTypes } = this.state;
+    const { bagTypes, displayBag } = this.state;
+    const bagContents = displayBag ? this.state[displayBag] : [];
     return (
       <div className="container">
         {/*  BAG SELECTOR  */}
