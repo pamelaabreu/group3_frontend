@@ -69,7 +69,7 @@ export default (class PackPage extends Component {
   handleOnClick = (name, index) => e => {
     const { deleteMode } = this.state;
     if (name !== "endDelete" && deleteMode) {
-        this.addToDelete(name, index);
+      this.addToDelete(name, index);
       return;
     }
     console.log(name, index);
@@ -97,7 +97,7 @@ export default (class PackPage extends Component {
         this.setState({ deleteMode: true });
         break;
       case "endDelete":
-        this.executeDelete()
+        this.executeDelete();
         break;
       default:
         return;
@@ -110,66 +110,77 @@ export default (class PackPage extends Component {
     const currentBag = this.state[displayBag];
     const item_id = currentBag[index].item_id;
     let newToDelete = toDelete;
-    if (name === 'item') {
-        const inToDelete = toDelete.indexOf(item_id);
-        if (inToDelete > -1) {
-            currentBag[index].toBeDeleted = false;
-            newToDelete = toDelete.slice(0, inToDelete).concat(toDelete.slice(inToDelete + 1))
-        } else {
-            currentBag[index].toBeDeleted = true;
-            toDelete.push(item_id)
-        };
-    };
-    this.setState({toDelete: newToDelete, [displayBag]: currentBag})
+    if (name === "item") {
+      const inToDelete = toDelete.indexOf(item_id);
+      if (inToDelete > -1) {
+        currentBag[index].toBeDeleted = false;
+        newToDelete = toDelete
+          .slice(0, inToDelete)
+          .concat(toDelete.slice(inToDelete + 1));
+      } else {
+        currentBag[index].toBeDeleted = true;
+        toDelete.push(item_id);
+      }
+    }
+    this.setState({ toDelete: newToDelete, [displayBag]: currentBag });
   };
 
   executeDelete = async () => {
     const { toDelete, displayBag, totalItems } = this.state;
     // if toDelete is empty, set deleteMode to false, and exit method
     if (toDelete.length === 0) {
-        this.setState({ deleteMode: false });
-        return;
-    };
+      this.setState({ deleteMode: false });
+      return;
+    }
     // grab the current bag we are deleting from, and create a queue array
     let currentBag = this.state[displayBag];
     const deleteQueue = [];
     // fill queue array with api calls of what is going to be deleted
     for (let item_id of toDelete) {
-        deleteQueue.push(
-            axios({
-                method: "delete",
-                url: BASEURL + "/items/" + item_id,
-              })
-        );
-    };
+      deleteQueue.push(
+        axios({
+          method: "delete",
+          url: BASEURL + "/items/" + item_id
+        })
+      );
+    }
     try {
-        // if successful
-        const res = await Promise.all(deleteQueue)
-        console.log('delete resulte: ', res);
-        // loop through the current bag in the front end and remove each item
-        for (let item_id of toDelete) {
-            for (let i = 0; i < currentBag.length; i++) {
-                if (item_id === currentBag[i].item_id){
-                    currentBag = currentBag.slice(0, i).concat(currentBag.slice(i + 1));
-                    break;
-                };
-            };
-        };
-        // update the totalItems to reflect removed items
-        const newTotalItems = totalItems - toDelete.length;
-        // set deleteMode to false, update the current bag, empty toDelete array, and update the totalItems
-        this.setState({ deleteMode: false, [displayBag]: currentBag, toDelete: [], totalItems: newTotalItems });
-    } catch (err) {
-        // if unsuccessful
-        // empty toDelete and exity deleteMode
-        console.log('Delete failed')
-        for (let item of currentBag){
-            if (item.toBeDeleted) {
-                item.toBeDeleted = false;
-            }
+      // if successful
+      const res = await Promise.all(deleteQueue);
+      console.log("delete resulte: ", res);
+      // loop through the current bag in the front end and remove each item
+      for (let item_id of toDelete) {
+        for (let i = 0; i < currentBag.length; i++) {
+          if (item_id === currentBag[i].item_id) {
+            currentBag = currentBag.slice(0, i).concat(currentBag.slice(i + 1));
+            break;
+          }
         }
-        this.setState({ deleteMode: false, toDelete: [], [displayBag]: currentBag });
-    };
+      }
+      // update the totalItems to reflect removed items
+      const newTotalItems = totalItems - toDelete.length;
+      // set deleteMode to false, update the current bag, empty toDelete array, and update the totalItems
+      this.setState({
+        deleteMode: false,
+        [displayBag]: currentBag,
+        toDelete: [],
+        totalItems: newTotalItems
+      });
+    } catch (err) {
+      // if unsuccessful
+      // empty toDelete and exity deleteMode
+      console.log("Delete failed");
+      for (let item of currentBag) {
+        if (item.toBeDeleted) {
+          item.toBeDeleted = false;
+        }
+      }
+      this.setState({
+        deleteMode: false,
+        toDelete: [],
+        [displayBag]: currentBag
+      });
+    }
   };
 
   handleImportant = (index, e) => {
