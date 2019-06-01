@@ -8,9 +8,14 @@ export default props => {
     countAndKey: { count, key },
     displayBag
   } = props;
-  const selected = key === displayBag ? " " : " bag--card-color ";
+  const selected =
+    key === displayBag ? " bag--active-color " : " bag--inactive-color ";
   return (
-    <div className={"col-3 mx-1 mt-2 card p-0 pack--bag-width" + selected}>
+    <div
+      className={
+        selected + "col-3 mx-1 mt-2 border rounded p-0 pack--bag-width"
+      }
+    >
       <button
         className="card-body row"
         onClick={handleOnClick("bag", { key, bag_type })}

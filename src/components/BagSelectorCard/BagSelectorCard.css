@@ -7,5 +7,9 @@
 }
 
 .bag--card-color {
-  background-color: #808080;
+  background-color: #d3d3d3;
+}
+
+.bag--inactive-color {
+  background-color: #4896c9;
 }
