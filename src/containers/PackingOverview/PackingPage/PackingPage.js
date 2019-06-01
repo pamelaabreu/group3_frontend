@@ -4,6 +4,8 @@ import BASEURL from "../../../services/backendUrlConnect";
 // import UnpackedItem from "../../../components/UnpackedItem/UnpackedItem";
 import BagSelector from "../../../components/BagSelectorCard/BagSelectorCard";
 import Bag from "../../../components/Bag/Bag";
+import UnpackedItem from "../../../components/UnpackedItem/UnpackedItem";
+import PackedItem from "../../../components/PackedItem/PackedItem";
 import "./PackingPage.css";
 import axios from "axios";
 
@@ -206,7 +208,7 @@ export default (class PackPage extends Component {
       items[lastInputIndex].quantity = val;
       items[lastInputIndex].modifyQuant = false;
       this.setState({
-        [displayBag]: items,
+        [displayBag]: items
       });
     }
     return;
@@ -214,12 +216,12 @@ export default (class PackPage extends Component {
 
   handleChange = (name, index) => e => {
     if (name === "quantity") {
-        const { displayBag } = this.state;
-        const items = this.state[displayBag];
+      const { displayBag } = this.state;
+      const items = this.state[displayBag];
       const val = e.target.value < 1 ? "" : e.target.value;
       items[index].quantity = val;
       this.setState({
-        [displayBag]: items,
+        [displayBag]: items
       });
     }
     return;
@@ -231,6 +233,16 @@ export default (class PackPage extends Component {
         this.handleQuantity(index, e, true);
       }
     }
+  };
+
+  getItemCountAndKey = (type, trip_id, bag_id) => {
+    const bagKey = `${type.slice(0, 2)}${trip_id}${bag_id}`;
+    if (!this.state[bagKey]) return "loading";
+    let packedCount = 0;
+    for (let item of this.state[bagKey]) {
+      if (item.packed) packedCount += 1;
+    }
+    return { count: this.state[bagKey].length - packedCount, key: bagKey };
   };
 
   componentDidUpdate() {
@@ -253,6 +265,11 @@ export default (class PackPage extends Component {
                 bag_type={bagTypes[e.type_id]}
                 //   key={bagTypes[e.bag_type]}
                 key={i}
+                countAndKey={this.getItemCountAndKey(
+                  bagTypes[e.type_id],
+                  e.trip_id,
+                  e.bag_id
+                )}
                 handleOnClick={this.handleOnClick}
                 item_count={12}
               />
