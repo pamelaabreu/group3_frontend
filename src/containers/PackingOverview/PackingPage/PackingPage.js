@@ -4,8 +4,6 @@ import BASEURL from "../../../services/backendUrlConnect";
 // import UnpackedItem from "../../../components/UnpackedItem/UnpackedItem";
 import BagSelector from "../../../components/BagSelectorCard/BagSelectorCard";
 import Bag from "../../../components/Bag/Bag";
-import UnpackedItem from "../../../components/UnpackedItem/UnpackedItem";
-import PackedItem from "../../../components/PackedItem/PackedItem";
 import "./PackingPage.css";
 import axios from "axios";
 
