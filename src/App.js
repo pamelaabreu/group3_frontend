@@ -5,6 +5,7 @@ import { Switch, Route, HashRouter } from "react-router-dom";
 import Trip from "./containers/Trip/Trip";
 import Navbar from "./components/Navbar/Navbar";
 import Home from "./components/Home/Home";
+import Pack from "./containers/PackingOverview/PackingOverview";
 
 class App extends Component {
   render() {
