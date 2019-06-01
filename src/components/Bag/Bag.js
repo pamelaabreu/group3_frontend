@@ -45,7 +45,7 @@ export default props => {
     return (
       <div className="accordion" id="accordionExample">
         <div className="card">
-          <div className="card-header " id="headingOne">
+          <div className="card-header" id="headingOne">
             <h2 className="mb-0">
               <button
                 className="col-12 btn btn-link collapsed"
@@ -69,7 +69,7 @@ export default props => {
           </div>
         </div>
         <div className="card">
-          <div className="card-header" id="headingTwo">
+          <div className="" id="headingTwo">
             <h2 className="mb-0">
               <button
                 className="col-12 btn btn-link"

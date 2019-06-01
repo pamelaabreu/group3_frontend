@@ -2,3 +2,6 @@
   max-height: 450px;
   overflow-y: "scroll";
 }
+.packed--header-color {
+  background-color: #4896c9;
+}
