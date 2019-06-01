@@ -23,7 +23,8 @@ export default props => {
               />
             </div>
           );
-        }
+          }
+          else return null;
     })
 
     const unPacked = items.map((e, i) => {
@@ -40,7 +41,8 @@ export default props => {
               />
             </div>
           );
-        }
+        } 
+        else return null;
       })
     return (
       <div className="accordion" id="accordionExample">
