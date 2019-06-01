@@ -2,7 +2,7 @@ import React from "react";
 import "./PackedItem.css";
 
 export default props => {
-  const { fav, flag, handleClick, image, name, quantity, index, } = props;
+  const { important, flag, handleClick, image, name, quantity, index, } = props;
   
   return (
     <div className="item--packed p-0 m-1 border border-white rounded">
@@ -10,15 +10,15 @@ export default props => {
         <div className={"row align-items-center justify-content-center"}>
           <div>
             {/* ITEM IMAGE */}
-            <img src={image} className="item--image--size rounded" alt={name} />
+            <img src={"https://www.jcrew.com/s7-img-facade/L4012_PA6511?fmt=jpeg"} className="item--image--size rounded" alt={name} />
           </div>
           <div className="item--icon align-items-center">
             {/* ICONS */}
             <div>
-              {fav ? (
-                <i className="fas fa-star item--icon--packed" onClick={handleClick('fav', index)} />
+              {important ? (
+                <i className="fas fa-star item--icon--packed" onClick={handleClick('important', index)} />
               ) : (
-                <i className="far fa-star item--icon--packed" onClick={handleClick('fav', index)} />
+                <i className="far fa-star item--icon--packed" onClick={handleClick('important', index)} />
               )}
             </div>
             <div>
