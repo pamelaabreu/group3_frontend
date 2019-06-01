@@ -82,7 +82,7 @@ export default props => {
                 aria-expanded="false"
                 aria-controls="collapseTwo"
               >
-                UNPACKED ITEMS {(items.length - packedCount)   + " left" }
+                Unpacked Items {(items.length - packedCount)   + " left" }
               </button>
             </h2>
           </div>
