@@ -2,14 +2,15 @@ import React from "react";
 import "./UnpackedItem.css";
 
 export default props => {
-  const { important, flag, handleChange, handleClick, image, modifyQuant, name, onKeyPress, selected, quantity, index, } = props;
+  const { important, flag, handleChange, handleClick, image, modifyQuant, name, onKeyPress, selected, quantity, index, toBeDeleted} = props;
   const toBePacked = selected
     ? "row align-items-center justify-content-center  rounded-bottom item--text--selected"
     : "row align-items-center justify-content-center rounded-bottom item--text--unselected";
+    const toDelete = toBeDeleted? " bg-danger " : " ";
     const img = (image)? image:"https://www.jcrew.com/s7-img-facade/L4012_PA6511?fmt=jpeg";
   return (
     <div className="m-1 border border-white rounded">
-      <button className='item--unpacked p-0 rounded' onClick={handleClick('item', index)}>
+      <button className={'item--unpacked p-0 rounded'+toDelete} onClick={handleClick('item', index)}>
       <div className="container">
         <div className={"row align-items-center justify-content-center"}>
           <div>
