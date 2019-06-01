@@ -5,3 +5,7 @@
 .pack--bag-width {
   max-width: 200px;
 }
+
+.bag--card-color {
+  background-color: #808080;
+}
