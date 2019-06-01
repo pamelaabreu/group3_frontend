@@ -2,7 +2,7 @@ import React from "react";
 import "./UnpackedItem.css";
 
 export default props => {
-  const { fav, flag, handleChange, handleClick, image, modifyQuant, name, onKeyPress, selected, quantity, index, } = props;
+  const { important, flag, handleChange, handleClick, image, modifyQuant, name, onKeyPress, selected, quantity, index, } = props;
   const toBePacked = selected
     ? "row align-items-center justify-content-center  rounded-bottom item--text--selected"
     : "row align-items-center justify-content-center rounded-bottom item--text--unselected";
@@ -20,10 +20,10 @@ export default props => {
               <i className="fas fa-shopping-cart item--icon--size" />
             </div>
             <div>
-              {fav ? (
-                <i className="fas fa-star item--icon--size" onClick={handleClick('fav', index)} />
+              {important ? (
+                <i className="fas fa-star item--icon--size" onClick={handleClick('important', index)} />
               ) : (
-                <i className="far fa-star item--icon--size" onClick={handleClick('fav', index)} />
+                <i className="far fa-star item--icon--size" onClick={handleClick('important', index)} />
               )}
             </div>
             <div>
