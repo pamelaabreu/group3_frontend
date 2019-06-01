@@ -6,10 +6,10 @@
   max-width: 200px;
 }
 
-.bag--card-color {
+.bag--inactive-color {
   background-color: #d3d3d3;
 }
 
-.bag--inactive-color {
+.bag--active-color {
   background-color: #4896c9;
 }
