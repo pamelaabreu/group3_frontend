@@ -6,7 +6,7 @@ import BagSelector from "../../../components/BagSelectorCard/BagSelectorCard";
 import Bag from "../../../components/Bag/Bag";
 import DeleteConfirm from "../../../components/DeleteConfirm/DeleteConfirm";
 import ProgressBar from "../../../components/ProgressBar/ProgressBar";
-import { addToDelete } from "../../../services/packingPage";
+import { addToDelete, executeDelete } from "../../../services/packingPage";
 import "./PackingPage.css";
 
 export default (class PackPage extends Component {
@@ -101,7 +101,7 @@ export default (class PackPage extends Component {
         this.setState({ deleteMode: true });
         break;
       case "endDelete":
-        this.executeDelete();
+        this.handleExecuteDelete();
         break;
       default:
         return;
@@ -116,7 +116,7 @@ export default (class PackPage extends Component {
     this.setState(newState);
   };
 
-  executeDelete = async () => {
+  handleExecuteDelete = async () => {
     const { toDelete, displayBag, totalItems, totalPacked } = this.state;
     // if toDelete is empty, set deleteMode to false, and exit method
     if (toDelete.length === 0) {
@@ -125,57 +125,14 @@ export default (class PackPage extends Component {
     }
     // grab the current bag we are deleting from, and create a queue array
     let currentBag = this.state[displayBag];
-    const deleteQueue = [];
-    // fill queue array with api calls of what is going to be deleted
-    for (let item_id of toDelete) {
-      deleteQueue.push(
-        axios({
-          method: "delete",
-          url: BASEURL + "/items/" + item_id
-        })
-      );
-    }
-    try {
-      // if successful
-      const res = await Promise.all(deleteQueue);
-      console.log("delete resulte: ", res);
-      let removedFromPacked = 0;
-      // loop through the current bag in the front end and remove each item
-      for (let item_id of toDelete) {
-        for (let i = 0; i < currentBag.length; i++) {
-          if (item_id === currentBag[i].item_id) {
-            if (currentBag[i].packed) removedFromPacked += 1;
-            currentBag = currentBag.slice(0, i).concat(currentBag.slice(i + 1));
-            break;
-          }
-        }
-      }
-      // update the totalItems to reflect removed items
-      const newTotalItems = totalItems - toDelete.length;
-      const newTotalPacked = totalPacked - removedFromPacked;
-      // set deleteMode to false, update the current bag, empty toDelete array, and update the totalItems
-      this.setState({
-        deleteMode: false,
-        [displayBag]: currentBag,
-        toDelete: [],
-        totalItems: newTotalItems,
-        totalPacked: newTotalPacked
-      });
-    } catch (err) {
-      // if unsuccessful
-      // empty toDelete and exity deleteMode
-      console.log("Delete failed");
-      for (let item of currentBag) {
-        if (item.toBeDeleted) {
-          item.toBeDeleted = false;
-        }
-      }
-      this.setState({
-        deleteMode: false,
-        toDelete: [],
-        [displayBag]: currentBag
-      });
-    }
+    const newState = await executeDelete(
+      currentBag,
+      toDelete,
+      displayBag,
+      totalItems,
+      totalPacked
+    );
+    this.setState(newState);
   };
 
   unPack = index => {
