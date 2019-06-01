@@ -4,6 +4,7 @@ import BASEURL from "../../../services/backendUrlConnect";
 import AddItem from "../../../components/AddItem/AddItem";
 import BagSelector from "../../../components/BagSelectorCard/BagSelectorCard";
 import Bag from "../../../components/Bag/Bag";
+import DeleteConfirm from "../../../components/DeleteConfirm/DeleteConfirm";
 import "./PackingPage.css";
 
 export default (class PackPage extends Component {
@@ -407,23 +408,10 @@ export default (class PackPage extends Component {
                 <div>
                   <AddItem bagName={this.state.bagName} />
                 </div>
-                <div>
-                  {deleteMode ? (
-                    <button
-                      className="btn btn-danger"
-                      onClick={this.handleOnClick("endDelete")}
-                    >
-                      Confirm
-                    </button>
-                  ) : (
-                    <button
-                      className="btn btn-secondary"
-                      onClick={this.handleOnClick("startDelete")}
-                    >
-                      Delete
-                    </button>
-                  )}
-                </div>
+                <DeleteConfirm
+                  deleteMode={deleteMode}
+                  handleOnClick={this.handleOnClick}
+                />
               </div>
             </div>
           </div>
