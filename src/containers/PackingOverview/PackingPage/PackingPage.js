@@ -87,6 +87,9 @@ export default (class PackPage extends Component {
       case "important":
         this.handleImportant(index, e);
         break;
+      case "unpack":
+        this.unPack(index);
+        break;
       case "select":
         this.handleSelect(index, e);
         break;
@@ -110,7 +113,7 @@ export default (class PackPage extends Component {
     const currentBag = this.state[displayBag];
     const item_id = currentBag[index].item_id;
     let newToDelete = toDelete;
-    if (name === "item") {
+    if (name === "item" || name === "unpack") {
       const inToDelete = toDelete.indexOf(item_id);
       if (inToDelete > -1) {
         currentBag[index].toBeDeleted = false;
@@ -187,6 +190,33 @@ export default (class PackPage extends Component {
     }
   };
 
+  unPack = index => {
+    const { displayBag, totalPacked } = this.state;
+    const items = this.state[displayBag];
+    console.log(" in unPack");
+    items[index].selected = !items[index].selected;
+    items[index].packed = false;
+    axios({
+      method: "put",
+      url: BASEURL + "/items/" + items[index].id,
+      data: {
+        packed: items[index].packed
+      }
+    })
+      .then(({ data }) => {
+        console.log(data);
+      })
+      .catch(err => {
+        console.log("ERROR PACKING ITEM IN THE BACK END!");
+      });
+    const newTotalPacked = totalPacked - 1;
+    this.setState({
+      [displayBag]: items,
+      totalPacked: newTotalPacked
+    });
+    return;
+  };
+
   handleImportant = (index, e) => {
     const { displayBag } = this.state;
     const items = this.state[displayBag];
@@ -215,7 +245,7 @@ export default (class PackPage extends Component {
     const items = this.state[displayBag];
     if (!items || items.length === 0) return;
     items[index].selected = !items[index].selected;
-    items[index].packed = !items[index].packed;
+    items[index].packed = true;
     axios({
       method: "put",
       url: BASEURL + "/items/" + items[index].id,
