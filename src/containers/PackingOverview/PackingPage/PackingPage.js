@@ -110,7 +110,6 @@ export default (class PackPage extends Component {
       const allBags = await Promise.all(allBagPromise);
       const addToState = {};
       let displayBag = "";
-      // console.log(allBags)
       for (let i = 0; i < allBags.length; i++) {
         const { data: items } = allBags[i];
         const { trip_id, bag_id, type_id } = bags[i];
@@ -208,7 +207,6 @@ export default (class PackPage extends Component {
       const val = e.target.value < 1 ? 1 : e.target.value;
       items[index].quantity = val;
       items[index].modifyQuant = false;
-      // this.handleQuantity(index, e);
     } else {
       items[index].modifyQuant = !items[index].modifyQuant;
     }
