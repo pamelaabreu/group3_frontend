@@ -123,12 +123,15 @@ export default (class PackPage extends Component {
 
   executeDelete = async () => {
     const { toDelete, displayBag, totalItems } = this.state;
+    // if toDelete is empty, set deleteMode to false, and exit method
     if (toDelete.length === 0) {
         this.setState({ deleteMode: false });
         return;
     };
+    // grab the current bag we are deleting from, and create a queue array
     let currentBag = this.state[displayBag];
     const deleteQueue = [];
+    // fill queue array with api calls of what is going to be deleted
     for (let item_id of toDelete) {
         deleteQueue.push(
             axios({
@@ -138,8 +141,10 @@ export default (class PackPage extends Component {
         );
     };
     try {
+        // if successful
         const res = await Promise.all(deleteQueue)
         console.log('delete resulte: ', res);
+        // loop through the current bag in the front end and remove each item
         for (let item_id of toDelete) {
             for (let i = 0; i < currentBag.length; i++) {
                 if (item_id === currentBag[i].item_id){
@@ -148,9 +153,13 @@ export default (class PackPage extends Component {
                 };
             };
         };
+        // update the totalItems to reflect removed items
         const newTotalItems = totalItems - toDelete.length;
+        // set deleteMode to false, update the current bag, empty toDelete array, and update the totalItems
         this.setState({ deleteMode: false, [displayBag]: currentBag, toDelete: [], totalItems: newTotalItems });
     } catch (err) {
+        // if unsuccessful
+        // empty toDelete and exity deleteMode
         console.log('Delete failed')
         this.setState({ deleteMode: false, toDelete: [] });
     };
