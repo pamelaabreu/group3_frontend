@@ -113,12 +113,14 @@ export default (class PackPage extends Component {
     if (name === 'item') {
         const inToDelete = toDelete.indexOf(item_id);
         if (inToDelete > -1) {
+            currentBag[index].toBeDeleted = false;
             newToDelete = toDelete.slice(0, inToDelete).concat(toDelete.slice(inToDelete + 1))
         } else {
+            currentBag[index].toBeDeleted = true;
             toDelete.push(item_id)
         };
     };
-    this.setState({toDelete: newToDelete})
+    this.setState({toDelete: newToDelete, [displayBag]: currentBag})
   };
 
   executeDelete = async () => {
