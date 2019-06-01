@@ -89,7 +89,7 @@ export default (class PackPage extends Component {
         this.handleImportant(index, e);
         break;
       case "unpack":
-        this.unPack(index);
+        this.handleUnpack(index);
         break;
       case "select":
         this.handleSelect(index, e);
@@ -135,7 +135,7 @@ export default (class PackPage extends Component {
     this.setState(newState);
   };
 
-  unPack = index => {
+  handleUnpack = index => {
     const { displayBag, totalPacked } = this.state;
     const items = this.state[displayBag];
     items[index].selected = !items[index].selected;
