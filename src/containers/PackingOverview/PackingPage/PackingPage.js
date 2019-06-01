@@ -156,6 +156,19 @@ export default (class PackPage extends Component {
     const items = this.state[displayBag];
     if (!items || items.length === 0) return;
     items[index].important = !items[index].important;
+    axios({
+        method: "put",
+        url: BASEURL + "/items/" + items[index].id,
+        data: {
+          important: items[index].important
+        }
+      })
+        .then(({ data }) => {
+          console.log(data);
+        })
+        .catch(err => {
+          console.log("ERROR PACKING ITEM IN THE BACK END!");
+        });
     this.setState({
       [displayBag]: items
     });
