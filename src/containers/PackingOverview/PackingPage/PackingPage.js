@@ -6,6 +6,7 @@ import BagSelector from "../../../components/BagSelectorCard/BagSelectorCard";
 import Bag from "../../../components/Bag/Bag";
 import "./PackingPage.css";
 import axios from "axios";
+import { tsConstructorType } from "@babel/types";
 
 // const bag = (items = []) => {
 //   return (
@@ -90,7 +91,7 @@ export default (class PackPage extends Component {
       currentCategory: null,
       lists: null,
       loading: true,
-      lastInputIndex: null
+      lastInputIndex: null,
     };
   }
 
@@ -168,6 +169,19 @@ export default (class PackPage extends Component {
     if (!items || items.length === 0) return;
     items[index].selected = !items[index].selected;
     items[index].packed = !items[index].packed;
+    axios({
+        method: 'put',
+        url: BASEURL + '/items/' + items[index].id,
+        data: {
+            packed: items[index].packed
+        }
+    })
+    .then(({data})=> {
+        console.log(data)
+    })
+    .catch( err => {
+        console.log('ERROR PACKING ITEM IN THE BACK END!')
+    })
     this.setState({
       [displayBag]: items
     });
