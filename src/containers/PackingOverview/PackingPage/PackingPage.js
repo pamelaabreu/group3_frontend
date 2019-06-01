@@ -105,29 +105,55 @@ export default (class PackPage extends Component {
   };
 
   addToDelete = (name, index) => {
-    console.log('adding to Delete')
     this.closeLastQuantity();
-    const { toDelete } = this.state;
+    const { toDelete, displayBag } = this.state;
+    const currentBag = this.state[displayBag];
+    const item_id = currentBag[index].item_id;
     let newToDelete = toDelete;
     if (name === 'item') {
-        const inToDelete = toDelete.indexOf(index);
+        const inToDelete = toDelete.indexOf(item_id);
         if (inToDelete > -1) {
             newToDelete = toDelete.slice(0, inToDelete).concat(toDelete.slice(inToDelete + 1))
         } else {
-            toDelete.push(index)
+            toDelete.push(item_id)
         };
     };
     this.setState({toDelete: newToDelete})
   };
 
-  executeDelete = () => {
-    console.log('EXECITEDELETING')
-    // TEST !
-    // Make sure addToDelete is working properly
-    // once in here, loop through the list to be deleted (items to be deleted)
-    // get items ids, based on index // 
-    // axios calls delete and maybe axios call the bag again?
-    this.setState({ deleteMode: false });
+  executeDelete = async () => {
+    const { toDelete, displayBag, totalItems } = this.state;
+    if (toDelete.length === 0) {
+        this.setState({ deleteMode: false });
+        return;
+    };
+    let currentBag = this.state[displayBag];
+    const deleteQueue = [];
+    for (let item_id of toDelete) {
+        deleteQueue.push(
+            axios({
+                method: "delete",
+                url: BASEURL + "/items/" + item_id,
+              })
+        );
+    };
+    try {
+        const res = await Promise.all(deleteQueue)
+        console.log('delete resulte: ', res);
+        for (let item_id of toDelete) {
+            for (let i = 0; i < currentBag.length; i++) {
+                if (item_id === currentBag[i].item_id){
+                    currentBag = currentBag.slice(0, i).concat(currentBag.slice(i + 1));
+                    break;
+                };
+            };
+        };
+        const newTotalItems = totalItems - toDelete.length;
+        this.setState({ deleteMode: false, [displayBag]: currentBag, toDelete: [], totalItems: newTotalItems });
+    } catch (err) {
+        console.log('Delete failed')
+        this.setState({ deleteMode: false, toDelete: [] });
+    };
   };
 
   handleImportant = (index, e) => {
