@@ -20,7 +20,8 @@ export default (class PackPage extends Component {
       currentCategory: null,
       lists: null,
       loading: true,
-      lastInputIndex: null
+      lastInputIndex: null,
+      deleteMode: false
     };
   }
 
@@ -75,6 +76,12 @@ export default (class PackPage extends Component {
         break;
       case "quantity":
         this.handleQuantity(index, e);
+        break;
+      case "startDelete":
+        this.setState({ deleteMode: true });
+        break;
+      case "endDelete":
+        this.setState({ deleteMode: false });
         break;
       default:
         return;
@@ -217,7 +224,7 @@ export default (class PackPage extends Component {
 
   render() {
     const { bags } = this.props;
-    const { bagTypes, displayBag } = this.state;
+    const { bagTypes, displayBag, deleteMode } = this.state;
     const bagContents = displayBag ? this.state[displayBag] : [];
     return (
       <div className="container">
@@ -251,7 +258,26 @@ export default (class PackPage extends Component {
                 />
               </div>
               <div className="col-2 p-0">
-                <AddItem bagName={this.state.bagName} />
+                <div>
+                  <AddItem bagName={this.state.bagName} />
+                </div>
+                <div>
+                  {deleteMode ? (
+                    <button
+                      className="btn btn-danger"
+                      onClick={this.handleOnClick("endDelete")}
+                    >
+                      Confirm
+                    </button>
+                  ) : (
+                    <button
+                      className="btn btn-secondary"
+                      onClick={this.handleOnClick("startDelete")}
+                    >
+                      Delete
+                    </button>
+                  )}
+                </div>
               </div>
             </div>
           </div>
