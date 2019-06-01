@@ -78,3 +78,26 @@ export const executeDelete = async (
     };
   }
 };
+
+export const unpack = (index, displayBag, totalPacked, items) => {
+  items[index].selected = !items[index].selected;
+  items[index].packed = false;
+  axios({
+    method: "put",
+    url: BASEURL + "/items/" + items[index].id,
+    data: {
+      packed: items[index].packed
+    }
+  })
+    .then(({ data }) => {
+      console.log(data);
+    })
+    .catch(err => {
+      console.log("ERROR PACKING ITEM IN THE BACK END!");
+    });
+  const newTotalPacked = totalPacked - 1;
+  return {
+    [displayBag]: items,
+    totalPacked: newTotalPacked
+  };
+};
