@@ -29,7 +29,6 @@ export default (class PackPage extends Component {
   }
 
   async componentDidMount() {
-    console.log(this.props);
     const { bagTypes } = this.state;
     const { bags } = this.props;
     const allBagPromise = [];
@@ -72,7 +71,6 @@ export default (class PackPage extends Component {
       this.addToDelete(name, index);
       return;
     }
-    console.log(name, index);
     if (name !== "quantity") this.closeLastQuantity();
     switch (name) {
       case "packing":
@@ -193,7 +191,6 @@ export default (class PackPage extends Component {
   unPack = index => {
     const { displayBag, totalPacked } = this.state;
     const items = this.state[displayBag];
-    console.log(" in unPack");
     items[index].selected = !items[index].selected;
     items[index].packed = false;
     axios({
@@ -348,10 +345,7 @@ export default (class PackPage extends Component {
     return { count: this.state[bagKey].length - packedCount, key: bagKey };
   };
 
-  componentDidUpdate() {
-    console.log("state updated");
-    console.log(this.state);
-  }
+  componentDidUpdate() {}
 
   render() {
     const { bags } = this.props;
