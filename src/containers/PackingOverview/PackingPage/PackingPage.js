@@ -13,6 +13,7 @@ export default (class PackPage extends Component {
       tripInfo: null,
       categories: null,
       page: "packing",
+      bagName: "Personal",
       bags: null,
       bagTypes: { 1: "Personal", 2: "Carry-On", 3: "Checked" },
       currentBag: null,
@@ -64,7 +65,7 @@ export default (class PackPage extends Component {
         this.setState({ page: name });
         break;
       case "bag":
-        this.setState({ displayBag: index });
+        this.setState({ displayBag: index.key, bagName: index.bag_type });
         break;
       case "important":
         this.handleImportant(index, e);
@@ -241,17 +242,17 @@ export default (class PackPage extends Component {
           })}
           <div className="mt-2 col-12">
             <div className="row">
-              <div className='col-10'>
+              <div className="col-10">
                 <Bag
                   items={bagContents}
                   handleOnClick={this.handleOnClick}
                   handleChange={this.handleChange}
                   onKeyPress={this.onKeyPress}
                 />
-                </div>
-                <div className='col-2 p-0'>
-                    <AddItem />
-                </div>
+              </div>
+              <div className="col-2 p-0">
+                <AddItem bagName={this.state.bagName} />
+              </div>
             </div>
           </div>
 
