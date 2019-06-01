@@ -6,7 +6,12 @@ import BagSelector from "../../../components/BagSelectorCard/BagSelectorCard";
 import Bag from "../../../components/Bag/Bag";
 import DeleteConfirm from "../../../components/DeleteConfirm/DeleteConfirm";
 import ProgressBar from "../../../components/ProgressBar/ProgressBar";
-import { addToDelete, executeDelete } from "../../../services/packingPage";
+import {
+  addToDelete,
+  executeDelete,
+  markImportant,
+  unpack
+} from "../../../services/packingPage";
 import "./PackingPage.css";
 
 export default (class PackPage extends Component {
@@ -138,26 +143,8 @@ export default (class PackPage extends Component {
   handleUnpack = index => {
     const { displayBag, totalPacked } = this.state;
     const items = this.state[displayBag];
-    items[index].selected = !items[index].selected;
-    items[index].packed = false;
-    axios({
-      method: "put",
-      url: BASEURL + "/items/" + items[index].id,
-      data: {
-        packed: items[index].packed
-      }
-    })
-      .then(({ data }) => {
-        console.log(data);
-      })
-      .catch(err => {
-        console.log("ERROR PACKING ITEM IN THE BACK END!");
-      });
-    const newTotalPacked = totalPacked - 1;
-    this.setState({
-      [displayBag]: items,
-      totalPacked: newTotalPacked
-    });
+    const newState = unpack(index, displayBag, totalPacked, items);
+    this.setState(newState);
     return;
   };
 
@@ -165,23 +152,8 @@ export default (class PackPage extends Component {
     const { displayBag } = this.state;
     const items = this.state[displayBag];
     if (!items || items.length === 0) return;
-    items[index].important = !items[index].important;
-    axios({
-      method: "put",
-      url: BASEURL + "/items/" + items[index].id,
-      data: {
-        important: items[index].important
-      }
-    })
-      .then(({ data }) => {
-        console.log(data);
-      })
-      .catch(err => {
-        console.log("ERROR PACKING ITEM IN THE BACK END!");
-      });
-    this.setState({
-      [displayBag]: items
-    });
+    const newState = markImportant(index, displayBag, items);
+    this.setState(newState);
   };
 
   handleSelect = (index, e) => {
