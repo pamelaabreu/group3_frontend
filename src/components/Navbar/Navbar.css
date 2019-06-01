@@ -1,38 +1,3 @@
-.bundleNavbarLogo {
-    background-color: gray;
-    color: white;
-    padding: 10px;
-    transition: background-color .5s ease;
-}
-
-.bundleNavbarLogo:hover {
-    background-color: black;
-}
-
-.bundleNavbar {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    width: 100%;
-    border-bottom: 1px solid black;
-}
-
-.bundleNavbar a {
-    color: gray;
-    text-decoration: none;
-    margin: 0 10px 0 10px;
-    transition: color .5s ease;
-}
-
-.bundleNavbar a:first-child {
-    margin-left: 0;
-}
-
-.bundleNavbar a:hover {
-    text-decoration: none;
-    color: black;
-}
-
 /* Position and sizing of burger button */
 .bm-burger-button {
     position: fixed;
