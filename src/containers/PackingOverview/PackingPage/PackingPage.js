@@ -6,6 +6,7 @@ import BagSelector from "../../../components/BagSelectorCard/BagSelectorCard";
 import Bag from "../../../components/Bag/Bag";
 import DeleteConfirm from "../../../components/DeleteConfirm/DeleteConfirm";
 import ProgressBar from "../../../components/ProgressBar/ProgressBar";
+import { addToDelete } from "../../../services/packingPage";
 import "./PackingPage.css";
 
 export default (class PackPage extends Component {
@@ -70,7 +71,7 @@ export default (class PackPage extends Component {
   handleOnClick = (name, index) => e => {
     const { deleteMode } = this.state;
     if (name !== "endDelete" && deleteMode) {
-      this.addToDelete(name, index);
+      this.handleAddToDelete(name, index);
       return;
     }
     if (name !== "quantity") this.closeLastQuantity();
@@ -107,25 +108,12 @@ export default (class PackPage extends Component {
     }
   };
 
-  addToDelete = (name, index) => {
+  handleAddToDelete = (name, index) => {
     this.closeLastQuantity();
     const { toDelete, displayBag } = this.state;
     const currentBag = this.state[displayBag];
-    const item_id = currentBag[index].item_id;
-    let newToDelete = toDelete;
-    if (name === "item" || name === "unpack") {
-      const inToDelete = toDelete.indexOf(item_id);
-      if (inToDelete > -1) {
-        currentBag[index].toBeDeleted = false;
-        newToDelete = toDelete
-          .slice(0, inToDelete)
-          .concat(toDelete.slice(inToDelete + 1));
-      } else {
-        currentBag[index].toBeDeleted = true;
-        toDelete.push(item_id);
-      }
-    }
-    this.setState({ toDelete: newToDelete, [displayBag]: currentBag });
+    const newState = addToDelete(name, index, toDelete, displayBag, currentBag);
+    this.setState(newState);
   };
 
   executeDelete = async () => {
