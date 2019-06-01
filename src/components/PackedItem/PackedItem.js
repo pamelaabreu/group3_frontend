@@ -20,7 +20,7 @@ export default props => {
     <div className="m-1 border border-white rounded">
       <button
         className={"item--packed p-0 rounded" + toDelete}
-        onClick={handleClick("item", index)}
+        onClick={handleClick("unpack", index)}
       >
         <div className="container">
           <div className={"row align-items-center justify-content-center"}>
