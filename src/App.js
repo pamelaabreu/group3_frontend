@@ -12,13 +12,16 @@ class App extends Component {
     return (
       <HashRouter>
         <div className="App">
-          <Route path="/" component={Navbar} />
-          <div>
-            <Switch>
-              <Route path="/pack/:trip_id" exact component={Pack} />
-              <Route path="/trip/:trip_id" exact component={Trip} />
-              <Route path="/" exact component={Home} />
-            </Switch>
+          <div id="outer-container">
+            <Route path="/" component={Navbar} />
+            <main id="page-wrap">
+              <div>
+                <Switch>
+                  <Route path="/trip/:trip_id" exact component={Trip} />
+                  <Route path="/" exact component={Home} />
+                </Switch>
+              </div>
+            </main>
           </div>
         </div>
       </HashRouter>

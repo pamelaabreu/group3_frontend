@@ -59,21 +59,18 @@ export default (class PackingOverview extends Component {
 
   componentWillUnmount() {}
 
-  tabs = (page) => {
+  tabs = page => {
     return (
       <div className="container">
         <div className="row">
           <div className="col-10">
             <button className="btn" onClick={this.handleOnClick("packing")}>
-              <span className={(page === "packing" ? "":"text-muted")}>Packing</span>
+              <span className={page === "packing" ? "" : "text-muted"}>
+                Packing
+              </span>
             </button>
-            <button className="btn "
-            onClick={this.handleOnClick("reminders")}
-            >
-              <span
-                className={(page === "packing" ? "text-muted":"")}
-                
-              >
+            <button className="btn " onClick={this.handleOnClick("reminders")}>
+              <span className={page === "packing" ? "text-muted" : ""}>
                 Reminder
               </span>
             </button>
@@ -99,7 +96,7 @@ export default (class PackingOverview extends Component {
         ) : page === "packing" ? (
           <PackingPage bags={bags} />
         ) : (
-        <h1>Reminders</h1>// <RemindersPage lists={} /> 
+          <h1>Reminders</h1> // <RemindersPage lists={} />
         )}
       </>
     );

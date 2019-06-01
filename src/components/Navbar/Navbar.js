@@ -1,6 +1,8 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { pushRotate as Menu } from "react-burger-menu";
 import "./Navbar.css";
+import BundleLogo from "../../assets/images/logo/bundle_logo.svg";
 
 // Pages
 import ShowLoginOrSignup from "../../containers/ShowLoginOrSignup/ShowLoginOrSignup";
@@ -17,22 +19,21 @@ const Navbar = props => {
   };
 
   return (
-    <div className="bundleNavbar">
+    <Menu pageWrapId={"page-wrap"} outerContainerId={"outer-container"}>
       <Link to="/">
-        <div className="bundleNavbarLogo">Logo</div>
+        <img src={BundleLogo} width="150" height="150" alt="Bundle" />
       </Link>
       <Link to="/">Home</Link>
-      <Link to="/login">Login</Link>
-      <Link to="/signup">Sign Up</Link>
       <Link to="packHacks">Pack Hacks</Link>
       <Link to="/tsaGuides">TSA Guides</Link>
       <Link to="/about">About</Link>
+
       {!FirebaseUserAuth.user ? (
         <ShowLoginOrSignup />
       ) : (
         <button onClick={UserLogout}>Logout</button>
       )}
-    </div>
+    </Menu>
   );
 };
 
