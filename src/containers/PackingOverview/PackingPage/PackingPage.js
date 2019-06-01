@@ -5,6 +5,7 @@ import AddItem from "../../../components/AddItem/AddItem";
 import BagSelector from "../../../components/BagSelectorCard/BagSelectorCard";
 import Bag from "../../../components/Bag/Bag";
 import DeleteConfirm from "../../../components/DeleteConfirm/DeleteConfirm";
+import ProgressBar from "../../../components/ProgressBar/ProgressBar";
 import "./PackingPage.css";
 
 export default (class PackPage extends Component {
@@ -361,14 +362,12 @@ export default (class PackPage extends Component {
     const total = Math.floor((totalPacked / totalItems) * 100);
     return (
       <div className="container">
-        {/*  BAG SELECTOR  */}
         <div className="row justify-content-around ">
           {bags.map((e, i) => {
             return (
               <BagSelector
                 {...e}
                 bag_type={bagTypes[e.type_id]}
-                //   key={bagTypes[e.bag_type]}
                 key={i}
                 countAndKey={this.getItemCountAndKey(
                   bagTypes[e.type_id],
@@ -381,20 +380,7 @@ export default (class PackPage extends Component {
             );
           })}
           <div className="mt-2 col-12">
-            <div className="col-10">
-              <div className="progress">
-                <div
-                  className="progress-bar progress-bar-striped bg-info"
-                  role="progressbar"
-                  style={{ width: `${total}%` }}
-                  aria-valuenow="25"
-                  aria-valuemin="0"
-                  aria-valuemax="100"
-                >
-                  {total}%
-                </div>
-              </div>
-            </div>
+            <ProgressBar total={total} />
             <div className="row">
               <div className="col-10">
                 <Bag
@@ -415,8 +401,6 @@ export default (class PackPage extends Component {
               </div>
             </div>
           </div>
-
-          {/* */}
         </div>
       </div>
     );
