@@ -2,10 +2,12 @@ import React from "react";
 import "./PackedItem.css";
 
 export default props => {
-  const { important, flag, handleClick, image, name, quantity, index, } = props;
+  const { important, flag, handleClick, image, name, quantity, index, toBeDeleted} = props;
+  const toDelete = toBeDeleted? " bg-danger " : " ";
   const img = (image)? image:"https://www.jcrew.com/s7-img-facade/L4012_PA6511?fmt=jpeg";
   return (
-    <div className="item--packed p-0 m-1 border border-white rounded">
+    <div className="m-1 border border-white rounded">
+      <button className={"item--packed p-0 rounded"+toDelete} onClick={handleClick('item', index)}>
       <div className="container">
         <div className={"row align-items-center justify-content-center"}>
           <div>
@@ -43,6 +45,7 @@ export default props => {
           </span>
         </div>
       </div>
+      </button>
     </div>
   );
 };
