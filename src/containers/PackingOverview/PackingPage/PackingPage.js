@@ -97,7 +97,7 @@ export default (class PackPage extends Component {
         this.setState({ deleteMode: true });
         break;
       case "endDelete":
-        this.setState({ deleteMode: false });
+        this.executeDelete()
         break;
       default:
         return;
@@ -105,7 +105,8 @@ export default (class PackPage extends Component {
   };
 
   addToDelete = (name, index) => {
-    console.log('Deleting')
+    console.log('adding to Delete')
+    this.closeLastQuantity();
     const { toDelete } = this.state;
     let newToDelete = toDelete;
     if (name === 'item') {
@@ -120,11 +121,13 @@ export default (class PackPage extends Component {
   };
 
   executeDelete = () => {
+    console.log('EXECITEDELETING')
     // TEST !
     // Make sure addToDelete is working properly
     // once in here, loop through the list to be deleted (items to be deleted)
     // get items ids, based on index // 
     // axios calls delete and maybe axios call the bag again?
+    this.setState({ deleteMode: false });
   };
 
   handleImportant = (index, e) => {
