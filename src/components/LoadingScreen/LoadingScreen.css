@@ -1,0 +1,48 @@
+.fullScreen {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #4896c9;
+  z-index: 1050;
+}
+
+.fullScreenInnerBlock {
+  position: relative;
+  width: 50%;
+  height: 50%;
+  top: 25%;
+  bottom: 25%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.hueRotate {
+  -webkit-filter: hue-rotate(-55deg);
+  filter: hue-rotate(-55deg);
+}
+
+.colorWhite {
+  color: white;
+}
+
+.spinningLoading {
+  animation: spinningAnimation infinite 20s linear;
+  pointer-events: none;
+  height: 40vmin;
+}
+
+@keyframes spinningAnimation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
