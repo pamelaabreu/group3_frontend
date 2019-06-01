@@ -9,8 +9,10 @@ const RemindersPage = props => {
 
   const [todoList, setTodoList] = useState(null);
   const [shoppingList, setShoppingList] = useState(null);
+  const [alertDisplay, setAlertDisplay] = useState(false);
 
   useEffect(() => {
+    console.log("lists", lists);
     if (!lists.length) return;
     for (let list of lists) {
       getList(list);
@@ -18,22 +20,26 @@ const RemindersPage = props => {
   }, [lists]);
 
   const createList = () => {
-    axios({
-      method: "post",
-      url: "http://localhost:5000/todolist/",
-      data: {
-        name: "",
-        trip_id,
-        list_type: selectedList
-      }
-    })
-      .then(res => {
-        console.log("list created");
-        updateLists();
+    if (lists.list_type === "Todo List" || "Shopping List") {
+      setAlertDisplay(true);
+    } else {
+      axios({
+        method: "post",
+        url: "http://localhost:5000/todolist/",
+        data: {
+          name: "",
+          trip_id,
+          list_type: selectedList
+        }
       })
-      .catch(err => {
-        console.log(err);
-      });
+        .then(res => {
+          console.log("list created");
+          updateLists();
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    }
   };
 
   const getList = list => {
@@ -63,6 +69,7 @@ const RemindersPage = props => {
             <AddListButton
               createList={createList}
               handleSelectList={handleSelectList}
+              alertDisplay={alertDisplay}
             />
             <div className="row">
               {lists.map((e, i) => {
