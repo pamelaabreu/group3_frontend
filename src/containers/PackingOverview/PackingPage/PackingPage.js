@@ -375,7 +375,6 @@ export default (class PackPage extends Component {
                   e.bag_id
                 )}
                 handleOnClick={this.handleOnClick}
-                item_count={12}
               />
             );
           })}
