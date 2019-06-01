@@ -119,6 +119,14 @@ export default (class PackPage extends Component {
     this.setState({toDelete: newToDelete})
   };
 
+  executeDelete = () => {
+    // TEST !
+    // Make sure addToDelete is working properly
+    // once in here, loop through the list to be deleted (items to be deleted)
+    // get items ids, based on index // 
+    // axios calls delete and maybe axios call the bag again?
+  };
+
   handleImportant = (index, e) => {
     const { displayBag } = this.state;
     const items = this.state[displayBag];
