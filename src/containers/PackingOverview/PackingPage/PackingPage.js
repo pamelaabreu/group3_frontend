@@ -374,6 +374,7 @@ export default (class PackPage extends Component {
                   e.trip_id,
                   e.bag_id
                 )}
+                displayBag={displayBag}
                 handleOnClick={this.handleOnClick}
               />
             );
