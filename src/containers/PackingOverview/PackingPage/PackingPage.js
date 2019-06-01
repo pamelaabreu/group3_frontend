@@ -137,8 +137,44 @@ export default (class PackPage extends Component {
       case "bag":
         this.setState({ displayBag: index });
         break;
+      case "important":
+        this.handleImportant(index, e);
+        break;
+      case "select":
+        this.handleSelect(index, e);
+        break;
       default:
         return;
+    }
+  };
+
+  handleImportant = (index, e) => {
+    const { displayBag } = this.state;
+    const items = this.state[displayBag];
+    if (!items || items.length === 0) return;
+    items[index].important = !items[index].important;
+    this.setState({
+      [displayBag]: items
+    });
+  };
+
+  handleSelect = (index, e) => {
+    const { displayBag } = this.state;
+    const items = this.state[displayBag];
+    if (!items || items.length === 0) return;
+    items[index].selected = !items[index].selected;
+    this.setState({
+      [displayBag]: items
+    });
+  };
+
+  handleChange = () => {};
+
+  onKeyPress = (name, index) => e => {
+    if (name === "quantity") {
+      if (e.key === "Enter") {
+        this.handleQuantity(index, e, true);
+      }
     }
   };
 
@@ -177,7 +213,12 @@ export default (class PackPage extends Component {
               </div>
             </div> */}
 
-            <Bag items={bagContents} handleOnClick={this.handleOnClick}/>
+          <Bag
+            items={bagContents}
+            handleOnClick={this.handleOnClick}
+            handleChange={this.handleChange}
+            onKeyPress={this.onKeyPress}
+          />
 
           {/* */}
         </div>
