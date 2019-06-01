@@ -4,7 +4,6 @@ import PackedItem from "../PackedItem/PackedItem";
 
 export default props => {
   const { items, handleOnClick, handleChange, onKeyPress } = props;
-  console.log("IN BAG COMPONENT: ", items);
   if (!items) {
     return <p>EMPTY</p>;
   } else {
@@ -60,7 +59,6 @@ export default props => {
               </button>
             </h2>
           </div>
-            {packed}
           <div
             id="collapseOne"
             className="collapse"
@@ -68,6 +66,7 @@ export default props => {
             data-parent="#accordionExample"
           >
             <div className="card-body row">
+            {packed}
             </div>
           </div>
         </div>
