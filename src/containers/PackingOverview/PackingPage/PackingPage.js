@@ -157,18 +157,18 @@ export default (class PackPage extends Component {
     if (!items || items.length === 0) return;
     items[index].important = !items[index].important;
     axios({
-        method: "put",
-        url: BASEURL + "/items/" + items[index].id,
-        data: {
-          important: items[index].important
-        }
+      method: "put",
+      url: BASEURL + "/items/" + items[index].id,
+      data: {
+        important: items[index].important
+      }
+    })
+      .then(({ data }) => {
+        console.log(data);
       })
-        .then(({ data }) => {
-          console.log(data);
-        })
-        .catch(err => {
-          console.log("ERROR PACKING ITEM IN THE BACK END!");
-        });
+      .catch(err => {
+        console.log("ERROR PACKING ITEM IN THE BACK END!");
+      });
     this.setState({
       [displayBag]: items
     });
@@ -212,6 +212,19 @@ export default (class PackPage extends Component {
     } else {
       items[index].modifyQuant = !items[index].modifyQuant;
     }
+    axios({
+      method: "put",
+      url: BASEURL + "/items/" + items[index].id,
+      data: {
+        quantity: items[index].quantity
+      }
+    })
+      .then(({ data }) => {
+        console.log(data);
+      })
+      .catch(err => {
+        console.log("ERROR PACKING ITEM IN THE BACK END!");
+      });
     this.setState({
       [displayBag]: items,
       lastInputIndex: index
