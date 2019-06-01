@@ -101,3 +101,23 @@ export const unpack = (index, displayBag, totalPacked, items) => {
     totalPacked: newTotalPacked
   };
 };
+
+export const markImportant = (index, displayBag, items) => {
+  items[index].important = !items[index].important;
+  axios({
+    method: "put",
+    url: BASEURL + "/items/" + items[index].id,
+    data: {
+      important: items[index].important
+    }
+  })
+    .then(({ data }) => {
+      console.log(data);
+    })
+    .catch(err => {
+      console.log("ERROR PACKING ITEM IN THE BACK END!");
+    });
+  return {
+    [displayBag]: items
+  };
+};
