@@ -9,41 +9,39 @@ export default props => {
   } else {
     let packedCount = 0;
     const packed = items.map((e, i) => {
-        if (e.packed) {
-            packedCount += 1;
-          return (
-            <div className="col-6 col-sm-6 col-md-4 p-0" key={i}>
-              <PackedItem
-                {...e}
-                index={i}
-                Î
-                handleClick={handleOnClick}
-                handleChange={handleChange}
-                onKeyPress={onKeyPress}
-              />
-            </div>
-          );
-          }
-          else return null;
-    })
+      if (e.packed) {
+        packedCount += 1;
+        return (
+          <div className="col-6 col-sm-6 col-md-4 p-0" key={i}>
+            <PackedItem
+              {...e}
+              index={i}
+              Î
+              handleClick={handleOnClick}
+              handleChange={handleChange}
+              onKeyPress={onKeyPress}
+            />
+          </div>
+        );
+      } else return null;
+    });
 
     const unPacked = items.map((e, i) => {
-        if (!e.packed) {
-          return (
-            <div className="col-6 col-sm-6 col-md-4 p-0" key={i}>
-              <UnpackedItem
-                {...e}
-                index={i}
-                Î
-                handleClick={handleOnClick}
-                handleChange={handleChange}
-                onKeyPress={onKeyPress}
-              />
-            </div>
-          );
-        } 
-        else return null;
-      })
+      if (!e.packed) {
+        return (
+          <div className="col-6 col-sm-6 col-md-4 p-0" key={i}>
+            <UnpackedItem
+              {...e}
+              index={i}
+              Î
+              handleClick={handleOnClick}
+              handleChange={handleChange}
+              onKeyPress={onKeyPress}
+            />
+          </div>
+        );
+      } else return null;
+    });
     return (
       <div className="accordion" id="accordionExample">
         <div className="card">
@@ -67,9 +65,7 @@ export default props => {
             aria-labelledby="headingOne"
             data-parent="#accordionExample"
           >
-            <div className="card-body row">
-            {packed}
-            </div>
+            <div className="card-body row">{packed}</div>
           </div>
         </div>
         <div className="card">
@@ -83,7 +79,7 @@ export default props => {
                 aria-expanded="false"
                 aria-controls="collapseTwo"
               >
-                Unpacked Items {(items.length - packedCount)   + " left" }
+                Unpacked Items {items.length - packedCount + " left"}
               </button>
             </h2>
           </div>
@@ -93,12 +89,10 @@ export default props => {
             aria-labelledby="headingTwo"
             data-parent="#accordionExample"
           >
-            <div className="card-body row">
-           {unPacked}
-            </div>
+            <div className="card-body row bag--body-size">{unPacked}</div>
           </div>
         </div>
       </div>
     );
   }
-}
+};
