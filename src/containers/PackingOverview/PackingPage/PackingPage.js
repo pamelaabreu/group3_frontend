@@ -1,81 +1,10 @@
 import React, { Component } from "react";
-// import axios from "axios";
+import axios from "axios";
 import BASEURL from "../../../services/backendUrlConnect";
-// import UnpackedItem from "../../../components/UnpackedItem/UnpackedItem";
 import BagSelector from "../../../components/BagSelectorCard/BagSelectorCard";
 import Bag from "../../../components/Bag/Bag";
 import "./PackingPage.css";
-import axios from "axios";
-// const bag = (items = []) => {
-//   return (
-//     <div>
-//       <div className="row px-3 col-6 col-md-4">
-//         {items.map((e, i) => {
-//           return (
-//             <div className="col-6 col-sm-6 col-md-4 p-0" key={i}>
-//               {/* <UnpackedItem /> */}
-//             </div>
-//           );
-//         })}
-//       </div>
-//     </div>
-//   );
-// };
 
-// onComponentMount
-// gets all bag ids from parent
-// get ALL bag items for ALL bags
-// insertSort bag items by their item_id
-// check localStorage
-
-// if it doesnt exist in localStorage, store it
-// key: tripid-bagid / value: [{item}, {item}, {item}]
-// else ~*~*~*~*~*~*~*~
-
-// Clicking on bag
-// check localStorage
-// if exist in localStorage, use that array
-// else
-// get ALL bag items for bag in DB
-// insertSort bag items by their item_id
-// check localStorage
-
-// save to localStorage
-// compare to localStorage
-// save to localStorage
-//
-// key: tripid-bagid / value: [{item}, {item}, {item}]
-// update/check localStorage,
-// class will process this
-// store it in localStorage
-// any changes save to localStorage,
-
-// TODO
-// bag route to get all of its items
-// item route to read item
-// function that splits a bag.
-/* 
-BAG STRUCTURE:
-bag_id: {
-name: type_id
-items_unpacked: #,
-items:[]
-
-maybe make a bag class??
-sort: this will clean up the
-}
-
-
-State: {
-    currentBag: bag_id,
-    bags:[], all bag ids
-    bag_id: bag class
-    ... 
-
-}
-
-
- */
 export default (class PackPage extends Component {
   constructor(props) {
     super(props);
