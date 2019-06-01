@@ -22,8 +22,9 @@ export default (class PackPage extends Component {
       loading: true,
       lastInputIndex: null,
       deleteMode: false,
+      toDelete: [],
       totalItems: 0,
-      totalPacked: 0,
+      totalPacked: 0
     };
   }
 
@@ -54,18 +55,23 @@ export default (class PackPage extends Component {
         addToState[key] = items;
         totalItems += items.length;
         let count = items.reduce((a, e) => {
-            if(e.packed) a += 1
-            return a;
-        }, 0)
+          if (e.packed) a += 1;
+          return a;
+        }, 0);
         totalPacked += count;
       }
-      this.setState({ ...addToState, displayBag, totalItems, totalPacked});
+      this.setState({ ...addToState, displayBag, totalItems, totalPacked });
     } catch (err) {
       console.log("Componenet Mount Error: ", err);
     }
   }
 
   handleOnClick = (name, index) => e => {
+    const { deleteMode } = this.state;
+    if (name !== "endDelete" && deleteMode) {
+        this.addToDelete(name, index);
+      return;
+    }
     console.log(name, index);
     if (name !== "quantity") this.closeLastQuantity();
     switch (name) {
@@ -96,6 +102,21 @@ export default (class PackPage extends Component {
       default:
         return;
     }
+  };
+
+  addToDelete = (name, index) => {
+    console.log('Deleting')
+    const { toDelete } = this.state;
+    let newToDelete = toDelete;
+    if (name === 'item') {
+        const inToDelete = toDelete.indexOf(index);
+        if (inToDelete > -1) {
+            newToDelete = toDelete.slice(0, inToDelete).concat(toDelete.slice(inToDelete + 1))
+        } else {
+            toDelete.push(index)
+        };
+    };
+    this.setState({toDelete: newToDelete})
   };
 
   handleImportant = (index, e) => {
@@ -140,10 +161,10 @@ export default (class PackPage extends Component {
       .catch(err => {
         console.log("ERROR PACKING ITEM IN THE BACK END!");
       });
-      const newTotalPacked = totalPacked + 1;
+    const newTotalPacked = totalPacked + 1;
     this.setState({
       [displayBag]: items,
-      totalPacked: newTotalPacked,
+      totalPacked: newTotalPacked
     });
   };
 
@@ -236,9 +257,15 @@ export default (class PackPage extends Component {
 
   render() {
     const { bags } = this.props;
-    const { bagTypes, displayBag, deleteMode, totalItems, totalPacked } = this.state;
+    const {
+      bagTypes,
+      displayBag,
+      deleteMode,
+      totalItems,
+      totalPacked
+    } = this.state;
     const bagContents = displayBag ? this.state[displayBag] : [];
-    const total = ( Math.floor((totalPacked/totalItems) * 100) ) ;
+    const total = Math.floor((totalPacked / totalItems) * 100);
     return (
       <div className="container">
         {/*  BAG SELECTOR  */}
@@ -261,7 +288,7 @@ export default (class PackPage extends Component {
             );
           })}
           <div className="mt-2 col-12">
-            <div className='col-10'>
+            <div className="col-10">
               <div className="progress">
                 <div
                   className="progress-bar progress-bar-striped bg-info"
@@ -270,7 +297,9 @@ export default (class PackPage extends Component {
                   aria-valuenow="25"
                   aria-valuemin="0"
                   aria-valuemax="100"
-                >{total}%</div>
+                >
+                  {total}%
+                </div>
               </div>
             </div>
             <div className="row">
