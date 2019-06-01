@@ -21,7 +21,9 @@ export default (class PackPage extends Component {
       lists: null,
       loading: true,
       lastInputIndex: null,
-      deleteMode: false
+      deleteMode: false,
+      totalItems: 0,
+      totalPacked: 0,
     };
   }
 
@@ -42,14 +44,22 @@ export default (class PackPage extends Component {
       const allBags = await Promise.all(allBagPromise);
       const addToState = {};
       let displayBag = "";
+      let totalItems = 0;
+      let totalPacked = 0;
       for (let i = 0; i < allBags.length; i++) {
         const { data: items } = allBags[i];
         const { trip_id, bag_id, type_id } = bags[i];
         const key = `${bagTypes[type_id].slice(0, 2)}${trip_id}${bag_id}`;
         if (bagTypes[type_id] === "Personal") displayBag = key;
         addToState[key] = items;
+        totalItems += items.length;
+        let count = items.reduce((a, e) => {
+            if(e.packed) a += 1
+            return a;
+        }, 0)
+        totalPacked += count;
       }
-      this.setState({ ...addToState, displayBag });
+      this.setState({ ...addToState, displayBag, totalItems, totalPacked});
     } catch (err) {
       console.log("Componenet Mount Error: ", err);
     }
@@ -112,7 +122,7 @@ export default (class PackPage extends Component {
   };
 
   handleSelect = (index, e) => {
-    const { displayBag } = this.state;
+    const { displayBag, totalPacked } = this.state;
     const items = this.state[displayBag];
     if (!items || items.length === 0) return;
     items[index].selected = !items[index].selected;
@@ -130,8 +140,10 @@ export default (class PackPage extends Component {
       .catch(err => {
         console.log("ERROR PACKING ITEM IN THE BACK END!");
       });
+      const newTotalPacked = totalPacked + 1;
     this.setState({
-      [displayBag]: items
+      [displayBag]: items,
+      totalPacked: newTotalPacked,
     });
   };
 
@@ -224,8 +236,9 @@ export default (class PackPage extends Component {
 
   render() {
     const { bags } = this.props;
-    const { bagTypes, displayBag, deleteMode } = this.state;
+    const { bagTypes, displayBag, deleteMode, totalItems, totalPacked } = this.state;
     const bagContents = displayBag ? this.state[displayBag] : [];
+    const total = ( Math.floor((totalPacked/totalItems) * 100) ) ;
     return (
       <div className="container">
         {/*  BAG SELECTOR  */}
@@ -248,6 +261,18 @@ export default (class PackPage extends Component {
             );
           })}
           <div className="mt-2 col-12">
+            <div className='col-10'>
+              <div className="progress">
+                <div
+                  className="progress-bar progress-bar-striped bg-info"
+                  role="progressbar"
+                  style={{ width: `${total}%` }}
+                  aria-valuenow="25"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                >{total}%</div>
+              </div>
+            </div>
             <div className="row">
               <div className="col-10">
                 <Bag
