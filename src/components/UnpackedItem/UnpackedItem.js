@@ -6,13 +6,15 @@ export default props => {
   const toBePacked = selected
     ? "row align-items-center justify-content-center  rounded-bottom item--text--selected"
     : "row align-items-center justify-content-center rounded-bottom item--text--unselected";
+    const img = (image)? image:"https://www.jcrew.com/s7-img-facade/L4012_PA6511?fmt=jpeg";
   return (
-    <div className="item--unpacked p-0 m-1 border border-white rounded">
+    <div className="m-1 border border-white rounded">
+      <button className='item--unpacked p-0 rounded' onClick={handleClick('item', index)}>
       <div className="container">
         <div className={"row align-items-center justify-content-center"}>
           <div>
             {/* ITEM IMAGE */}
-            <img src="https://www.jcrew.com/s7-img-facade/L4012_PA6511?fmt=jpeg" className="item--image--size rounded" alt={name} />
+            <img src={img} className="item--image--size rounded" alt={name} />
           </div>
           <div className="item--icon align-items-center">
             {/* ICONS */}
@@ -59,6 +61,7 @@ export default props => {
           <span className="item--pack--font">Pack</span>
         </div>
       </div>
+      </button>
     </div>
   );
 };

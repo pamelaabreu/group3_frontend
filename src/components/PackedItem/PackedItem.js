@@ -3,14 +3,14 @@ import "./PackedItem.css";
 
 export default props => {
   const { important, flag, handleClick, image, name, quantity, index, } = props;
-  
+  const img = (image)? image:"https://www.jcrew.com/s7-img-facade/L4012_PA6511?fmt=jpeg";
   return (
     <div className="item--packed p-0 m-1 border border-white rounded">
       <div className="container">
         <div className={"row align-items-center justify-content-center"}>
           <div>
             {/* ITEM IMAGE */}
-            <img src={"https://www.jcrew.com/s7-img-facade/L4012_PA6511?fmt=jpeg"} className="item--image--size rounded" alt={name} />
+            <img src={img} className="item--image--size rounded" alt={name} />
           </div>
           <div className="item--icon align-items-center">
             {/* ICONS */}
