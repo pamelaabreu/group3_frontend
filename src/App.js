@@ -17,6 +17,7 @@ class App extends Component {
             <main id="page-wrap">
               <div>
                 <Switch>
+                  <Route path="/pack/:trip_id" exact component={Pack} />
                   <Route path="/trip/:trip_id" exact component={Trip} />
                   <Route path="/" exact component={Home} />
                 </Switch>
