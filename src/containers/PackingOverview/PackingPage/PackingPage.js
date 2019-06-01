@@ -126,7 +126,7 @@ export default (class PackPage extends Component {
   };
 
   executeDelete = async () => {
-    const { toDelete, displayBag, totalItems } = this.state;
+    const { toDelete, displayBag, totalItems, totalPacked } = this.state;
     // if toDelete is empty, set deleteMode to false, and exit method
     if (toDelete.length === 0) {
       this.setState({ deleteMode: false });
@@ -148,10 +148,12 @@ export default (class PackPage extends Component {
       // if successful
       const res = await Promise.all(deleteQueue);
       console.log("delete resulte: ", res);
+      let removedFromPacked = 0;
       // loop through the current bag in the front end and remove each item
       for (let item_id of toDelete) {
         for (let i = 0; i < currentBag.length; i++) {
           if (item_id === currentBag[i].item_id) {
+            if (currentBag[i].packed) removedFromPacked += 1;
             currentBag = currentBag.slice(0, i).concat(currentBag.slice(i + 1));
             break;
           }
@@ -159,12 +161,14 @@ export default (class PackPage extends Component {
       }
       // update the totalItems to reflect removed items
       const newTotalItems = totalItems - toDelete.length;
+      const newTotalPacked = totalPacked - removedFromPacked;
       // set deleteMode to false, update the current bag, empty toDelete array, and update the totalItems
       this.setState({
         deleteMode: false,
         [displayBag]: currentBag,
         toDelete: [],
-        totalItems: newTotalItems
+        totalItems: newTotalItems,
+        totalPacked: newTotalPacked
       });
     } catch (err) {
       // if unsuccessful
