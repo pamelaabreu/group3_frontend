@@ -163,7 +163,12 @@ export default (class PackPage extends Component {
         // if unsuccessful
         // empty toDelete and exity deleteMode
         console.log('Delete failed')
-        this.setState({ deleteMode: false, toDelete: [] });
+        for (let item of currentBag){
+            if (item.toBeDeleted) {
+                item.toBeDeleted = false;
+            }
+        }
+        this.setState({ deleteMode: false, toDelete: [], [displayBag]: currentBag });
     };
   };
 
