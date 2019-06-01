@@ -12,7 +12,7 @@ export default props => {
         <div className={"row align-items-center justify-content-center"}>
           <div>
             {/* ITEM IMAGE */}
-            <img src={image} className="item--image--size rounded" alt={name} />
+            <img src="https://www.jcrew.com/s7-img-facade/L4012_PA6511?fmt=jpeg" className="item--image--size rounded" alt={name} />
           </div>
           <div className="item--icon align-items-center">
             {/* ICONS */}
