@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import BASEURL from "../../../services/backendUrlConnect";
+import AddItem from "../../../components/AddItem/AddItem";
 import BagSelector from "../../../components/BagSelectorCard/BagSelectorCard";
 import Bag from "../../../components/Bag/Bag";
 import "./PackingPage.css";
@@ -238,12 +239,21 @@ export default (class PackPage extends Component {
               />
             );
           })}
-          <Bag
-            items={bagContents}
-            handleOnClick={this.handleOnClick}
-            handleChange={this.handleChange}
-            onKeyPress={this.onKeyPress}
-          />
+          <div className="mt-2 col-12">
+            <div className="row">
+              <div className='col-10'>
+                <Bag
+                  items={bagContents}
+                  handleOnClick={this.handleOnClick}
+                  handleChange={this.handleChange}
+                  onKeyPress={this.onKeyPress}
+                />
+                </div>
+                <div className='col-2 p-0'>
+                    <AddItem />
+                </div>
+            </div>
+          </div>
 
           {/* */}
         </div>
