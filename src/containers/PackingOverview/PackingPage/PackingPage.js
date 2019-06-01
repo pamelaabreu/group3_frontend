@@ -89,7 +89,8 @@ export default (class PackPage extends Component {
       currentBag: null,
       currentCategory: null,
       lists: null,
-      loading: true
+      loading: true,
+      lastInputIndex: null
     };
   }
 
@@ -143,6 +144,9 @@ export default (class PackPage extends Component {
       case "select":
         this.handleSelect(index, e);
         break;
+      case "quantity":
+        this.handleQuantity(index, e);
+        break;
       default:
         return;
     }
@@ -163,12 +167,63 @@ export default (class PackPage extends Component {
     const items = this.state[displayBag];
     if (!items || items.length === 0) return;
     items[index].selected = !items[index].selected;
+    items[index].packed = !items[index].packed;
     this.setState({
       [displayBag]: items
     });
   };
 
-  handleChange = () => {};
+  handleQuantity = (index, e, keyPress) => {
+    this.closeLastQuantity();
+    const { displayBag } = this.state;
+    const items = this.state[displayBag];
+    // const { items } = this.state;
+    if (!items || items.length === 0) return;
+    if (keyPress) {
+      const val = e.target.value < 1 ? 1 : e.target.value;
+      items[index].quantity = val;
+      items[index].modifyQuant = false;
+      // this.handleQuantity(index, e);
+    } else {
+      items[index].modifyQuant = !items[index].modifyQuant;
+    }
+    this.setState({
+      [displayBag]: items,
+      lastInputIndex: index
+    });
+  };
+
+  closeLastQuantity = () => {
+    const { displayBag, lastInputIndex } = this.state;
+    const items = this.state[displayBag];
+    if (!items || items.length === 0) return;
+    if (lastInputIndex !== null) {
+      const val =
+        items[lastInputIndex].quantity < 1 ||
+        items[lastInputIndex].quantity === ""
+          ? 1
+          : items[lastInputIndex].quantity;
+      items[lastInputIndex].quantity = val;
+      items[lastInputIndex].modifyQuant = false;
+      this.setState({
+        [displayBag]: items,
+      });
+    }
+    return;
+  };
+
+  handleChange = (name, index) => e => {
+    if (name === "quantity") {
+        const { displayBag } = this.state;
+        const items = this.state[displayBag];
+      const val = e.target.value < 1 ? "" : e.target.value;
+      items[index].quantity = val;
+      this.setState({
+        [displayBag]: items,
+      });
+    }
+    return;
+  };
 
   onKeyPress = (name, index) => e => {
     if (name === "quantity") {
@@ -203,16 +258,6 @@ export default (class PackPage extends Component {
               />
             );
           })}
-
-          {/* PACKED ITEMS */}
-          {/* <div className="my-2 container">
-              <div className="row">
-                <div className="col-12 btn btn-primary">
-                  <span className="">Packed Items</span>
-                </div>
-              </div>
-            </div> */}
-
           <Bag
             items={bagContents}
             handleOnClick={this.handleOnClick}
