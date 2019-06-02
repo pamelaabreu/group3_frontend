@@ -72,17 +72,27 @@ const RemindersPage = props => {
   };
 
   const handleCreateItem = () => {
+    if (itemInput.trim() === "") return;
+    let item = itemInput.trim();
+
     axios({
       method: "post",
       url: BASE_URL + "/items/",
       data: {
-        name: "",
+        name: item,
         packed: false,
         quantity: 1,
         bag_id,
-        category: 9
+        category_id: 9
       }
-    });
+    })
+      .then(({ data: id }) => {
+        console.log(id);
+        setItemInput("");
+      })
+      .catch(err => {
+        console.log(err);
+      });
   };
 
   return (
