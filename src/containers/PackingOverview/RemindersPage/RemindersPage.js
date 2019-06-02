@@ -59,10 +59,25 @@ const RemindersPage = props => {
       });
   };
 
+  const handleOnChange = e => {
+    setItemInput(e.target.value);
+  };
+
+  const handleCreateItem = () => {
+    axios({
+      method: "post",
+      url: BASE_URL + "/items/",
+      data: {
+        name: "",
+        quantity: 1
+      }
+    });
+  };
+
   return (
     <>
       {lists.length ? (
-        <h4 className="m-3">Here's your todos:</h4>
+        <h4 className="ml-3">Here's your todos:</h4>
       ) : (
         <NoReminders />
       )}
