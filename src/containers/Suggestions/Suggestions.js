@@ -50,8 +50,8 @@ export default withRouter(props => {
   useEffect(() => {
     if (loading) {
       buildBundle(items, destination, departureDate, returnDate)
-        .then(res => {
-          props.history.push("/trip/" + res);
+        .then(tripId => {
+          props.history.push("/pack/" + tripId);
           setLoadStatus(false);
         })
         .catch(err => {
