@@ -106,6 +106,7 @@ export default (class PackingOverview extends Component {
 
   render() {
     const { loading, page, bags, lists, tripInfo, selectedList } = this.state;
+
     return (
       <>
         {this.tabs(page)}
@@ -120,6 +121,7 @@ export default (class PackingOverview extends Component {
             trip_id={tripInfo.id}
             selectedList={selectedList}
             handleSelectList={this.handleSelectList}
+            bag_id={bags[1].bag_id}
           />
         )}
       </>
