@@ -47,6 +47,19 @@ export default withRouter(props => {
     }
   }, [newDisplay]);
 
+  useEffect(() => {
+    if (loading) {
+      buildBundle(items, destination, departureDate, returnDate)
+        .then(res => {
+          props.history.push("/trip/" + res);
+          setLoadStatus(false);
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    }
+  }, [loading]);
+
   const handleCategoryClick = category => e => {
     setCurrCategory(category);
     setDisplayItems(items[category]);
