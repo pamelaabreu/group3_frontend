@@ -1,7 +1,13 @@
 import React from "react";
 
 const AddListButton = props => {
-  const { createList, handleSelectList } = props;
+  const { createList, handleSelectList, alertDisplay } = props;
+
+  const alert = (
+    <div className="alert alert-warning" role="alert">
+      Whoops! That list already exists!
+    </div>
+  );
 
   return (
     <>
@@ -35,7 +41,7 @@ const AddListButton = props => {
                       id="inputGroupSelect01"
                     >
                       <option defaultValue>Choose one...</option>
-                      <option value="To-Do List">To-Do List</option>
+                      <option value="To-Do List">Todo List</option>
                       <option value="Shopping List">Shopping List</option>
                     </select>
                     <button
@@ -45,6 +51,7 @@ const AddListButton = props => {
                       Create
                     </button>
                   </div>
+                  {alertDisplay ? alert : null}
                 </div>
               </div>
             </div>
