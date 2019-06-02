@@ -3,6 +3,8 @@ import axios from "axios";
 import NoReminders from "./NoReminders/NoReminders";
 import AddListButton from "./AddListButton/AddListButton";
 import ListCard from "./ListCard/ListCard";
+import AddItemButton from "./AddItemButton/AddItemButton";
+import BASE_URL from "../../../services/backendUrlConnect";
 
 const RemindersPage = props => {
   const { lists, updateLists, trip_id, selectedList, handleSelectList } = props;
@@ -10,6 +12,7 @@ const RemindersPage = props => {
   const [todoList, setTodoList] = useState(null);
   const [shoppingList, setShoppingList] = useState(null);
   const [alertDisplay, setAlertDisplay] = useState(false);
+  const [itemInput, setItemInput] = useState("");
 
   useEffect(() => {
     console.log("lists", lists);
