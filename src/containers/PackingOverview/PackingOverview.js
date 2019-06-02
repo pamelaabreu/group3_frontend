@@ -4,6 +4,7 @@ import BASEURL from "../../services/backendUrlConnect";
 import PackingPage from "./PackingPage/PackingPage";
 import "./PackingOverview.css";
 import RemindersPage from "./RemindersPage/RemindersPage";
+import LoadingScreen from "../../components/LoadingScreen/LoadingScreen";
 
 export default (class PackingOverview extends Component {
   constructor(props) {
@@ -43,6 +44,7 @@ export default (class PackingOverview extends Component {
       });
     } catch (err) {
       console.log("ERROR: ", err);
+      this.setState({ loading: true });
     }
   }
 
@@ -74,8 +76,6 @@ export default (class PackingOverview extends Component {
       this.setState({ lists: trip.lists });
     });
   };
-
-  componentWillUnmount() {}
 
   tabs = page => {
     return (
@@ -109,20 +109,24 @@ export default (class PackingOverview extends Component {
 
     return (
       <>
-        {this.tabs(page)}
         {loading ? (
-          <h1>Loading</h1>
-        ) : page === "packing" ? (
-          <PackingPage bags={bags} />
+          <LoadingScreen />
         ) : (
-          <RemindersPage
-            lists={lists}
-            updateLists={this.updateLists}
-            trip_id={tripInfo.id}
-            selectedList={selectedList}
-            handleSelectList={this.handleSelectList}
-            bag_id={bags[1].bag_id}
-          />
+          <>
+            {this.tabs(page)}
+            {page === "packing" ? (
+              <PackingPage bags={bags} />
+            ) : (
+              <RemindersPage
+                lists={lists}
+                updateLists={this.updateLists}
+                trip_id={tripInfo.id}
+                selectedList={selectedList}
+                handleSelectList={this.handleSelectList}
+                bag_id={bags[1].bag_id}
+              />
+            )}
+          </>
         )}
       </>
     );

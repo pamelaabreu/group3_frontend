@@ -4,6 +4,7 @@ import { getSuggestions } from "../../services/suggestions";
 import axios from "axios";
 import { buildBundle } from "../../services/backendCalls";
 import "./Suggestions.css";
+import LoadingScreen from "../../components/LoadingScreen/LoadingScreen";
 
 export default withRouter(props => {
   const { destination, duration, departureDate, returnDate } = props;
@@ -13,6 +14,7 @@ export default withRouter(props => {
   const [displayItems, setDisplayItems] = useState(null);
   const [currCategory, setCurrCategory] = useState(null);
   const [newDisplay, setNewDisplay] = useState(null);
+  const [loading, setLoadStatus] = useState(false);
 
   useEffect(() => {
     const allTheItems = getSuggestions(duration);
@@ -45,6 +47,20 @@ export default withRouter(props => {
     }
   }, [newDisplay]);
 
+  useEffect(() => {
+    if (loading) {
+      buildBundle(items, destination, departureDate, returnDate)
+        .then(tripId => {
+          props.history.push("/pack/" + tripId);
+          setLoadStatus(false);
+        })
+        .catch(err => {
+          console.log(err);
+          setLoadStatus(true);
+        });
+    }
+  }, [loading]);
+
   const handleCategoryClick = category => e => {
     setCurrCategory(category);
     setDisplayItems(items[category]);
@@ -58,13 +74,7 @@ export default withRouter(props => {
   };
 
   const handleBundle = () => {
-    buildBundle(items, destination, departureDate, returnDate)
-      .then(res => {
-        props.history.push("/trip/" + res);
-      })
-      .catch(err => {
-        console.log(err);
-      });
+    setLoadStatus(true);
   };
 
   return (
@@ -107,6 +117,7 @@ export default withRouter(props => {
       <button className="btn btn-secondary rounded" onClick={handleBundle}>
         Bundle It!
       </button>
+      {!loading ? null : <LoadingScreen />}
     </>
   );
 });

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Switch, Route, HashRouter } from "react-router-dom";
+import { toast } from "react-toastify";
 
 // Pages
 import Trip from "./containers/Trip/Trip";
@@ -9,6 +10,11 @@ import RemindersPage from "./containers/PackingOverview/RemindersPage/RemindersP
 import Pack from "./containers/PackingOverview/PackingOverview";
 
 class App extends Component {
+  componentDidMount() {
+    // Call it once in your app. At the root of your app is the best place
+    toast.configure();
+  }
+
   render() {
     return (
       <HashRouter>
