@@ -2,17 +2,20 @@ import React from "react";
 import "./UnpackedItem.css";
 
 export default props => {
-  const { fav, flag, handleChange, handleClick, image, modifyQuant, name, onKeyPress, selected, quantity, index, } = props;
+  const { important, flag, handleChange, handleClick, image, modifyQuant, name, onKeyPress, selected, quantity, index, toBeDeleted} = props;
   const toBePacked = selected
     ? "row align-items-center justify-content-center  rounded-bottom item--text--selected"
     : "row align-items-center justify-content-center rounded-bottom item--text--unselected";
+    const toDelete = toBeDeleted? " bg-danger " : " ";
+    const img = (image)? image:"https://www.jcrew.com/s7-img-facade/L4012_PA6511?fmt=jpeg";
   return (
-    <div className="item--unpacked p-0 m-1 border border-white rounded">
+    <div className="m-1 border border-white rounded">
+      <button className={'item--unpacked p-0 rounded'+toDelete} onClick={handleClick('item', index)}>
       <div className="container">
         <div className={"row align-items-center justify-content-center"}>
           <div>
             {/* ITEM IMAGE */}
-            <img src={image} className="item--image--size rounded" alt={name} />
+            <img src={img} className="item--image--size rounded" alt={name} />
           </div>
           <div className="item--icon align-items-center">
             {/* ICONS */}
@@ -20,10 +23,10 @@ export default props => {
               <i className="fas fa-shopping-cart item--icon--size" />
             </div>
             <div>
-              {fav ? (
-                <i className="fas fa-star item--icon--size" onClick={handleClick('fav', index)} />
+              {important ? (
+                <i className="fas fa-star item--icon--size" onClick={handleClick('important', index)} />
               ) : (
-                <i className="far fa-star item--icon--size" onClick={handleClick('fav', index)} />
+                <i className="far fa-star item--icon--size" onClick={handleClick('important', index)} />
               )}
             </div>
             <div>
@@ -59,6 +62,7 @@ export default props => {
           <span className="item--pack--font">Pack</span>
         </div>
       </div>
+      </button>
     </div>
   );
 };

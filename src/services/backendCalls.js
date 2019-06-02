@@ -1,16 +1,3 @@
-/*
-make an axios call to:
---create a trip
---make 3 bags
---make the items
-
-then make a func that takes care of these 3 funcs
-
-then make a func where we pass in the data and 
-do stuff with it and get back the ID to send the 
-user off
-*/
-
 import axios from "axios";
 import { randomTripNameGenerator, splitDestination } from "./suggestions";
 

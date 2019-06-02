@@ -5,3 +5,11 @@
 .pack--bag-width {
   max-width: 200px;
 }
+
+.bag--inactive-color {
+  background-color: #d3d3d3;
+}
+
+.bag--active-color {
+  background-color: #4896c9;
+}
