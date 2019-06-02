@@ -109,6 +109,7 @@ export default withRouter(props => {
       <button className="btn btn-secondary rounded" onClick={handleBundle}>
         Bundle It!
       </button>
+      {!loading ? null : <LoadingScreen />}
     </>
   );
 });
