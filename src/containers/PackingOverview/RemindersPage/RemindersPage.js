@@ -89,63 +89,72 @@ const RemindersPage = props => {
               handleSelectList={handleSelectList}
               alertDisplay={alertDisplay}
             />
-            <div className="row">
+            <div className="row ml-3">
               {lists.map((e, i) => {
                 return <ListCard {...e} key={i} list_count={5} />;
               })}
             </div>
           </div>
         </div>
+        <div className="row">
+          <div className="ml-1 mt-3 accordion col-8" id="accordionExample">
+            <div className="card">
+              <div className="card-header" id="headingOne">
+                <h2 className="mb-0">
+                  <button
+                    className="btn btn-link"
+                    type="button"
+                    data-toggle="collapse"
+                    data-target="#collapseOne"
+                    aria-expanded="true"
+                    aria-controls="collapseOne"
+                  >
+                    Todo List
+                  </button>
+                </h2>
+              </div>
 
-        <div className="ml-1 mt-3 accordion" id="accordionExample">
-          <div className="card">
-            <div className="card-header" id="headingOne">
-              <h2 className="mb-0">
-                <button
-                  className="btn btn-link"
-                  type="button"
-                  data-toggle="collapse"
-                  data-target="#collapseOne"
-                  aria-expanded="true"
-                  aria-controls="collapseOne"
-                >
-                  Todo List
-                </button>
-              </h2>
+              <div
+                id="collapseOne"
+                className="collapse show"
+                aria-labelledby="headingOne"
+                data-parent="#accordionExample"
+              >
+                <div className="m-3 card-body">Todos</div>
+              </div>
             </div>
-
-            <div
-              id="collapseOne"
-              className="collapse show"
-              aria-labelledby="headingOne"
-              data-parent="#accordionExample"
-            >
-              <div className="m-3 card-body">Todos</div>
+            <div className="card">
+              <div className="card-header" id="headingTwo">
+                <h2 className="mb-0">
+                  <button
+                    className="btn btn-link collapsed"
+                    type="button"
+                    data-toggle="collapse"
+                    data-target="#collapseTwo"
+                    aria-expanded="false"
+                    aria-controls="collapseTwo"
+                  >
+                    Shopping List
+                  </button>
+                </h2>
+              </div>
+              <div
+                id="collapseTwo"
+                className="collapse"
+                aria-labelledby="headingTwo"
+                data-parent="#accordionExample"
+              >
+                <div className="m-3 card-body">Shopping todos</div>
+              </div>
             </div>
           </div>
-          <div className="card">
-            <div className="card-header" id="headingTwo">
-              <h2 className="mb-0">
-                <button
-                  className="btn btn-link collapsed"
-                  type="button"
-                  data-toggle="collapse"
-                  data-target="#collapseTwo"
-                  aria-expanded="false"
-                  aria-controls="collapseTwo"
-                >
-                  Shopping List
-                </button>
-              </h2>
-            </div>
-            <div
-              id="collapseTwo"
-              className="collapse"
-              aria-labelledby="headingTwo"
-              data-parent="#accordionExample"
-            >
-              <div className="m-3 card-body">Shopping todos</div>
-            </div>
+
+          <div className="col-2">
+            <AddItemButton
+              itemInput={itemInput}
+              handleOnChange={handleOnChange}
+              handleCreateItem={handleCreateItem}
+            />
           </div>
         </div>
       </div>
