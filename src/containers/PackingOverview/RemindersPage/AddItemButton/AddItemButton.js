@@ -2,7 +2,7 @@ import React from "react";
 import items from "../../../../services/items.json";
 
 const AddItemButton = props => {
-  const { itemInput, handleOnChange } = props;
+  const { itemInput, handleOnChange, handleCreateItem } = props;
 
   return (
     <>
@@ -35,7 +35,12 @@ const AddItemButton = props => {
                 );
               })}
             </datalist>
-            <button className="my-3 btn-sm border border-info">Create</button>
+            <button
+              className="my-3 btn-sm border border-info"
+              onClick={handleCreateItem}
+            >
+              Create
+            </button>
           </div>
         </div>
       </div>
