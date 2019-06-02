@@ -109,19 +109,23 @@ export default (class PackingOverview extends Component {
     const { loading, page, bags, lists, tripInfo, selectedList } = this.state;
     return (
       <>
-        {this.tabs(page)}
         {loading ? (
-          <h1>Loading</h1>
-        ) : page === "packing" ? (
-          <PackingPage bags={bags} />
+          <LoadingScreen />
         ) : (
-          <RemindersPage
-            lists={lists}
-            updateLists={this.updateLists}
-            trip_id={tripInfo.id}
-            selectedList={selectedList}
-            handleSelectList={this.handleSelectList}
-          />
+          <>
+            {this.tabs(page)}
+            {page === "packing" ? (
+              <PackingPage bags={bags} />
+            ) : (
+              <RemindersPage
+                lists={lists}
+                updateLists={this.updateLists}
+                trip_id={tripInfo.id}
+                selectedList={selectedList}
+                handleSelectList={this.handleSelectList}
+              />
+            )}
+          </>
         )}
       </>
     );
