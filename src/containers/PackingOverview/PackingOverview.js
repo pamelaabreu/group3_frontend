@@ -44,6 +44,7 @@ export default (class PackingOverview extends Component {
       });
     } catch (err) {
       console.log("ERROR: ", err);
+      this.setState({ loading: true });
     }
   }
 
