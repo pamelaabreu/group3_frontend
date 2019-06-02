@@ -4,6 +4,7 @@ import BASEURL from "../../services/backendUrlConnect";
 import PackingPage from "./PackingPage/PackingPage";
 import "./PackingOverview.css";
 import RemindersPage from "./RemindersPage/RemindersPage";
+import LoadingScreen from "../../components/LoadingScreen/LoadingScreen";
 
 export default (class PackingOverview extends Component {
   constructor(props) {
