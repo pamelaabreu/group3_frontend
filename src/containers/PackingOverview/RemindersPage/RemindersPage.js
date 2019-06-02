@@ -7,7 +7,14 @@ import AddItemButton from "./AddItemButton/AddItemButton";
 import BASE_URL from "../../../services/backendUrlConnect";
 
 const RemindersPage = props => {
-  const { lists, updateLists, trip_id, selectedList, handleSelectList } = props;
+  const {
+    lists,
+    updateLists,
+    trip_id,
+    selectedList,
+    handleSelectList,
+    bag_id
+  } = props;
 
   const [todoList, setTodoList] = useState(null);
   const [shoppingList, setShoppingList] = useState(null);
@@ -16,6 +23,7 @@ const RemindersPage = props => {
 
   useEffect(() => {
     console.log("lists", lists);
+    console.log("bag_id", bag_id);
     if (!lists.length) return;
     for (let list of lists) {
       getList(list);
@@ -69,7 +77,10 @@ const RemindersPage = props => {
       url: BASE_URL + "/items/",
       data: {
         name: "",
-        quantity: 1
+        packed: false,
+        quantity: 1,
+        bag_id,
+        category: 9
       }
     });
   };
@@ -97,7 +108,7 @@ const RemindersPage = props => {
           </div>
         </div>
         <div className="row">
-          <div className="ml-1 mt-3 accordion col-8" id="accordionExample">
+          <div className="mt-3 accordion col-8" id="accordionExample">
             <div className="card">
               <div className="card-header" id="headingOne">
                 <h2 className="mb-0">
