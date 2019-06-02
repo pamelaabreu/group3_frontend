@@ -76,8 +76,6 @@ export default (class PackingOverview extends Component {
     });
   };
 
-  componentWillUnmount() {}
-
   tabs = page => {
     return (
       <div className="container">
