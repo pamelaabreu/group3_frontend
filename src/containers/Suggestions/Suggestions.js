@@ -4,6 +4,7 @@ import { getSuggestions } from "../../services/suggestions";
 import axios from "axios";
 import { buildBundle } from "../../services/backendCalls";
 import "./Suggestions.css";
+import LoadingScreen from "../../components/LoadingScreen/LoadingScreen";
 
 export default withRouter(props => {
   const { destination, duration, departureDate, returnDate } = props;
@@ -13,6 +14,7 @@ export default withRouter(props => {
   const [displayItems, setDisplayItems] = useState(null);
   const [currCategory, setCurrCategory] = useState(null);
   const [newDisplay, setNewDisplay] = useState(null);
+  const [loading, setLoadStatus] = useState(false);
 
   useEffect(() => {
     const allTheItems = getSuggestions(duration);
