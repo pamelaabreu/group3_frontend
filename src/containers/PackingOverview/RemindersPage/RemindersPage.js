@@ -5,6 +5,7 @@ import AddListButton from "./AddListButton/AddListButton";
 import ListCard from "./ListCard/ListCard";
 import AddItemButton from "./AddItemButton/AddItemButton";
 import BASE_URL from "../../../services/backendUrlConnect";
+import ShoppingItem from "../../../components/SuggestedItem/SuggestedItem";
 
 const RemindersPage = props => {
   const {
@@ -17,13 +18,12 @@ const RemindersPage = props => {
   } = props;
 
   const [todoList, setTodoList] = useState(null);
-  const [shoppingList, setShoppingList] = useState(null);
+  const [shoppingList, setShoppingList] = useState([]);
   const [alertDisplay, setAlertDisplay] = useState(false);
   const [itemInput, setItemInput] = useState("");
 
   useEffect(() => {
     console.log("lists", lists);
-    console.log("bag_id", bag_id);
     if (!lists.length) return;
     for (let list of lists) {
       getList(list);
@@ -89,6 +89,11 @@ const RemindersPage = props => {
       .then(({ data: id }) => {
         console.log(id);
         setItemInput("");
+        shoppingList.push({
+          name: item,
+          pack: false,
+          image: "https://www.jcrew.com/s7-img-facade/L4012_PA6511?fmt=jpeg"
+        });
       })
       .catch(err => {
         console.log(err);
