@@ -56,6 +56,7 @@ export default withRouter(props => {
         })
         .catch(err => {
           console.log(err);
+          setLoadStatus(true);
         });
     }
   }, [loading]);
