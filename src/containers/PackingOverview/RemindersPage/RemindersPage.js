@@ -6,6 +6,7 @@ import ListCard from "./ListCard/ListCard";
 import AddItemButton from "./AddItemButton/AddItemButton";
 import BASE_URL from "../../../services/backendUrlConnect";
 import ShoppingItem from "../../../components/SuggestedItem/SuggestedItem";
+import Todo from "./Todo/Todo";
 
 const RemindersPage = props => {
   const {
@@ -17,16 +18,17 @@ const RemindersPage = props => {
     bag_id
   } = props;
 
-  const [todoList, setTodoList] = useState(null);
+  const [todoList, setTodoList] = useState([]);
   const [todoListId, setTodoListId] = useState(null);
   const [shoppingListId, setShoppingListId] = useState(null);
   const [shoppingList, setShoppingList] = useState([]);
   const [alertDisplay, setAlertDisplay] = useState(false);
   const [itemInput, setItemInput] = useState("");
+  const [todos, setTodos] = useState([]);
 
   useEffect(() => {
     console.log(lists, "lists");
-    // console.log("selected", selectedList);
+    console.log("selected", selectedList);
     if (!lists.length) return;
     for (let list of lists) {
       getList(list);
@@ -38,14 +40,17 @@ const RemindersPage = props => {
     console.log(shoppingListId, "s id");
     console.log(todoList, "tdl");
     console.log(todoListId, "tdl id");
-  });
+  }, []);
 
   useEffect(() => {
     axios({
       method: "get",
       url: BASE_URL + "/todolist/todo/" + lists.todolist_id
     })
-      .then()
+      .then(data => {
+        console.log(data);
+        setTodos(data);
+      })
       .catch(err => {
         console.log(err);
       });
@@ -186,7 +191,7 @@ const RemindersPage = props => {
                 className="collapse multi-collapse"
                 id="multiCollapseExample3"
               >
-                <div className="card card-body">Shopping Todos</div>
+                <div className="card card-body">Shopping todos</div>
               </div>
             </div>
             <div className="col">
@@ -194,7 +199,11 @@ const RemindersPage = props => {
                 className="collapse multi-collapse"
                 id="multiCollapseExample2"
               >
-                <div className="card card-body">Todos</div>
+                <div className="card card-body">
+                  {todoList.map(e => {
+                    return <Todo task_name={e.task_name} key={e.id} />;
+                  })}
+                </div>
               </div>
             </div>
           </div>
