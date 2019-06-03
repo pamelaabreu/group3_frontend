@@ -1,10 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "./Home.css";
 import CreateTripForm from "../../containers/CreateTripForm/CreateTripForm";
 import Modal from "../../containers/Modal/Modal";
 import { getDuration } from "../../services/suggestions";
+import FirebaseAuthContext from "../../context/FirebaseAuth";
+
+import NotLoginHomepage from "../../components/NotLoginHomepage/NotLoginHomepage";
+import LoginHomepage from "../../components/LoginHomepage/LoginHomepage";
 
 const Home = props => {
+  const FirebaseUserAuth = useContext(FirebaseAuthContext);
+
   const [destination, setDestination] = useState("");
   const [departureDate, setDepartureDate] = useState("");
   const [returnDate, setReturnDate] = useState("");
@@ -26,11 +32,6 @@ const Home = props => {
   const createTripHandler = e => {
     e.preventDefault();
     let tripDuration = getDuration(departureDate, returnDate);
-    if (tripDuration.split(" ")[0] === "a") {
-      tripDuration = 1;
-    } else {
-      tripDuration = tripDuration.split(" ")[0];
-    }
     setDuration(tripDuration);
     showmodal(true);
   };
@@ -41,6 +42,18 @@ const Home = props => {
 
   useEffect(() => {}, [destination, departureDate, returnDate, duration]);
 
+  const createTripForm = (
+    <CreateTripForm
+      destination={destination}
+      destinationHandler={destinationHandler}
+      departureDate={departureDate}
+      departureDateHandler={departureDateHandler}
+      returnDate={returnDate}
+      returnDateHandler={returnDateHandler}
+      duration={duration}
+      createTripHandler={createTripHandler}
+    />
+  );
   return (
     <>
       {show ? (
@@ -56,45 +69,14 @@ const Home = props => {
         />
       ) : null}
 
-      <div className="bundleHomeImage">
-        <h1 className="bundleHomeImageTitle">Bundle</h1>
-        <h2 className="bundleHomeImageTagline">Worry less, travel more!</h2>
-        <CreateTripForm
-          destination={destination}
-          destinationHandler={destinationHandler}
-          departureDate={departureDate}
-          departureDateHandler={departureDateHandler}
-          returnDate={returnDate}
-          returnDateHandler={returnDateHandler}
-          duration={duration}
-          createTripHandler={createTripHandler}
+      {FirebaseUserAuth.user ? (
+        <LoginHomepage
+          create_trip_form={createTripForm}
+          user={FirebaseUserAuth.user}
         />
-      </div>
-
-      <div className="bundleHomeArrow" />
-
-      <div className="container bundleHomeWhatBox">
-        <div className="row">
-          <div className="col-sm">
-            <div className="bundleHomeWhatPhotoBox" />
-          </div>
-          <div className="col-sm">
-            <h2>What's Bundle?</h2>
-            <p>
-              We provide a trip-management hub for inexperienced travelers to
-              keep track of all their necessities. They’ll have a smoother and
-              more enjoyable experience preparing for it because they can
-              address all their travel considerations from one place. Bundle
-              creates suggested packing checklists and help complete them with
-              in-app planning until day of departure.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <div className="container-fluid bundleHomeGetPackingBox">
-        <h1>What are you waiting for? Get Packing!</h1>
-      </div>
+      ) : (
+        <NotLoginHomepage create_trip_form={createTripForm} />
+      )}
     </>
   );
 };

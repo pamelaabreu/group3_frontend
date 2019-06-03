@@ -31,7 +31,6 @@ class Trip extends Component {
       baseURL
     });
 
-    console.log("trip", trip);
     const itinerary = await axios({
       method: "get",
       url: `${itineraryEndpointBase}${trip.data.id}`,
@@ -66,6 +65,11 @@ class Trip extends Component {
       trip: trip.data
     });
   }
+
+  moveToPack = () => {
+    const { trip_id } = this.props.match.params;
+    this.props.history.push("/pack/" + trip_id);
+  };
   render() {
     const { city, country, departure_date, return_date } = this.state.trip;
     return (

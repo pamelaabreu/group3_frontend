@@ -28,6 +28,7 @@ const Itinerary = props => {
   return (
     <div className="col-12">
       <h3>Itinerary</h3>
+      <button className="btn btn-primary">add</button>
       <div className="row">
         {categories.map(category => {
           return (
