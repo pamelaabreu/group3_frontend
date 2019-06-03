@@ -1,10 +1,10 @@
 import React from "react";
 
 export default props => {
-    const {bagName} = props;
+  const { bagName } = props;
   return (
     <>
-      <div className='p-1'>
+      <div className="p-1">
         <button
           type="button"
           className="btn btn-primary"
@@ -22,7 +22,10 @@ export default props => {
           aria-labelledby="exampleModalCenterTitle"
           aria-hidden="true"
         >
-          <div className="col-10 modal-dialog modal-dialog-centered" role="document">
+          <div
+            className="col-10 modal-dialog modal-dialog-centered"
+            role="document"
+          >
             <div className="modal-content">
               <div className="modal-header">
                 <h5 className="modal-title" id="exampleModalCenterTitle">

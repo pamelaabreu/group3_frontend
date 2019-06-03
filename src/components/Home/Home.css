@@ -1,79 +1,79 @@
 .bundleHomeImage {
-    background-image: url("https://images.unsplash.com/photo-1490213739287-16ad3f975ebb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80");
-    background-position: center;
-    background-size: cover;
-    width: 100%;
-    height: 500px;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  background-image: url("https://images.unsplash.com/photo-1490213739287-16ad3f975ebb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80");
+  background-position: center;
+  background-size: cover;
+  width: 100%;
+  height: 500px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .bundleHomeImageTitle {
-    font-size: 100px;
-    font-weight: 600;
-    color: white;
-    padding-top: 5%;
+  font-size: 100px;
+  font-weight: 600;
+  color: white;
+  padding-top: 5%;
 }
 
 .bundleHomeImageTagline {
-    color: white;
-    margin-bottom: 15px;
+  color: white;
+  margin-bottom: 15px;
 }
 
 .bundleHomeArrow {
-    background-image: url("https://media.giphy.com/media/WwekIpF4jFcG6NgfA3/giphy.gif");
-    background-position: center;
-    background-size: contain;
-    background-repeat: no-repeat, repeat;
-    position: relative;
-    width: 150px;
-    height: 150px;
-    margin: 0 auto;
-    margin-top: -65px;
-    z-index: 3;
-    transform: rotate(180deg);
+  background-image: url("https://media.giphy.com/media/WwekIpF4jFcG6NgfA3/giphy.gif");
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat, repeat;
+  position: relative;
+  width: 150px;
+  height: 150px;
+  margin: 0 auto;
+  margin-top: -65px;
+  z-index: 3;
+  transform: rotate(180deg);
 }
 
 .bundleHomeWhatBox {
-    margin-top: 80px;
-    margin-bottom: 80px;
+  margin-top: 80px;
+  margin-bottom: 80px;
 }
 
 .bundleHomeWhatPhotoBox {
-    background-image: url("https://media.giphy.com/media/NPXU8zJgkHa9BqilG1/giphy.gif");
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat, repeat;
-    height: 350px;
-    margin-right: 30px;
+  background-image: url("https://media.giphy.com/media/NPXU8zJgkHa9BqilG1/giphy.gif");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat, repeat;
+  height: 350px;
+  margin-right: 30px;
 }
 
 .bundleHomeGetPackingBox {
-    background-image: url("https://images.unsplash.com/photo-1531938716357-224c16b5ace3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80");
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat, repeat;
-    height: 500px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    color: white;
+  background-image: url("https://images.unsplash.com/photo-1531938716357-224c16b5ace3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat, repeat;
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
 }
 
 .bundleHomeGetPackingBox button {
-    background: none;
-    border-radius: 20px;
-    border: 1px solid white;
-    color: white;
-    width: 25%;
-    height: 50px;
-    transition: background .2s ease;
+  background: none;
+  border-radius: 20px;
+  border: 1px solid white;
+  color: white;
+  width: 25%;
+  height: 50px;
+  transition: background 0.2s ease;
 }
 
 .bundleHomeGetPackingBox button:hover {
-    background: #ffffff6e;
+  background: #ffffff6e;
 }
