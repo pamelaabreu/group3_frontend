@@ -1,21 +1,21 @@
 .trip-form-label {
-    margin-right: 10px;
+  margin-right: 10px;
 }
 
 .form-button-container {
-    text-align: right;
+  text-align: right;
 }
 
 .form-button {
-    background: none;
-    border-radius: 20px;
-    border: 1px solid white;
-    color: white;
-    width: 25%;
-    height: 50px;
-    transition: background .2s ease;
+  background: none;
+  border-radius: 20px;
+  border: 1px solid white;
+  color: white;
+  width: 25%;
+  height: 50px;
+  transition: background 0.2s ease;
 }
 
 .create-trip-form button:hover {
-    background: #ffffff6e;
+  background: #ffffff6e;
 }

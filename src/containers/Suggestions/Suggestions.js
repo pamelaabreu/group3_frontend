@@ -51,15 +51,15 @@ export default withRouter(props => {
     if (loading) {
       buildBundle(items, destination, departureDate, returnDate)
         .then(tripId => {
-          props.history.push("/pack/" + tripId);
           setLoadStatus(false);
+          props.history.push("/pack/" + tripId);
         })
         .catch(err => {
           console.log(err);
           setLoadStatus(true);
         });
     }
-  }, [loading]);
+  });
 
   const handleCategoryClick = category => e => {
     setCurrCategory(category);

@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import axios from "axios";
 import BASEURL from "../../../services/backendUrlConnect";
-import AddItem from "../../../components/AddItem/AddItem";
+// import AddItem from "../../../components/AddItem/AddItem";
 import BagSelector from "../../../components/BagSelectorCard/BagSelectorCard";
 import Bag from "../../../components/Bag/Bag";
 import DeleteConfirm from "../../../components/DeleteConfirm/DeleteConfirm";
 import ProgressBar from "../../../components/ProgressBar/ProgressBar";
+import AddItemButton from "../RemindersPage/AddItemButton/AddItemButton";
 import {
   addToDelete,
   executeDelete,
@@ -33,7 +34,8 @@ export default (class PackPage extends Component {
       deleteMode: false,
       toDelete: [],
       totalItems: 0,
-      totalPacked: 0
+      totalPacked: 0,
+      itemInput: ""
     };
   }
 
@@ -218,6 +220,50 @@ export default (class PackPage extends Component {
     return;
   };
 
+  handleOnChange = e => {
+    // temporary
+    this.setState({ itemInput: e.target.value });
+  };
+
+  handleCreateItem = async () => {
+    const { itemInput, displayBag } = this.state;
+    const currentBag = this.state[displayBag];
+    const bag_id = this.state[displayBag][0].bag_id;
+    if (itemInput.trim() === "") return;
+    let item = itemInput.trim();
+    try {
+      const {
+        data: { id }
+      } = await axios({
+        method: "post",
+        url: BASEURL + "/items/",
+        data: {
+          name: item,
+          packed: false,
+          quantity: 1,
+          bag_id,
+          category_id: 9
+        }
+      });
+      currentBag.push({
+        bag_id: bag_id,
+        category_id: 3,
+        flag_id: null,
+        id: 1031,
+        image: null,
+        important: false,
+        item_id: id,
+        name: item,
+        packed: false,
+        quantity: 1,
+        type_id: 9
+      });
+      this.setState({ itemInput: "", [displayBag]: currentBag });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   onKeyPress = (name, index) => e => {
     if (name === "quantity") {
       if (e.key === "Enter") {
@@ -236,7 +282,9 @@ export default (class PackPage extends Component {
     return { count: this.state[bagKey].length - packedCount, key: bagKey };
   };
 
-  componentDidUpdate() {}
+  componentDidUpdate() {
+    // console.log(this.state);
+  }
 
   render() {
     const { bags } = this.props;
@@ -245,7 +293,8 @@ export default (class PackPage extends Component {
       displayBag,
       deleteMode,
       totalItems,
-      totalPacked
+      totalPacked,
+      itemInput
     } = this.state;
     const bagContents = displayBag ? this.state[displayBag] : [];
     const total = Math.floor((totalPacked / totalItems) * 100);
@@ -281,7 +330,12 @@ export default (class PackPage extends Component {
               </div>
               <div className="col-2 p-0">
                 <div>
-                  <AddItem bagName={this.state.bagName} />
+                  {/* <AddItem bagName={this.state.bagName} /> */}
+                  <AddItemButton
+                    itemInput={itemInput}
+                    handleOnChange={this.handleOnChange}
+                    handleCreateItem={this.handleCreateItem}
+                  />
                 </div>
                 <DeleteConfirm
                   deleteMode={deleteMode}

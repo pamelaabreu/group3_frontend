@@ -12,15 +12,15 @@
 }
 
 .item--count--size {
-    font-size: 7px;
-  }
+  font-size: 7px;
+}
 
 .item--icon {
   text-align: right;
 }
 
 .item--icon--filler {
-    height: 24px;
+  height: 24px;
 }
 
 .item--icon--packed {
@@ -68,5 +68,14 @@
 
 .item--title--color {
   color: #454ade;
+}
 
+.item--icon-filler {
+  height: 24px;
+}
+
+.item--description-flow {
+  height: 14px;
+  overflow-x: scroll;
+  overflow-y: auto;
 }
