@@ -18,49 +18,79 @@ const RemindersPage = props => {
   } = props;
 
   const [todoList, setTodoList] = useState(null);
+  const [todoListId, setTodoListId] = useState(null);
+  const [shoppingListId, setShoppingListId] = useState(null);
   const [shoppingList, setShoppingList] = useState([]);
   const [alertDisplay, setAlertDisplay] = useState(false);
   const [itemInput, setItemInput] = useState("");
 
   useEffect(() => {
-    console.log("lists", lists);
+    console.log(lists, "lists");
+    // console.log("selected", selectedList);
     if (!lists.length) return;
     for (let list of lists) {
       getList(list);
     }
   }, [lists]);
 
+  useEffect(() => {
+    console.log(shoppingList, "s list");
+    console.log(shoppingListId, "s id");
+    console.log(todoList, "tdl");
+    console.log(todoListId, "tdl id");
+  });
+
+  useEffect(() => {
+    axios({
+      method: "get",
+      url: BASE_URL + "/todolist/todo/" + lists.todolist_id
+    })
+      .then()
+      .catch(err => {
+        console.log(err);
+      });
+  }, [todoList, shoppingList]);
+
   const createList = () => {
-    if (lists.list_type === "Todo List" || "Shopping List") {
-      setAlertDisplay(true);
-    } else {
-      axios({
-        method: "post",
-        url: "http://localhost:5000/todolist/",
-        data: {
-          name: "",
-          trip_id,
-          list_type: selectedList
-        }
-      })
-        .then(res => {
-          console.log("list created");
-          updateLists();
-        })
-        .catch(err => {
-          console.log(err);
-        });
+    for (let i = 0; i < lists.length; i++) {
+      if (lists[i].list_type === selectedList) {
+        setAlertDisplay(true);
+        return;
+      }
     }
+    axios({
+      method: "post",
+      url: "http://localhost:5000/todolist/",
+      data: {
+        name: "",
+        trip_id,
+        list_type: selectedList
+      }
+    })
+      .then(res => {
+        console.log("list created");
+        updateLists();
+      })
+      .catch(err => {
+        console.log(err);
+      });
   };
 
   const getList = list => {
+    const { list_type, todolist_id } = list;
+
     axios({
       method: "get",
-      url: "http://localhost:5000/todolist/" + list.todolist_id + "/all"
+      url: "http://localhost:5000/todolist/" + todolist_id + "/all"
     })
       .then(({ data: listData }) => {
-        if (list.list_type === "Shopping List") setShoppingList(listData);
-        else setTodoList(listData);
+        if (list_type === "Shopping List") {
+          setShoppingList(listData);
+          setShoppingListId(todolist_id);
+        } else {
+          setTodoList(listData);
+          setTodoListId(todolist_id);
+        }
       })
       .catch(err => {
         console.log(err);
@@ -70,6 +100,10 @@ const RemindersPage = props => {
   const handleOnChange = e => {
     setItemInput(e.target.value);
   };
+
+  // const handleTodoToggle = () => {
+
+  // }
 
   const handleCreateItem = () => {
     if (itemInput.trim() === "") return;
@@ -94,6 +128,7 @@ const RemindersPage = props => {
           pack: false,
           image: "https://www.jcrew.com/s7-img-facade/L4012_PA6511?fmt=jpeg"
         });
+        setShoppingList(shoppingList);
       })
       .catch(err => {
         console.log(err);
@@ -102,7 +137,7 @@ const RemindersPage = props => {
 
   return (
     <>
-      {lists.length ? (
+      {lists.length !== 0 ? (
         <h4 className="ml-3">Here's your todos:</h4>
       ) : (
         <NoReminders />
@@ -122,55 +157,44 @@ const RemindersPage = props => {
             </div>
           </div>
         </div>
-        <div className="row">
-          <div className="mt-3 accordion col-8" id="accordionExample">
-            <div className="card">
-              <div className="card-header" id="headingOne">
-                <h2 className="mb-0">
-                  <button
-                    className="btn btn-link"
-                    type="button"
-                    data-toggle="collapse"
-                    data-target="#collapseOne"
-                    aria-expanded="true"
-                    aria-controls="collapseOne"
-                  >
-                    Todo List
-                  </button>
-                </h2>
-              </div>
-
+        <div className="">
+          <p>
+            <a
+              className="btn btn-primary"
+              data-toggle="collapse"
+              href="#multiCollapseExample3"
+              role="button"
+              aria-expanded="false"
+              aria-controls="multiCollapseExample3"
+            >
+              Shopping List
+            </a>
+            <button
+              className="btn btn-primary ml-2"
+              type="button"
+              data-toggle="collapse"
+              data-target="#multiCollapseExample2"
+              aria-expanded="false"
+              aria-controls="multiCollapseExample2"
+            >
+              Todo List
+            </button>
+          </p>
+          <div className="row">
+            <div className="col">
               <div
-                id="collapseOne"
-                className="collapse show"
-                aria-labelledby="headingOne"
-                data-parent="#accordionExample"
+                className="collapse multi-collapse"
+                id="multiCollapseExample3"
               >
-                <div className="m-3 card-body">Todos</div>
+                <div className="card card-body">Shopping Todos</div>
               </div>
             </div>
-            <div className="card">
-              <div className="card-header" id="headingTwo">
-                <h2 className="mb-0">
-                  <button
-                    className="btn btn-link collapsed"
-                    type="button"
-                    data-toggle="collapse"
-                    data-target="#collapseTwo"
-                    aria-expanded="false"
-                    aria-controls="collapseTwo"
-                  >
-                    Shopping List
-                  </button>
-                </h2>
-              </div>
+            <div className="col">
               <div
-                id="collapseTwo"
-                className="collapse"
-                aria-labelledby="headingTwo"
-                data-parent="#accordionExample"
+                className="collapse multi-collapse"
+                id="multiCollapseExample2"
               >
-                <div className="m-3 card-body">Shopping todos</div>
+                <div className="card card-body">Todos</div>
               </div>
             </div>
           </div>
