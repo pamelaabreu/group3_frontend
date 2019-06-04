@@ -11,9 +11,7 @@ export default props => {
     index
   } = props;
   const toBePacked = pack ? "item--font--blue" : "item--font--white";
-  const borderColor = pack
-    ? " item--border--blue "
-    : " item--border--white ";
+  const borderColor = pack ? " item--border--blue " : " item--border--white ";
   return (
     <div className={"p-0 m-1"}>
       <button

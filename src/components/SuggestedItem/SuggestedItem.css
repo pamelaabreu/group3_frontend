@@ -6,11 +6,11 @@
 }
 
 .item--border--blue {
-  border:1px solid #4896c9ff;
+  border: 1px solid #4896c9ff;
 }
 
 .item--border--white {
-  border:1px solid white;
+  border: 1px solid white;
 }
 
 .item--count--packed {
@@ -24,7 +24,7 @@
 
 .item--font--blue {
   background-color: #4896c9ff;
-    color: white;
+  color: white;
 }
 
 .item--font--white {

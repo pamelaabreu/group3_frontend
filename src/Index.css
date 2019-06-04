@@ -1,9 +1,4 @@
-@import url(
-  https://fonts.googleapis.com/css?family=Muli:300,
-  400,
-  700,
-  900&display=swap
-);
+@import url("https://fonts.googleapis.com/css?family=Muli:300,400,700,900&display=swap");
 
 * {
   box-sizing: border-box;
@@ -18,7 +13,7 @@
   --beeYellow: #eec643;
   --smokeBlack: #141414;
   --huate: #eef0f2;
-  --opacity80: rgba(255, 255, 255, 0.79);
+  --opacity80: rgba(251, 251, 251, 0.8);
   --lightGrey: #c6c6c6;
 }
 

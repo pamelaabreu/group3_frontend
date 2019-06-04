@@ -27,27 +27,31 @@ class Signup extends React.Component {
     const { inputs } = this.state;
     const { email, password, username } = inputs;
 
-    firebase.auth().createUserWithEmailAndPassword(email, password)
+    firebase
+      .auth()
+      .createUserWithEmailAndPassword(email, password)
       .then(
         response => response.user.uid,
 
         // This is the handling for the Firebase error when creating a user
         ({ message }) => this.setState({ firebaseCreateUserError: message })
       )
-      .then(firebaseUid => {
-            axios.post(
-                `${backendUrlConnect}/user/`, 
-                {
-                    uid: firebaseUid,
-                    username,
-                    email
-                }
-            );
-      },
+      .then(
+        firebaseUid => {
+          axios.post(`${backendUrlConnect}/user/`, {
+            uid: firebaseUid,
+            username,
+            email
+          });
+        },
 
         // This is the error handling for creating a user in the backend
-        err => this.setState({ firebaseCreateUserError: "Trouble creating user. Please try again later!" })
-      )
+        err =>
+          this.setState({
+            firebaseCreateUserError:
+              "Trouble creating user. Please try again later!"
+          })
+      );
   };
 
   render() {
@@ -71,11 +75,11 @@ class Signup extends React.Component {
               name={inputName}
               placeholder={inputName}
               required={isRequired}
-              min='1'
+              min="1"
             />
           );
         })}
-        <button type='submit'>Signup</button>
+        <button type="submit">Signup</button>
       </form>
     );
   }

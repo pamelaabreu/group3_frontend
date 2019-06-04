@@ -24,7 +24,7 @@ export default props => {
     ? image
     : "https://www.jcrew.com/s7-img-facade/L4012_PA6511?fmt=jpeg";
   return (
-    <div className="m-1 border border-white rounded">
+    <div className="col m-2 border border-white rounded">
       <button
         className={"item--unpacked p-0 rounded" + toDelete}
         onClick={handleClick("item", index)}
@@ -68,7 +68,11 @@ export default props => {
         </div>
         <div className="col-12">
           {/* Item Name */}
-          <div className={"row align-items-center justify-content-center"}>
+          <div
+            className={
+              "row align-items-center justify-content-center item--description-flow"
+            }
+          >
             <span className="item--title--font item--title--color">
               {name} <i className="fas fa-times item--count--size" />
               {modifyQuant ? (
