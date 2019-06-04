@@ -211,8 +211,17 @@ const RemindersPage = props => {
                 id="multiCollapseExample2"
               >
                 <div className="card card-body">
-                  {todoList.map(e => {
-                    return <Todo task_name={e.task_name} key={e.id} />;
+                  {todoList.map((e, i) => {
+                    console.log(e.id);
+                    return (
+                      <Todo
+                        task_name={e.task_name}
+                        key={i}
+                        index={i}
+                        value={e.id}
+                        handleDeleteTodo={handleDeleteTodo}
+                      />
+                    );
                   })}
                 </div>
               </div>
