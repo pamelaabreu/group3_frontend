@@ -288,3 +288,20 @@ export const inputChange = (name, index, e, state) => {
   }
   return null;
 };
+
+export const addToShoppingCart = (index, state, lists) => {
+  const { displayBag } = state;
+  const items = state[displayBag];
+  if (checkLists(lists)) {
+    console.log("List doesnt exist");
+  } else {
+    console.log("List exists");
+  }
+};
+
+const checkLists = lists => {
+  for (let list of lists) {
+    if (list.list_type === "Shopping List") return false;
+  }
+  return true;
+};
