@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import NoReminders from "./NoReminders/NoReminders";
-import AddListButton from "./AddListButton/AddListButton";
+import AddListButton from "./AddListCard/AddListCard";
 import ListCard from "./ListCard/ListCard";
 import AddItemButton from "./AddItemButton/AddItemButton";
 import BASE_URL from "../../../services/backendUrlConnect";
@@ -25,6 +25,7 @@ const RemindersPage = props => {
   const [alertDisplay, setAlertDisplay] = useState(false);
   const [itemInput, setItemInput] = useState("");
   const [todos, setTodos] = useState([]);
+  const [todoDisplay, setTodoDisplay] = useState(false);
 
   useEffect(() => {
     console.log(lists, "lists");
