@@ -262,12 +262,17 @@ const RemindersPage = props => {
           <div className="col-2">
             <AddItemButton
               itemInput={itemInput}
-              handleOnChange={handleOnChange}
+              handleOnChange={handleItemInputChange}
               handleCreateItem={handleCreateItem}
             />
           </div>
         </div>
       </div>
+      <AddTodo
+        todoInput={todoInput}
+        handleTodoInputChange={handleTodoInputChange}
+        addTodo={addTodo}
+      />
     </>
   );
 };
