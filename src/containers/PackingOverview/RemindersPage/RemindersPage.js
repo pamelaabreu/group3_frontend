@@ -7,6 +7,7 @@ import AddItemButton from "./AddItemButton/AddItemButton";
 import BASE_URL from "../../../services/backendUrlConnect";
 import ShoppingItem from "../../../components/SuggestedItem/SuggestedItem";
 import Todo from "./Todo/Todo";
+import AddTodo from "./AddTodo/AddTodo";
 
 const RemindersPage = props => {
   const {
@@ -26,6 +27,7 @@ const RemindersPage = props => {
   const [itemInput, setItemInput] = useState("");
   const [todos, setTodos] = useState([]);
   const [todoDisplay, setTodoDisplay] = useState(false);
+  const [todoInput, setTodoInput] = useState("");
 
   useEffect(() => {
     console.log(lists, "lists");
