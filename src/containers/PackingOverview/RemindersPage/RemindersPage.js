@@ -107,9 +107,19 @@ const RemindersPage = props => {
     setItemInput(e.target.value);
   };
 
-  // const handleTodoToggle = () => {
+  const handleDeleteTodo = (index, todo_id) => {
+    let copiedTodoList = [...todoList];
+    copiedTodoList = copiedTodoList
+      .slice(0, index)
+      .concat(copiedTodoList.slice(index + 1));
 
-  // }
+    axios
+      .delete("http://localhost:5000/todolist/todo/" + todo_id)
+      .then(() => {
+        setTodoList(copiedTodoList);
+      })
+      .catch(err => console.log(err));
+  };
 
   const handleCreateItem = () => {
     if (itemInput.trim() === "") return;
