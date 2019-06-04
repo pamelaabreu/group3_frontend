@@ -233,7 +233,20 @@ const RemindersPage = props => {
                 className="collapse multi-collapse"
                 id="multiCollapseExample3"
               >
-                <div className="card card-body">Shopping todos</div>
+                <div className="card card-body">
+                  {todoList.map((e, i, a) => {
+                    let t = a[a.length - 1 - i];
+                    return (
+                      <Todo
+                        task_name={t.task_name}
+                        key={i}
+                        index={a.length - 1 - i}
+                        value={t.id}
+                        handleDeleteTodo={handleDeleteTodo}
+                      />
+                    );
+                  })}
+                </div>
               </div>
             </div>
             <div className="col">
@@ -241,20 +254,7 @@ const RemindersPage = props => {
                 className="collapse multi-collapse"
                 id="multiCollapseExample2"
               >
-                <div className="card card-body">
-                  {todoList.map((e, i) => {
-                    console.log(e.id);
-                    return (
-                      <Todo
-                        task_name={e.task_name}
-                        key={i}
-                        index={i}
-                        value={e.id}
-                        handleDeleteTodo={handleDeleteTodo}
-                      />
-                    );
-                  })}
-                </div>
+                <div className="card card-body">Completed</div>
               </div>
             </div>
           </div>
