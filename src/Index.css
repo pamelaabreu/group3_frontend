@@ -7,14 +7,18 @@
 }
 
 :root {
-  --bundleBlue: #4896c9;
-  --denimBlue: #2541b2;
-  --lightLav: #ecccff;
-  --beeYellow: #eec643;
-  --smokeBlack: #141414;
+  --white: #ffffff;
+  --white80: rgba(251, 251, 251, 0.8);
   --huate: #eef0f2;
-  --opacity80: rgba(251, 251, 251, 0.8);
-  --lightGrey: #c6c6c6;
+  --huate80: rgba(238, 240, 242, 0.8);
+  --babyBlue: #c3d8e7;
+  --babyBlue50: rgba(73, 150, 201, 0.5);
+  --bundleBlue: #4996c9;
+  --bundleBlue70: rgba(73, 150, 201, 0.7);
+  --denimBlue: #2541b2;
+  --smokeBlack: #141414;
+  --smokeGrey: #9d9d9d;
+  --smokeGrey30: rgba(157, 157, 157, 0.3);
 }
 
 .mali300 {
