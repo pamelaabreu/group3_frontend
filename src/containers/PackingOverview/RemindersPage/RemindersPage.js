@@ -183,7 +183,7 @@ const RemindersPage = props => {
               aria-expanded="false"
               aria-controls="multiCollapseExample3"
             >
-              Shopping List
+              To Be Completed
             </a>
             <button
               className="btn btn-primary ml-2"
@@ -193,7 +193,7 @@ const RemindersPage = props => {
               aria-expanded="false"
               aria-controls="multiCollapseExample2"
             >
-              Todo List
+              Completed
             </button>
           </p>
           <div className="row">
