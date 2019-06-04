@@ -105,8 +105,37 @@ const RemindersPage = props => {
       });
   };
 
-  const handleOnChange = e => {
+  const handleItemInputChange = e => {
     setItemInput(e.target.value);
+  };
+
+  const handleTodoInputChange = e => {
+    setTodoInput(e.target.value);
+  };
+
+  const addTodo = e => {
+    let data = {
+      task_name: todoInput,
+      complete: false,
+      todolist_id: todoListId
+    };
+
+    axios({
+      method: "post",
+      url: BASE_URL + "/todolist/todo/",
+      data
+    })
+      .then(({ data: { id } }) => {
+        let newTodoList = [...todoList];
+        data.id = id;
+        console.log(id, "ID");
+        newTodoList.push(data);
+        setTodoList(newTodoList);
+        setTodoInput("");
+      })
+      .catch(err => {
+        console.log(err);
+      });
   };
 
   const handleDeleteTodo = (index, todo_id) => {
