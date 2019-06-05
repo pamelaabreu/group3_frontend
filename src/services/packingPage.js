@@ -36,7 +36,9 @@ export const mountPacking = async (bagTypes, bags) => {
   }
 };
 
-export const addToDelete = (name, index, toDelete, displayBag, currentBag) => {
+export const addToDelete = (name, index, state) => {
+  const { toDelete, displayBag } = state;
+  const currentBag = state[displayBag];
   const item_id = currentBag[index].item_id;
   let newToDelete = toDelete;
   if (name === "item" || name === "unpack") {
@@ -54,13 +56,10 @@ export const addToDelete = (name, index, toDelete, displayBag, currentBag) => {
   return { toDelete: newToDelete, [displayBag]: currentBag };
 };
 
-export const executeDelete = async (
-  currentBag,
-  toDelete,
-  displayBag,
-  totalItems,
-  totalPacked
-) => {
+export const executeDelete = async state => {
+  const { toDelete, displayBag, totalItems, totalPacked } = state;
+  // grab the current bag we are deleting from, and create a queue array
+  let currentBag = state[displayBag];
   const deleteQueue = [];
   // fill queue array with api calls of what is going to be deleted
   for (let item_id of toDelete) {
@@ -74,7 +73,7 @@ export const executeDelete = async (
   try {
     // if successful
     const res = await Promise.all(deleteQueue);
-    console.log("delete resulte: ", res);
+    console.log("Delete: ", res[0].statusText);
     let removedFromPacked = 0;
     // loop through the current bag in the front end and remove each item
     for (let item_id of toDelete) {
@@ -114,7 +113,9 @@ export const executeDelete = async (
   }
 };
 
-export const unpack = (index, displayBag, totalPacked, items) => {
+export const unpack = (index, state) => {
+  const { displayBag, totalPacked } = state;
+  const items = state[displayBag];
   items[index].selected = !items[index].selected;
   items[index].packed = false;
   axios({
@@ -125,7 +126,7 @@ export const unpack = (index, displayBag, totalPacked, items) => {
     }
   })
     .then(({ data }) => {
-      console.log(data);
+      // console.log(data);
     })
     .catch(err => {
       console.log("ERROR PACKING ITEM IN THE BACK END!");
@@ -137,7 +138,10 @@ export const unpack = (index, displayBag, totalPacked, items) => {
   };
 };
 
-export const markImportant = (index, displayBag, items) => {
+export const markImportant = (index, state) => {
+  const { displayBag } = state;
+  const items = state[displayBag];
+  if (!items || items.length === 0) return null;
   items[index].important = !items[index].important;
   axios({
     method: "put",
@@ -147,7 +151,7 @@ export const markImportant = (index, displayBag, items) => {
     }
   })
     .then(({ data }) => {
-      console.log(data);
+      // console.log(data);
     })
     .catch(err => {
       console.log("ERROR PACKING ITEM IN THE BACK END!");
@@ -155,4 +159,132 @@ export const markImportant = (index, displayBag, items) => {
   return {
     [displayBag]: items
   };
+};
+
+export const select = (index, state) => {
+  const { displayBag, totalPacked } = state;
+  const items = state[displayBag];
+  if (!items || items.length === 0) return null;
+  items[index].selected = !items[index].selected;
+  items[index].packed = true;
+  axios({
+    method: "put",
+    url: BASEURL + "/items/" + items[index].id,
+    data: {
+      packed: items[index].packed
+    }
+  })
+    .then(({ data }) => {
+      // console.log(data);
+    })
+    .catch(err => {
+      console.log("ERROR PACKING ITEM IN THE BACK END!");
+    });
+  const newTotalPacked = totalPacked + 1;
+  return {
+    [displayBag]: items,
+    totalPacked: newTotalPacked
+  };
+};
+
+export const closeLastQuantity = state => {
+  const { displayBag, lastInputIndex } = state;
+  const items = state[displayBag];
+  if (!items || items.length === 0) return null;
+  if (lastInputIndex !== null) {
+    const val =
+      items[lastInputIndex].quantity < 1 ||
+      items[lastInputIndex].quantity === ""
+        ? 1
+        : items[lastInputIndex].quantity;
+    items[lastInputIndex].quantity = val;
+    items[lastInputIndex].modifyQuant = false;
+    return {
+      [displayBag]: items
+    };
+  }
+};
+
+export const quantity = (index, e, keyPress, state) => {
+  const { displayBag } = state;
+  const items = state[displayBag];
+  // const { items } = this.state;
+  if (!items || items.length === 0) return null;
+  if (keyPress) {
+    const val = e.target.value < 1 ? 1 : e.target.value;
+    items[index].quantity = val;
+    items[index].modifyQuant = false;
+  } else {
+    items[index].modifyQuant = !items[index].modifyQuant;
+  }
+  axios({
+    method: "put",
+    url: BASEURL + "/items/" + items[index].id,
+    data: {
+      quantity: items[index].quantity
+    }
+  })
+    .then(({ data }) => {
+      console.log(data);
+    })
+    .catch(err => {
+      console.log("ERROR PACKING ITEM IN THE BACK END!");
+    });
+  return {
+    [displayBag]: items,
+    lastInputIndex: index
+  };
+};
+
+export const createItem = async state => {
+  const { itemInput, displayBag } = state;
+  const currentBag = state[displayBag];
+  if (currentBag.length === 0 || currentBag.length === undefined) return null;
+  const bag_id = state[displayBag][0].bag_id;
+  if (itemInput.trim() === "") return null;
+  let item = itemInput.trim();
+  try {
+    const {
+      data: { id }
+    } = await axios({
+      method: "post",
+      url: BASEURL + "/items/",
+      data: {
+        name: item,
+        packed: false,
+        quantity: 1,
+        bag_id,
+        category_id: 9
+      }
+    });
+    currentBag.push({
+      bag_id: bag_id,
+      category_id: 3,
+      flag_id: null,
+      id: 1031,
+      image: null,
+      important: false,
+      item_id: id,
+      name: item,
+      packed: false,
+      quantity: 1,
+      type_id: 9
+    });
+    return { itemInput: "", [displayBag]: currentBag };
+  } catch (err) {
+    console.log("Error creating item");
+  }
+};
+
+export const inputChange = (name, index, e, state) => {
+  if (name === "quantity") {
+    const { displayBag } = state;
+    const items = state[displayBag];
+    const val = e.target.value < 1 ? "" : e.target.value;
+    items[index].quantity = val;
+    return {
+      [displayBag]: items
+    };
+  }
+  return null;
 };
