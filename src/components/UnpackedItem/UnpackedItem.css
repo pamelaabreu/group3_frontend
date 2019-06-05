@@ -68,6 +68,11 @@
   overflow: scroll;
 }
 
+.uItem--buttons {
+  position: absolute;
+  bottom: 20px;
+}
+
 .uItem--title--font {
   font-size: 15px;
   font-weight: 700;
