@@ -289,15 +289,16 @@ export const inputChange = (name, index, e, state) => {
   return null;
 };
 
-export const addToShoppingCart = async (index, state, lists) => {
+export const findOrCreateShoppingCart = async (index, state, lists) => {
   const { displayBag } = state;
   const item = state[displayBag][index];
-  console.log(lists);
   const list_id = checkForShoppingList(lists);
   if (list_id) {
+    console.log("List exists, its id: ", list_id);
     return list_id;
   } else {
     try {
+      console.log("No list exists, creating new one");
       const {
         data: { id }
       } = await axios({
@@ -312,13 +313,62 @@ export const addToShoppingCart = async (index, state, lists) => {
       return id;
     } catch (err) {
       console.log("failed to create shopping list");
+      return null;
     }
   }
 };
 
 const checkForShoppingList = lists => {
+  console.log("checking for shopping list");
   for (let list of lists) {
     if (list.list_type === "Shopping List") return list.id;
   }
   return false;
+};
+
+export const addToShoppingCart = async (index, state, list_id) => {
+  const { displayBag } = state;
+  const updateParent = state.list_id === null ? true : false;
+  const item = state[displayBag][index];
+  console.log("adding item to shopping cart");
+  const createTodo = axios({
+    method: "post",
+    url: BASEURL + "/todolist/todo/",
+    data: {
+      task_name: item.name,
+      complete: false,
+      item_id: item.id,
+      todolist_id: list_id
+    }
+  });
+  const shopify = axios({
+    method: "put",
+    url: BASEURL + "/items/" + item.id,
+    data: {
+      shop: true
+    }
+  });
+
+  try {
+    console.log("item added to shopping cart");
+    const [
+      {
+        data: { id }
+      }
+    ] = await Promise.all([createTodo, shopify]);
+    const currentBag = state[displayBag];
+    currentBag[index].shop = true;
+    currentBag[index].todo_id = id;
+    console.log("these are its current stats: ", currentBag[index]);
+    return {
+      newState: {
+        [displayBag]: currentBag,
+        list_id
+      },
+      updateParent
+    };
+  } catch (err) {
+    console.log("ERROR ADDING ITEM TO SHOPPING LIST");
+    return false;
+  }
 };
