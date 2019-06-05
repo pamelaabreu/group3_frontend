@@ -1,7 +1,4 @@
 import React, { Component } from "react";
-import axios from "axios";
-import BASEURL from "../../../services/backendUrlConnect";
-// import AddItem from "../../../components/AddItem/AddItem";
 import BagSelector from "../../../components/BagSelectorCard/BagSelectorCard";
 import Bag from "../../../components/Bag/Bag";
 import DeleteConfirm from "../../../components/DeleteConfirm/DeleteConfirm";
@@ -9,9 +6,14 @@ import ProgressBar from "../../../components/ProgressBar/ProgressBar";
 import AddItemButton from "../RemindersPage/AddItemButton/AddItemButton";
 import {
   addToDelete,
+  closeLastQuantity,
+  createItem,
   executeDelete,
+  inputChange,
   markImportant,
   mountPacking,
+  quantity,
+  select,
   unpack
 } from "../../../services/packingPage";
 import "./PackingPage.css";
@@ -23,7 +25,6 @@ export default (class PackPage extends Component {
       tripInfo: null,
       categories: null,
       page: "packing",
-      bagName: "Personal",
       bags: null,
       bagTypes: { 1: "Personal", 2: "Carry-On", 3: "Checked" },
       currentBag: null,
@@ -53,7 +54,7 @@ export default (class PackPage extends Component {
       this.handleAddToDelete(name, index);
       return;
     }
-    if (name !== "quantity") this.closeLastQuantity();
+    if (name !== "quantity") this.handleCloseLastQuantity();
     switch (name) {
       case "packing":
         this.setState({ page: name });
@@ -88,135 +89,57 @@ export default (class PackPage extends Component {
   };
 
   handleAddToDelete = (name, index) => {
-    this.closeLastQuantity();
-    const { toDelete, displayBag } = this.state;
-    const currentBag = this.state[displayBag];
-    const newState = addToDelete(name, index, toDelete, displayBag, currentBag);
+    this.handleCloseLastQuantity();
+    if (name === "bag") return;
+    const newState = addToDelete(name, index, this.state);
     this.setState(newState);
+    return;
   };
 
   handleExecuteDelete = async () => {
-    const { toDelete, displayBag, totalItems, totalPacked } = this.state;
     // if toDelete is empty, set deleteMode to false, and exit method
-    if (toDelete.length === 0) {
+    if (this.state.toDelete.length === 0) {
       this.setState({ deleteMode: false });
       return;
     }
-    // grab the current bag we are deleting from, and create a queue array
-    let currentBag = this.state[displayBag];
-    const newState = await executeDelete(
-      currentBag,
-      toDelete,
-      displayBag,
-      totalItems,
-      totalPacked
-    );
+    const newState = await executeDelete(this.state);
     this.setState(newState);
   };
 
   handleUnpack = index => {
-    const { displayBag, totalPacked } = this.state;
-    const items = this.state[displayBag];
-    const newState = unpack(index, displayBag, totalPacked, items);
+    const newState = unpack(index, this.state);
     this.setState(newState);
     return;
   };
 
   handleImportant = (index, e) => {
-    const { displayBag } = this.state;
-    const items = this.state[displayBag];
-    if (!items || items.length === 0) return;
-    const newState = markImportant(index, displayBag, items);
-    this.setState(newState);
-  };
-
-  handleSelect = (index, e) => {
-    const { displayBag, totalPacked } = this.state;
-    const items = this.state[displayBag];
-    if (!items || items.length === 0) return;
-    items[index].selected = !items[index].selected;
-    items[index].packed = true;
-    axios({
-      method: "put",
-      url: BASEURL + "/items/" + items[index].id,
-      data: {
-        packed: items[index].packed
-      }
-    })
-      .then(({ data }) => {
-        console.log(data);
-      })
-      .catch(err => {
-        console.log("ERROR PACKING ITEM IN THE BACK END!");
-      });
-    const newTotalPacked = totalPacked + 1;
-    this.setState({
-      [displayBag]: items,
-      totalPacked: newTotalPacked
-    });
-  };
-
-  handleQuantity = (index, e, keyPress) => {
-    this.closeLastQuantity();
-    const { displayBag } = this.state;
-    const items = this.state[displayBag];
-    // const { items } = this.state;
-    if (!items || items.length === 0) return;
-    if (keyPress) {
-      const val = e.target.value < 1 ? 1 : e.target.value;
-      items[index].quantity = val;
-      items[index].modifyQuant = false;
-    } else {
-      items[index].modifyQuant = !items[index].modifyQuant;
-    }
-    axios({
-      method: "put",
-      url: BASEURL + "/items/" + items[index].id,
-      data: {
-        quantity: items[index].quantity
-      }
-    })
-      .then(({ data }) => {
-        console.log(data);
-      })
-      .catch(err => {
-        console.log("ERROR PACKING ITEM IN THE BACK END!");
-      });
-    this.setState({
-      [displayBag]: items,
-      lastInputIndex: index
-    });
-  };
-
-  closeLastQuantity = () => {
-    const { displayBag, lastInputIndex } = this.state;
-    const items = this.state[displayBag];
-    if (!items || items.length === 0) return;
-    if (lastInputIndex !== null) {
-      const val =
-        items[lastInputIndex].quantity < 1 ||
-        items[lastInputIndex].quantity === ""
-          ? 1
-          : items[lastInputIndex].quantity;
-      items[lastInputIndex].quantity = val;
-      items[lastInputIndex].modifyQuant = false;
-      this.setState({
-        [displayBag]: items
-      });
-    }
+    const newState = markImportant(index, this.state);
+    if (newState) this.setState(newState);
     return;
   };
 
-  handleChange = (name, index) => e => {
-    if (name === "quantity") {
-      const { displayBag } = this.state;
-      const items = this.state[displayBag];
-      const val = e.target.value < 1 ? "" : e.target.value;
-      items[index].quantity = val;
-      this.setState({
-        [displayBag]: items
-      });
-    }
+  handleSelect = (index, e) => {
+    const newState = select(index, this.state);
+    if (newState) this.setState(newState);
+    return;
+  };
+
+  handleQuantity = (index, e, keyPress) => {
+    this.handleCloseLastQuantity();
+    const newState = quantity(index, e, keyPress, this.state);
+    if (newState) this.setState(newState);
+    return;
+  };
+
+  handleCloseLastQuantity = () => {
+    const newState = closeLastQuantity(this.state);
+    if (newState) this.setState(newState);
+    return;
+  };
+
+  handleInputChange = (name, index) => e => {
+    const newState = inputChange(name, index, e, this.state);
+    if (newState) this.setState(newState);
     return;
   };
 
@@ -226,42 +149,9 @@ export default (class PackPage extends Component {
   };
 
   handleCreateItem = async () => {
-    const { itemInput, displayBag } = this.state;
-    const currentBag = this.state[displayBag];
-    const bag_id = this.state[displayBag][0].bag_id;
-    if (itemInput.trim() === "") return;
-    let item = itemInput.trim();
-    try {
-      const {
-        data: { id }
-      } = await axios({
-        method: "post",
-        url: BASEURL + "/items/",
-        data: {
-          name: item,
-          packed: false,
-          quantity: 1,
-          bag_id,
-          category_id: 9
-        }
-      });
-      currentBag.push({
-        bag_id: bag_id,
-        category_id: 3,
-        flag_id: null,
-        id: 1031,
-        image: null,
-        important: false,
-        item_id: id,
-        name: item,
-        packed: false,
-        quantity: 1,
-        type_id: 9
-      });
-      this.setState({ itemInput: "", [displayBag]: currentBag });
-    } catch (err) {
-      console.log(err);
-    }
+    const newState = await createItem(this.state);
+    if (newState) this.setState(newState);
+    return;
   };
 
   onKeyPress = (name, index) => e => {
@@ -324,13 +214,12 @@ export default (class PackPage extends Component {
                 <Bag
                   items={bagContents}
                   handleOnClick={this.handleOnClick}
-                  handleChange={this.handleChange}
+                  handleChange={this.handleInputChange}
                   onKeyPress={this.onKeyPress}
                 />
               </div>
               <div className="col-2 p-0">
                 <div>
-                  {/* <AddItem bagName={this.state.bagName} /> */}
                   <AddItemButton
                     itemInput={itemInput}
                     handleOnChange={this.handleOnChange}
