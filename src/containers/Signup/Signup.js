@@ -24,6 +24,7 @@ class Signup extends React.Component {
   handleSignupSubmit = e => {
     e.preventDefault();
 
+    const { closeMenu } = this.props;
     const { inputs } = this.state;
     const { email, password, username } = inputs;
 
@@ -51,7 +52,9 @@ class Signup extends React.Component {
             firebaseCreateUserError:
               "Trouble creating user. Please try again later!"
           })
-      );
+      )
+      .then(closeMenu())
+      .catch(err => console.log("Error", err));
   };
 
   render() {
