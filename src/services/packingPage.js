@@ -329,6 +329,7 @@ export const addToShoppingCart = async (index, state, list_id) => {
   const { displayBag } = state;
   const updateParent = state.list_id === null ? true : false;
   const item = state[displayBag][index];
+  if (item.shop === true) return false;
   const createTodo = axios({
     method: "post",
     url: BASEURL + "/todolist/todo/",
