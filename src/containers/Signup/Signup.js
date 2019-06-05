@@ -63,25 +63,36 @@ class Signup extends React.Component {
 
     return (
       <form onSubmit={this.handleSignupSubmit}>
-        {firebaseCreateUserError ? <p>{firebaseCreateUserError}</p> : null}
         {inputsArray.map(([inputName, inputValue], index) => {
           const inputType =
             inputName.toLowerCase() === "password" ? "password" : "text";
           const isRequired =
             inputName.toLowerCase() !== "username" ? true : false;
+
           return (
-            <input
-              onChange={this.handleInputChange}
-              key={index}
-              type={inputType}
-              value={inputValue}
-              name={inputName}
-              placeholder={inputName}
-              required={isRequired}
-              min="1"
-            />
+            <div className="form-group" key={index}>
+              <label htmlFor={inputName}>{inputName}</label>
+              <input
+                className="form-control"
+                onChange={this.handleInputChange}
+                key={index}
+                type={inputType}
+                value={inputValue}
+                name={inputName}
+                placeholder={inputName}
+                required={isRequired}
+                aria-describedby={`${inputName}`}
+                aria-labelledby={`${inputName}`}
+                aria-label={`${inputName}`}
+                id={inputName}
+                min="1"
+              />
+            </div>
           );
         })}
+        <small className="form-text">
+          {firebaseCreateUserError ? <p>{firebaseCreateUserError}</p> : null}
+        </small>
         <button type="submit">Signup</button>
       </form>
     );
