@@ -296,11 +296,9 @@ export const findOrCreateShoppingCart = async (index, state, lists) => {
   if (state.list_id) return state.list_id;
   const list_id = checkForShoppingList(lists);
   if (list_id) {
-    console.log("List exists, its id: ", list_id);
     return list_id;
   } else {
     try {
-      console.log("No list exists, creating new one");
       const {
         data: { id }
       } = await axios({
@@ -321,8 +319,6 @@ export const findOrCreateShoppingCart = async (index, state, lists) => {
 };
 
 const checkForShoppingList = lists => {
-  console.log("checking for shopping list");
-  console.log(lists);
   for (let list of lists) {
     if (list.list_type === "Shopping List") return list.todolist_id;
   }
@@ -332,9 +328,7 @@ const checkForShoppingList = lists => {
 export const addToShoppingCart = async (index, state, list_id) => {
   const { displayBag } = state;
   const updateParent = state.list_id === null ? true : false;
-  console.log("update parent: ", updateParent);
   const item = state[displayBag][index];
-  console.log("adding item to shopping cart");
   const createTodo = axios({
     method: "post",
     url: BASEURL + "/todolist/todo/",
@@ -354,7 +348,6 @@ export const addToShoppingCart = async (index, state, list_id) => {
   });
 
   try {
-    console.log("item added to shopping cart");
     const [
       {
         data: { id }
@@ -363,7 +356,6 @@ export const addToShoppingCart = async (index, state, list_id) => {
     const currentBag = state[displayBag];
     currentBag[index].shop = true;
     currentBag[index].todo_id = id;
-    console.log("these are its current stats: ", currentBag[index]);
     return {
       newState: {
         [displayBag]: currentBag,
