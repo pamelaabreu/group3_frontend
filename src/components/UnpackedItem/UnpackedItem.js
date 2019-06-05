@@ -28,22 +28,18 @@ export default props => {
     return (
       <div className="col-6 col-md-3 my-2 p-2">
         <div className="row justify-content-center">
-          <div className="item--unpacked my-2 border border-white">
-            <div className="col-12 text-center p-0 rounded">
+          <div
+            className="item--unpacked my-2 border border-white uItem--content-main"
+            style={{ backgroundImage: `url(${img})` }}
+          >
+            <div className="col-12 uItem--title text-center p-0 rounded">
               <span className="uItem--title--font item--title--color">
                 {name}
               </span>
             </div>
-            <div
-              className="uItem--content-main"
-              style={{ backgroundImage: `url(${img})` }}
-            >
-              <div className="row">
-                <div className="container">
-                  <button>Counter</button>
-                  <button>Select</button>
-                </div>
-              </div>
+            <div className="uItem--buttons">
+              <button>Counter</button>
+              <button>Select</button>
             </div>
           </div>
         </div>
