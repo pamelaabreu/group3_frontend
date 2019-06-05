@@ -60,6 +60,7 @@ export default props => {
                   type="button"
                   className="col uItem--button-right mali900 c-bundleBlue"
                   aria-label={`select ${name}`}
+                  onClick={handleClick("select", index)}
                 >
                   Check
                 </button>
