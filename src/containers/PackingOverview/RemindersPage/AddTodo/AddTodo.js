@@ -8,7 +8,6 @@ const AddTodo = props => {
       <button
         type="button"
         className="px-2 py-1 rounded-circle"
-        style={{ backgroundColor: "red" }}
         data-toggle="dropdown"
         aria-haspopup="true"
         aria-expanded="false"
