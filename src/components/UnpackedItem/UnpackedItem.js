@@ -29,7 +29,7 @@ export default props => {
       <div className="col-6 col-md-3 my-2 p-2">
         <div className="row justify-content-center">
           <div
-            className="item--unpacked my-2 border border-white uItem--content-main"
+            className="item--unpacked my-2 border border-white uItem--content-main row"
             style={{ backgroundImage: `url(${img})` }}
           >
             <div className="col-12 uItem--title text-center p-0 rounded">
@@ -37,9 +37,36 @@ export default props => {
                 {name}
               </span>
             </div>
-            <div className="uItem--buttons">
-              <button>Counter</button>
-              <button>Select</button>
+            <div className="col-12 uItem--buttons rounded">
+              {/* <div className="container"> */}
+              <div className="row no-gutters">
+                <span className="col uItem--button-left align-center">
+                  <div className="row justify-content-center no-gutters align-center">
+                    <div className="col text-center align-center">
+                      <button type="button">
+                        <i class="fas fa-minus c-white" />
+                      </button>
+                    </div>
+                    <div className="col text-center align-bottom">
+                      <span className="uItem--quantity-size c-white align-bottom">
+                        {quantity}
+                      </span>
+                    </div>
+                    <div className="col text-center align-center">
+                      <button type="button">
+                        <i class="fas fa-plus c-white" />
+                      </button>
+                    </div>
+                  </div>
+                </span>
+                <button
+                  type="button"
+                  className="col uItem--button-right mali900 c-bundleBlue"
+                >
+                  Check
+                </button>
+                {/* </div> */}
+              </div>
             </div>
           </div>
         </div>
