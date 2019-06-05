@@ -62,8 +62,18 @@
   color: #454ade;
 }
 
-.item--title--font {
-  font-size: 10px;
+.uItem--title--font {
+  font-size: 15px;
+  font-weight: 700;
+  padding-top: 10px;
+  width: 100%;
+}
+
+.uItem--content-main {
+  width: 140px;
+  height: 157px;
+  background-size: cover;
+  background-position: center;
 }
 
 .item--title--color {
@@ -79,3 +89,8 @@
   overflow-x: scroll;
   overflow-y: auto;
 }
+
+/* .item--unpacked .item--title--font {
+  display: inline-block;
+  vertical-align: top;
+} */
