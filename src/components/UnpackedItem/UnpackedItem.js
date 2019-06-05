@@ -36,7 +36,6 @@ export default props => {
               <span className="uItem--title--font c-denimBlue">{name}</span>
             </div>
             <div className="col-12 uItem--buttons rounded">
-              {/* <div className="container"> */}
               <div className="row px-2 no-gutters">
                 <span className="col uItem--button-left align-center">
                   <div className="row justify-content-center no-gutters align-center">
@@ -64,7 +63,6 @@ export default props => {
                 >
                   Check
                 </button>
-                {/* </div> */}
               </div>
             </div>
           </div>
