@@ -29,16 +29,14 @@ export default props => {
     const unPacked = items.map((e, i) => {
       if (!e.packed) {
         return (
-          <div className="col-6 col-sm-6 col-md-4 p-0" key={i}>
-            <UnpackedItem
-              {...e}
-              index={i}
-              Î
-              handleClick={handleOnClick}
-              handleChange={handleChange}
-              onKeyPress={onKeyPress}
-            />
-          </div>
+          <UnpackedItem
+            {...e}
+            index={i}
+            key={i}
+            handleClick={handleOnClick}
+            handleChange={handleChange}
+            onKeyPress={onKeyPress}
+          />
         );
       } else return null;
     });
