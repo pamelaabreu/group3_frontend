@@ -322,8 +322,9 @@ export const findOrCreateShoppingCart = async (index, state, lists) => {
 
 const checkForShoppingList = lists => {
   console.log("checking for shopping list");
+  console.log(lists);
   for (let list of lists) {
-    if (list.list_type === "Shopping List") return list.id;
+    if (list.list_type === "Shopping List") return list.todolist_id;
   }
   return null;
 };
@@ -331,6 +332,7 @@ const checkForShoppingList = lists => {
 export const addToShoppingCart = async (index, state, list_id) => {
   const { displayBag } = state;
   const updateParent = state.list_id === null ? true : false;
+  console.log("update parent: ", updateParent);
   const item = state[displayBag][index];
   console.log("adding item to shopping cart");
   const createTodo = axios({
