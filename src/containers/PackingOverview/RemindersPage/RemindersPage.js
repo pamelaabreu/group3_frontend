@@ -68,7 +68,7 @@ const RemindersPage = props => {
     }
     axios({
       method: "post",
-      url: "http://localhost:5000/todolist/",
+      url: BASE_URL + "/todolist/",
       data: {
         name: "",
         trip_id,
@@ -89,7 +89,7 @@ const RemindersPage = props => {
 
     axios({
       method: "get",
-      url: "http://localhost:5000/todolist/" + todolist_id + "/all"
+      url: BASE_URL + "/todolist/" + todolist_id + "/all"
     })
       .then(({ data: listData }) => {
         if (list_type === "Shopping List") {
@@ -145,7 +145,7 @@ const RemindersPage = props => {
       .concat(copiedTodoList.slice(index + 1));
 
     axios
-      .delete("http://localhost:5000/todolist/todo/" + todo_id)
+      .delete(BASE_URL + "/todolist/todo/" + todo_id)
       .then(() => {
         setTodoList(copiedTodoList);
       })
