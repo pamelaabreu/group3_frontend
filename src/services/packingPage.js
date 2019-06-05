@@ -289,19 +289,36 @@ export const inputChange = (name, index, e, state) => {
   return null;
 };
 
-export const addToShoppingCart = (index, state, lists) => {
+export const addToShoppingCart = async (index, state, lists) => {
   const { displayBag } = state;
-  const items = state[displayBag];
-  if (checkLists(lists)) {
-    console.log("List doesnt exist");
+  const item = state[displayBag][index];
+  console.log(lists);
+  const list_id = checkForShoppingList(lists);
+  if (list_id) {
+    return list_id;
   } else {
-    console.log("List exists");
+    try {
+      const {
+        data: { id }
+      } = await axios({
+        method: "post",
+        url: BASEURL + "/todolist/",
+        data: {
+          name: "",
+          trip_id: item.trip_id,
+          list_type: "Shopping List"
+        }
+      });
+      return id;
+    } catch (err) {
+      console.log("failed to create shopping list");
+    }
   }
 };
 
-const checkLists = lists => {
+const checkForShoppingList = lists => {
   for (let list of lists) {
-    if (list.list_type === "Shopping List") return false;
+    if (list.list_type === "Shopping List") return list.id;
   }
-  return true;
+  return false;
 };
