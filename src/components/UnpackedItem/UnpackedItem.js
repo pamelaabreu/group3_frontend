@@ -29,22 +29,20 @@ export default props => {
       <div className="col-6 col-md-3 my-2 p-2">
         <div className="row justify-content-center">
           <div
-            className="item--unpacked my-2 border border-white uItem--content-main row"
+            className="item--unpacked my-2 border border-white uItem--content-main row no-gutters"
             style={{ backgroundImage: `url(${img})` }}
           >
             <div className="col-12 uItem--title text-center p-0 rounded">
-              <span className="uItem--title--font item--title--color">
-                {name}
-              </span>
+              <span className="uItem--title--font c-denimBlue">{name}</span>
             </div>
             <div className="col-12 uItem--buttons rounded">
               {/* <div className="container"> */}
-              <div className="row no-gutters">
+              <div className="row px-2 no-gutters">
                 <span className="col uItem--button-left align-center">
                   <div className="row justify-content-center no-gutters align-center">
                     <div className="col text-center align-center">
-                      <button type="button">
-                        <i class="fas fa-minus c-white" />
+                      <button type="button" aria-label="reduce quantity">
+                        <i className="fas fa-minus c-white" />
                       </button>
                     </div>
                     <div className="col text-center align-bottom">
@@ -53,8 +51,8 @@ export default props => {
                       </span>
                     </div>
                     <div className="col text-center align-center">
-                      <button type="button">
-                        <i class="fas fa-plus c-white" />
+                      <button type="button" aria-label="incrase quantity">
+                        <i className="fas fa-plus c-white" />
                       </button>
                     </div>
                   </div>
@@ -62,6 +60,7 @@ export default props => {
                 <button
                   type="button"
                   className="col uItem--button-right mali900 c-bundleBlue"
+                  aria-label={`select ${name}`}
                 >
                   Check
                 </button>
