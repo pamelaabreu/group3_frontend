@@ -231,30 +231,31 @@ export default (class PackPage extends Component {
               />
             );
           })}
+
           <div className="mt-2 col-12">
             <ProgressBar total={total} />
-            <div className="row">
-              <div className="col-10">
-                <Bag
-                  items={bagContents}
-                  handleOnClick={this.handleOnClick}
-                  handleChange={this.handleInputChange}
-                  onKeyPress={this.onKeyPress}
-                />
-              </div>
-              <div className="col-2 p-0">
-                <div>
-                  <AddItemButton
-                    itemInput={itemInput}
-                    handleOnChange={this.handleOnChange}
-                    handleCreateItem={this.handleCreateItem}
-                  />
-                </div>
-                <DeleteConfirm
-                  deleteMode={deleteMode}
-                  handleOnClick={this.handleOnClick}
-                />
-              </div>
+          </div>
+          <div className="col-12">
+            <Bag
+              items={bagContents}
+              handleOnClick={this.handleOnClick}
+              handleChange={this.handleInputChange}
+              onKeyPress={this.onKeyPress}
+            />
+          </div>
+          <div className="row p-0">
+            <div className="col">
+              <AddItemButton
+                itemInput={itemInput}
+                handleOnChange={this.handleOnChange}
+                handleCreateItem={this.handleCreateItem}
+              />
+            </div>
+            <div className="col">
+              <DeleteConfirm
+                deleteMode={deleteMode}
+                handleOnClick={this.handleOnClick}
+              />
             </div>
           </div>
         </div>
