@@ -24,7 +24,7 @@ class Signup extends React.Component {
   handleSignupSubmit = e => {
     e.preventDefault();
 
-    const { closeMenu } = this.props;
+    const { closeMenu, openMenu } = this.props;
     const { inputs } = this.state;
     const { email, password, username } = inputs;
 
@@ -35,7 +35,10 @@ class Signup extends React.Component {
         response => response.user.uid,
 
         // This is the handling for the Firebase error when creating a user
-        ({ message }) => this.setState({ firebaseCreateUserError: message })
+        ({ message }) => {
+          openMenu();
+          this.setState({ firebaseCreateUserError: message });
+        }
       )
       .then(
         firebaseUid => {
