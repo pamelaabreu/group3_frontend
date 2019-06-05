@@ -6,6 +6,7 @@ import ProgressBar from "../../../components/ProgressBar/ProgressBar";
 import AddItemButton from "../RemindersPage/AddItemButton/AddItemButton";
 import {
   addToDelete,
+  addToShoppingCart,
   closeLastQuantity,
   createItem,
   executeDelete,
@@ -83,6 +84,9 @@ export default (class PackPage extends Component {
       case "endDelete":
         this.handleExecuteDelete();
         break;
+      case "shopping-cart":
+        this.handleShoppingCart(index, e);
+        break;
       default:
         return;
     }
@@ -122,6 +126,15 @@ export default (class PackPage extends Component {
     const newState = select(index, this.state);
     if (newState) this.setState(newState);
     return;
+  };
+
+  handleShoppingCart = async (index, e) => {
+    const newState = await addToShoppingCart(
+      index,
+      this.state,
+      this.props.lists
+    );
+    console.log(newState);
   };
 
   handleQuantity = (index, e, keyPress) => {
