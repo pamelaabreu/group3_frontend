@@ -30,7 +30,7 @@
 
 .item--icon--size {
   font-size: 12px;
-  color: #454ade;
+  color: #4996c9;
 }
 
 .item--image--size {
@@ -51,33 +51,38 @@
 }
 
 .item--text--selected {
-  border: 1px solid #454ade;
-  background-color: #454ade;
+  border: 1px solid #4996c9;
+  background-color: #4996c9;
   color: white;
 }
 
 .item--text--unselected {
-  border: 1px solid #454ade;
+  border: 1px solid #4996c9;
   background-color: white;
-  color: #454ade;
+  color: #4996c9;
+}
+
+.uItem--title {
+  background-color: white;
+  height: 22px;
+  overflow: scroll;
 }
 
 .uItem--title--font {
   font-size: 15px;
   font-weight: 700;
+  color: #4996c9;
   padding-top: 10px;
   width: 100%;
 }
 
 .uItem--content-main {
-  width: 140px;
-  height: 157px;
   background-size: cover;
   background-position: center;
 }
 
 .item--title--color {
-  color: #454ade;
+  color: #4996c9;
 }
 
 .item--icon-filler {
