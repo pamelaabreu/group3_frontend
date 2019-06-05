@@ -52,27 +52,27 @@ body {
 }
 
 .mali300 {
-  font-family: var(--ff-baloo);
+  font-family: var(--ff-mali);
   font-weight: 300;
 }
 
 .mali400 {
-  font-family: var(--ff-baloo);
+  font-family: var(--ff-mali);
   font-weight: 400;
 }
 
 .mali700 {
-  font-family: var(--ff-baloo);
+  font-family: var(--ff-mali);
   font-weight: 700;
 }
 
 .mali900 {
-  font-family: var(--ff-baloo);
+  font-family: var(--ff-mali);
   font-weight: 900;
 }
 
 .baloo {
-  font-family: var(--ff-mali);
+  font-family: var(--ff-baloo);
 }
 
 .ds-lightGrey {
