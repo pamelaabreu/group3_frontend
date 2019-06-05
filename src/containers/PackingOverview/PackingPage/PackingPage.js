@@ -10,6 +10,7 @@ import {
   closeLastQuantity,
   createItem,
   executeDelete,
+  findOrCreateShoppingCart,
   inputChange,
   markImportant,
   mountPacking,
@@ -31,6 +32,7 @@ export default (class PackPage extends Component {
       currentBag: null,
       currentCategory: null,
       lists: null,
+      list_id: null,
       loading: true,
       lastInputIndex: null,
       deleteMode: false,
@@ -43,8 +45,8 @@ export default (class PackPage extends Component {
 
   async componentDidMount() {
     const { bagTypes } = this.state;
-    const { bags } = this.props;
-    const mountState = await mountPacking(bagTypes, bags);
+    const { bags, lists } = this.props;
+    const mountState = await mountPacking(bagTypes, bags, lists);
     if (mountState) this.setState(mountState);
     else console.log("Componenet Mount Error: ");
   }
@@ -129,12 +131,21 @@ export default (class PackPage extends Component {
   };
 
   handleShoppingCart = async (index, e) => {
-    const newState = await addToShoppingCart(
+    const list_id = await findOrCreateShoppingCart(
       index,
       this.state,
       this.props.lists
     );
-    console.log(newState);
+    const result = await addToShoppingCart(index, this.state, list_id);
+    const { newState, updateParent } = result;
+    if (updateParent) {
+      this.props.updateLists();
+      if (newState) this.setState(newState);
+      return;
+    } else {
+      if (newState) this.setState(newState);
+      return;
+    }
   };
 
   handleQuantity = (index, e, keyPress) => {
