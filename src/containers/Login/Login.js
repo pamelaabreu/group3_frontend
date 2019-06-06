@@ -43,24 +43,33 @@ class Login extends React.Component {
 
     return (
       <form onSubmit={this.handleLoginSubmit}>
-        {!firebaseLoginUserError ? null : <p>{firebaseLoginUserError}</p>}
         {inputsArray.map(([inputName, inputValue], index) => {
           const inputType =
             inputName.toLowerCase() === "password" ? "password" : "text";
 
           return (
-            <input
-              key={index}
-              onChange={this.handleInputChange}
-              type={inputType}
-              value={inputValue}
-              name={inputName}
-              placeholder={inputName}
-              required
-              min="1"
-            />
+            <div className="form-group" key={index}>
+              <label htmlFor={inputName}>{inputName}</label>
+              <input
+                className="form-control"
+                onChange={this.handleInputChange}
+                type={inputType}
+                value={inputValue}
+                name={inputName}
+                placeholder={inputName}
+                aria-describedby={`${inputName}`}
+                aria-labelledby={`${inputName}`}
+                aria-label={`${inputName}`}
+                id={inputName}
+                required
+                min="1"
+              />
+            </div>
           );
         })}
+        <small className="form-text">
+          {!firebaseLoginUserError ? null : <p>{firebaseLoginUserError}</p>}
+        </small>
         <button type="submit">Login</button>
       </form>
     );
