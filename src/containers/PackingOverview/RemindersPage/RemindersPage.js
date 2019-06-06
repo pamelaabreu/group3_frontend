@@ -188,57 +188,32 @@ const RemindersPage = props => {
               Completed
             </button>
           </p>
-          <div className="row">
-            <div className="col">
-              <div
-                className="collapse multi-collapse"
-                id="multiCollapseExample3"
-              >
-                <div className="">
-                  {todoList.map((e, i, a) => {
-                    let t = a[a.length - 1 - i];
-                    if (t.complete === false) {
-                      return (
-                        <Todo
-                          task_name={t.task_name}
-                          key={i}
-                          index={a.length - 1 - i}
-                          value={t.id}
-                          handleCompleteTodo={handleCompleteTodo}
-                          handleDeleteTodo={handleDeleteTodo}
-                          complete={t.complete}
-                        />
-                      );
-                    }
-                  })}
+          {currentListDisplay ? (
+            <TodoListView
+              todoList={todoList}
+              handleCompleteTodo={handleCompleteTodo}
+              handleDeleteTodo={handleDeleteTodo}
+            />
+          ) : (
+            <div className="row">
+              <div className="col">
+                <div
+                  className="collapse multi-collapse"
+                  id="multiCollapseExample3"
+                >
+                  <h5>Shopping list stuff</h5>
+                </div>
+              </div>
+              <div className="col">
+                <div
+                  className="collapse multi-collapse"
+                  id="multiCollapseExample2"
+                >
+                  <h5>More Shopping list stuff</h5>
                 </div>
               </div>
             </div>
-            <div className="col">
-              <div
-                className="collapse multi-collapse"
-                id="multiCollapseExample2"
-              >
-                <div className="">
-                  {todoList.map((e, i, a) => {
-                    let t = a[a.length - 1 - i];
-                    if (t.complete === true) {
-                      return (
-                        <Todo
-                          task_name={t.task_name}
-                          key={i}
-                          index={a.length - 1 - i}
-                          value={t.id}
-                          handleDeleteTodo={handleDeleteTodo}
-                          complete={t.complete}
-                        />
-                      );
-                    }
-                  })}
-                </div>
-              </div>
-            </div>
-          </div>
+          )}
         </div>
       </div>
       <AddTodo
