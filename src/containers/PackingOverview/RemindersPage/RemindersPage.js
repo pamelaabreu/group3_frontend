@@ -147,7 +147,11 @@ const RemindersPage = props => {
           {lists.map((e, i) => {
             return (
               <div key={i} className="col-4">
-                <ListCard {...e} list_count={5} />
+                <ListCard
+                  {...e}
+                  handleCurrentListDisplay={handleCurrentListDisplay}
+                  list_count={5}
+                />
               </div>
             );
           })}
