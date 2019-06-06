@@ -49,6 +49,8 @@ body {
   --br-9: 0.9rem;
   --br-18: 1.8rem;
   --bundleBlue-border-3: 0.3rem solid var(--bundleBlue);
+  --bundleBlue-border-2: 0.2rem solid var(--bundleBlue);
+  --bundleBlue-border-1: 0.1rem solid var(--bundleBlue);
 }
 
 .mali300 {
@@ -157,6 +159,46 @@ body {
 
 .bundleBlue-border-bottom-3 {
   border-bottom: var(--bundleBlue-border-3);
+}
+
+.bundleBlue-border-left-3 {
+  border-left: var(--bundleBlue-border-3);
+}
+
+.bundleBlue-border-right-3 {
+  border-right: var(--bundleBlue-border-3);
+}
+
+.bundeBlue-border-2 {
+  border: var(--bundleBlue-border-2);
+}
+
+.bundleBlue-border-bottom-2 {
+  border-bottom: var(--bundleBlue-border-2);
+}
+
+.bundleBlue-border-left-2 {
+  border-left: var(--bundleBlue-border-2);
+}
+
+.bundleBlue-border-right-2 {
+  border-right: var(--bundleBlue-border-2);
+}
+
+.bundeBlue-border-1 {
+  border: var(--bundleBlue-border-1);
+}
+
+.bundleBlue-border-bottom-1 {
+  border-bottom: var(--bundleBlue-border-1);
+}
+
+.bundleBlue-border-left-1 {
+  border-left: var(--bundleBlue-border-1);
+}
+
+.bundleBlue-border-right-1 {
+  border-right: var(--bundleBlue-border-1);
 }
 
 .bundleBlueButton {
