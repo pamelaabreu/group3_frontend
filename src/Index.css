@@ -206,3 +206,7 @@ body {
   border-radius: var(--br-9);
   color: var(--white);
 }
+
+.capitalizeText {
+  text-transform: capitalize;
+}
