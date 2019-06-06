@@ -140,36 +140,6 @@ const RemindersPage = props => {
       .catch(err => console.log(err));
   };
 
-  const handleCreateItem = () => {
-    if (itemInput.trim() === "") return;
-    let item = itemInput.trim();
-
-    axios({
-      method: "post",
-      url: BASE_URL + "/items/",
-      data: {
-        name: item,
-        packed: false,
-        quantity: 1,
-        bag_id,
-        category_id: 9
-      }
-    })
-      .then(({ data: id }) => {
-        console.log(id);
-        setItemInput("");
-        shoppingList.push({
-          name: item,
-          pack: false,
-          image: "https://www.jcrew.com/s7-img-facade/L4012_PA6511?fmt=jpeg"
-        });
-        setShoppingList(shoppingList);
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  };
-
   return (
     <>
       {lists.length !== 0 ? (
