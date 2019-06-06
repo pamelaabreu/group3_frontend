@@ -1,7 +1,7 @@
 import axios from "axios";
 import BASEURL from "./backendUrlConnect";
 
-export const mountPacking = async (bagTypes, bags) => {
+export const mountPacking = async (bagTypes, bags, lists) => {
   const allBagPromise = [];
   for (let bag of bags) {
     allBagPromise.push(
@@ -17,6 +17,7 @@ export const mountPacking = async (bagTypes, bags) => {
     let displayBag = "";
     let totalItems = 0;
     let totalPacked = 0;
+    let list_id = checkForShoppingList(lists);
     for (let i = 0; i < allBags.length; i++) {
       const { data: items } = allBags[i];
       const { trip_id, bag_id, type_id } = bags[i];
@@ -30,7 +31,7 @@ export const mountPacking = async (bagTypes, bags) => {
       }, 0);
       totalPacked += count;
     }
-    return { ...addToState, displayBag, totalItems, totalPacked };
+    return { ...addToState, displayBag, totalItems, totalPacked, list_id };
   } catch (err) {
     return null;
   }
@@ -287,4 +288,84 @@ export const inputChange = (name, index, e, state) => {
     };
   }
   return null;
+};
+
+export const findOrCreateShoppingCart = async (index, state, lists) => {
+  const { displayBag } = state;
+  const item = state[displayBag][index];
+  if (state.list_id) return state.list_id;
+  const list_id = checkForShoppingList(lists);
+  if (list_id) {
+    return list_id;
+  } else {
+    try {
+      const {
+        data: { id }
+      } = await axios({
+        method: "post",
+        url: BASEURL + "/todolist/",
+        data: {
+          name: "",
+          trip_id: item.trip_id,
+          list_type: "Shopping List"
+        }
+      });
+      return id;
+    } catch (err) {
+      console.log("failed to create shopping list");
+      return null;
+    }
+  }
+};
+
+const checkForShoppingList = lists => {
+  for (let list of lists) {
+    if (list.list_type === "Shopping List") return list.todolist_id;
+  }
+  return null;
+};
+
+export const addToShoppingCart = async (index, state, list_id) => {
+  const { displayBag } = state;
+  const updateParent = state.list_id === null ? true : false;
+  const item = state[displayBag][index];
+  if (item.shop === true) return false;
+  const createTodo = axios({
+    method: "post",
+    url: BASEURL + "/todolist/todo/",
+    data: {
+      task_name: item.name,
+      complete: false,
+      item_id: item.id,
+      todolist_id: list_id
+    }
+  });
+  const shopify = axios({
+    method: "put",
+    url: BASEURL + "/items/" + item.id,
+    data: {
+      shop: true
+    }
+  });
+
+  try {
+    const [
+      {
+        data: { id }
+      }
+    ] = await Promise.all([createTodo, shopify]);
+    const currentBag = state[displayBag];
+    currentBag[index].shop = true;
+    currentBag[index].todo_id = id;
+    return {
+      newState: {
+        [displayBag]: currentBag,
+        list_id
+      },
+      updateParent
+    };
+  } catch (err) {
+    console.log("ERROR ADDING ITEM TO SHOPPING LIST");
+    return false;
+  }
 };

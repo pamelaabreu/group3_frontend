@@ -38,7 +38,10 @@ export default props => {
             <div className="item--icon align-items-center">
               {/* ICONS */}
               <div>
-                <i className="fas fa-shopping-cart item--icon--size" />
+                <i
+                  className="fas fa-shopping-cart item--icon--size"
+                  onClick={handleClick("shopping-cart", index)}
+                />
               </div>
               <div>
                 {important ? (
