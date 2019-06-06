@@ -22,7 +22,7 @@ class App extends Component {
           <div id="outer-container">
             <Route path="/" component={Navbar} />
             <main id="page-wrap">
-              <div>
+              <div className="vh-100">
                 <Switch>
                   <Route path="/pack/:trip_id" exact component={Pack} />
                   <Route path="/trip/:trip_id" exact component={Trip} />
