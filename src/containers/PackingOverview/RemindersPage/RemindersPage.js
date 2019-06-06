@@ -3,11 +3,9 @@ import axios from "axios";
 import NoReminders from "./NoReminders/NoReminders";
 import AddListButton from "./AddListCard/AddListCard";
 import ListCard from "./ListCard/ListCard";
-import AddItemButton from "./AddItemButton/AddItemButton";
 import BASE_URL from "../../../services/backendUrlConnect";
-import ShoppingItem from "../../../components/SuggestedItem/SuggestedItem";
-import Todo from "./Todo/Todo";
 import AddTodo from "./AddTodo/AddTodo";
+import TodoListView from "./TodoListView/TodoListView";
 
 const RemindersPage = props => {
   const {
