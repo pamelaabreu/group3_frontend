@@ -39,7 +39,7 @@ const Navbar = props => {
     >
       <div className="m-5 mt-4 p-5 d-flex flex-column ">
         <Link onClick={closeMenu} to="/">
-          <img src={BundleLogo} width="150" height="150" alt="Bundle" />
+          <img src={BundleLogo} width="100" height="100" alt="Bundle" />
         </Link>
         <Link className="bm-item mali700" onClick={closeMenu} to="/">
           Home
