@@ -107,6 +107,20 @@ const RemindersPage = props => {
       });
   };
 
+  const handleCompleteTodo = (index, todo_id) => {
+    let copiedTodoList = [...todoList];
+    axios
+      .put(BASE_URL + "/todolist/todo/" + todo_id, {
+        id: todo_id,
+        complete: true
+      })
+      .then(() => {
+        copiedTodoList[index].complete = true;
+        setTodoList(copiedTodoList);
+      })
+      .catch(err => console.log(err));
+  };
+
   const handleDeleteTodo = (index, todo_id) => {
     let copiedTodoList = [...todoList];
     copiedTodoList = copiedTodoList
