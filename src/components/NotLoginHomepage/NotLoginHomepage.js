@@ -6,13 +6,18 @@ const NotLoginHomepage = props => {
 
   return (
     <>
-      <div className="bundleHomeImage">
-        <h1 className="bundleHomeImageTitle">Bundle</h1>
-        <h2 className="bundleHomeImageTagline">Worry less, travel more!</h2>
-        {create_trip_form}
-      </div>
+      <div className="bundleHomeImage container-fluid">
+        <div className="row m-5 p-5">
+          <div className="col-sm m-5 p-5" style={{ border: "1px solid black" }}>
+            <h1>Bundle</h1>
+            <h2>Worry less, travel more!</h2>
+          </div>
 
-      <div className="bundleHomeArrow" />
+          <div className="col-sm m-5 p-5" style={{ border: "1px solid black" }}>
+            {create_trip_form}
+          </div>
+        </div>
+      </div>
 
       <div className="container bundleHomeWhatBox">
         <div className="row">
