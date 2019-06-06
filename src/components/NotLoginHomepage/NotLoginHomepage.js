@@ -1,5 +1,6 @@
 import React from "react";
 import "./Home.css";
+import BundleLogo from "../../assets/images/logo/bundle_logo.svg";
 
 const NotLoginHomepage = props => {
   const { create_trip_form } = props;
@@ -7,9 +8,9 @@ const NotLoginHomepage = props => {
   return (
     <>
       <div className="bundleHomeImage container-fluid">
-        <div className="row m-5 p-5">
+        <div className="row  p-5">
           <div className="col-sm m-5 p-5" style={{ border: "1px solid black" }}>
-            <h1>Bundle</h1>
+            <img src={BundleLogo} width="150" height="150" alt="Bundle" />
             <h2>Worry less, travel more!</h2>
           </div>
 
