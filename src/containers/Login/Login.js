@@ -50,14 +50,15 @@ class Login extends React.Component {
 
           return (
             <div className="form-group" key={index}>
-              <label htmlFor={inputName}>{inputName}</label>
+              <label className="c-bundleBlue" htmlFor={inputName}>
+                {inputName}
+              </label>
               <input
-                className="form-control"
+                className="form-control c-denimBlue bundleBlue-border-bottom-3"
                 onChange={this.handleInputChange}
                 type={inputType}
                 value={inputValue}
                 name={inputName}
-                placeholder={inputName}
                 aria-describedby={`${inputName}`}
                 aria-labelledby={`${inputName}`}
                 aria-label={`${inputName}`}
@@ -68,10 +69,12 @@ class Login extends React.Component {
             </div>
           );
         })}
-        <small className="form-text">
+        <small className="form-text c-bundleBlue">
           {!firebaseLoginUserError ? null : <p>{firebaseLoginUserError}</p>}
         </small>
-        <button type="submit">Login</button>
+        <button className="bundleBlueButton" type="submit">
+          Login
+        </button>
       </form>
     );
   }
