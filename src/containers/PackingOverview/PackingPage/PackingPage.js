@@ -145,6 +145,7 @@ export default (class PackPage extends Component {
     } else {
       if (newState) this.setState(newState);
     }
+    return;
   };
 
   handleQuantity = (index, e, keyPress) => {
