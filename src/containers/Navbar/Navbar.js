@@ -58,7 +58,10 @@ const Navbar = props => {
       {!FirebaseUserAuth.user ? (
         <ShowLoginOrSignup closeMenu={closeMenu} openMenu={openMenu} />
       ) : (
-        <button className="bundleBlueButton bm-item" onClick={UserLogout}>
+        <button
+          className="bundleBlueButton bm-item border-0"
+          onClick={UserLogout}
+        >
           Logout
         </button>
       )}
