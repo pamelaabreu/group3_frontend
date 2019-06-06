@@ -37,26 +37,30 @@ const Navbar = props => {
       isOpen={menuOpen}
       onStateChange={state => handleStateChange(state)}
     >
-      <Link onClick={closeMenu} to="/">
-        <img src={BundleLogo} width="150" height="150" alt="Bundle" />
-      </Link>
-      <Link onClick={closeMenu} to="/">
-        Home
-      </Link>
-      <Link onClick={closeMenu} to="packHacks">
-        Pack Hacks
-      </Link>
-      <Link onClick={closeMenu} to="/tsaGuides">
-        TSA Guides
-      </Link>
-      <Link onClick={closeMenu} to="/about">
-        About
-      </Link>
+      <div className="m-5 mt-4 p-5 d-flex flex-column ">
+        <Link onClick={closeMenu} to="/">
+          <img src={BundleLogo} width="150" height="150" alt="Bundle" />
+        </Link>
+        <Link className="bm-item mali700" onClick={closeMenu} to="/">
+          Home
+        </Link>
+        <Link className="bm-item mali700" onClick={closeMenu} to="packHacks">
+          Pack Hacks
+        </Link>
+        <Link className="bm-item mali700" onClick={closeMenu} to="/tsaGuides">
+          TSA Guides
+        </Link>
+        <Link className="bm-item mali700" onClick={closeMenu} to="/about">
+          About
+        </Link>
+      </div>
 
       {!FirebaseUserAuth.user ? (
         <ShowLoginOrSignup closeMenu={closeMenu} openMenu={openMenu} />
       ) : (
-        <button onClick={UserLogout}>Logout</button>
+        <button className="bundleBlueButton bm-item" onClick={UserLogout}>
+          Logout
+        </button>
       )}
     </Menu>
   );
