@@ -74,8 +74,8 @@ const RemindersPage = props => {
       });
   };
 
-  const handleItemInputChange = e => {
-    setItemInput(e.target.value);
+  const handleCurrentListDisplay = bool => {
+    setCurrentListDisplay(bool);
   };
 
   const handleTodoInputChange = e => {
