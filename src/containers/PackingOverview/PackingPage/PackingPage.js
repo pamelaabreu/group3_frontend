@@ -136,15 +136,14 @@ export default (class PackPage extends Component {
       this.state,
       this.props.lists
     );
+    if (list_id === null) return;
     const result = await addToShoppingCart(index, this.state, list_id);
     const { newState, updateParent } = result;
     if (updateParent) {
       this.props.updateLists();
       if (newState) this.setState(newState);
-      return;
     } else {
       if (newState) this.setState(newState);
-      return;
     }
   };
 
