@@ -9,13 +9,13 @@
 
 /* Color/shape of burger icon bars */
 .bm-burger-bars {
-  background: #4996c9;
+  background: var(--bundleBlue);
   transition: background 0.2s ease;
 }
 
 /* Color/shape of burger icon bars on hover*/
 .bm-burger-bars-hover {
-  background: rgba(255, 255, 255, 0.708);
+  background: var(--bundleBlue70);
 }
 
 /* Position and sizing of clickable cross button */

@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 
 // Pages
 import Trip from "./containers/Trip/Trip";
-import Navbar from "./components/Navbar/Navbar";
+import Navbar from "./containers/Navbar/Navbar";
 import Home from "./components/Home/Home";
 import RemindersPage from "./containers/PackingOverview/RemindersPage/RemindersPage";
 import Pack from "./containers/PackingOverview/PackingOverview";
