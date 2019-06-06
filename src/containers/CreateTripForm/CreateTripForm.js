@@ -12,11 +12,12 @@ export default props => {
     <>
       <div className="create-trip-form">
         <form className="" onSubmit={props.createTripHandler}>
-          <div className="form-group row justify-content-between">
-            <label htmlFor="destination" className="trip-form-label">
+          <div className="form-group">
+            <label htmlFor="destination" className="c-bundleBlue h4">
               Enter your destination:
             </label>
             <input
+              className="form-control c-denimBlue bundleBlue-border-bottom-3 h4"
               type="text"
               name="destination"
               placeholder="City, Country"
@@ -25,11 +26,12 @@ export default props => {
               required
             />
           </div>
-          <div className="form-group row justify-content-between">
-            <label htmlFor="departure" className="trip-form-label">
+          <div className="form-group">
+            <label htmlFor="destination" className="c-bundleBlue h4">
               Enter departure date:
             </label>
             <input
+              className="form-control c-denimBlue bundleBlue-border-bottom-3 h4"
               type="date"
               id="departure"
               name="departure"
@@ -40,11 +42,12 @@ export default props => {
               value={props.departureDate}
             />
           </div>
-          <div className="form-group row justify-content-between">
-            <label htmlFor="departure" className="trip-form-label">
+          <div className="form-group">
+            <label htmlFor="destination" className="c-bundleBlue h4">
               Enter return date:
             </label>
             <input
+              className="form-control c-denimBlue bundleBlue-border-bottom-3 h4"
               type="date"
               id="return"
               name="return"
@@ -55,8 +58,11 @@ export default props => {
               value={props.returnDate}
             />
           </div>
-          <div className="form-button-container">
-            <button className="form-button" type="submit">
+          <div className="d-flex justify-content-center p-2">
+            <button
+              className="bundleBlueButton border-0 p-3 createTripform-button h4"
+              type="submit"
+            >
               Next
             </button>
           </div>
