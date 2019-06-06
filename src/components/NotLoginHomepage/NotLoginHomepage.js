@@ -7,14 +7,15 @@ const NotLoginHomepage = props => {
 
   return (
     <>
-      <div className="bundleHomeImage container-fluid">
-        <div className="row  p-5">
-          <div className="col-sm m-5 p-5" style={{ border: "1px solid black" }}>
+      <div className="publicHomeBanner container-fluid mb-5 h-100">
+        <div className="row p-5 h-75">
+          <div className="col-sm m-5 pt-0 px-5 pb-2">
             <img src={BundleLogo} width="150" height="150" alt="Bundle" />
-            <h2>Worry less, travel more!</h2>
+            <h2 className="c-white mali700">Worry less, travel more!</h2>
           </div>
 
-          <div className="col-sm m-5 p-5" style={{ border: "1px solid black" }}>
+          <div className="col-sm m-5 p-5 bg-huate80 b-radius9">
+            <h2 className="c-bundleBlue mali700 mb-5">Let's get packing!</h2>
             {create_trip_form}
           </div>
         </div>
