@@ -8,28 +8,18 @@ import AddTodo from "./AddTodo/AddTodo";
 import TodoListView from "./TodoListView/TodoListView";
 
 const RemindersPage = props => {
-  const {
-    lists,
-    updateLists,
-    trip_id,
-    selectedList,
-    handleSelectList,
-    bag_id
-  } = props;
+  const { lists, updateLists, trip_id, selectedList, handleSelectList } = props;
 
   const [todoList, setTodoList] = useState([]);
   const [todoListId, setTodoListId] = useState(null);
   const [shoppingListId, setShoppingListId] = useState(null);
   const [shoppingList, setShoppingList] = useState([]);
   const [alertDisplay, setAlertDisplay] = useState(false);
-  const [itemInput, setItemInput] = useState("");
-  const [todos, setTodos] = useState([]);
-  const [todoDisplay, setTodoDisplay] = useState(false);
+  const [currentListDisplay, setCurrentListDisplay] = useState(true);
   const [todoInput, setTodoInput] = useState("");
 
   useEffect(() => {
     console.log(lists, "lists");
-    console.log("selected", selectedList);
     if (!lists.length) return;
     for (let list of lists) {
       getList(list);
