@@ -1,13 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { withRouter } from "react-router-dom";
 import { getSuggestions } from "../../services/suggestions";
 import axios from "axios";
 import { buildBundle } from "../../services/backendCalls";
 import "./Suggestions.css";
 import LoadingScreen from "../../components/LoadingScreen/LoadingScreen";
+import FirebaseAuthContext from "../../context/FirebaseAuth";
 
 export default withRouter(props => {
   const { destination, duration, departureDate, returnDate } = props;
+
+  const FirebaseUserAuth = useContext(FirebaseAuthContext);
 
   const [categories, setCategories] = useState(null);
   const [items, setItems] = useState(null);
@@ -15,6 +18,7 @@ export default withRouter(props => {
   const [currCategory, setCurrCategory] = useState(null);
   const [newDisplay, setNewDisplay] = useState(null);
   const [loading, setLoadStatus] = useState(false);
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
     const allTheItems = getSuggestions(duration);
@@ -38,6 +42,12 @@ export default withRouter(props => {
   }, [items, currCategory]);
 
   useEffect(() => {
+    if (FirebaseUserAuth.user !== null) {
+      setUser(FirebaseUserAuth.user.uid);
+    }
+  }, [FirebaseUserAuth, user]);
+
+  useEffect(() => {
     if (newDisplay) {
       if (newDisplay.update) {
         setDisplayItems(newDisplay.items);
@@ -49,7 +59,7 @@ export default withRouter(props => {
 
   useEffect(() => {
     if (loading) {
-      buildBundle(items, destination, departureDate, returnDate)
+      buildBundle(items, destination, departureDate, returnDate, user)
         .then(tripId => {
           setLoadStatus(false);
           props.history.push("/pack/" + tripId);
