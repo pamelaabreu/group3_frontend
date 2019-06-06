@@ -190,19 +190,23 @@ const RemindersPage = props => {
         <NoReminders />
       )}
       <div className="container">
-        <div className="row">
-          <div className="justify-content-around">
-            <AddListButton
-              createList={createList}
-              handleSelectList={handleSelectList}
-              alertDisplay={alertDisplay}
-            />
-            <div className="row ml-3">
-              {lists.map((e, i) => {
-                return <ListCard {...e} key={i} list_count={5} />;
-              })}
+        <div className="row justify-content-between">
+          {lists.map((e, i) => {
+            return (
+              <div key={i} className="col-4">
+                <ListCard {...e} list_count={5} />
+              </div>
+            );
+          })}
+          {lists.length === 2 ? null : (
+            <div className="col-3">
+              <AddListButton
+                createList={createList}
+                handleSelectList={handleSelectList}
+                alertDisplay={alertDisplay}
+              />
             </div>
-          </div>
+          )}
         </div>
         <div className="">
           <p>
