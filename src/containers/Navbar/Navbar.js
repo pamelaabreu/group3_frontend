@@ -24,6 +24,8 @@ const Navbar = props => {
   // This can is used to close the menu, e.g. when a user clicks a menu item
   const closeMenu = () => setMenuOpen(false);
 
+  const openMenu = () => setMenuOpen(true);
+
   // This keeps state in sync with the opening/closing of the menu
   // via the default means, e.g. clicking the X, pressing the ESC key etc.
   const handleStateChange = state => setMenuOpen(state.isOpen);
@@ -52,7 +54,7 @@ const Navbar = props => {
       </Link>
 
       {!FirebaseUserAuth.user ? (
-        <ShowLoginOrSignup closeMenu={closeMenu} />
+        <ShowLoginOrSignup closeMenu={closeMenu} openMenu={openMenu} />
       ) : (
         <button onClick={UserLogout}>Logout</button>
       )}
