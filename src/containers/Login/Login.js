@@ -59,8 +59,6 @@ class Login extends React.Component {
                 type={inputType}
                 value={inputValue}
                 name={inputName}
-                aria-describedby={`${inputName}`}
-                aria-labelledby={`${inputName}`}
                 aria-label={`${inputName}`}
                 id={inputName}
                 required

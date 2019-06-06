@@ -85,8 +85,6 @@ class Signup extends React.Component {
                 value={inputValue}
                 name={inputName}
                 required={isRequired}
-                aria-describedby={`${inputName}`}
-                aria-labelledby={`${inputName}`}
                 aria-label={`${inputName}`}
                 id={inputName}
                 min="1"
