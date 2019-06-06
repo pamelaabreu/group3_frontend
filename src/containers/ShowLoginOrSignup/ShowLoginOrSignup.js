@@ -5,7 +5,7 @@ import Signup from "../../containers/Signup/Signup";
 import Login from "../../containers/Login/Login";
 
 const ShowLoginOrSignup = props => {
-  const { closeMenu } = props;
+  const { closeMenu, openMenu } = props;
   const [showLoginOrSignup, setLoginOrSignup] = useState(true);
 
   return (
@@ -14,9 +14,9 @@ const ShowLoginOrSignup = props => {
       <button onClick={() => setLoginOrSignup(false)}>Signup</button>
       <div>
         {showLoginOrSignup ? (
-          <Login closeMenu={closeMenu} />
+          <Login closeMenu={closeMenu} openMenu={openMenu} />
         ) : (
-          <Signup closeMenu={closeMenu} />
+          <Signup closeMenu={closeMenu} openMenu={openMenu} />
         )}
       </div>
     </>
