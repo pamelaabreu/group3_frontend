@@ -5,7 +5,7 @@ import "./Navbar.css";
 import BundleLogo from "../../assets/images/logo/bundle_logo.svg";
 
 // Pages
-import ShowLoginOrSignup from "../../containers/ShowLoginOrSignup/ShowLoginOrSignup";
+import ShowLoginOrSignup from "../ShowLoginOrSignup/ShowLoginOrSignup";
 
 // Context
 import FirebaseAuthContext from "../../context/FirebaseAuth";

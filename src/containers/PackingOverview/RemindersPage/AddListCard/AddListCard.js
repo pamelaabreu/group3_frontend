@@ -41,7 +41,7 @@ const AddListButton = props => {
                       id="inputGroupSelect01"
                     >
                       <option defaultValue>Choose one...</option>
-                      <option value="To-Do List">Todo List</option>
+                      <option value="To Do List">To Do List</option>
                       <option value="Shopping List">Shopping List</option>
                     </select>
                     <button

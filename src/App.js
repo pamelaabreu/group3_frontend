@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 
 // Pages
 import Trip from "./containers/Trip/Trip";
-import Navbar from "./components/Navbar/Navbar";
+import Navbar from "./containers/Navbar/Navbar";
 import Home from "./components/Home/Home";
 import RemindersPage from "./containers/PackingOverview/RemindersPage/RemindersPage";
 import Pack from "./containers/PackingOverview/PackingOverview";
@@ -22,7 +22,7 @@ class App extends Component {
           <div id="outer-container">
             <Route path="/" component={Navbar} />
             <main id="page-wrap">
-              <div>
+              <div className="vh-100">
                 <Switch>
                   <Route path="/pack/:trip_id" exact component={Pack} />
                   <Route path="/trip/:trip_id" exact component={Trip} />
