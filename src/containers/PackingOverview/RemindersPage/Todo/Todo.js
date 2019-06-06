@@ -12,7 +12,10 @@ const Todo = props => {
 
   const completed = <i className="far fa-check-circle" />;
   const incomplete = (
-    <i className="far fa-circle" onClick={handleCompleteTodo} />
+    <i
+      className="far fa-circle"
+      onClick={() => handleCompleteTodo(index, value)}
+    />
   );
 
   return (
