@@ -72,7 +72,10 @@ class Login extends React.Component {
         <small className="form-text c-bundleBlue">
           {!firebaseLoginUserError ? null : <p>{firebaseLoginUserError}</p>}
         </small>
-        <button className="bundleBlueButton border-0" type="submit">
+        <button
+          className="bundleBlueButton border-0 p-2 b-radius18"
+          type="submit"
+        >
           Login
         </button>
       </form>

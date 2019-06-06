@@ -97,7 +97,10 @@ class Signup extends React.Component {
         <small className="form-text c-bundleBlue">
           {firebaseCreateUserError ? <p>{firebaseCreateUserError}</p> : null}
         </small>
-        <button className="bundleBlueButton border-0" type="submit">
+        <button
+          className="bundleBlueButton border-0 p-2 b-radius18"
+          type="submit"
+        >
           Signup
         </button>
       </form>
