@@ -39,7 +39,11 @@ export default props => {
               <span className="col uItem--button-left align-center">
                 <div className="row justify-content-center no-gutters align-center">
                   <div className="col text-center align-center">
-                    <button type="button" aria-label="reduce quantity">
+                    <button
+                      type="button"
+                      aria-label="reduce quantity"
+                      onClick={handleClick("decreaseQuantity", index)}
+                    >
                       <i className="fas fa-minus c-white" />
                     </button>
                   </div>
@@ -49,7 +53,11 @@ export default props => {
                     </span>
                   </div>
                   <div className="col text-center align-center">
-                    <button type="button" aria-label="incrase quantity">
+                    <button
+                      type="button"
+                      aria-label="incrase quantity"
+                      onClick={handleClick("increaseQuantity", index)}
+                    >
                       <i className="fas fa-plus c-white" />
                     </button>
                   </div>
