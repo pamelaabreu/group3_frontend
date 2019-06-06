@@ -70,10 +70,19 @@ class Trip extends Component {
     const { trip_id } = this.props.match.params;
     this.props.history.push("/pack/" + trip_id);
   };
+
   render() {
     const { city, country, departure_date, return_date } = this.state.trip;
     return (
       <div className="container mt-5">
+        <div className="row justify-content-end">
+          <div className="col-2">
+            <button className="row" onClick={this.moveToPack}>
+              <span className="col-12 text-center">Pack</span>
+              <i className="col-12 fas fa-long-arrow-alt-right text-center pack--arrow-transform" />
+            </button>
+          </div>
+        </div>
         <div className="row justify-content-between">
           <div className="col-lg-4">
             <div>
