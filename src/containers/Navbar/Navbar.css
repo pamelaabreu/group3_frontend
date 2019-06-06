@@ -40,11 +40,7 @@
 
 /* General sidebar styles */
 .bm-menu {
-  background: linear-gradient(
-    180deg,
-    #4896c9 100%,
-    rgba(240, 214, 254, 0.61) 100%
-  );
+  background: linear-gradient(180deg, var(--bundleBlue), var(--babyBlue));
   padding: 2.5em 1.5em 0;
   font-size: 1.15em;
 }
@@ -56,8 +52,8 @@
 
 /* Wrapper for item list */
 .bm-item-list {
-  color: #b8b7ad;
-  padding: 0.8em;
+  color: var(--white);
+  padding: 0.4em;
 }
 
 /* Individual item */
@@ -69,11 +65,11 @@
 }
 
 .bm-item:hover {
-  color: rgb(170, 254, 53);
+  color: var(--denimBlue);
   text-decoration: none;
 }
 
 /* Styling of overlay */
 .bm-overlay {
-  background: rgba(90, 197, 255, 0.55);
+  background: var(--bundleBlue70);
 }
