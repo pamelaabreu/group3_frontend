@@ -26,26 +26,7 @@ const RemindersPage = props => {
     }
   }, [lists]);
 
-  useEffect(() => {
-    console.log(shoppingList, "s list");
-    console.log(shoppingListId, "s id");
-    console.log(todoList, "tdl");
-    console.log(todoListId, "tdl id");
-  }, []);
-
-  useEffect(() => {
-    axios({
-      method: "get",
-      url: BASE_URL + "/todolist/todo/" + lists.todolist_id
-    })
-      .then(data => {
-        console.log(data);
-        setTodos(data);
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  }, [todoList, shoppingList]);
+  useEffect(() => {}, [shoppingList, shoppingListId]);
 
   const createList = () => {
     for (let i = 0; i < lists.length; i++) {
