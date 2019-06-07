@@ -42,7 +42,7 @@ export const addToDelete = (name, index, state) => {
   const currentBag = state[displayBag];
   const item_id = currentBag[index].item_id;
   let newToDelete = toDelete;
-  if (name === "item" || name === "unpack") {
+  if (name === "item" || name === "unpack" || name === "select") {
     const inToDelete = toDelete.indexOf(item_id);
     if (inToDelete > -1) {
       currentBag[index].toBeDeleted = false;
