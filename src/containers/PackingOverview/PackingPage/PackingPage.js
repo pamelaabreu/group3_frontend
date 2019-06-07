@@ -97,6 +97,7 @@ export default (class PackPage extends Component {
         break;
       case "decreaseQuantity":
         this.handleNewQuantity("decrease", index);
+        break;
       default:
         return;
     }
