@@ -62,9 +62,18 @@ export default props => {
             />
           </div>
           <div className="d-flex justify-content-center p-2">
-            <button
+            {/* <button
               className="bundleBlueButton border-0 p-3 createTripform-button h4 baloo"
               type="submit"
+            >
+              Next
+            </button> */}
+
+            <button
+              type="submit button"
+              className="btn btn-primary bundleBlueButton border-0 p-3 createTripform-button h4 baloo"
+              data-toggle="modal"
+              data-target="#exampleModalScrollable"
             >
               Next
             </button>
