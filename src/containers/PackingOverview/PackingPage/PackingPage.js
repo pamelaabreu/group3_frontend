@@ -14,6 +14,7 @@ import {
   inputChange,
   markImportant,
   mountPacking,
+  newQuantity,
   quantity,
   select,
   unpack
@@ -89,6 +90,11 @@ export default (class PackPage extends Component {
       case "shopping-cart":
         this.handleShoppingCart(index, e);
         break;
+      case "increaseQuantity":
+        this.handleNewQuantity("increase", index);
+        break;
+      case "decreaseQuantity":
+        this.handleNewQuantity("decrease", index);
       default:
         return;
     }
@@ -151,6 +157,12 @@ export default (class PackPage extends Component {
   handleQuantity = (index, e, keyPress) => {
     this.handleCloseLastQuantity();
     const newState = quantity(index, e, keyPress, this.state);
+    if (newState) this.setState(newState);
+    return;
+  };
+
+  handleNewQuantity = (method, index, e, keyPress) => {
+    const newState = newQuantity(method, index, e, keyPress, this.state);
     if (newState) this.setState(newState);
     return;
   };
