@@ -251,7 +251,7 @@ export const newQuantity = (method, index, e, keyPress, state) => {
     };
   } else {
     if (items[index].quantity >= 25) return null;
-    items[index].quantity -= 1;
+    items[index].quantity += 1;
     modifyNewQuantitiy(items[index].id, items[index].quantity);
     return {
       [displayBag]: items,
