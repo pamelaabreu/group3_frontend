@@ -1,8 +1,8 @@
 import React from "react";
-import "./publicHome.css";
+import "./PublicHome.css";
 import BundleLogo from "../../assets/images/logo/bundle_logo.svg";
 
-const NotLoginHomepage = props => {
+const PublicHome = props => {
   const { create_trip_form } = props;
 
   return (
@@ -53,4 +53,4 @@ const NotLoginHomepage = props => {
   );
 };
 
-export default NotLoginHomepage;
+export default PublicHome;
