@@ -53,6 +53,8 @@ export default (class PackPage extends Component {
   }
 
   handleOnClick = (name, index) => e => {
+    e.preventDefault();
+    e.stopPropagation();
     const { deleteMode } = this.state;
     if (name !== "endDelete" && deleteMode) {
       this.handleAddToDelete(name, index);
