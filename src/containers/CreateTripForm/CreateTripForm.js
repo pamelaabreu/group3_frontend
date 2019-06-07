@@ -60,7 +60,7 @@ export default props => {
           </div>
           <div className="d-flex justify-content-center p-2">
             <button
-              className="bundleBlueButton border-0 p-3 createTripform-button h4"
+              className="bundleBlueButton border-0 p-3 createTripform-button h4 baloo"
               type="submit"
             >
               Next
