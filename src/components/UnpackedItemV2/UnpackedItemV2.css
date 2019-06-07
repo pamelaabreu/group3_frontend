@@ -16,6 +16,11 @@
   margin-top: 11rem;
 }
 
+.uItem--button-main {
+  background-color: rgba(0, 0, 0, 0);
+  border: 1px solid rgba(0, 0, 0, 0);
+}
+
 .uItem--button-left {
   height: 30px;
   background-color: #4996c9;
