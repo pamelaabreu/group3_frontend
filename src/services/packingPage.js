@@ -237,6 +237,45 @@ export const quantity = (index, e, keyPress, state) => {
   };
 };
 
+export const newQuantity = (method, index, e, keyPress, state) => {
+  const { displayBag } = state;
+  const items = state[displayBag];
+  if (!items || items.length === 0) return null;
+  if (method === "decrease") {
+    if (items[index].quantity <= 1) return null;
+    items[index].quantity -= 1;
+    modifyNewQuantitiy(items[index].id, items[index].quantity);
+    return {
+      [displayBag]: items,
+      lastInputIndex: index
+    };
+  } else {
+    if (items[index].quantity >= 25) return null;
+    items[index].quantity -= 1;
+    modifyNewQuantitiy(items[index].id, items[index].quantity);
+    return {
+      [displayBag]: items,
+      lastInputIndex: index
+    };
+  }
+};
+
+const modifyNewQuantitiy = (item_id, quantity) => {
+  axios({
+    method: "put",
+    url: BASEURL + "/items/" + item_id,
+    data: {
+      quantity
+    }
+  })
+    .then(({ data }) => {
+      console.log(data);
+    })
+    .catch(err => {
+      console.log("ERROR PACKING ITEM IN THE BACK END!");
+    });
+};
+
 export const createItem = async state => {
   const { itemInput, displayBag } = state;
   const currentBag = state[displayBag];
