@@ -1,5 +1,6 @@
 import React from "react";
 import UnpackedItem from "../UnpackedItem/UnpackedItem";
+import UnpackedItemV2 from "../UnpackedItemV2/UnpackedItemV2";
 import PackedItem from "../PackedItem/PackedItem";
 
 export default props => {
@@ -29,7 +30,7 @@ export default props => {
     const unPacked = items.map((e, i) => {
       if (!e.packed) {
         return (
-          <UnpackedItem
+          <UnpackedItemV2
             {...e}
             index={i}
             key={i}
