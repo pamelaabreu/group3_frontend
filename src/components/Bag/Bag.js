@@ -1,5 +1,4 @@
 import React from "react";
-import UnpackedItem from "../UnpackedItem/UnpackedItem";
 import UnpackedItemV2 from "../UnpackedItemV2/UnpackedItemV2";
 import PackedItem from "../PackedItem/PackedItem";
 
