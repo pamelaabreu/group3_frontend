@@ -19,14 +19,17 @@ export default props => {
   const toBePacked = selected
     ? "justify-content-center  rounded-bottom item--text--selected"
     : "justify-content-center rounded-bottom item--text--unselected";
-  const toDelete = toBeDeleted ? " bg-danger " : " ";
+  const toDelete = toBeDeleted ? " bg-danger text-white" : " ";
   const img = image
     ? image
     : "https://www.jcrew.com/s7-img-facade/L4012_PA6511?fmt=jpeg";
 
   return (
     <div className="col-6 col-md-3 my-2 p-2">
-      <div className="row justify-content-center">
+      <button
+        className="row justify-content-center"
+        onClick={handleClick("item", index)}
+      >
         <div
           className="uItem--unpacked my-2 border border-white uItem--content-main row no-gutters"
           style={{ backgroundImage: `url(${img})` }}
@@ -67,7 +70,9 @@ export default props => {
               </span>
               <button
                 type="button"
-                className={"col uItem--button-right mali900 c-bundleBlue"}
+                className={
+                  "col uItem--button-right mali900 c-bundleBlue" + toDelete
+                }
                 aria-label={`select ${name}`}
                 onClick={handleClick("select", index)}
               >
@@ -76,7 +81,7 @@ export default props => {
             </div>
           </div>
         </div>
-      </div>
+      </button>
     </div>
   );
 };
