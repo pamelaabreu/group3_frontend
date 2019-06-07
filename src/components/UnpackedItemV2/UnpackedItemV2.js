@@ -3,22 +3,14 @@ import "./UnpackedItemV2.css";
 
 export default props => {
   const {
-    important,
-    flag,
-    handleChange,
+    // flag,
     handleClick,
     image,
-    modifyQuant,
     name,
-    onKeyPress,
-    selected,
     quantity,
     index,
     toBeDeleted
   } = props;
-  const toBePacked = selected
-    ? "justify-content-center  rounded-bottom item--text--selected"
-    : "justify-content-center rounded-bottom item--text--unselected";
   const toDelete = toBeDeleted ? " bg-danger text-white" : " ";
   const img = image
     ? image
