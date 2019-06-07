@@ -1,5 +1,5 @@
 import React from "react";
-import "./Home.css";
+import "./publicHome.css";
 import BundleLogo from "../../assets/images/logo/bundle_logo.svg";
 
 const NotLoginHomepage = props => {
@@ -7,28 +7,30 @@ const NotLoginHomepage = props => {
 
   return (
     <>
-      <div className="publicHomeBanner container-fluid mb-5 h-100">
+      <div className="publicHomeBanner container-fluid mb-5 min-vh-100">
         <div className="row p-5 h-75">
           <div className="col-sm m-5 pt-0 px-5 pb-2">
             <img src={BundleLogo} width="150" height="150" alt="Bundle" />
-            <h2 className="c-white mali700">Worry less, travel more!</h2>
+            <h2 className="c-white mali700 mt-5 h1">
+              Worry less, travel more!
+            </h2>
           </div>
 
-          <div className="col-sm m-5 p-5 bg-huate80 b-radius9">
-            <h2 className="c-bundleBlue mali700 mb-5">Let's get packing!</h2>
+          <div className="col-sm m-5 p-5 bg-huate80 b-radius9 pb-5">
+            <h2 className="c-bundleBlue mali700 mb-5 h1">Let's get packing!</h2>
             {create_trip_form}
           </div>
         </div>
       </div>
 
-      <div className="container bundleHomeWhatBox">
+      <div className="container my-5">
         <div className="row">
-          <div className="col-sm">
-            <div className="bundleHomeWhatPhotoBox" />
+          <div className="col-sm mr-2">
+            <div className="publicHomeWhatPhotoBox" />
           </div>
           <div className="col-sm">
-            <h2>What's Bundle?</h2>
-            <p>
+            <h2 className="mali700 h1 c-bundleBlue">What's Bundle?</h2>
+            <p className="mali400 h5 c-smokeGrey">
               We provide a trip-management hub for inexperienced travelers to
               keep track of all their necessities. They’ll have a smoother and
               more enjoyable experience preparing for it because they can
@@ -40,8 +42,12 @@ const NotLoginHomepage = props => {
         </div>
       </div>
 
-      <div className="container-fluid bundleHomeGetPackingBox">
-        <h1>What are you waiting for? Get Packing!</h1>
+      <div className="jumbotron h-50 mb-0 bundleHomeGetPackingBox">
+        <div className="container">
+          <h1 className="display-4 c-white baloo text-center">
+            What are you waiting for? Get Packing!
+          </h1>
+        </div>
       </div>
     </>
   );
