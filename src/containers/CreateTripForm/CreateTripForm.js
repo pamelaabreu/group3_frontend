@@ -21,6 +21,7 @@ export default props => {
               type="text"
               name="destination"
               placeholder="City, Country"
+              aria-label="Destination by City, Country"
               onChange={props.destinationHandler}
               value={props.destination}
               required
@@ -37,6 +38,7 @@ export default props => {
               name="departure"
               min={today}
               required
+              aria-label="Departure Date"
               pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}"
               onChange={props.departureDateHandler}
               value={props.departureDate}
@@ -52,6 +54,7 @@ export default props => {
               id="return"
               name="return"
               min={tomorrow}
+              aria-label="Return Date"
               required
               pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}"
               onChange={props.returnDateHandler}
