@@ -40,6 +40,11 @@
   border-bottom-right-radius: 1rem;
 }
 
+.uItem--quantity {
+  background-color: #4996c9;
+  border: 1px solid #4996c9;
+}
+
 .uItem--quantity-size {
   font-weight: 700;
 }

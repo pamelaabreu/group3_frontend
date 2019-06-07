@@ -40,6 +40,7 @@ export default props => {
                 <div className="row justify-content-center no-gutters align-center">
                   <div className="col text-center align-center">
                     <button
+                      className="uItem--quantity bg-bundleBlue"
                       type="button"
                       aria-label="reduce quantity"
                       onClick={handleClick("decreaseQuantity", index)}
@@ -54,6 +55,7 @@ export default props => {
                   </div>
                   <div className="col text-center align-center">
                     <button
+                      className="uItem--quantity bg-bundleBlue"
                       type="button"
                       aria-label="incrase quantity"
                       onClick={handleClick("increaseQuantity", index)}
@@ -65,7 +67,7 @@ export default props => {
               </span>
               <button
                 type="button"
-                className="col uItem--button-right mali900 c-bundleBlue"
+                className={"col uItem--button-right mali900 c-bundleBlue"}
                 aria-label={`select ${name}`}
                 onClick={handleClick("select", index)}
               >
