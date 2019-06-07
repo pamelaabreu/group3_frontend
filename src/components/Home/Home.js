@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useContext } from "react";
-import "./Home.css";
 import CreateTripForm from "../../containers/CreateTripForm/CreateTripForm";
 import Modal from "../../containers/Modal/Modal";
 import { getDuration } from "../../services/suggestions";
