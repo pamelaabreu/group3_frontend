@@ -91,18 +91,39 @@
   width: 100px;
 }
 
+.uItem--btnrow {
+  font-size: 1.2rem;
+}
+
+.uItem--btnrow-md {
+  margin-top: 0.5rem;
+  font-size: 1.4rem;
+}
+
+.uItem--btnrow-lg {
+  margin-top: 1rem;
+  font-size: 1.4rem;
+}
+
+.uItem--btnrow-xlg {
+  margin-top: 1rem;
+  font-size: 1.4rem;
+}
+
+.uItem--btnrow-xxlg {
+  margin-top: 1.1rem;
+  font-size: 1.6rem;
+}
 .uItem--quantity {
   background-color: #4996c9;
   border: 1px solid #4996c9;
 }
 
 .uItem--quantity-size {
-  font-size: 1.4rem;
   font-weight: 700;
 }
 
 .uItem--title--font {
-  font-size: 1.5rem;
   font-weight: 700;
   padding-top: 10px;
   width: 100%;

@@ -56,7 +56,12 @@ export default props => {
                   dynamicSize("button") + " col uItem--button-left align-center"
                 }
               >
-                <div className="row justify-content-center no-gutters align-center">
+                <div
+                  className={
+                    dynamicSize("btnrow") +
+                    " row justify-content-center no-gutters align-center"
+                  }
+                >
                   <div className="col text-center align-center">
                     <button
                       className="uItem--quantity bg-bundleBlue"
