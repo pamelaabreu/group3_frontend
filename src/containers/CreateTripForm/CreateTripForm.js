@@ -12,51 +12,60 @@ export default props => {
     <>
       <div className="create-trip-form">
         <form className="" onSubmit={props.createTripHandler}>
-          <div className="form-group row justify-content-between">
-            <label htmlFor="destination" className="trip-form-label">
+          <div className="form-group">
+            <label htmlFor="destination" className="c-bundleBlue h4">
               Enter your destination:
             </label>
             <input
+              className="form-control c-denimBlue bundleBlue-border-bottom-3 h4"
               type="text"
               name="destination"
               placeholder="City, Country"
+              aria-label="Destination by City, Country"
               onChange={props.destinationHandler}
               value={props.destination}
               required
             />
           </div>
-          <div className="form-group row justify-content-between">
-            <label htmlFor="departure" className="trip-form-label">
+          <div className="form-group">
+            <label htmlFor="destination" className="c-bundleBlue h4">
               Enter departure date:
             </label>
             <input
+              className="form-control c-denimBlue bundleBlue-border-bottom-3 h4"
               type="date"
               id="departure"
               name="departure"
               min={today}
               required
+              aria-label="Departure Date"
               pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}"
               onChange={props.departureDateHandler}
               value={props.departureDate}
             />
           </div>
-          <div className="form-group row justify-content-between">
-            <label htmlFor="departure" className="trip-form-label">
+          <div className="form-group">
+            <label htmlFor="destination" className="c-bundleBlue h4">
               Enter return date:
             </label>
             <input
+              className="form-control c-denimBlue bundleBlue-border-bottom-3 h4"
               type="date"
               id="return"
               name="return"
               min={tomorrow}
+              aria-label="Return Date"
               required
               pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}"
               onChange={props.returnDateHandler}
               value={props.returnDate}
             />
           </div>
-          <div className="form-button-container">
-            <button className="form-button" type="submit">
+          <div className="d-flex justify-content-center p-2">
+            <button
+              className="bundleBlueButton border-0 p-3 createTripform-button h4 baloo"
+              type="submit"
+            >
               Next
             </button>
           </div>

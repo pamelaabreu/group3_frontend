@@ -6,9 +6,11 @@ import ProgressBar from "../../../components/ProgressBar/ProgressBar";
 import AddItemButton from "../RemindersPage/AddItemButton/AddItemButton";
 import {
   addToDelete,
+  addToShoppingCart,
   closeLastQuantity,
   createItem,
   executeDelete,
+  findOrCreateShoppingCart,
   inputChange,
   markImportant,
   mountPacking,
@@ -30,6 +32,7 @@ export default (class PackPage extends Component {
       currentBag: null,
       currentCategory: null,
       lists: null,
+      list_id: null,
       loading: true,
       lastInputIndex: null,
       deleteMode: false,
@@ -42,8 +45,8 @@ export default (class PackPage extends Component {
 
   async componentDidMount() {
     const { bagTypes } = this.state;
-    const { bags } = this.props;
-    const mountState = await mountPacking(bagTypes, bags);
+    const { bags, lists } = this.props;
+    const mountState = await mountPacking(bagTypes, bags, lists);
     if (mountState) this.setState(mountState);
     else console.log("Componenet Mount Error: ");
   }
@@ -83,6 +86,9 @@ export default (class PackPage extends Component {
       case "endDelete":
         this.handleExecuteDelete();
         break;
+      case "shopping-cart":
+        this.handleShoppingCart(index, e);
+        break;
       default:
         return;
     }
@@ -121,6 +127,24 @@ export default (class PackPage extends Component {
   handleSelect = (index, e) => {
     const newState = select(index, this.state);
     if (newState) this.setState(newState);
+    return;
+  };
+
+  handleShoppingCart = async (index, e) => {
+    const list_id = await findOrCreateShoppingCart(
+      index,
+      this.state,
+      this.props.lists
+    );
+    if (list_id === null) return;
+    const result = await addToShoppingCart(index, this.state, list_id);
+    const { newState, updateParent } = result;
+    if (updateParent) {
+      this.props.updateLists();
+      if (newState) this.setState(newState);
+    } else {
+      if (newState) this.setState(newState);
+    }
     return;
   };
 

@@ -120,7 +120,11 @@ export default (class PackingOverview extends Component {
           <>
             {this.tabs(page)}
             {page === "packing" ? (
-              <PackingPage bags={bags} />
+              <PackingPage
+                bags={bags}
+                lists={lists}
+                updateLists={this.updateLists}
+              />
             ) : (
               <RemindersPage
                 lists={lists}
