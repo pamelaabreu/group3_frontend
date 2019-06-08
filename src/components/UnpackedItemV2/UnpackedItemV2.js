@@ -25,12 +25,12 @@ export default props => {
     ? image
     : "https://www.jcrew.com/s7-img-facade/L4012_PA6511?fmt=jpeg";
 
-  const itemWidth = () => {
-    if (width < 500) return "uItem--unpacked";
-    if (width > 500 && width < 990) return "uItem--unpacked-md";
-    if (width > 990 && width < 1200) return "uItem--unpacked-lg";
-    if (width > 1150 && width < 1300) return "uItem--unpacked-xlg";
-    if (width > 1300) return "uItem--unpacked-xxlg";
+  const dynamicSize = name => {
+    if (width < 500) return `uItem--${name}`;
+    if (width > 500 && width < 990) return `uItem--${name}-md`;
+    if (width > 990 && width < 1200) return `uItem--${name}-lg`;
+    if (width > 1150 && width < 1300) return `uItem--${name}-xlg`;
+    if (width > 1300) return `uItem--${name}-xxlg`;
   };
 
   return (
@@ -41,7 +41,7 @@ export default props => {
       >
         <div
           className={
-            itemWidth() +
+            dynamicSize("unpacked") +
             "  uItem my-2 border border-white uItem--content-main row no-gutters"
           }
           style={{ backgroundImage: `url(${img})` }}
@@ -51,7 +51,11 @@ export default props => {
           </div>
           <div className="col-12 uItem--buttons rounded">
             <div className="row px-2 no-gutters">
-              <span className="col uItem--button-left align-center">
+              <span
+                className={
+                  dynamicSize("button") + " col uItem--button-left align-center"
+                }
+              >
                 <div className="row justify-content-center no-gutters align-center">
                   <div className="col text-center align-center">
                     <button
@@ -83,7 +87,9 @@ export default props => {
               <button
                 type="button"
                 className={
-                  "col uItem--button-right mali900 c-bundleBlue" + toDelete
+                  dynamicSize("button") +
+                  " col uItem--button-right mali900 c-bundleBlue" +
+                  toDelete
                 }
                 aria-label={`select ${name}`}
                 onClick={handleClick("select", index)}
