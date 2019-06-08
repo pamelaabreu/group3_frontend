@@ -42,7 +42,7 @@ export default props => {
         <div
           className={
             itemWidth() +
-            "  my-2 border border-white uItem--content-main row no-gutters"
+            "  uItem my-2 border border-white uItem--content-main row no-gutters"
           }
           style={{ backgroundImage: `url(${img})` }}
         >
