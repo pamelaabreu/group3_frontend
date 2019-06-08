@@ -6,6 +6,38 @@
   height: 180px;
 }
 
+.uItem--unpacked-md {
+  background-color: white;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2),
+    0 1.5px 3.33px 0 rgba(0, 0, 0, 0.19);
+  width: 220px;
+  height: 260px;
+}
+
+.uItem--unpacked-lg {
+  background-color: white;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2),
+    0 1.5px 3.33px 0 rgba(0, 0, 0, 0.19);
+  width: 260px;
+  height: 300px;
+}
+
+.uItem--unpacked-xlg {
+  background-color: white;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2),
+    0 1.5px 3.33px 0 rgba(0, 0, 0, 0.19);
+  width: 300px;
+  height: 340px;
+}
+
+.uItem--unpacked-xxlg {
+  background-color: white;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2),
+    0 1.5px 3.33px 0 rgba(0, 0, 0, 0.19);
+  width: 340px;
+  height: 380px;
+}
+
 .uItem--title {
   background-color: rgba(255, 255, 255, 0.7);
   height: 22px;
