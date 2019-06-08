@@ -105,6 +105,14 @@ body {
   background: var(--bgHuate);
 }
 
+.bg-babyBlue {
+  background: var(--babyBlue);
+}
+
+.bg-babyBlue50 {
+  background: var(--babyBlue50);
+}
+
 .bg-opacity80 {
   background: var(--opacity80);
 }
