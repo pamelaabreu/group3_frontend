@@ -88,28 +88,28 @@
 }
 
 .uItem--header {
-  height: 2.2rem;
-  font-size: 1.2rem;
+  height: 2.5rem;
+  font-size: 1.5rem;
 }
 
 .uItem--header-md {
-  height: 2.3rem;
-  font-size: 1.4rem;
+  height: 2.8rem;
+  font-size: 1.8rem;
 }
 
 .uItem--header-lg {
-  height: 2.7rem;
-  font-size: 1.6rem;
+  height: 3.3rem;
+  font-size: 2.1rem;
 }
 
 .uItem--header-xlg {
-  height: 3rem;
-  font-size: 1.7rem;
+  height: 3.6rem;
+  font-size: 2.3rem;
 }
 
 .uItem--header-xxlg {
-  height: 3.2rem;
-  font-size: 1.7rem;
+  height: 4.2rem;
+  font-size: 2.6rem;
 }
 
 .uItem--button {
@@ -162,23 +162,23 @@
 }
 
 .uItem--check {
-  font-size: 1.1rem;
+  font-size: 1.5rem;
 }
 
 .uItem--check-md {
-  font-size: 1.4rem;
+  font-size: 1.8rem;
 }
 
 .uItem--check-lg {
-  font-size: 1.7rem;
+  font-size: 2.1rem;
 }
 
 .uItem--check-xlg {
-  font-size: 2rem;
+  font-size: 2.3rem;
 }
 
 .uItem--check-xxlg {
-  font-size: 2.3rem;
+  font-size: 2.6rem;
 }
 
 .uItem--quantity {
