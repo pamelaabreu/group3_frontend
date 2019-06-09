@@ -46,7 +46,12 @@ export default props => {
           }
           style={{ backgroundImage: `url(${img})` }}
         >
-          <div className="col-12 uItem--title text-center p-0 rounded">
+          <div
+            className={
+              dynamicSize("header") +
+              " col-12 uItem--head text-center p-0 rounded"
+            }
+          >
             <span className="uItem--title--font c-denimBlue">{name}</span>
           </div>
           <div className="col-12 uItem--buttons rounded">
