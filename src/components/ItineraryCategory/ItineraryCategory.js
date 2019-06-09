@@ -9,13 +9,15 @@ const ItineraryCategory = props => {
   let phoneNumber = "";
   const countryCode = countries.getAlpha2Code(trip.country, "en");
 
+  console.log(category);
   try {
     phoneNumber = parsePhoneNumber(`+ ${category.phone_number}`, countryCode);
   } catch (error) {
     if (error instanceof ParseError) {
       console.log("error", error.message);
+      phoneNumber = category.phone_number;
     } else {
-      throw error;
+      phoneNumber = category.phone_number;
     }
   }
 
@@ -24,10 +26,10 @@ const ItineraryCategory = props => {
       <p className="card-title">{category.name}</p>
       <p className="card-text">Address: {category.address}</p>
       <p className="card-text">
-        Phone:{" "}
-        {countryCode === "US"
+        Phone:{` ${category.phone_number}`}
+        {/*countryCode === "US"
           ? phoneNumber.formatNational()
-          : phoneNumber.formatInternational()}
+  : phoneNumber.formatInternational()*/}
       </p>
       <p className="card-text">{category.note}</p>
     </div>
