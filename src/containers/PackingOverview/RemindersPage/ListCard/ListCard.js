@@ -1,8 +1,10 @@
 import React from "react";
 
 const ListCard = props => {
-  const { list_type, name, handleCurrentListDisplay, list_count } = props;
+  const { list_type, name, handleCurrentListDisplay, getTodoCount } = props;
   const bool = list_type === "To Do List" ? true : false;
+  const totalTodos = getTodoCount(list_type);
+
   return (
     <div className="card mx-1 mt-2 p-0 pack--bag-width">
       <button
