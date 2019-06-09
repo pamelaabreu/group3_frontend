@@ -7,10 +7,10 @@ const Modal = props => {
     <>
       <div
         className="modal fade flipOutY"
-        id="exampleModalScrollable"
+        id="modalScrollable"
         tabIndex="-1"
         role="dialog"
-        aria-labelledby="exampleModalScrollableTitle"
+        aria-labelledby="modalScrollableTitle"
         aria-hidden="true"
       >
         <div className="modal-dialog modal-dialog-scrollable" role="document">
