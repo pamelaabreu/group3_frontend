@@ -56,7 +56,6 @@
 }
 
 .uItem--button-right {
-  font-size: 1.1rem;
   background-color: white;
   border-left: 1px solid #4996c9;
   border-right: 1px solid #4996c9;
@@ -114,6 +113,27 @@
   margin-top: 1.1rem;
   font-size: 1.6rem;
 }
+
+.uItem--check {
+  font-size: 1.1rem;
+}
+
+.uItem--check-md {
+  font-size: 1.4rem;
+}
+
+.uItem--check-lg {
+  font-size: 1.7rem;
+}
+
+.uItem--check-xlg {
+  font-size: 2rem;
+}
+
+.uItem--check-xxlg {
+  font-size: 2.3rem;
+}
+
 .uItem--quantity {
   background-color: #4996c9;
   border: 1px solid #4996c9;

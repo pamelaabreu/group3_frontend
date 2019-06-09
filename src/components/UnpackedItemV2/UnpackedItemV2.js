@@ -99,7 +99,7 @@ export default props => {
                 aria-label={`select ${name}`}
                 onClick={handleClick("select", index)}
               >
-                Check
+                <span className={dynamicSize("check")}>Check</span>
               </button>
             </div>
           </div>
