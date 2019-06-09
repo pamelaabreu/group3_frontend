@@ -16,14 +16,27 @@ const AddTodo = props => {
         <i className="fas fa-plus" />
       </button>
       <div className="px-2 dropdown-menu">
-        <label>
+        <label htmlFor="todo-input">
           What's todo?
-          <textarea
+          <input
+            id="todo-input"
+            type="text"
             maxLength="50"
             value={todoInput}
             onChange={handleTodoInputChange}
+            list="datalist2"
           />
         </label>
+        <datalist id="datalist2">
+          <option defaultValue>Choose one...</option>
+          {suggested_todos.map((e, i) => {
+            return (
+              <option value={e} key={i}>
+                {e}
+              </option>
+            );
+          })}
+        </datalist>
         <button
           className="btn-sm border-info border-radius"
           type="submit"
