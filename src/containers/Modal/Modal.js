@@ -16,6 +16,7 @@ const Modal = props => {
         <div className="modal-dialog modal-dialog-scrollable" role="document">
           <div className="modal-content b-radius9 position-relative">
             <Suggestions
+              changeLoadStatus={props.changeLoadStatus}
               destination={props.destination}
               duration={props.duration}
               departureDate={props.departureDate}
