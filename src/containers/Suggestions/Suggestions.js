@@ -4,11 +4,16 @@ import { getSuggestions } from "../../services/suggestions";
 import axios from "axios";
 import { buildBundle } from "../../services/backendCalls";
 import "./Suggestions.css";
-import LoadingScreen from "../../components/LoadingScreen/LoadingScreen";
 import FirebaseAuthContext from "../../context/FirebaseAuth";
 
 export default withRouter(props => {
-  const { destination, duration, departureDate, returnDate } = props;
+  const {
+    destination,
+    duration,
+    departureDate,
+    returnDate,
+    changeLoadStatus
+  } = props;
 
   const FirebaseUserAuth = useContext(FirebaseAuthContext);
 
@@ -17,7 +22,6 @@ export default withRouter(props => {
   const [displayItems, setDisplayItems] = useState(null);
   const [currCategory, setCurrCategory] = useState(null);
   const [newDisplay, setNewDisplay] = useState(null);
-  const [loading, setLoadStatus] = useState(false);
   const [user, setUser] = useState(null);
 
   useEffect(() => {
@@ -57,20 +61,6 @@ export default withRouter(props => {
     }
   }, [newDisplay]);
 
-  useEffect(() => {
-    if (loading) {
-      buildBundle(items, destination, departureDate, returnDate, user)
-        .then(tripId => {
-          setLoadStatus(false);
-          props.history.push("/pack/" + tripId);
-        })
-        .catch(err => {
-          console.log(err);
-          setLoadStatus(true);
-        });
-    }
-  });
-
   const handleCategoryClick = category => e => {
     setCurrCategory(category);
     setDisplayItems(items[category]);
@@ -84,7 +74,16 @@ export default withRouter(props => {
   };
 
   const handleBundle = () => {
-    setLoadStatus(true);
+    changeLoadStatus(true);
+    buildBundle(items, destination, departureDate, returnDate, user)
+      .then(tripId => {
+        changeLoadStatus(false);
+        props.history.push("/pack/" + tripId);
+      })
+      .catch(err => {
+        console.log(err);
+        changeLoadStatus(true);
+      });
   };
 
   return (
@@ -207,8 +206,6 @@ export default withRouter(props => {
           Bundle It!
         </button>
       </div>
-
-      {!loading ? null : <LoadingScreen />}
     </>
   );
 });
