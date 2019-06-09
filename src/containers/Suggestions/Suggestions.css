@@ -31,6 +31,7 @@
 }
 
 .activeSuggestedItem-border {
+  transition: 0.2s ease;
   border: 2px solid var(--safeGreen);
 }
 
@@ -40,4 +41,12 @@
 
 .activeSuggestedItem-bg-color {
   background: var(--safeGreen);
+}
+
+.suggestions-checked-icon-size {
+  font-size: 2rem;
+}
+
+.suggested-icon-size {
+  font-size: 4rem;
 }

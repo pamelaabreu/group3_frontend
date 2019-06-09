@@ -105,54 +105,55 @@ export default withRouter(props => {
 
       <div className="modal-body m-0 p-0">
         <div className="container-fluid bg-huate">
-          <div className="row sticky-top bg-bundleBlue p-5 pb-5">
+          <div className="row sticky-top bg-bundleBlue p-3">
             {categories ? (
-              <>
-                <div className="suggestions-categories">
-                  {categories.map(e => {
-                    const activeCatergoryStyle =
-                      "c-bundleBlue ds-lightGrey b-radius9 ";
-                    const inactiveCategoryStyle =
-                      "c-huate bg-transparent inactiveCategory-item";
+              <div className="suggestions-categories d-flex justify-content-between align-items-center overflow-auto pb-5">
+                {categories.map(e => {
+                  const activeCatergoryStyle =
+                    "c-bundleBlue ds-lightGrey b-radius9 ";
+                  const inactiveCategoryStyle =
+                    "c-huate bg-transparent inactiveCategory-item";
 
-                    let activeCatergoryClassname = null;
-                    if (!currCategory) {
-                      activeCatergoryClassname =
-                        e.name.toLowerCase() === "clothing"
-                          ? activeCatergoryStyle
-                          : inactiveCategoryStyle;
-                    } else {
-                      activeCatergoryClassname =
-                        e.name.toLowerCase() === currCategory.toLowerCase()
-                          ? activeCatergoryStyle
-                          : inactiveCategoryStyle;
-                    }
+                  let activeCatergoryClassname = null;
+                  if (!currCategory) {
+                    activeCatergoryClassname =
+                      e.name.toLowerCase() === "clothing"
+                        ? activeCatergoryStyle
+                        : inactiveCategoryStyle;
+                  } else {
+                    activeCatergoryClassname =
+                      e.name.toLowerCase() === currCategory.toLowerCase()
+                        ? activeCatergoryStyle
+                        : inactiveCategoryStyle;
+                  }
 
-                    return (
-                      <button
-                        key={e.id}
-                        onClick={handleCategoryClick(e.name)}
-                        className={
-                          "mx-3 p-2 h4 capitalizeText border-0 " +
-                          activeCatergoryClassname
-                        }
-                      >
-                        {e.name}
-                      </button>
-                    );
-                  })}
-                </div>
-              </>
+                  return (
+                    <button
+                      key={e.id}
+                      onClick={handleCategoryClick(e.name)}
+                      className={
+                        "mx-3 p-2 h4 capitalizeText border-0 " +
+                        activeCatergoryClassname
+                      }
+                    >
+                      {e.name}
+                    </button>
+                  );
+                })}
+              </div>
             ) : null}
           </div>
-          <div className="row bg-babyBlue p-3">
+          <div className="row bg-babyBlue p-3 ">
             {displayItems
               ? displayItems.map((e, i) => {
                   const activeCardBorder = e.pack
                     ? "ds-lightGrey activeSuggestedItem-border"
-                    : "border-0 ";
+                    : "border-0";
                   const activeCardText = e.pack
-                    ? "activeSuggestedItem-color"
+                    ? "c-bundleBlue"
+                    : "c-smokeGrey";
+                  const activeIconColor = e.pack
+                    ? "activeSuggestedItem-color "
                     : "c-smokeGrey";
 
                   return (
@@ -175,11 +176,23 @@ export default withRouter(props => {
                           {e.name}
                         </div>
                         <div className="card-body b-radius9">
-                          {e.pack ? (
-                            <i className="fas fa-check activeSuggestedItem-color" />
-                          ) : (
-                            <i className="fas fa-times c-smokeGrey" />
-                          )}
+                          <div className="container-fluid px-5">
+                            <div className="row justify-content-center">
+                              <i
+                                className={
+                                  "fas fa-tshirt suggested-icon-size " +
+                                  activeIconColor
+                                }
+                              />
+                            </div>
+                            <div className="row justify-content-center pt-5 pb-2">
+                              {e.pack ? (
+                                <i className="far fa-check-circle activeSuggestedItem-color suggestions-checked-icon-size" />
+                              ) : (
+                                <i className="far fa-times-circle c-smokeGrey suggestions-checked-icon-size" />
+                              )}
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
