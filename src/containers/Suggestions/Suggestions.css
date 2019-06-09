@@ -2,3 +2,42 @@
   display: flex;
   overflow-x: scroll;
 }
+
+.inactiveCategory-item {
+  transition: border, border-radius, color 0.2s ease;
+}
+
+.inactiveCategory-item:hover {
+  border: 3px solid white;
+  border-radius: var(--br-9);
+  color: var(--denimBlue);
+}
+
+.bundleItSubmitButton {
+  transition: background 0.2s ease;
+}
+
+.bundleItSubmitButton:hover {
+  background: #39b225;
+}
+
+.cancelBundleButton {
+  transition: color, border 0.2s ease;
+}
+
+.cancelBundleButton:hover {
+  color: #dd1b49;
+  border-color: #dd1b49;
+}
+
+.activeSuggestedItem-border {
+  border: 2px solid #39b225;
+}
+
+.activeSuggestedItem-color {
+  color: #39b225;
+}
+
+.activeSuggestedItem-bg-color {
+  background: #39b225;
+}
