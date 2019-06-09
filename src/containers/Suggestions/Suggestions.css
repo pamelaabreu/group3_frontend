@@ -26,18 +26,18 @@
 }
 
 .cancelBundleButton:hover {
-  color: #dd1b49;
-  border-color: #dd1b49;
+  color: var(--sunsetRed);
+  border-color: var(--sunsetRed);
 }
 
 .activeSuggestedItem-border {
-  border: 2px solid #39b225;
+  border: 2px solid var(--safeGreen);
 }
 
 .activeSuggestedItem-color {
-  color: #39b225;
+  color: var(--safeGreen);
 }
 
 .activeSuggestedItem-bg-color {
-  background: #39b225;
+  background: var(--safeGreen);
 }
