@@ -115,7 +115,7 @@ export default props => {
                 aria-label={`select ${name}`}
                 onClick={handleClick("select", index)}
               >
-                <span className={dynamicSize("check")}>Pack</span>
+                <span className={dynamicSize("pack")}>Pack</span>
               </button>
             </div>
           </div>
