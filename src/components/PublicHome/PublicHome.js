@@ -1,12 +1,14 @@
 import React from "react";
 import "./PublicHome.css";
 import BundleLogo from "../../assets/images/logo/bundle_logo.svg";
+import LoadingScreen from "../LoadingScreen/LoadingScreen";
 
 const PublicHome = props => {
-  const { create_trip_form } = props;
+  const { create_trip_form, loading } = props;
 
   return (
     <>
+      {!loading ? null : <LoadingScreen />}
       <div className="publicHomeBanner container-fluid mb-5 min-vh-100">
         <div className="row p-5 h-75">
           <div className="col-sm m-5 pt-0 px-5 pb-2">
