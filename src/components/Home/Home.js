@@ -15,6 +15,9 @@ const Home = props => {
   const [returnDate, setReturnDate] = useState("");
   const [duration, setDuration] = useState(null);
   const [disabled, setDisable] = useState(true);
+  const [loading, setLoadStatus] = useState(false);
+
+  const changeLoadStatus = status => setLoadStatus(status);
 
   const destinationHandler = e => {
     setDestination(e.target.value);
@@ -55,6 +58,7 @@ const Home = props => {
   return (
     <>
       <Modal
+        changeLoadStatus={changeLoadStatus}
         destination={destination}
         duration={duration}
         departureDate={departureDate}
@@ -68,7 +72,7 @@ const Home = props => {
           user={FirebaseUserAuth.user}
         />
       ) : (
-        <PublicHome create_trip_form={createTripForm} />
+        <PublicHome create_trip_form={createTripForm} loading={loading} />
       )}
     </>
   );
