@@ -27,9 +27,9 @@ export default props => {
 
   const dynamicSize = name => {
     if (width < 500) return `uItem--${name}`;
-    if (width > 500 && width < 990) return `uItem--${name}-md`;
-    if (width > 990 && width < 1200) return `uItem--${name}-lg`;
-    if (width > 1150 && width < 1300) return `uItem--${name}-xlg`;
+    if (width >= 500 && width < 990) return `uItem--${name}-md`;
+    if (width >= 990 && width < 1200) return `uItem--${name}-lg`;
+    if (width >= 1200 && width < 1300) return `uItem--${name}-xlg`;
     if (width > 1300) return `uItem--${name}-xxlg`;
   };
 
@@ -63,13 +63,16 @@ export default props => {
               >
                 <div
                   className={
-                    dynamicSize("btnrow") +
                     " row justify-content-center no-gutters align-center"
                   }
                 >
-                  <div className="col text-center align-center">
+                  <div
+                    className={
+                      dynamicSize("btnrow") + " col text-center align-center"
+                    }
+                  >
                     <button
-                      className="uItem--quantity bg-bundleBlue"
+                      className="uItem--quantity-button bg-bundleBlue"
                       type="button"
                       aria-label="reduce quantity"
                       onClick={handleClick("decreaseQuantity", index)}
@@ -77,14 +80,22 @@ export default props => {
                       <i className="fas fa-minus c-white" />
                     </button>
                   </div>
-                  <div className="col text-center align-bottom">
-                    <span className="uItem--quantity-size c-white align-bottom">
+                  <div
+                    className={
+                      dynamicSize("quantity") + " col text-center align-bottom"
+                    }
+                  >
+                    <span className=" uItem--quantity-weight c-white align-bottom">
                       {quantity}
                     </span>
                   </div>
-                  <div className="col text-center align-center">
+                  <div
+                    className={
+                      dynamicSize("btnrow") + " col text-center align-center"
+                    }
+                  >
                     <button
-                      className="uItem--quantity bg-bundleBlue"
+                      className="uItem--quantity-button bg-bundleBlue"
                       type="button"
                       aria-label="incrase quantity"
                       onClick={handleClick("increaseQuantity", index)}
