@@ -12,6 +12,7 @@ export default props => {
 
   const {
     // flag,
+    deleteMode,
     handleClick,
     image,
     name,
@@ -24,6 +25,10 @@ export default props => {
   const img = image
     ? image
     : "https://www.jcrew.com/s7-img-facade/L4012_PA6511?fmt=jpeg";
+
+  const rightButton = deleteMode
+    ? "uItem--button-rightDelete"
+    : "uItem--button-right";
 
   const dynamicSize = name => {
     if (width < 500) return `uItem--${name}`;
@@ -109,7 +114,9 @@ export default props => {
                 type="button"
                 className={
                   dynamicSize("button") +
-                  " col uItem--button-right mali900 c-bundleBlue" +
+                  " col  mali900 " +
+                  rightButton +
+                  " " +
                   toDelete
                 }
                 aria-label={`select ${name}`}

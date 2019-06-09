@@ -38,6 +38,7 @@
   border-bottom: 1px solid #4996c9;
   border-top-right-radius: 1rem;
   border-bottom-right-radius: 1rem;
+  color: var(--bundleBlue);
 }
 
 .uItem--button-right:hover {
@@ -48,6 +49,31 @@
   border-bottom: 1px solid #39b225;
   border-top-right-radius: 1rem;
   border-bottom-right-radius: 1rem;
+  transition: 0.3s;
+  color: var(--white);
+}
+
+.uItem--button-rightDelete {
+  background-color: white;
+  border-left: 1px solid #4996c9;
+  border-right: 1px solid #4996c9;
+  border-top: 1px solid #4996c9;
+  border-bottom: 1px solid #4996c9;
+  border-top-right-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+  color: var(--bundleBlue);
+}
+
+.uItem--button-rightDelete:hover {
+  background-color: #d9534f;
+  border-left: 1px solid #d9534f;
+  border-right: 1px solid #d9534f;
+  border-top: 1px solid #d9534f;
+  border-bottom: 1px solid #d9534f;
+  border-top-right-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+  transition: 0.3s;
+  color: var(--white);
 }
 
 .uItem--quantity-button {
