@@ -8,7 +8,7 @@ const ListCard = props => {
   return (
     <div className="card mx-1 mt-2 p-0 pack--bag-width">
       <button
-        className="card-body row"
+        className="card-body"
         onClick={() => handleCurrentListDisplay(bool)}
       >
         <h5 className="card-title">{list_type}</h5>
@@ -16,7 +16,7 @@ const ListCard = props => {
           <span>{name}</span>
         </p>
         <p>
-          <span>{list_count} todos</span>
+          <span>{totalTodos.complete + totalTodos.incomplete} todos</span>
         </p>
       </button>
     </div>
