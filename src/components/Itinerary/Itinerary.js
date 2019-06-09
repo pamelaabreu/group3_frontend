@@ -1,6 +1,7 @@
 import React from "react";
 
 import ItineraryCategory from "../ItineraryCategory/ItineraryCategory";
+import AddItineraryForm from "../AddItineraryForm/AddItineraryForm";
 
 const findCategories = categories => {
   const uniqueCategoryNames = {};
@@ -23,24 +24,27 @@ const findCategories = categories => {
 };
 
 const Itinerary = props => {
-  const itineraryCategoryNames = props.info.map(e => e.itinerary_name);
-  const categories = findCategories(itineraryCategoryNames);
+  // const itineraryCategoryNames = props.info.map(e => e.itinerary_name);
+  // const categories = findCategories(itineraryCategoryNames);
+  console.log(props.info);
   return (
     <div className="col-12">
-      <h3>Itinerary</h3>
-      <button className="btn btn-primary">add</button>
       <div className="row">
-        {categories.map(category => {
+        <h3>Itinerary</h3>
+        <button className="btn btn-primary ml-3">add</button>
+      </div>
+      <div className="row">
+        <AddItineraryForm
+          trip_id={props.trip_id}
+          setTripItinerary={props.setTripItinerary}
+        />
+        {props.info.map((e, i) => {
           return (
-            <div className="col-5 card ml-3" style={{ padding: "0" }}>
+            <div key={i} className="col-3 card ml-3">
               <div className="card-header">
-                <h4 className="card-title">{category}</h4>
+                <h4 className="card-title">{e.itinerary_name}</h4>
               </div>
-              {props.info
-                .filter(e => e["itinerary_name"] === category)
-                .map(e => (
-                  <ItineraryCategory category={e} trip={props.trip} />
-                ))}
+              <ItineraryCategory category={e} trip={props.trip} />
             </div>
           );
         })}

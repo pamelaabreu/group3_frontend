@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
 import moment from "moment";
-
 import APIKEYS from "../../config.json";
 
 import Itinerary from "../../components/Itinerary/Itinerary";
@@ -33,7 +32,7 @@ class Trip extends Component {
 
     const itinerary = await axios({
       method: "get",
-      url: `${itineraryEndpointBase}${trip.data.id}`,
+      url: `${itineraryEndpointBase}${tripID}`,
       baseURL
     });
 
@@ -66,6 +65,10 @@ class Trip extends Component {
     });
   }
 
+  setNewItinerary = itinerary => {
+    this.setState({ itinerary });
+  };
+
   moveToPack = () => {
     const { trip_id } = this.props.match.params;
     this.props.history.push("/pack/" + trip_id);
@@ -73,6 +76,7 @@ class Trip extends Component {
 
   render() {
     const { city, country, departure_date, return_date } = this.state.trip;
+    const { trip_id: tripID } = this.props.match.params;
     return (
       <div className="container mt-5">
         <div className="row justify-content-end">
@@ -86,10 +90,10 @@ class Trip extends Component {
         <div className="row justify-content-between">
           <div className="col-lg-4">
             <div>
-              <h5>Trip Details</h5>
-              <p style={{ fontSize: "3.5rem" }}>
+              <h5 className="trip-details-title">Trip Details</h5>
+              <h6 className="trip-destination-title">
                 {city}, {country}
-              </p>
+              </h6>
             </div>
             <div>
               <p>
@@ -103,8 +107,13 @@ class Trip extends Component {
             <Weather weatherInfo={this.state.weather_info} />
           </div>
         </div>
-        <div className="col-10 row mt-3">
-          <Itinerary info={this.state.itinerary} trip={this.state.trip} />
+        <div className="col-12 row mt-3">
+          <Itinerary
+            info={this.state.itinerary}
+            trip={this.state.trip}
+            trip_id={tripID}
+            setTripItinerary={this.setNewItinerary}
+          />
         </div>
       </div>
     );
