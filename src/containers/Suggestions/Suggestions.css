@@ -18,7 +18,7 @@
 }
 
 .bundleItSubmitButton:hover {
-  background: #39b225;
+  background: var(--safeGreen);
 }
 
 .cancelBundleButton {
