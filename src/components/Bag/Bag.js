@@ -3,7 +3,7 @@ import UnpackedItemV2 from "../UnpackedItemV2/UnpackedItemV2";
 import PackedItem from "../PackedItem/PackedItem";
 
 export default props => {
-  const { items, handleOnClick, handleChange, onKeyPress } = props;
+  const { items, handleOnClick, handleChange, onKeyPress, deleteMode } = props;
   if (!items) {
     return <p>EMPTY</p>;
   } else {
@@ -16,7 +16,7 @@ export default props => {
             <PackedItem
               {...e}
               index={i}
-              Î
+              deleteMode={deleteMode}
               handleClick={handleOnClick}
               handleChange={handleChange}
               onKeyPress={onKeyPress}
@@ -33,6 +33,7 @@ export default props => {
             {...e}
             index={i}
             key={i}
+            deleteMode={deleteMode}
             handleClick={handleOnClick}
             handleChange={handleChange}
             onKeyPress={onKeyPress}

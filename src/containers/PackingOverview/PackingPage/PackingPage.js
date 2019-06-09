@@ -253,6 +253,7 @@ export default (class PackPage extends Component {
           <div className="col-12">
             <Bag
               items={bagContents}
+              deleteMode={deleteMode}
               handleOnClick={this.handleOnClick}
               handleChange={this.handleInputChange}
               onKeyPress={this.onKeyPress}
