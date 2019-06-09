@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import NoReminders from "./NoReminders/NoReminders";
+import NoLists from "./NoLists/NoLists";
 import AddListButton from "./AddListCard/AddListCard";
 import ListCard from "./ListCard/ListCard";
 import BASE_URL from "../../../services/backendUrlConnect";
-import AddTodo from "./AddTodo/AddTodo";
 import TodoListView from "./TodoListView/TodoListView";
+import "./RemindersPage.css";
 
 const RemindersPage = props => {
   const { lists, updateLists, trip_id, selectedList, handleSelectList } = props;
