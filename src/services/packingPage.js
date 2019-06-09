@@ -1,5 +1,8 @@
 import axios from "axios";
 import BASEURL from "./backendUrlConnect";
+import Toast from "../components/ToastNotif/ToastNotif";
+const DefaultImage =
+  "https://www.jcrew.com/s7-img-facade/L4012_PA6511?fmt=jpeg";
 
 export const mountPacking = async (bagTypes, bags, lists) => {
   const allBagPromise = [];
@@ -42,7 +45,7 @@ export const addToDelete = (name, index, state) => {
   const currentBag = state[displayBag];
   const item_id = currentBag[index].item_id;
   let newToDelete = toDelete;
-  if (name === "item" || name === "unpack") {
+  if (name === "item" || name === "unpack" || name === "select") {
     const inToDelete = toDelete.indexOf(item_id);
     if (inToDelete > -1) {
       currentBag[index].toBeDeleted = false;
@@ -80,6 +83,10 @@ export const executeDelete = async state => {
     for (let item_id of toDelete) {
       for (let i = 0; i < currentBag.length; i++) {
         if (item_id === currentBag[i].item_id) {
+          Toast(
+            currentBag[i].image || DefaultImage,
+            `${currentBag[i].name} Removed From Bag.`
+          );
           if (currentBag[i].packed) removedFromPacked += 1;
           currentBag = currentBag.slice(0, i).concat(currentBag.slice(i + 1));
           break;
@@ -182,6 +189,10 @@ export const select = (index, state) => {
       console.log("ERROR PACKING ITEM IN THE BACK END!");
     });
   const newTotalPacked = totalPacked + 1;
+  Toast(
+    items[index].image || DefaultImage,
+    `${items[index].name} Moved To Packed`
+  );
   return {
     [displayBag]: items,
     totalPacked: newTotalPacked
@@ -237,6 +248,45 @@ export const quantity = (index, e, keyPress, state) => {
   };
 };
 
+export const newQuantity = (method, index, e, keyPress, state) => {
+  const { displayBag } = state;
+  const items = state[displayBag];
+  if (!items || items.length === 0) return null;
+  if (method === "decrease") {
+    if (items[index].quantity <= 1) return null;
+    items[index].quantity -= 1;
+    modifyNewQuantitiy(items[index].id, items[index].quantity);
+    return {
+      [displayBag]: items,
+      lastInputIndex: index
+    };
+  } else {
+    if (items[index].quantity >= 25) return null;
+    items[index].quantity += 1;
+    modifyNewQuantitiy(items[index].id, items[index].quantity);
+    return {
+      [displayBag]: items,
+      lastInputIndex: index
+    };
+  }
+};
+
+const modifyNewQuantitiy = (item_id, quantity) => {
+  axios({
+    method: "put",
+    url: BASEURL + "/items/" + item_id,
+    data: {
+      quantity
+    }
+  })
+    .then(({ data }) => {
+      console.log(data);
+    })
+    .catch(err => {
+      console.log("ERROR PACKING ITEM IN THE BACK END!");
+    });
+};
+
 export const createItem = async state => {
   const { itemInput, displayBag } = state;
   const currentBag = state[displayBag];
@@ -271,6 +321,7 @@ export const createItem = async state => {
       quantity: 1,
       type_id: 9
     });
+    Toast(item.image || DefaultImage, `${item} Added To Current Bag`);
     return { itemInput: "", [displayBag]: currentBag };
   } catch (err) {
     console.log("Error creating item");
@@ -357,6 +408,7 @@ export const addToShoppingCart = async (index, state, list_id) => {
     const currentBag = state[displayBag];
     currentBag[index].shop = true;
     currentBag[index].todo_id = id;
+    Toast(item.image || DefaultImage, `${item.name} Moved To Shopping Cart`);
     return {
       newState: {
         [displayBag]: currentBag,

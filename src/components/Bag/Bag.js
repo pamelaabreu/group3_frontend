@@ -3,7 +3,7 @@ import UnpackedItem from "../UnpackedItem/UnpackedItem";
 import PackedItem from "../PackedItem/PackedItem";
 
 export default props => {
-  const { items, handleOnClick, handleChange, onKeyPress } = props;
+  const { items, handleOnClick, handleChange, onKeyPress, deleteMode } = props;
   if (!items) {
     return <p>EMPTY</p>;
   } else {
@@ -16,7 +16,7 @@ export default props => {
             <PackedItem
               {...e}
               index={i}
-              Î
+              deleteMode={deleteMode}
               handleClick={handleOnClick}
               handleChange={handleChange}
               onKeyPress={onKeyPress}
@@ -29,16 +29,15 @@ export default props => {
     const unPacked = items.map((e, i) => {
       if (!e.packed) {
         return (
-          <div className="col-6 col-sm-6 col-md-4 p-0" key={i}>
-            <UnpackedItem
-              {...e}
-              index={i}
-              Î
-              handleClick={handleOnClick}
-              handleChange={handleChange}
-              onKeyPress={onKeyPress}
-            />
-          </div>
+          <UnpackedItem
+            {...e}
+            index={i}
+            key={i}
+            deleteMode={deleteMode}
+            handleClick={handleOnClick}
+            handleChange={handleChange}
+            onKeyPress={onKeyPress}
+          />
         );
       } else return null;
     });
