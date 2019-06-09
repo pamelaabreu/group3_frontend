@@ -89,44 +89,125 @@ export default withRouter(props => {
 
   return (
     <>
-      <h2>Here's what we recommend taking for your {duration} day trip:</h2>
-      <h4>De-select any items you won't need</h4>
-      {categories ? (
-        <>
-          <div className="suggestions-categories my-2">
-            {categories.map(e => {
-              return (
-                <button
-                  key={e.id}
-                  onClick={handleCategoryClick(e.name)}
-                  className="mx-2 btn border btn-info rounded"
-                >
-                  {e.name}
-                </button>
-              );
-            })}
-          </div>
-        </>
-      ) : null}
-      <div className="suggestions-items">
-        {displayItems
-          ? displayItems.map((e, i) => {
-              const color = e.pack ? " btn-primary " : " btn-secondary ";
-              return (
-                <div
-                  className={"m-1 btn " + color}
-                  key={i}
-                  onClick={handleItemClick(e.name, i)}
-                >
-                  <h6>{e.name}</h6>
-                </div>
-              );
-            })
-          : null}
+      <div className="modal-header bg-bundleBlue border-0">
+        <div className="container-fluid">
+          <h2 className="c-white h1">Remove items you don't need.</h2>
+        </div>
+
+        <button
+          type="button"
+          className="close c-white"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
-      <button className="btn btn-secondary rounded" onClick={handleBundle}>
-        Bundle It!
-      </button>
+
+      <div className="modal-body m-0 p-0">
+        <div className="container-fluid bg-huate">
+          <div className="row sticky-top bg-bundleBlue p-5 pb-5">
+            {categories ? (
+              <>
+                <div className="suggestions-categories">
+                  {categories.map(e => {
+                    const activeCatergoryStyle =
+                      "c-bundleBlue ds-lightGrey b-radius9 ";
+                    const inactiveCategoryStyle =
+                      "c-huate bg-transparent inactiveCategory-item";
+
+                    let activeCatergoryClassname = null;
+                    if (!currCategory) {
+                      activeCatergoryClassname =
+                        e.name.toLowerCase() === "clothing"
+                          ? activeCatergoryStyle
+                          : inactiveCategoryStyle;
+                    } else {
+                      activeCatergoryClassname =
+                        e.name.toLowerCase() === currCategory.toLowerCase()
+                          ? activeCatergoryStyle
+                          : inactiveCategoryStyle;
+                    }
+
+                    return (
+                      <button
+                        key={e.id}
+                        onClick={handleCategoryClick(e.name)}
+                        className={
+                          "mx-3 p-2 h4 capitalizeText border-0 " +
+                          activeCatergoryClassname
+                        }
+                      >
+                        {e.name}
+                      </button>
+                    );
+                  })}
+                </div>
+              </>
+            ) : null}
+          </div>
+          <div className="row bg-babyBlue p-3">
+            {displayItems
+              ? displayItems.map((e, i) => {
+                  const activeCardBorder = e.pack
+                    ? "ds-lightGrey activeSuggestedItem-border"
+                    : "border-0 ";
+                  const activeCardText = e.pack
+                    ? "activeSuggestedItem-color"
+                    : "c-smokeGrey";
+
+                  return (
+                    <div
+                      key={i}
+                      onClick={handleItemClick(e.name, i)}
+                      className="col-m m-3 b-radius9"
+                    >
+                      <div
+                        className={
+                          "bg-white h-100 w-100 b-radius9 " + activeCardBorder
+                        }
+                      >
+                        <div
+                          className={
+                            "p-3 bg-white text-center b-radius9 h4 border-0 " +
+                            activeCardText
+                          }
+                        >
+                          {e.name}
+                        </div>
+                        <div className="card-body b-radius9">
+                          {e.pack ? (
+                            <i className="fas fa-check activeSuggestedItem-color" />
+                          ) : (
+                            <i className="fas fa-times c-smokeGrey" />
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })
+              : null}
+          </div>
+        </div>
+      </div>
+
+      <div className="modal-footer">
+        <button
+          type="button"
+          className="b-radius9 c-bundleBlue bundeBlue-border-1 p-3 h4 cancelBundleButton bg-transparent"
+          data-dismiss="modal"
+        >
+          Cancel
+        </button>
+        <button
+          className="bundleBlueButton border-0 p-3 h4 bundleItSubmitButton "
+          data-dismiss="modal"
+          onClick={handleBundle}
+        >
+          Bundle It!
+        </button>
+      </div>
+
       {!loading ? null : <LoadingScreen />}
     </>
   );
