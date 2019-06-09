@@ -1,11 +1,10 @@
 import React, { useState, useEffect, useContext } from "react";
-import "./Home.css";
 import CreateTripForm from "../../containers/CreateTripForm/CreateTripForm";
 import Modal from "../../containers/Modal/Modal";
 import { getDuration } from "../../services/suggestions";
 import FirebaseAuthContext from "../../context/FirebaseAuth";
 
-import NotLoginHomepage from "../../components/NotLoginHomepage/NotLoginHomepage";
+import PublicHome from "../PublicHome/PublicHome";
 import LoginHomepage from "../../components/LoginHomepage/LoginHomepage";
 
 const Home = props => {
@@ -75,7 +74,7 @@ const Home = props => {
           user={FirebaseUserAuth.user}
         />
       ) : (
-        <NotLoginHomepage create_trip_form={createTripForm} />
+        <PublicHome create_trip_form={createTripForm} />
       )}
     </>
   );
