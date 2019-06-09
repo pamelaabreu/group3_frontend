@@ -40,6 +40,16 @@
   border-bottom-right-radius: 1rem;
 }
 
+.uItem--button-right:hover {
+  background-color: white;
+  border-left: 1px solid #4996c9;
+  border-right: 1px solid #4996c9;
+  border-top: 1px solid #4996c9;
+  border-bottom: 1px solid #4996c9;
+  border-top-right-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+}
+
 .uItem--quantity-button {
   background-color: #4996c9;
   border: 1px solid #4996c9;
