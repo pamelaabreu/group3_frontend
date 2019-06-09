@@ -1,109 +1,133 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./UnpackedItem.css";
 
 export default props => {
+  const [width, setWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => setWidth(window.innerWidth);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  });
+
   const {
-    important,
-    flag,
-    handleChange,
+    // flag,
+    deleteMode,
     handleClick,
     image,
-    modifyQuant,
     name,
-    onKeyPress,
-    selected,
     quantity,
     index,
     toBeDeleted
   } = props;
-  const toBePacked = selected
-    ? "row align-items-center justify-content-center  rounded-bottom item--text--selected"
-    : "row align-items-center justify-content-center rounded-bottom item--text--unselected";
-  const toDelete = toBeDeleted ? " bg-danger " : " ";
+
+  const toDelete = toBeDeleted ? " bg-danger text-white" : " ";
   const img = image
     ? image
     : "https://www.jcrew.com/s7-img-facade/L4012_PA6511?fmt=jpeg";
+
+  const rightButton = deleteMode
+    ? "uItem--button-rightDelete"
+    : "uItem--button-right";
+
+  const dynamicSize = name => {
+    if (width < 500) return `uItem--${name}`;
+    if (width >= 500 && width < 990) return `uItem--${name}-md`;
+    if (width >= 990 && width < 1200) return `uItem--${name}-lg`;
+    if (width >= 1200 && width < 1300) return `uItem--${name}-xlg`;
+    if (width > 1300) return `uItem--${name}-xxlg`;
+  };
+
   return (
-    <div className="col m-2 border border-white rounded">
-      <button
-        className={"item--unpacked p-0 rounded" + toDelete}
+    <div className="col-6 col-sm-6 col-md-4 col-lg-4 my-2 p-2">
+      <div
+        className="row justify-content-center"
         onClick={handleClick("item", index)}
       >
-        <div className="container">
-          <div className={"row align-items-center justify-content-center"}>
-            <div>
-              {/* ITEM IMAGE */}
-              <img src={img} className="item--image--size rounded" alt={name} />
-            </div>
-            <div className="item--icon align-items-center">
-              {/* ICONS */}
-              <div>
-                <i
-                  className="fas fa-shopping-cart item--icon--size"
-                  onClick={handleClick("shopping-cart", index)}
-                />
-              </div>
-              <div>
-                {important ? (
-                  <i
-                    className="fas fa-star item--icon--size"
-                    onClick={handleClick("important", index)}
-                  />
-                ) : (
-                  <i
-                    className="far fa-star item--icon--size"
-                    onClick={handleClick("important", index)}
-                  />
-                )}
-              </div>
-              <div>
-                {flag ? (
-                  <i className="far fa-question-circle item--icon--size" />
-                ) : (
-                  /* needs work */
-                  <div className="item--icon-filler"> </div>
-                )
-                /* needs work */
-                }
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="col-12">
-          {/* Item Name */}
+        <div
+          className={
+            dynamicSize("unpacked") +
+            "  uItem my-2 border border-white uItem--content-main row no-gutters"
+          }
+          style={{ backgroundImage: `url(${img})` }}
+        >
           <div
             className={
-              "row align-items-center justify-content-center item--description-flow"
+              dynamicSize("header") +
+              " col-12 uItem--head text-center p-0 rounded"
             }
           >
-            <span className="item--title--font item--title--color">
-              {name} <i className="fas fa-times item--count--size" />
-              {modifyQuant ? (
-                <input
-                  className="item--input--count"
-                  min="1"
-                  max="25"
-                  type="number"
-                  onChange={handleChange("quantity", index)}
-                  onKeyDown={onKeyPress("quantity", index)}
-                  value={quantity}
-                />
-              ) : (
-                <span onClick={handleClick("quantity", index)}>
-                  {" "}
-                  {quantity}
-                </span>
-              )}
-            </span>
+            <span className="uItem--title--font c-denimBlue">{name}</span>
+          </div>
+          <div className="col-12 uItem--buttons rounded">
+            <div className="row px-2 no-gutters">
+              <span
+                className={
+                  dynamicSize("button") + " col uItem--button-left align-center"
+                }
+              >
+                <div
+                  className={
+                    " row justify-content-center no-gutters align-center"
+                  }
+                >
+                  <div
+                    className={
+                      dynamicSize("btnrow") + " col text-center align-center"
+                    }
+                  >
+                    <button
+                      className="uItem--quantity-button bg-bundleBlue"
+                      type="button"
+                      aria-label="reduce quantity"
+                      onClick={handleClick("decreaseQuantity", index)}
+                    >
+                      <i className="fas fa-minus c-white" />
+                    </button>
+                  </div>
+                  <div
+                    className={
+                      dynamicSize("quantity") + " col text-center align-bottom"
+                    }
+                  >
+                    <span className=" uItem--quantity-weight c-white align-bottom">
+                      {quantity}
+                    </span>
+                  </div>
+                  <div
+                    className={
+                      dynamicSize("btnrow") + " col text-center align-center"
+                    }
+                  >
+                    <button
+                      className="uItem--quantity-button bg-bundleBlue"
+                      type="button"
+                      aria-label="incrase quantity"
+                      onClick={handleClick("increaseQuantity", index)}
+                    >
+                      <i className="fas fa-plus c-white" />
+                    </button>
+                  </div>
+                </div>
+              </span>
+              <button
+                type="button"
+                className={
+                  dynamicSize("button") +
+                  " col  mali900 " +
+                  rightButton +
+                  " " +
+                  toDelete
+                }
+                aria-label={`select ${name}`}
+                onClick={handleClick("select", index)}
+              >
+                <span className={dynamicSize("pack")}>Pack</span>
+              </button>
+            </div>
           </div>
         </div>
-        <div className="col-12" onClick={handleClick("select", index)}>
-          {/* Item Pack On / Off */}
-          <div className={toBePacked}>
-            <span className="item--pack--font">Pack</span>
-          </div>
-        </div>
-      </button>
+      </div>
     </div>
   );
 };
