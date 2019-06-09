@@ -102,7 +102,15 @@ body {
 }
 
 .bg-huate {
-  background: var(--bgHuate);
+  background: var(--huate);
+}
+
+.bg-babyBlue {
+  background: var(--babyBlue);
+}
+
+.bg-babyBlue50 {
+  background: var(--babyBlue50);
 }
 
 .bg-opacity80 {
