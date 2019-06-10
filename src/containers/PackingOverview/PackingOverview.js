@@ -83,13 +83,6 @@ export default (class PackingOverview extends Component {
     this.props.history.push("/trip/" + trip_id);
   };
 
-  componentDidUpdate() {
-    console.log(this.state);
-    console.log(
-      `https://source.unsplash.com/weekly?${this.state.tripInfo.city})`
-    );
-  }
-
   render() {
     const { loading, page, bags, lists, tripInfo, selectedList } = this.state;
 
