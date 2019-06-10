@@ -122,6 +122,7 @@ export default (class PackingOverview extends Component {
               page={page}
               handleOnClick={this.handleOnClick}
               moveToTrip={this.moveToTrip}
+              windowHeight={height}
             />
             {page === "packing" ? (
               <PackingPage
