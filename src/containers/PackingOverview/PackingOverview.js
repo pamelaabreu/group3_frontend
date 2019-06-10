@@ -5,6 +5,7 @@ import PackingPage from "./PackingPage/PackingPage";
 import "./PackingOverview.css";
 import RemindersPage from "./RemindersPage/RemindersPage";
 import LoadingScreen from "../../components/LoadingScreen/LoadingScreen";
+import Tabs from "../../components/PackingTabs/PackingTabs";
 
 export default (class PackingOverview extends Component {
   constructor(props) {
@@ -82,33 +83,6 @@ export default (class PackingOverview extends Component {
     this.props.history.push("/trip/" + trip_id);
   };
 
-  tabs = page => {
-    return (
-      <div className="container">
-        <div className="row">
-          <div className="col-10">
-            <button className="btn" onClick={this.handleOnClick("packing")}>
-              <span className={page === "packing" ? "" : "text-muted"}>
-                Packing
-              </span>
-            </button>
-            <button className="btn " onClick={this.handleOnClick("reminders")}>
-              <span className={page === "packing" ? "text-muted" : ""}>
-                Reminders
-              </span>
-            </button>
-          </div>
-          <div className="col-2">
-            <button className="row" onClick={this.moveToTrip}>
-              <span className="col-12 text-center">Trip</span>
-              <i className="col-12 fas fa-long-arrow-alt-left text-center pack--arrow-transform" />
-            </button>
-          </div>
-        </div>
-      </div>
-    );
-  };
-
   render() {
     const { loading, page, bags, lists, tripInfo, selectedList } = this.state;
 
@@ -118,7 +92,11 @@ export default (class PackingOverview extends Component {
           <LoadingScreen />
         ) : (
           <>
-            {this.tabs(page)}
+            <Tabs
+              page={page}
+              handleOnClick={this.handleOnClick}
+              moveToTrip={this.moveToTrip}
+            />
             {page === "packing" ? (
               <PackingPage
                 bags={bags}
