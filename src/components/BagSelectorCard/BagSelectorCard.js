@@ -1,29 +1,39 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./BagSelectorCard.css";
 
 export default props => {
+  const [width, setWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => setWidth(window.innerWidth);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  });
   const {
     bag_type,
     handleOnClick,
     countAndKey: { count, key },
     displayBag
   } = props;
-  const selected =
-    key === displayBag ? " bag--active-color " : " bag--inactive-color ";
+
+  const dynamicSize = name => {
+    if (width < 500) return `cbag--${name}`;
+    if (width >= 500 && width < 990) return `cbag--${name}-md`;
+    if (width >= 990 && width < 1200) return `cbag--${name}-lg`;
+    if (width >= 1200 && width < 1300) return `cbag--${name}-xlg`;
+    if (width > 1300) return `cbag--${name}-xxlg`;
+  };
+  const selected = key === displayBag ? " cbag--active " : " cbag--inactive ";
   return (
-    <div
-      className={
-        selected + "col-3 mx-1 mt-2 border rounded p-0 pack--bag-width"
-      }
-    >
+    <div className={" col pack--bag-width mx-1"}>
       <button
-        className="card-body row"
+        className={dynamicSize("size") + " cbag--button"}
         onClick={handleOnClick("bag", { key, bag_type })}
       >
-        <h5 className="card-title">{bag_type}</h5>
-        <p className="card-text">
-          <span>{count} Items unpacked</span>
-        </p>
+        <div className={selected + " p-1 text-left"}>
+          <p className="">{bag_type}</p>
+          <p className="">{count} Items unpacked</p>
+        </div>
       </button>
     </div>
   );
