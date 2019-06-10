@@ -8,7 +8,7 @@ export default ({ page, handleOnClick, moveToTrip, windowHeight }) => {
   const height = Math.floor(windowHeight / 15);
   return (
     <div className="container" style={{ height: `${height}px` }}>
-      <div className="row tabs--main no-gutters">
+      <div className="row align-items-end tabs--main no-gutters">
         <div className="pl-2 col-8 offset-2 tabs--header">
           <div className="row">
             <button
