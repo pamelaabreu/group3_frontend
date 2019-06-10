@@ -228,24 +228,28 @@ export default (class PackPage extends Component {
     const bagContents = displayBag ? this.state[displayBag] : [];
     const total = Math.floor((totalPacked / totalItems) * 100);
     return (
-      <div className="container">
-        <div className="row justify-content-around ">
-          {bags.map((e, i) => {
-            return (
-              <BagSelector
-                {...e}
-                bag_type={bagTypes[e.type_id]}
-                key={i}
-                countAndKey={this.getItemCountAndKey(
-                  bagTypes[e.type_id],
-                  e.trip_id,
-                  e.bag_id
-                )}
-                displayBag={displayBag}
-                handleOnClick={this.handleOnClick}
-              />
-            );
-          })}
+      <div className="mt-4 container">
+        <div className="row justify-content-around no-gutters">
+          <div className="col-10 offset-1">
+            <div className="row justify-content-end no-gutters">
+              {bags.map((e, i) => {
+                return (
+                  <BagSelector
+                    {...e}
+                    bag_type={bagTypes[e.type_id]}
+                    key={i}
+                    countAndKey={this.getItemCountAndKey(
+                      bagTypes[e.type_id],
+                      e.trip_id,
+                      e.bag_id
+                    )}
+                    displayBag={displayBag}
+                    handleOnClick={this.handleOnClick}
+                  />
+                );
+              })}
+            </div>
+          </div>
 
           <div className="mt-2 col-12">
             <ProgressBar total={total} />
