@@ -17,11 +17,13 @@ export default (class PackingOverview extends Component {
       bags: null,
       lists: null,
       selectedList: null,
-      loading: true
+      loading: true,
+      height: window.innerHeight
     };
   }
 
   async componentDidMount() {
+    window.addEventListener("resize", this.handleResize);
     const { trip_id } = this.props.match.params;
     const tripBagsAndLists = axios({
       method: "get",
@@ -47,6 +49,16 @@ export default (class PackingOverview extends Component {
       console.log("ERROR: ", err);
       this.setState({ loading: true });
     }
+  }
+
+  handleResize = () => {
+    this.setState({
+      height: window.innerHeight
+    });
+  };
+
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.handleResize);
   }
 
   handleOnClick = (name, index) => e => {
@@ -84,7 +96,15 @@ export default (class PackingOverview extends Component {
   };
 
   render() {
-    const { loading, page, bags, lists, tripInfo, selectedList } = this.state;
+    const {
+      loading,
+      page,
+      bags,
+      lists,
+      tripInfo,
+      selectedList,
+      height
+    } = this.state;
 
     return (
       <>
@@ -94,6 +114,7 @@ export default (class PackingOverview extends Component {
           <div
             className="packingoverview--content-main"
             style={{
+              height: height,
               backgroundImage: `url(https://source.unsplash.com/weekly?${
                 tripInfo.city
               })`
