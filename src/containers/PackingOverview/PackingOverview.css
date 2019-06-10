@@ -1,3 +1,8 @@
 .pack--arrow-transform {
   transform: scale(1.8, 1);
 }
+
+.packingoverview--content-main {
+  background-size: cover;
+  background-position: center;
+}

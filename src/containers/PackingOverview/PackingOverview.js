@@ -83,6 +83,13 @@ export default (class PackingOverview extends Component {
     this.props.history.push("/trip/" + trip_id);
   };
 
+  componentDidUpdate() {
+    console.log(this.state);
+    console.log(
+      `https://source.unsplash.com/weekly?${this.state.tripInfo.city})`
+    );
+  }
+
   render() {
     const { loading, page, bags, lists, tripInfo, selectedList } = this.state;
 
@@ -91,7 +98,14 @@ export default (class PackingOverview extends Component {
         {loading ? (
           <LoadingScreen />
         ) : (
-          <>
+          <div
+            className="packingoverview--content-main"
+            style={{
+              backgroundImage: `url(https://source.unsplash.com/weekly?${
+                tripInfo.city
+              })`
+            }}
+          >
             <Tabs
               page={page}
               handleOnClick={this.handleOnClick}
@@ -113,7 +127,7 @@ export default (class PackingOverview extends Component {
                 bag_id={bags[1].bag_id}
               />
             )}
-          </>
+          </div>
         )}
       </>
     );
