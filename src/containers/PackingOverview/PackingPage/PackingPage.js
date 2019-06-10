@@ -250,10 +250,9 @@ export default (class PackPage extends Component {
               })}
             </div>
           </div>
-
-          <div className="mt-2 col-12">
+          {/* <div className="mt-2 col-12">
             <ProgressBar total={total} />
-          </div>
+          </div> */}
           <div className="col-12">
             <Bag
               items={bagContents}
