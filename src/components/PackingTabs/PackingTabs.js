@@ -1,11 +1,12 @@
 import React from "react";
 
-export default ({ page, handleOnClick, moveToTrip }) => {
+export default ({ page, handleOnClick, moveToTrip, windowHeight }) => {
   const packingStyle = page === "packing" ? "" : "text-muted";
   const remindersStyle = page === "packing" ? "text-muted" : "";
+  const height = Math.floor(windowHeight / 15);
   return (
-    <div className="container">
-      <div className="row">
+    <div className="container" style={{ height: `${height}px` }}>
+      <div className="row ">
         <div className="col-10">
           <button className="btn" onClick={handleOnClick("packing")}>
             <span className={"" + packingStyle}>Packing</span>
