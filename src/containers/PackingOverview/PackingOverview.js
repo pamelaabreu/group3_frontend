@@ -105,7 +105,7 @@ export default (class PackingOverview extends Component {
       selectedList,
       height
     } = this.state;
-
+    const city = tripInfo ? tripInfo.city.replace(/\s/g, "%20") : "";
     return (
       <>
         {loading ? (
@@ -115,9 +115,7 @@ export default (class PackingOverview extends Component {
             className="packingoverview--content-main"
             style={{
               height: height,
-              backgroundImage: `url(https://source.unsplash.com/weekly?${
-                tripInfo.city
-              })`
+              backgroundImage: `url(https://source.unsplash.com/weekly?${city})`
             }}
           >
             <Tabs
