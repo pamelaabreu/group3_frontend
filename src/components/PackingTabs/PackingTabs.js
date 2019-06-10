@@ -1,19 +1,17 @@
 import React from "react";
 
 export default ({ page, handleOnClick, moveToTrip }) => {
+  const packingStyle = page === "packing" ? "" : "text-muted";
+  const remindersStyle = page === "packing" ? "text-muted" : "";
   return (
     <div className="container">
       <div className="row">
         <div className="col-10">
           <button className="btn" onClick={handleOnClick("packing")}>
-            <span className={page === "packing" ? "" : "text-muted"}>
-              Packing
-            </span>
+            <span className={"" + packingStyle}>Packing</span>
           </button>
           <button className="btn " onClick={handleOnClick("reminders")}>
-            <span className={page === "packing" ? "text-muted" : ""}>
-              Reminders
-            </span>
+            <span className={"" + remindersStyle}>Reminders</span>
           </button>
         </div>
         <div className="col-2">
