@@ -8,7 +8,7 @@ export default ({ total }) => {
           className="progress-bar progress-bar-striped bg-info"
           role="progressbar"
           style={{ width: `${total}%` }}
-          aria-valuenow="25"
+          aria-valuenow={total}
           aria-valuemin="0"
           aria-valuemax="100"
         >
