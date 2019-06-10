@@ -1,19 +1,20 @@
 import React from "react";
 import { suggested_todos } from "../../../../services/todos";
+import "./AddTodo.css";
 
 const AddTodo = props => {
   const { todoInput, handleTodoInputChange, addTodo } = props;
 
   return (
-    <div className="btn-group dropup">
+    <div className="btn dropup">
       <button
         type="button"
-        className="px-2 py-1 rounded-circle"
+        className="px-2 py-1 rounded-circle addTodo-button"
         data-toggle="dropdown"
         aria-haspopup="true"
         aria-expanded="false"
       >
-        <i className="fas fa-plus" />
+        <i className="fas fa-plus button-text-color" />
       </button>
       <div className="px-2 dropdown-menu">
         <label htmlFor="todo-input">
