@@ -128,6 +128,7 @@ export default (class PackingOverview extends Component {
                 bags={bags}
                 lists={lists}
                 updateLists={this.updateLists}
+                windowHeight={height}
               />
             ) : (
               <RemindersPage
@@ -137,6 +138,7 @@ export default (class PackingOverview extends Component {
                 selectedList={selectedList}
                 handleSelectList={this.handleSelectList}
                 bag_id={bags[1].bag_id}
+                windowHeight={height}
               />
             )}
           </div>
