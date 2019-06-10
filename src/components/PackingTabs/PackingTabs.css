@@ -1,3 +1,24 @@
 .tabs--main {
-  padding-top: 1rem;
+  padding-top: 2rem;
+}
+
+.tabs--header {
+  font-size: 2rem;
+}
+
+.tabs--button {
+  background: none;
+  display: inline-block;
+  border: none;
+  margin: 0;
+  text-decoration: none;
+  cursor: pointer;
+  text-align: center;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+.tabs--button:hover,
+.tabs--button:focus {
+  font-weight: 700;
 }
