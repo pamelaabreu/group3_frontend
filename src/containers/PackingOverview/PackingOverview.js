@@ -326,7 +326,7 @@ export default (class PackingOverview extends Component {
                 moveToTrip={this.moveToTrip}
                 windowHeight={height}
               />
-              <div className="row mt-2">
+              <div className="row mt-1">
                 <div className="col-2 offset-2"> Progress Bar </div>
                 <div className="col-8 ">
                   <div className="row justify-content-around no-gutters">
