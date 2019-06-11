@@ -306,7 +306,7 @@ export default (class PackingOverview extends Component {
     const city = tripInfo ? tripInfo.city.replace(/\s/g, "%20") : "";
     const bagContents = displayBag ? this.state[displayBag] : [];
     const total = Math.floor((totalPacked / totalItems) * 100);
-    const infoBarHeight = Math.floor(height * 0.18);
+    const infoBarHeight = Math.floor(height * 0.17);
     return (
       <>
         {loading ? (
