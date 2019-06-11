@@ -370,6 +370,7 @@ export default (class PackingOverview extends Component {
                 onKeyPress={this.onKeyPress}
                 handleOnChange={this.handleOnChange}
                 handleCreateItem={this.handleCreateItem}
+                height={height}
               />
             ) : (
               <RemindersPage
