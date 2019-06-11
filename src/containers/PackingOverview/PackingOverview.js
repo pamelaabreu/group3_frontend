@@ -5,8 +5,23 @@ import PackingPage from "./PackingPage/PackingPage";
 import "./PackingOverview.css";
 import RemindersPage from "./RemindersPage/RemindersPage";
 import LoadingScreen from "../../components/LoadingScreen/LoadingScreen";
+import BagSelector from "../../components/BagSelectorCard/BagSelectorCard";
 import Tabs from "../../components/PackingTabs/PackingTabs";
-import { mountPacking } from "../../services/packingPage";
+import {
+  addToDelete,
+  addToShoppingCart,
+  closeLastQuantity,
+  createItem,
+  executeDelete,
+  findOrCreateShoppingCart,
+  inputChange,
+  markImportant,
+  mountPacking,
+  newQuantity,
+  quantity,
+  select,
+  unpack
+} from "../../services/packingPage";
 
 export default (class PackingOverview extends Component {
   constructor(props) {
@@ -16,10 +31,19 @@ export default (class PackingOverview extends Component {
       categories: null,
       page: "packing",
       bagTypes: { 1: "Personal", 2: "Carry-On", 3: "Checked" },
+      currentBag: null,
+      currentCategory: null,
       bags: null,
       lists: null,
-      selectedList: null,
+      list_id: null,
       loading: true,
+      selectedList: null,
+      lastInputIndex: null,
+      toDelete: [],
+      deleteMode: false,
+      totalItems: 0,
+      totalPacked: 0,
+      itemInput: "",
       height: window.innerHeight,
       width: window.innerWidth
     };
@@ -106,6 +130,165 @@ export default (class PackingOverview extends Component {
     this.props.history.push("/trip/" + trip_id);
   };
 
+  getItemCountAndKey = (type, trip_id, bag_id) => {
+    const bagKey = `${type.slice(0, 2)}${trip_id}${bag_id}`;
+    if (!this.state[bagKey]) return "loading";
+    let packedCount = 0;
+    for (let item of this.state[bagKey]) {
+      if (item.packed) packedCount += 1;
+    }
+    return { count: this.state[bagKey].length - packedCount, key: bagKey };
+  };
+
+  handleOnClick = (name, index) => e => {
+    e.preventDefault();
+    e.stopPropagation();
+    const { deleteMode } = this.state;
+    if (name !== "endDelete" && deleteMode) {
+      this.handleAddToDelete(name, index);
+      return;
+    }
+    if (name !== "quantity") this.handleCloseLastQuantity();
+    switch (name) {
+      case "packing":
+        this.setState({ page: name });
+        break;
+      case "reminders":
+        this.setState({ page: name });
+        break;
+      case "bag":
+        this.setState({ displayBag: index.key, bagName: index.bag_type });
+        break;
+      case "important":
+        this.handleImportant(index, e);
+        break;
+      case "unpack":
+        this.handleUnpack(index);
+        break;
+      case "select":
+        this.handleSelect(index, e);
+        break;
+      case "quantity":
+        this.handleQuantity(index, e);
+        break;
+      case "startDelete":
+        this.setState({ deleteMode: true });
+        break;
+      case "endDelete":
+        this.handleExecuteDelete();
+        break;
+      case "shopping-cart":
+        this.handleShoppingCart(index, e);
+        break;
+      case "increaseQuantity":
+        this.handleNewQuantity("increase", index);
+        break;
+      case "decreaseQuantity":
+        this.handleNewQuantity("decrease", index);
+        break;
+      default:
+        return;
+    }
+  };
+
+  handleAddToDelete = (name, index) => {
+    this.handleCloseLastQuantity();
+    if (name === "bag") return;
+    const newState = addToDelete(name, index, this.state);
+    this.setState(newState);
+    return;
+  };
+
+  handleExecuteDelete = async () => {
+    // if toDelete is empty, set deleteMode to false, and exit method
+    if (this.state.toDelete.length === 0) {
+      this.setState({ deleteMode: false });
+      return;
+    }
+    const newState = await executeDelete(this.state);
+    this.setState(newState);
+  };
+
+  handleUnpack = index => {
+    const newState = unpack(index, this.state);
+    this.setState(newState);
+    return;
+  };
+
+  handleImportant = (index, e) => {
+    const newState = markImportant(index, this.state);
+    if (newState) this.setState(newState);
+    return;
+  };
+
+  handleSelect = (index, e) => {
+    const newState = select(index, this.state);
+    if (newState) this.setState(newState);
+    return;
+  };
+
+  handleShoppingCart = async (index, e) => {
+    const list_id = await findOrCreateShoppingCart(
+      index,
+      this.state,
+      this.props.lists
+    );
+    if (list_id === null) return;
+    const result = await addToShoppingCart(index, this.state, list_id);
+    const { newState, updateParent } = result;
+    if (updateParent) {
+      this.props.updateLists();
+      if (newState) this.setState(newState);
+    } else {
+      if (newState) this.setState(newState);
+    }
+    return;
+  };
+
+  handleQuantity = (index, e, keyPress) => {
+    this.handleCloseLastQuantity();
+    const newState = quantity(index, e, keyPress, this.state);
+    if (newState) this.setState(newState);
+    return;
+  };
+
+  handleNewQuantity = (method, index, e, keyPress) => {
+    const newState = newQuantity(method, index, e, keyPress, this.state);
+    if (newState) this.setState(newState);
+    return;
+  };
+
+  handleCloseLastQuantity = () => {
+    const newState = closeLastQuantity(this.state);
+    if (newState) this.setState(newState);
+    return;
+  };
+
+  handleInputChange = (name, index) => e => {
+    const newState = inputChange(name, index, e, this.state);
+    if (newState) this.setState(newState);
+    return;
+  };
+
+  handleOnChange = e => {
+    // temporary
+    this.setState({ itemInput: e.target.value });
+  };
+
+  handleCreateItem = async () => {
+    const newState = await createItem(this.state);
+    if (newState) this.setState(newState);
+    return;
+  };
+
+  onKeyPress = (name, index) => e => {
+    if (name === "quantity") {
+      if (e.key === "Enter") {
+        this.handleQuantity(index, e, true);
+      }
+    }
+  };
+
   componentDidUpdate() {
     const { height, width } = this.state;
     console.log("height:", height);
@@ -123,7 +306,18 @@ export default (class PackingOverview extends Component {
       height,
       width
     } = this.state;
+
+    const {
+      bagTypes,
+      displayBag,
+      deleteMode,
+      totalItems,
+      totalPacked,
+      itemInput
+    } = this.state;
     const city = tripInfo ? tripInfo.city.replace(/\s/g, "%20") : "";
+    const bagContents = displayBag ? this.state[displayBag] : [];
+    const total = Math.floor((totalPacked / totalItems) * 100);
     return (
       <>
         {loading ? (
@@ -142,6 +336,26 @@ export default (class PackingOverview extends Component {
               moveToTrip={this.moveToTrip}
               windowHeight={height}
             />
+            <div className="col-10 offset-1">
+              <div className="row justify-content-end no-gutters">
+                {bags.map((e, i) => {
+                  return (
+                    <BagSelector
+                      {...e}
+                      bag_type={bagTypes[e.type_id]}
+                      key={i}
+                      countAndKey={this.getItemCountAndKey(
+                        bagTypes[e.type_id],
+                        e.trip_id,
+                        e.bag_id
+                      )}
+                      displayBag={displayBag}
+                      handleOnClick={this.handleOnClick}
+                    />
+                  );
+                })}
+              </div>
+            </div>
             {page === "packing" ? (
               <PackingPage
                 bags={bags}
@@ -149,6 +363,14 @@ export default (class PackingOverview extends Component {
                 updateLists={this.updateLists}
                 windowHeight={height}
                 width={width}
+                bagContents={bagContents}
+                deleteMode={deleteMode}
+                itemInput={itemInput}
+                handleOnClick={this.handleOnClick}
+                handleChange={this.handleInputChange}
+                onKeyPress={this.onKeyPress}
+                handleOnChange={this.handleOnChange}
+                handleCreateItem={this.handleCreateItem}
               />
             ) : (
               <RemindersPage
