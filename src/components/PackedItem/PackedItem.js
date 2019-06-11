@@ -1,26 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import "./PackedItem.css";
 
 export default props => {
-  const [width, setWidth] = useState(window.innerWidth);
-
-  useEffect(() => {
-    const handleResize = () => setWidth(window.innerWidth);
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  });
-
   const {
     // flag,
     deleteMode,
     handleClick,
     image,
     name,
-    quantity,
     index,
-    toBeDeleted
+    toBeDeleted,
+    width
   } = props;
-
   const toDelete = toBeDeleted ? " bg-danger text-white" : " ";
   const img = image
     ? image

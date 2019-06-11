@@ -3,7 +3,15 @@ import UnpackedItem from "../UnpackedItem/UnpackedItem";
 import PackedItem from "../PackedItem/PackedItem";
 
 export default props => {
-  const { items, handleOnClick, handleChange, onKeyPress, deleteMode } = props;
+  const {
+    items,
+    handleOnClick,
+    handleChange,
+    onKeyPress,
+    deleteMode,
+    width
+  } = props;
+  console.log("in bags:", width);
   if (!items) {
     return <p>EMPTY</p>;
   } else {
@@ -20,6 +28,7 @@ export default props => {
             handleClick={handleOnClick}
             handleChange={handleChange}
             onKeyPress={onKeyPress}
+            width={width}
           />
         );
       } else return null;
@@ -36,6 +45,7 @@ export default props => {
             handleClick={handleOnClick}
             handleChange={handleChange}
             onKeyPress={onKeyPress}
+            width={width}
           />
         );
       } else return null;
