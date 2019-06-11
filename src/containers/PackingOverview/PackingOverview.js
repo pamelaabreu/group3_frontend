@@ -18,7 +18,8 @@ export default (class PackingOverview extends Component {
       lists: null,
       selectedList: null,
       loading: true,
-      height: window.innerHeight
+      height: window.innerHeight,
+      width: window.innerWidth
     };
   }
 
@@ -53,7 +54,8 @@ export default (class PackingOverview extends Component {
 
   handleResize = () => {
     this.setState({
-      height: window.innerHeight
+      height: window.innerHeight,
+      width: window.innerWidth
     });
   };
 
@@ -95,6 +97,12 @@ export default (class PackingOverview extends Component {
     this.props.history.push("/trip/" + trip_id);
   };
 
+  componentDidUpdate() {
+    const { height, width } = this.state;
+    console.log("height:", height);
+    console.log("width:", width);
+  }
+
   render() {
     const {
       loading,
@@ -103,7 +111,8 @@ export default (class PackingOverview extends Component {
       lists,
       tripInfo,
       selectedList,
-      height
+      height,
+      width
     } = this.state;
     const city = tripInfo ? tripInfo.city.replace(/\s/g, "%20") : "";
     return (
@@ -130,6 +139,7 @@ export default (class PackingOverview extends Component {
                 lists={lists}
                 updateLists={this.updateLists}
                 windowHeight={height}
+                width={width}
               />
             ) : (
               <RemindersPage
