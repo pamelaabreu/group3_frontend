@@ -6,6 +6,7 @@ import "./PackingOverview.css";
 import RemindersPage from "./RemindersPage/RemindersPage";
 import LoadingScreen from "../../components/LoadingScreen/LoadingScreen";
 import Tabs from "../../components/PackingTabs/PackingTabs";
+import { mountPacking } from "../../services/packingPage";
 
 export default (class PackingOverview extends Component {
   constructor(props) {
@@ -14,6 +15,7 @@ export default (class PackingOverview extends Component {
       tripInfo: null,
       categories: null,
       page: "packing",
+      bagTypes: { 1: "Personal", 2: "Carry-On", 3: "Checked" },
       bags: null,
       lists: null,
       selectedList: null,
@@ -39,13 +41,21 @@ export default (class PackingOverview extends Component {
         tripBagsAndLists,
         allCategories
       ]);
-      this.setState({
-        tripInfo: tripDetails.trip,
-        categories,
-        bags: tripDetails.bags,
-        lists: tripDetails.lists,
-        loading: false
-      });
+      this.setState(
+        {
+          tripInfo: tripDetails.trip,
+          categories,
+          bags: tripDetails.bags,
+          lists: tripDetails.lists,
+          loading: false
+        },
+        async () => {
+          const { bagTypes } = this.state;
+          const { bags, lists } = this.props;
+          const mountState = await mountPacking(bagTypes, bags, lists);
+          if (mountState) this.setState(mountState);
+        }
+      );
     } catch (err) {
       console.log("ERROR: ", err);
       this.setState({ loading: true });
