@@ -96,19 +96,6 @@ export default (class PackingOverview extends Component {
     window.removeEventListener("resize", this.handleResize);
   }
 
-  handleOnClick = (name, index) => e => {
-    switch (name) {
-      case "packing":
-        this.setState({ page: name });
-        break;
-      case "reminders":
-        this.setState({ page: name });
-        break;
-      default:
-        break;
-    }
-  };
-
   handleSelectList = e => {
     this.setState({ selectedList: e.target.value });
   };
@@ -144,6 +131,7 @@ export default (class PackingOverview extends Component {
     e.preventDefault();
     e.stopPropagation();
     const { deleteMode } = this.state;
+    if (deleteMode && (name === "packing" || name === "reminders")) return;
     if (name !== "endDelete" && deleteMode) {
       this.handleAddToDelete(name, index);
       return;
