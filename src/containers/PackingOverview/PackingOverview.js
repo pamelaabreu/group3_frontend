@@ -311,37 +311,39 @@ export default (class PackingOverview extends Component {
         {loading ? (
           <LoadingScreen />
         ) : (
-          <div
-            className="packingoverview--content-main"
-            style={{
-              height: height,
-              backgroundImage: `url(https://source.unsplash.com/weekly?${city})`
-            }}
-          >
-            <Tabs
-              page={page}
-              handleOnClick={this.handleOnClick}
-              moveToTrip={this.moveToTrip}
-              windowHeight={height}
-            />
-            <div className="col-10 offset-1">
-              <div className="row justify-content-end no-gutters">
-                {bags.map((e, i) => {
-                  return (
-                    <BagSelector
-                      {...e}
-                      bag_type={bagTypes[e.type_id]}
-                      key={i}
-                      countAndKey={this.getItemCountAndKey(
-                        bagTypes[e.type_id],
-                        e.trip_id,
-                        e.bag_id
-                      )}
-                      displayBag={displayBag}
-                      handleOnClick={this.handleOnClick}
-                    />
-                  );
-                })}
+          <>
+            <div
+              className="packingoverview--content-main"
+              style={{
+                backgroundImage: `url(https://source.unsplash.com/weekly?${city})`
+              }}
+            >
+              <Tabs
+                page={page}
+                handleOnClick={this.handleOnClick}
+                moveToTrip={this.moveToTrip}
+                windowHeight={height}
+              />
+              <div className="col-10 offset-1">
+                <div className="row justify-content-end no-gutters">
+                  {bags.map((e, i) => {
+                    return (
+                      <BagSelector
+                        {...e}
+                        bag_type={bagTypes[e.type_id]}
+                        key={i}
+                        countAndKey={this.getItemCountAndKey(
+                          bagTypes[e.type_id],
+                          e.trip_id,
+                          e.bag_id
+                        )}
+                        displayBag={displayBag}
+                        handleOnClick={this.handleOnClick}
+                        width={width}
+                      />
+                    );
+                  })}
+                </div>
               </div>
             </div>
             {page === "packing" ? (
@@ -371,7 +373,7 @@ export default (class PackingOverview extends Component {
                 windowHeight={height}
               />
             )}
-          </div>
+          </>
         )}
       </>
     );
