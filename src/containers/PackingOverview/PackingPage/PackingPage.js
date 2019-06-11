@@ -15,12 +15,18 @@ export default props => {
     handleCreateItem,
     bagContents,
     itemInput,
-    deleteMode
+    deleteMode,
+    height
   } = props;
+  const containerHeight = Math.floor(height * 0.82);
+  const bagHeight = Math.floor(height * 0.75);
   return (
-    <div className="pt-4 container ppage--main">
+    <div
+      className="pt-4 container ppage--main"
+      style={{ height: containerHeight + "px" }}
+    >
       <div className="row justify-content-around no-gutters">
-        <div className="col-12">
+        <div className="col-12 ppage--bag" style={{ height: bagHeight + "px" }}>
           <Bag
             items={bagContents}
             deleteMode={deleteMode}
