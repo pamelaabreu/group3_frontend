@@ -322,6 +322,7 @@ export default (class PackingOverview extends Component {
               <img
                 className="packing--img-cover"
                 src={`https://source.unsplash.com/weekly?${city}`}
+                alt={`cover of ${city}`}
               />
               <Tabs
                 page={page}
