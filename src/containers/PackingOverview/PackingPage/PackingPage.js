@@ -216,7 +216,7 @@ export default (class PackPage extends Component {
   }
 
   render() {
-    const { bags } = this.props;
+    const { bags, width } = this.props;
     const {
       bagTypes,
       displayBag,
@@ -260,6 +260,7 @@ export default (class PackPage extends Component {
               handleOnClick={this.handleOnClick}
               handleChange={this.handleInputChange}
               onKeyPress={this.onKeyPress}
+              width={width}
             />
           </div>
           <div className="row p-0">
