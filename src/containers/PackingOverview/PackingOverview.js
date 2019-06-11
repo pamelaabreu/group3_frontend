@@ -356,22 +356,24 @@ export default (class PackingOverview extends Component {
               </div>
             </div>
             {page === "packing" ? (
-              <PackingPage
-                bags={bags}
-                lists={lists}
-                updateLists={this.updateLists}
-                windowHeight={height}
-                width={width}
-                bagContents={bagContents}
-                deleteMode={deleteMode}
-                itemInput={itemInput}
-                handleOnClick={this.handleOnClick}
-                handleChange={this.handleInputChange}
-                onKeyPress={this.onKeyPress}
-                handleOnChange={this.handleOnChange}
-                handleCreateItem={this.handleCreateItem}
-                height={height}
-              />
+              <div className="packingoverview--main-background">
+                <PackingPage
+                  bags={bags}
+                  lists={lists}
+                  updateLists={this.updateLists}
+                  windowHeight={height}
+                  width={width}
+                  bagContents={bagContents}
+                  deleteMode={deleteMode}
+                  itemInput={itemInput}
+                  handleOnClick={this.handleOnClick}
+                  handleChange={this.handleInputChange}
+                  onKeyPress={this.onKeyPress}
+                  handleOnChange={this.handleOnChange}
+                  handleCreateItem={this.handleCreateItem}
+                  height={height}
+                />
+              </div>
             ) : (
               <RemindersPage
                 lists={lists}

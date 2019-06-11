@@ -21,3 +21,7 @@
 .packing--img-cover {
   object-fit: cover;
 }
+
+.packingoverview--main-background {
+  background-color: var(--babyBlue);
+}
