@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import BagSelector from "../../../components/BagSelectorCard/BagSelectorCard";
 import Bag from "../../../components/Bag/Bag";
 import DeleteConfirm from "../../../components/DeleteConfirm/DeleteConfirm";
-import ProgressBar from "../../../components/ProgressBar/ProgressBar";
 import AddItemButton from "../RemindersPage/AddItemButton/AddItemButton";
 import {
   addToDelete,
