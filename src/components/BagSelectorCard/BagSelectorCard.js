@@ -19,7 +19,7 @@ export default props => {
   };
   const selected = key === displayBag ? " cbag--active " : " cbag--inactive ";
   return (
-    <div className={" col pack--bag-width mx-1"}>
+    <div className={"  pack--bag-width mx-1"}>
       <button
         className={dynamicSize("size") + " cbag--button"}
         onClick={handleOnClick("bag", { key, bag_type })}

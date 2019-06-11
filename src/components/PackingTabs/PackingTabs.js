@@ -5,10 +5,10 @@ export default ({ page, handleOnClick, moveToTrip, windowHeight }) => {
   const packingStyle = page === "packing" ? "tabs-active" : "tabs-inactive";
   const remindersStyle = page === "packing" ? "tabs-inactive" : "tabs-active";
   const ariaPressed = page === "packing";
-  const height = Math.floor(windowHeight / 15);
+  const height = Math.floor(windowHeight / 14);
   return (
     <div className="container" style={{ height: `${height}px` }}>
-      <div className="row align-items-end tabs--main no-gutters">
+      <div className="row align-items-center tabs--main no-gutters">
         <div className="pl-2 col-8 offset-2 tabs--header">
           <div className="row">
             <button
@@ -35,7 +35,7 @@ export default ({ page, handleOnClick, moveToTrip, windowHeight }) => {
           <button
             type="button"
             aria-label="Trip Details Page"
-            className="row tabs--button"
+            className="row tabs--button align-items-top"
             onClick={moveToTrip}
           >
             <span className="col-12 text-left tabs--trip">Trip</span>
