@@ -50,8 +50,7 @@ export default (class PackingOverview extends Component {
           loading: false
         },
         async () => {
-          const { bagTypes } = this.state;
-          const { bags, lists } = this.props;
+          const { bags, lists, bagTypes } = this.state;
           const mountState = await mountPacking(bagTypes, bags, lists);
           if (mountState) this.setState(mountState);
         }
