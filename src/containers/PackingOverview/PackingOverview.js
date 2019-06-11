@@ -306,6 +306,7 @@ export default (class PackingOverview extends Component {
     const city = tripInfo ? tripInfo.city.replace(/\s/g, "%20") : "";
     const bagContents = displayBag ? this.state[displayBag] : [];
     const total = Math.floor((totalPacked / totalItems) * 100);
+    const infoBarHeight = Math.floor(height * 0.18);
     return (
       <>
         {loading ? (
@@ -315,6 +316,7 @@ export default (class PackingOverview extends Component {
             <div
               className="packingoverview--content-main"
               style={{
+                height: infoBarHeight + "px",
                 backgroundImage: `url(https://source.unsplash.com/weekly?${city})`
               }}
             >
@@ -324,25 +326,28 @@ export default (class PackingOverview extends Component {
                 moveToTrip={this.moveToTrip}
                 windowHeight={height}
               />
-              <div className="col-10 offset-1">
-                <div className="row justify-content-end no-gutters">
-                  {bags.map((e, i) => {
-                    return (
-                      <BagSelector
-                        {...e}
-                        bag_type={bagTypes[e.type_id]}
-                        key={i}
-                        countAndKey={this.getItemCountAndKey(
-                          bagTypes[e.type_id],
-                          e.trip_id,
-                          e.bag_id
-                        )}
-                        displayBag={displayBag}
-                        handleOnClick={this.handleOnClick}
-                        width={width}
-                      />
-                    );
-                  })}
+              <div className="row mt-2">
+                <div className="col-2 offset-2"> Progress Bar </div>
+                <div className="col-8 ">
+                  <div className="row justify-content-around no-gutters">
+                    {bags.map((e, i) => {
+                      return (
+                        <BagSelector
+                          {...e}
+                          bag_type={bagTypes[e.type_id]}
+                          key={i}
+                          countAndKey={this.getItemCountAndKey(
+                            bagTypes[e.type_id],
+                            e.trip_id,
+                            e.bag_id
+                          )}
+                          displayBag={displayBag}
+                          handleOnClick={this.handleOnClick}
+                          width={width}
+                        />
+                      );
+                    })}
+                  </div>
                 </div>
               </div>
             </div>
