@@ -9,17 +9,20 @@
 
 .tabs-active {
   font-weight: 700;
+  color: var(--white);
 }
 
 .tabs-inactive {
-  color: rgba(75, 72, 72, 0.8);
+  color: rgba(251, 251, 251, 0.8);
 }
 
 .tabs--trip {
   font-size: 1.5rem;
+  color: var(--white);
 }
 .tabs--details {
   font-size: 1.5rem;
+  color: var(--white);
 }
 
 .tabs--button {
