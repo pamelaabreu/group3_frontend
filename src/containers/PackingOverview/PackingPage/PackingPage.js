@@ -18,7 +18,7 @@ export default props => {
     deleteMode
   } = props;
   return (
-    <div className="mt-4 container">
+    <div className="pt-4 container ppage--main">
       <div className="row justify-content-around no-gutters">
         <div className="col-12">
           <Bag
