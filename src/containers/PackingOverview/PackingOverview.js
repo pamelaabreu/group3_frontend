@@ -316,10 +316,13 @@ export default (class PackingOverview extends Component {
             <div
               className="packingoverview--content-main"
               style={{
-                height: infoBarHeight + "px",
-                backgroundImage: `url(https://source.unsplash.com/weekly?${city})`
+                height: infoBarHeight + "px"
               }}
             >
+              <img
+                className="packing--img-cover"
+                src={`https://source.unsplash.com/weekly?${city}`}
+              />
               <Tabs
                 page={page}
                 handleOnClick={this.handleOnClick}
