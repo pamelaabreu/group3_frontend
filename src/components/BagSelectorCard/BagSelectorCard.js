@@ -2,18 +2,12 @@ import React, { useState, useEffect } from "react";
 import "./BagSelectorCard.css";
 
 export default props => {
-  const [width, setWidth] = useState(window.innerWidth);
-
-  useEffect(() => {
-    const handleResize = () => setWidth(window.innerWidth);
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  });
   const {
     bag_type,
     handleOnClick,
     countAndKey: { count, key },
-    displayBag
+    displayBag,
+    width
   } = props;
 
   const dynamicSize = name => {
