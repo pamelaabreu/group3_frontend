@@ -18,7 +18,7 @@ export default props => {
     deleteMode,
     height
   } = props;
-  const containerHeight = Math.floor(height * 0.82);
+  const containerHeight = Math.floor(height * 0.83);
   const bagHeight = Math.floor(height * 0.75);
   return (
     <div
