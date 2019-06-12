@@ -318,7 +318,7 @@ export default (class PackingOverview extends Component {
         ) : (
           <>
             <div
-              className="packingoverview--content-main"
+              className="packingoverview--content-main shadow"
               style={{
                 height: infoBarHeight + "px"
               }}
