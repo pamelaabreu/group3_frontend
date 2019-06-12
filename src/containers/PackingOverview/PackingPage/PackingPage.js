@@ -38,7 +38,9 @@ export default props => {
           />
         </div>
         <div className="col-12">
-          <MenuBar />
+          <div className="px-5">
+            <MenuBar />
+          </div>
           {/* <div className="col">
             <AddItemButton
               itemInput={itemInput}
