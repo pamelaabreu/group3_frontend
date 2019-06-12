@@ -24,9 +24,11 @@ export default props => {
         className={dynamicSize("size") + " cbag--button"}
         onClick={handleOnClick("bag", { key, bag_type })}
       >
-        <div className={selected + " p-1 text-left"}>
-          <p className="">{bag_type}</p>
-          <p className="">{count} Items unpacked</p>
+        <div className={selected + " p-2 text-left"}>
+          <p className="row">
+            <span className="col-12">{bag_type}</span>
+            <span className="col-12">{count} %</span>
+          </p>
         </div>
       </button>
     </div>
