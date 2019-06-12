@@ -9,12 +9,12 @@ const AddTodo = props => {
     <div className="btn dropup">
       <button
         type="button"
-        className="px-2 py-1 rounded-circle addTodo-button"
+        className="px-2 py-1 rounded-circle bg-denimBlue"
         data-toggle="dropdown"
         aria-haspopup="true"
         aria-expanded="false"
       >
-        <i className="fas fa-plus button-text-color" />
+        <i className="fas fa-plus c-white" />
       </button>
       <div className="px-2 dropdown-menu">
         <label htmlFor="todo-input">
