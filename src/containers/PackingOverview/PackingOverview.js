@@ -333,7 +333,7 @@ export default (class PackingOverview extends Component {
               />
               <div className="row mt-1 no-gutters">
                 <div className="col-2 offset-2 pt-2">
-                  <ProgressBar total={total} />
+                  <ProgressBar total={total} width={width} />
                 </div>
                 <div className="col-8 ">
                   <div className="row justify-content-around no-gutters">
