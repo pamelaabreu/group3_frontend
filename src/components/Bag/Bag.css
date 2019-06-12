@@ -76,7 +76,6 @@
 
 .bag--unpacked-container {
   background-color: var(--smokeGrey);
-  border-radius: var(--br-9);
   border-bottom-left-radius: var(--br-9);
   border-bottom-right-radius: var(--br-9);
 }
