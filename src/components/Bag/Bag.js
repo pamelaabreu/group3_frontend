@@ -53,9 +53,12 @@ export default props => {
         );
       } else return null;
     });
-    if (packedCount === 0) packed.push(<div style={{ height: "5rem" }} />);
+    if (packedCount === 0)
+      packed.push(<div style={{ height: "5rem" }} key={"packedEmptyBox"} />);
     if (items.length - packedCount === 0)
-      unPacked.push(<div style={{ height: "5rem" }} />);
+      unPacked.push(
+        <div style={{ height: "5rem" }} key={"unpackedEmptyBox"} />
+      );
     const unpackedClass = unpacked ? "" : "bag--button-bottom";
     const packedClass = packedBag ? "" : "bag--button-bottom";
     return (
