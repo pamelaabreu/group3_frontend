@@ -1,4 +1,11 @@
 .mbutton--container {
   background: var(--denimBlue);
-  border-radius: var(--br-9);
+  min-height: 4.5rem;
+  min-width: 4.5rem;
+}
+
+.mbutton--icon {
+  color: var(--white);
+  font-weight: 700;
+  font-size: 1.8rem;
 }
