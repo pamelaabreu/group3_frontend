@@ -15,7 +15,8 @@ export default props => {
     bagContents,
     itemInput,
     deleteMode,
-    height
+    height,
+    bagName
   } = props;
   const containerHeight = Math.floor(height * 0.83);
   const bagHeight = Math.floor(height * 0.75);
@@ -43,6 +44,7 @@ export default props => {
               itemInput={itemInput}
               handleOnChange={handleOnChange}
               handleCreateItem={handleCreateItem}
+              bagName={bagName}
             />
           </div>
         </div>
