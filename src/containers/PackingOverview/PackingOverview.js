@@ -32,6 +32,7 @@ export default (class PackingOverview extends Component {
       categories: null,
       page: "packing",
       bagTypes: { 1: "Personal", 2: "Carry-On", 3: "Checked" },
+      bagName: "Personal",
       currentBag: null,
       currentCategory: null,
       bags: null,
@@ -279,9 +280,7 @@ export default (class PackingOverview extends Component {
   };
 
   componentDidUpdate() {
-    const { height, width } = this.state;
-    console.log("height:", height);
-    console.log("width:", width);
+    console.log(this.state);
   }
 
   render() {
@@ -302,7 +301,8 @@ export default (class PackingOverview extends Component {
       deleteMode,
       totalItems,
       totalPacked,
-      itemInput
+      itemInput,
+      bagName
     } = this.state;
     const city = tripInfo ? tripInfo.city.replace(/\s/g, "%20") : "";
     const bagContents = displayBag ? this.state[displayBag] : [];
@@ -375,6 +375,7 @@ export default (class PackingOverview extends Component {
                   handleOnChange={this.handleOnChange}
                   handleCreateItem={this.handleCreateItem}
                   height={height}
+                  bagName={bagName}
                 />
               </div>
             ) : (
