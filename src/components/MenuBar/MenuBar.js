@@ -27,21 +27,25 @@ export default props => {
   } else {
     return (
       <>
-        <div className="row justify-content-around">
-          <MenuButton
-            faClass={"fas fa-plus"}
-            handleOnClick={handleOnClick}
-            attributes={{
-              "data-toggle": "modal",
-              "data-target": "#addItemToBag"
-            }}
-          />
-          <MenuButton
-            faClass={"fas fa-trash-alt"}
-            handleOnClick={handleOnClick}
-            clickCommand={"startDelete"}
-          />
-          <MenuButton faClass={"fas fa-search"} handleOnClick={handleOnClick} />
+        <div className="row justify-content-center">
+          <div className="mx-5">
+            <MenuButton
+              faClass={"fas fa-plus"}
+              handleOnClick={handleOnClick}
+              attributes={{
+                "data-toggle": "modal",
+                "data-target": "#addItemToBag"
+              }}
+            />
+          </div>
+          <div className="mx-5">
+            <MenuButton
+              faClass={"fas fa-trash-alt"}
+              handleOnClick={handleOnClick}
+              clickCommand={"startDelete"}
+            />
+          </div>
+          {/* <MenuButton faClass={"fas fa-search"} handleOnClick={handleOnClick} /> */}
         </div>
 
         <div
