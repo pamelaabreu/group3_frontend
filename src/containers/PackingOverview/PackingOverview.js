@@ -7,6 +7,7 @@ import RemindersPage from "./RemindersPage/RemindersPage";
 import LoadingScreen from "../../components/LoadingScreen/LoadingScreen";
 import BagSelector from "../../components/BagSelectorCard/BagSelectorCard";
 import Tabs from "../../components/PackingTabs/PackingTabs";
+import ProgressBar from "../../components/ProgressBar/ProgressBar";
 import {
   addToDelete,
   addToShoppingCart,
@@ -330,8 +331,10 @@ export default (class PackingOverview extends Component {
                 moveToTrip={this.moveToTrip}
                 windowHeight={height}
               />
-              <div className="row mt-1">
-                <div className="col-2 offset-2"> Progress Bar </div>
+              <div className="row mt-1 no-gutters">
+                <div className="col-2 offset-2 pt-2">
+                  <ProgressBar total={total} />
+                </div>
                 <div className="col-8 ">
                   <div className="row justify-content-around no-gutters">
                     {bags.map((e, i) => {
