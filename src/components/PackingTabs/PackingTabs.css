@@ -41,4 +41,5 @@
 .tabs--button:hover,
 .tabs--button:focus {
   font-weight: 700;
+  outline: var(--bundleBlue);
 }
