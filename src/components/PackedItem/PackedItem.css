@@ -22,20 +22,14 @@
 
 .pItem--button-right {
   background-color: white;
-  border-left: 1px solid #4996c9;
-  border-right: 1px solid #4996c9;
-  border-top: 1px solid #4996c9;
-  border-bottom: 1px solid #4996c9;
+  border: 1px solid #4996c9;
   border-radius: 1rem;
   color: var(--bundleBlue);
 }
 
 .pItem--button-right:hover {
   background-color: #39b225;
-  border-left: 1px solid #39b225;
-  border-right: 1px solid #39b225;
-  border-top: 1px solid #39b225;
-  border-bottom: 1px solid #39b225;
+  border: 1px solid #39b225;
   border-top-right-radius: 1rem;
   border-bottom-right-radius: 1rem;
   transition: 0.3s;
@@ -44,20 +38,14 @@
 
 .pItem--button-rightDelete {
   background-color: white;
-  border-left: 1px solid #4996c9;
-  border-right: 1px solid #4996c9;
-  border-top: 1px solid #4996c9;
-  border-bottom: 1px solid #4996c9;
+  border: 1px solid #4996c9;
   border-radius: 1rem;
   color: var(--bundleBlue);
 }
 
 .pItem--button-rightDelete:hover {
   background-color: var(--sunsetRed);
-  border-left: 1px solid var(--sunsetRed);
-  border-right: 1px solid var(--sunsetRed);
-  border-top: 1px solid var(--sunsetRed);
-  border-bottom: 1px solid var(--sunsetRed);
+  border: 1px solid var(--sunsetRed);
   border-top-right-radius: 1rem;
   border-bottom-right-radius: 1rem;
   transition: 0.3s;
