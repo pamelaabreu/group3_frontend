@@ -3,7 +3,6 @@
 }
 
 .packingoverview--content-main {
-  /* background-color: var(--babyBlue); */
   background-color: var(--bundleBlue);
   position: relative;
   overflow: hidden;
@@ -15,11 +14,12 @@
   top: 0;
   width: 100%;
   height: 100%;
-  opacity: 0.4;
+  opacity: 0.6;
 }
 
 .packing--img-cover {
   object-fit: cover;
+  /* background-position: center; */
 }
 
 .packingoverview--main-background {
