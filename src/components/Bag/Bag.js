@@ -55,65 +55,63 @@ export default props => {
     });
     const unpackedClass = unpacked ? "" : "bag--button-bottom";
     const packedClass = packedBag ? "" : "bag--button-bottom";
-    if (true) {
-      return (
-        <div>
-          <div className="mb-2">
-            <button
-              className={"col-12 bag--packed-button " + packedClass}
-              type="button"
-              data-toggle="collapse"
-              data-target="#packed"
-              aria-expanded="false"
-              aria-controls="packed item expand"
-              onClick={() =>
-                packedBag
-                  ? setTimeout(function() {
-                      setPackedBag(!packedBag);
-                    }, 450)
-                  : setPackedBag(!packedBag)
-              }
-            >
-              <div className="row justify-content-between mx-3">
-                <span className="bag--packed-title">Packed Items</span>
-                <span className="bag--packed-count pt-2">
-                  {packedCount + " of " + items.length}
-                </span>
-              </div>
-            </button>
-            <div className="collapse" id="packed">
-              <div className="row bag--packed-container px-3">{packed}</div>
+    return (
+      <div>
+        <div className="mb-2">
+          <button
+            className={"col-12 bag--packed-button " + packedClass}
+            type="button"
+            data-toggle="collapse"
+            data-target="#packed"
+            aria-expanded="false"
+            aria-controls="packed item expand"
+            onClick={() =>
+              packedBag
+                ? setTimeout(function() {
+                    setPackedBag(!packedBag);
+                  }, 450)
+                : setPackedBag(!packedBag)
+            }
+          >
+            <div className="row justify-content-between mx-3">
+              <span className="bag--packed-title">Packed Items</span>
+              <span className="bag--packed-count pt-2">
+                {packedCount + " of " + items.length}
+              </span>
             </div>
-          </div>
-          <div className="mt-2">
-            <button
-              className={"col-12 bag--unpacked-button " + unpackedClass}
-              type="button"
-              data-toggle="collapse"
-              data-target="#unpacked"
-              aria-expanded="false"
-              aria-controls="unpacked item expand"
-              onClick={() =>
-                unpacked
-                  ? setTimeout(function() {
-                      setUnpacked(!unpacked);
-                    }, 450)
-                  : setUnpacked(!unpacked)
-              }
-            >
-              <div className="row justify-content-between mx-3">
-                <span className="bag--unpacked-title">Unpacked Items</span>
-                <span className="bag--unpacked-count pt-2">
-                  {items.length - packedCount + " items left"}
-                </span>
-              </div>
-            </button>
-            <div className="collapse" id="unpacked">
-              <div className="row bag--unpacked-container px-3">{unPacked}</div>
-            </div>
+          </button>
+          <div className="collapse" id="packed">
+            <div className="row bag--packed-container px-3">{packed}</div>
           </div>
         </div>
-      );
-    }
+        <div className="mt-2">
+          <button
+            className={"col-12 bag--unpacked-button " + unpackedClass}
+            type="button"
+            data-toggle="collapse"
+            data-target="#unpacked"
+            aria-expanded="false"
+            aria-controls="unpacked item expand"
+            onClick={() =>
+              unpacked
+                ? setTimeout(function() {
+                    setUnpacked(!unpacked);
+                  }, 450)
+                : setUnpacked(!unpacked)
+            }
+          >
+            <div className="row justify-content-between mx-3">
+              <span className="bag--unpacked-title">Unpacked Items</span>
+              <span className="bag--unpacked-count pt-2">
+                {items.length - packedCount + " items left"}
+              </span>
+            </div>
+          </button>
+          <div className="collapse" id="unpacked">
+            <div className="row bag--unpacked-container px-3">{unPacked}</div>
+          </div>
+        </div>
+      </div>
+    );
   }
 };
