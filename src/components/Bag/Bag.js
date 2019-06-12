@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import UnpackedItem from "../UnpackedItem/UnpackedItem";
 import PackedItem from "../PackedItem/PackedItem";
+import "./Bag.css";
 
 export default props => {
   const {
@@ -11,7 +12,9 @@ export default props => {
     deleteMode,
     width
   } = props;
-  console.log("in bags:", width);
+  const [unpacked, setUnpacked] = useState(false);
+  const [packedBag, setPackedBag] = useState(false);
+
   if (!items) {
     return <p>EMPTY</p>;
   } else {
@@ -50,57 +53,67 @@ export default props => {
         );
       } else return null;
     });
-    return (
-      <div className="accordion" id="accordionExample">
-        <div className="card">
-          <div className="card-header" id="headingOne">
-            <h2 className="mb-0">
-              <button
-                className="col-12 btn btn-link collapsed"
-                type="button"
-                data-toggle="collapse"
-                data-target="#collapseOne"
-                aria-expanded="true"
-                aria-controls="collapseOne"
-              >
-                Packed Items {packedCount + " of " + items.length}
-              </button>
-            </h2>
+    const unpackedClass = unpacked ? "" : "bag--button-bottom";
+    const packedClass = packedBag ? "" : "bag--button-bottom";
+    if (true) {
+      return (
+        <div>
+          <div className="mb-2">
+            <button
+              className={"col-12 bag--packed-button " + packedClass}
+              type="button"
+              data-toggle="collapse"
+              data-target="#packed"
+              aria-expanded="false"
+              aria-controls="packed item expand"
+              onClick={() =>
+                packedBag
+                  ? setTimeout(function() {
+                      setPackedBag(!packedBag);
+                    }, 450)
+                  : setPackedBag(!packedBag)
+              }
+            >
+              <div className="row justify-content-between mx-3">
+                <span className="bag--packed-title">Packed Items</span>
+                <span className="bag--packed-count pt-2">
+                  {packedCount + " of " + items.length}
+                </span>
+              </div>
+            </button>
+            <div className="collapse" id="packed">
+              <div className="row bag--packed-container px-3">{packed}</div>
+            </div>
           </div>
-          <div
-            id="collapseOne"
-            className="collapse"
-            aria-labelledby="headingOne"
-            data-parent="#accordionExample"
-          >
-            <div className="card-body row">{packed}</div>
+          <div className="mt-2">
+            <button
+              className={"col-12 bag--unpacked-button " + unpackedClass}
+              type="button"
+              data-toggle="collapse"
+              data-target="#unpacked"
+              aria-expanded="false"
+              aria-controls="unpacked item expand"
+              onClick={() =>
+                unpacked
+                  ? setTimeout(function() {
+                      setUnpacked(!unpacked);
+                    }, 450)
+                  : setUnpacked(!unpacked)
+              }
+            >
+              <div className="row justify-content-between mx-3">
+                <span className="bag--unpacked-title">Unpacked Items</span>
+                <span className="bag--unpacked-count pt-2">
+                  {items.length - packedCount + " items left"}
+                </span>
+              </div>
+            </button>
+            <div className="collapse" id="unpacked">
+              <div className="row bag--unpacked-container px-3">{unPacked}</div>
+            </div>
           </div>
         </div>
-        <div className="card">
-          <div className="" id="headingTwo">
-            <h2 className="mb-0">
-              <button
-                className="col-12 btn btn-link"
-                type="button"
-                data-toggle="collapse"
-                data-target="#collapseTwo"
-                aria-expanded="false"
-                aria-controls="collapseTwo"
-              >
-                Unpacked Items {items.length - packedCount + " left"}
-              </button>
-            </h2>
-          </div>
-          <div
-            id="collapseTwo"
-            className="collapse show"
-            aria-labelledby="headingTwo"
-            data-parent="#accordionExample"
-          >
-            <div className="card-body row bag--body-size">{unPacked}</div>
-          </div>
-        </div>
-      </div>
-    );
+      );
+    }
   }
 };
