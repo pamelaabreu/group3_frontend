@@ -47,7 +47,7 @@ export default props => {
               dynamicSize("header") + " col-12 pItem--head text-center p-0 "
             }
           >
-            <span className="pItem--title--font c-white">{name}</span>
+            <span className="pItem--title--font c-denimBlue">{name}</span>
           </div>
           <div className="col-12 pItem--buttons rounded">
             <div className="row px-2 no-gutters">
