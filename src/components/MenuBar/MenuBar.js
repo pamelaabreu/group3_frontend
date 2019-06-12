@@ -53,8 +53,8 @@ export default props => {
           aria-hidden="true"
         >
           <div className="modal-dialog modal-dialog-centered" role="document">
-            <div className="modal-content">
-              <div className="modal-header">
+            <div className="mBar--modal-content shadow">
+              <div className="mBar--modal-header">
                 <h5 className="modal-title" id="exampleModalCenterTitle">
                   Add item to {bagName} bag
                 </h5>
@@ -89,23 +89,21 @@ export default props => {
                     })}
                   </datalist>
                   <button
-                    className="my-3 btn-sm border border-info"
+                    type="button"
+                    className="mBar--item-add"
                     onClick={handleCreateItem}
                   >
                     Create
                   </button>
                 </div>
               </div>
-              <div className="modal-footer">
+              <div className="mBar--modal-footer">
                 <button
                   type="button"
-                  className="btn btn-secondary"
+                  className="mBar--item-cancel"
                   data-dismiss="modal"
                 >
                   Close
-                </button>
-                <button type="button" className="btn btn-primary">
-                  Save changes
                 </button>
               </div>
             </div>
