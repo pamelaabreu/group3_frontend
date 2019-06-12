@@ -18,14 +18,12 @@ export default ({ total }) => {
         // Customize the path, i.e. the "completed progress"
         path: {
           // Path color
-          // stroke: '#ffffff',
           stroke: "var(--safeGreen)",
           // Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
           strokeLinecap: "round"
         },
         // Customize the circle behind the path, i.e. the "total progress"
         trail: {
-          // stroke: "#4996c9",
           stroke: "#ffffff",
           // Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
           strokeLinecap: "round",
@@ -47,20 +45,4 @@ export default ({ total }) => {
       }}
     />
   );
-  // return (
-  //   <div className="col-10">
-  //     <div className="progress">
-  //       <div
-  //         className="progress-bar progress-bar-striped bg-info"
-  //         role="progressbar"
-  //         style={{ width: `${total}%` }}
-  //         aria-valuenow={total}
-  //         aria-valuemin="0"
-  //         aria-valuemax="100"
-  //       >
-  //         {total}%
-  //       </div>
-  //     </div>
-  //   </div>
-  // );
 };
