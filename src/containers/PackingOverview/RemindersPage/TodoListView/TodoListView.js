@@ -1,6 +1,7 @@
 import React from "react";
 import Todo from "../Todo/Todo";
 import AddTodo from "../AddTodo/AddTodo";
+import "./TodoListView.css";
 
 const TodoListView = ({
   todoList,
@@ -36,9 +37,9 @@ const TodoListView = ({
         className="todo-list-view"
         style={{ height: height75 + "px", maxHeight: height75 + "px" }}
       >
-        <div className="ml-2 todo-header">
+        <div className="ml-2 bg-bundleBlue c-white">
           <a
-            className="col-8 btn btn-outline-info text-left todo-header"
+            className="col-8 btn c-white"
             data-toggle="collapse"
             href="#multiCollapseExample3"
             role="button"
@@ -80,15 +81,17 @@ const TodoListView = ({
         </div>
 
         <button
-          className="col-8 btn btn-outline-info todo-header ml-2 text-left"
+          className="col-8 btn bg-smokeGrey c-white ml-2"
           type="button"
           data-toggle="collapse"
           data-target="#multiCollapseExample2"
           aria-expanded="false"
           aria-controls="multiCollapseExample2"
         >
-          <span>Completed</span>
-          <span>{completeItems} items</span>
+          <div className="row justify-content-between">
+            <span>Completed</span>
+            <span>{completeItems} items</span>
+          </div>
         </button>
 
         <div className="col">
