@@ -12,7 +12,7 @@ export default props => {
     deleteMode,
     width
   } = props;
-  const [unpacked, setUnpacked] = useState(false);
+  const [unpacked, setUnpacked] = useState(true);
   const [packedBag, setPackedBag] = useState(false);
 
   if (!items) {
@@ -59,8 +59,33 @@ export default props => {
       unPacked.push(
         <div style={{ height: "5rem" }} key={"unpackedEmptyBox"} />
       );
+
+    const packedCollapse = packedBag ? " show" : "";
+    const unpackedCollapse = unpacked ? " show" : "";
+    const handleShow = call => {
+      if (call === "packed") {
+        if (unpacked) {
+          setTimeout(function() {
+            setUnpacked(!unpacked);
+          }, 282);
+          setPackedBag(!packedBag);
+        } else {
+          setPackedBag(!packedBag);
+        }
+      } else if (call === "unpacked") {
+        if (packedBag) {
+          setTimeout(function() {
+            setPackedBag(!packedBag);
+          }, 282);
+          setUnpacked(!unpacked);
+        } else {
+          setUnpacked(!unpacked);
+        }
+      }
+    };
     const unpackedClass = unpacked ? "" : "bag--button-bottom";
     const packedClass = packedBag ? "" : "bag--button-bottom";
+
     return (
       <div>
         <div className="mb-2">
@@ -76,7 +101,7 @@ export default props => {
                 ? setTimeout(function() {
                     setPackedBag(!packedBag);
                   }, 282)
-                : setPackedBag(!packedBag)
+                : handleShow("packed")
             }
           >
             <div className="row justify-content-between mx-3">
@@ -86,7 +111,7 @@ export default props => {
               </span>
             </div>
           </button>
-          <div className="collapse" id="packed">
+          <div className={"collapse " + packedCollapse} id="packed">
             <div className="row bag--packed-container px-3">{packed}</div>
           </div>
         </div>
@@ -103,7 +128,7 @@ export default props => {
                 ? setTimeout(function() {
                     setUnpacked(!unpacked);
                   }, 282)
-                : setUnpacked(!unpacked)
+                : handleShow("unpacked")
             }
           >
             <div className="row justify-content-between mx-3">
@@ -113,7 +138,7 @@ export default props => {
               </span>
             </div>
           </button>
-          <div className="collapse" id="unpacked">
+          <div className={"collapse " + unpackedCollapse} id="unpacked">
             <div className="row bag--unpacked-container px-3">{unPacked}</div>
           </div>
         </div>
