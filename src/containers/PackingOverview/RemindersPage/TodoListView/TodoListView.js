@@ -8,85 +8,118 @@ const TodoListView = ({
   handleDeleteTodo,
   todoInput,
   handleTodoInputChange,
-  addTodo
+  addTodo,
+  height
 }) => {
+  const height75 = Math.floor(height * 0.75);
+
+  let completeItems = 0;
+  let incompleteItems = 0;
+
+  const getListCount = () => {
+    if (todoList.length > 0) {
+      todoList.forEach(todoItem => {
+        if (todoItem.complete === true) {
+          completeItems += 1;
+        } else if (todoItem.complete === false) {
+          incompleteItems += 1;
+        }
+      });
+    }
+  };
+
+  getListCount();
+
   return (
     <>
-      <div className="ml-2">
-        <a
-          className="col-4 btn btn-outline-primary text-left"
-          data-toggle="collapse"
-          href="#multiCollapseExample3"
-          role="button"
-          aria-expanded="false"
-          aria-controls="multiCollapseExample3"
-        >
-          To Be Completed
-        </a>
-      </div>
-
-      <div className="col">
-        <div
-          className="collapse show multi-collapse"
-          id="multiCollapseExample3"
-        >
-          <div className="">
-            {todoList.map((e, i, a) => {
-              let t = a[a.length - 1 - i];
-              if (t.complete === false) {
-                return (
-                  <Todo
-                    task_name={t.task_name}
-                    key={i}
-                    index={a.length - 1 - i}
-                    value={t.id}
-                    handleCompleteTodo={handleCompleteTodo}
-                    handleDeleteTodo={handleDeleteTodo}
-                    complete={t.complete}
-                  />
-                );
-              }
-              return null;
-            })}
-          </div>
-        </div>
-      </div>
-
-      <button
-        className="col-4 btn btn-outline-primary ml-2 text-left"
-        type="button"
-        data-toggle="collapse"
-        data-target="#multiCollapseExample2"
-        aria-expanded="false"
-        aria-controls="multiCollapseExample2"
+      <div
+        className="todo-list-view"
+        style={{ height: height75 + "px", maxHeight: height75 + "px" }}
       >
-        Completed
-      </button>
+        <div className="ml-2 todo-header">
+          <a
+            className="col-8 btn btn-outline-info text-left todo-header"
+            data-toggle="collapse"
+            href="#multiCollapseExample3"
+            role="button"
+            aria-expanded="false"
+            aria-controls="multiCollapseExample3"
+          >
+            <div className="row justify-content-between">
+              <span>To Be Completed</span>
+              <span>{incompleteItems} items</span>
+            </div>
+          </a>
+        </div>
+        <div className="col">
+          <div
+            className="collapse show multi-collapse"
+            id="multiCollapseExample3"
+          >
+            <div className="">
+              {todoList.map((e, i, a) => {
+                let t = a[a.length - 1 - i];
+                if (t.complete === false) {
+                  return (
+                    <div className="todo" key={i}>
+                      <Todo
+                        task_name={t.task_name}
+                        index={a.length - 1 - i}
+                        value={t.id}
+                        handleCompleteTodo={handleCompleteTodo}
+                        handleDeleteTodo={handleDeleteTodo}
+                        complete={t.complete}
+                      />
+                    </div>
+                  );
+                }
+                return null;
+              })}
+            </div>
+          </div>
+        </div>
 
-      <div className="col">
-        <div className="collapse multi-collapse" id="multiCollapseExample2">
-          <div className="">
-            {todoList.map((e, i, a) => {
-              let t = a[a.length - 1 - i];
-              if (t.complete === true) {
-                return (
-                  <Todo
-                    task_name={t.task_name}
-                    key={i}
-                    index={a.length - 1 - i}
-                    value={t.id}
-                    handleDeleteTodo={handleDeleteTodo}
-                    complete={t.complete}
-                  />
-                );
-              }
-              return null;
-            })}
+        <button
+          className="col-8 btn btn-outline-info todo-header ml-2 text-left"
+          type="button"
+          data-toggle="collapse"
+          data-target="#multiCollapseExample2"
+          aria-expanded="false"
+          aria-controls="multiCollapseExample2"
+        >
+          <span>Completed</span>
+          <span>{completeItems} items</span>
+        </button>
+
+        <div className="col">
+          <div
+            className="collapse show multi-collapse"
+            id="multiCollapseExample2"
+          >
+            <div className="">
+              {todoList.map((e, i, a) => {
+                let t = a[a.length - 1 - i];
+                if (t.complete === true) {
+                  return (
+                    <div className="todo" key={i}>
+                      <Todo
+                        task_name={t.task_name}
+                        index={a.length - 1 - i}
+                        value={t.id}
+                        handleDeleteTodo={handleDeleteTodo}
+                        complete={t.complete}
+                      />
+                    </div>
+                  );
+                }
+                return null;
+              })}
+            </div>
           </div>
         </div>
       </div>
 
-      <div>
+      <div className="d-flex justify-content-center">
         <AddTodo
           todoInput={todoInput}
           handleTodoInputChange={handleTodoInputChange}
