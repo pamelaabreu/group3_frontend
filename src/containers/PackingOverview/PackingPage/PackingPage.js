@@ -1,7 +1,5 @@
 import React from "react";
 import Bag from "../../../components/Bag/Bag";
-import DeleteConfirm from "../../../components/DeleteConfirm/DeleteConfirm";
-import AddItemButton from "../RemindersPage/AddItemButton/AddItemButton";
 import MenuBar from "../../../components/MenuBar/MenuBar";
 import "./PackingPage.css";
 
@@ -39,21 +37,14 @@ export default props => {
         </div>
         <div className="col-12">
           <div className="px-5">
-            <MenuBar deleteMode={deleteMode} handleOnClick={handleOnClick} />
-          </div>
-          {/* <div className="col">
-            <AddItemButton
+            <MenuBar
+              deleteMode={deleteMode}
+              handleOnClick={handleOnClick}
               itemInput={itemInput}
               handleOnChange={handleOnChange}
               handleCreateItem={handleCreateItem}
             />
           </div>
-          <div className="col">
-            <DeleteConfirm
-              deleteMode={deleteMode}
-              handleOnClick={handleOnClick}
-            />
-          </div> */}
         </div>
       </div>
     </div>
