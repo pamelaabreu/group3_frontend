@@ -55,7 +55,7 @@ export default props => {
           <div className="modal-dialog modal-dialog-centered" role="document">
             <div className="mBar--modal-content shadow">
               <div className="mBar--modal-header">
-                <h5 className="modal-title" id="exampleModalCenterTitle">
+                <h5 className="mBar--modal-title" id="exampleModalCenterTitle">
                   Add item to {bagName} bag
                 </h5>
                 <button
@@ -68,33 +68,38 @@ export default props => {
                 </button>
               </div>
               <div className="modal-body">
-                <div className="p-2">
-                  <label>
-                    Select an item:
+                <label className="col-12 text-center mBar--item-label">
+                  Select an item:
+                </label>
+                <div className="row  p-2 no-gutters">
+                  <div className="col-4 offset-3">
                     <input
+                      className="form-control c-denimBlue bundleBlue-border-bottom-3 mBar--item-input"
                       type="text"
                       onChange={handleOnChange}
                       value={itemInput}
                       list="datalist"
                     />
-                  </label>
-                  <datalist id="datalist">
-                    <option defaultValue>Choose one...</option>
-                    {items.general.map((e, i) => {
-                      return (
-                        <option value={e.name} key={i}>
-                          {e.name}
-                        </option>
-                      );
-                    })}
-                  </datalist>
-                  <button
-                    type="button"
-                    className="mBar--item-add"
-                    onClick={handleCreateItem}
-                  >
-                    Create
-                  </button>
+                    <datalist id="datalist">
+                      <option defaultValue>Choose one...</option>
+                      {items.general.map((e, i) => {
+                        return (
+                          <option value={e.name} key={i}>
+                            {e.name}
+                          </option>
+                        );
+                      })}
+                    </datalist>
+                  </div>
+                  <div className="col-1">
+                    <button
+                      type="button"
+                      className="mBar--item-add"
+                      onClick={handleCreateItem}
+                    >
+                      Create
+                    </button>
+                  </div>
                 </div>
               </div>
               <div className="mBar--modal-footer">
