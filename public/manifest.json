@@ -8,7 +8,7 @@
   "background_color": "#4996C9",
   "icons": [
     {
-      "src": "bundle-square-icon.png",
+      "src": "bundle-square-icon-180x180.png",
       "sizes": "64x64 32x32 24x24 16x16 144x144",
       "type": "image/png"
     },

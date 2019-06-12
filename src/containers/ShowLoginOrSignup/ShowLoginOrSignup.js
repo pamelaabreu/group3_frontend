@@ -5,21 +5,37 @@ import Signup from "../../containers/Signup/Signup";
 import Login from "../../containers/Login/Login";
 
 const ShowLoginOrSignup = props => {
-  const { closeMenu } = props;
+  const { closeMenu, openMenu } = props;
   const [showLoginOrSignup, setLoginOrSignup] = useState(true);
 
+  const loginActiveStyle = showLoginOrSignup ? "mali700" : "mali300";
+  const signupActiveStyle = showLoginOrSignup ? "mali300" : "mali700";
+
   return (
-    <>
-      <button onClick={() => setLoginOrSignup(true)}>Login</button>
-      <button onClick={() => setLoginOrSignup(false)}>Signup</button>
-      <div>
+    <div className="bg-white80 b-radius9 ds-lightGrey m-5 p-5">
+      <div className="d-flex justify-content-center">
+        <button
+          className={`c-bundleBlue p-2 border-0 bg-transparent ${loginActiveStyle}`}
+          onClick={() => setLoginOrSignup(true)}
+        >
+          Login
+        </button>
+        <button
+          className={`c-bundleBlue p-2 border-0 bg-transparent ${signupActiveStyle}`}
+          onClick={() => setLoginOrSignup(false)}
+        >
+          Signup
+        </button>
+      </div>
+
+      <div className="d-flex justify-content-center">
         {showLoginOrSignup ? (
-          <Login closeMenu={closeMenu} />
+          <Login closeMenu={closeMenu} openMenu={openMenu} />
         ) : (
-          <Signup closeMenu={closeMenu} />
+          <Signup closeMenu={closeMenu} openMenu={openMenu} />
         )}
       </div>
-    </>
+    </div>
   );
 };
 

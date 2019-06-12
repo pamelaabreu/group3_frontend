@@ -1,11 +1,10 @@
 import React, { useState, useEffect, useContext } from "react";
-import "./Home.css";
 import CreateTripForm from "../../containers/CreateTripForm/CreateTripForm";
 import Modal from "../../containers/Modal/Modal";
 import { getDuration } from "../../services/suggestions";
 import FirebaseAuthContext from "../../context/FirebaseAuth";
 
-import NotLoginHomepage from "../../components/NotLoginHomepage/NotLoginHomepage";
+import PublicHome from "../PublicHome/PublicHome";
 import LoginHomepage from "../../components/LoginHomepage/LoginHomepage";
 
 const Home = props => {
@@ -15,7 +14,10 @@ const Home = props => {
   const [departureDate, setDepartureDate] = useState("");
   const [returnDate, setReturnDate] = useState("");
   const [duration, setDuration] = useState(null);
-  const [show, showmodal] = useState(false);
+  const [disabled, setDisable] = useState(true);
+  const [loading, setLoadStatus] = useState(false);
+
+  const changeLoadStatus = status => setLoadStatus(status);
 
   const destinationHandler = e => {
     setDestination(e.target.value);
@@ -33,14 +35,12 @@ const Home = props => {
     e.preventDefault();
     let tripDuration = getDuration(departureDate, returnDate);
     setDuration(tripDuration);
-    showmodal(true);
   };
 
-  const handleShow = () => showmodal(true);
-
-  const handleClose = () => showmodal(false);
-
-  useEffect(() => {}, [destination, departureDate, returnDate, duration]);
+  useEffect(() => {
+    const disabled = destination && returnDate && departureDate ? false : true;
+    setDisable(disabled);
+  }, [destination, departureDate, returnDate]);
 
   const createTripForm = (
     <CreateTripForm
@@ -52,22 +52,19 @@ const Home = props => {
       returnDateHandler={returnDateHandler}
       duration={duration}
       createTripHandler={createTripHandler}
+      disabled={disabled}
     />
   );
   return (
     <>
-      {show ? (
-        <Modal
-          destination={destination}
-          duration={duration}
-          show={show}
-          departureDate={departureDate}
-          returnDate={returnDate}
-          handleShow={handleShow}
-          handleClose={handleClose}
-          modalButtonText={"Bundle It!"}
-        />
-      ) : null}
+      <Modal
+        changeLoadStatus={changeLoadStatus}
+        destination={destination}
+        duration={duration}
+        departureDate={departureDate}
+        returnDate={returnDate}
+        modalButtonText={"Bundle It!"}
+      />
 
       {FirebaseUserAuth.user ? (
         <LoginHomepage
@@ -75,7 +72,7 @@ const Home = props => {
           user={FirebaseUserAuth.user}
         />
       ) : (
-        <NotLoginHomepage create_trip_form={createTripForm} />
+        <PublicHome create_trip_form={createTripForm} loading={loading} />
       )}
     </>
   );

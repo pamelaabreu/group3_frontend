@@ -1,10 +1,18 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./PackedItem.css";
 
 export default props => {
+  const [width, setWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => setWidth(window.innerWidth);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  });
+
   const {
-    important,
-    flag,
+    // flag,
+    deleteMode,
     handleClick,
     image,
     name,
@@ -12,62 +20,64 @@ export default props => {
     index,
     toBeDeleted
   } = props;
-  const toDelete = toBeDeleted ? " bg-danger " : " ";
+
+  const toDelete = toBeDeleted ? " bg-danger text-white" : " ";
   const img = image
     ? image
     : "https://www.jcrew.com/s7-img-facade/L4012_PA6511?fmt=jpeg";
+
+  const rightButton = deleteMode
+    ? "pItem--button-rightDelete"
+    : "pItem--button-right";
+
+  const dynamicSize = name => {
+    if (width < 500) return `pItem--${name}`;
+    if (width >= 500 && width < 990) return `pItem--${name}-md`;
+    if (width >= 990 && width < 1200) return `pItem--${name}-lg`;
+    if (width >= 1200 && width < 1300) return `pItem--${name}-xlg`;
+    if (width > 1300) return `pItem--${name}-xxlg`;
+  };
+
   return (
-    <div className="m-1 border border-white rounded">
-      <button
-        className={"item--packed p-0 rounded" + toDelete}
-        onClick={handleClick("unpack", index)}
+    <div className="col-6 col-sm-6 col-md-4 col-lg-4 my-2 p-2 ">
+      <div
+        className="row justify-content-center"
+        onClick={handleClick("item", index)}
       >
-        <div className="container">
-          <div className={"row align-items-center justify-content-center"}>
-            <div>
-              {/* ITEM IMAGE */}
-              <img src={img} className="item--image--size rounded" alt={name} />
-            </div>
-            <div className="item--icon align-items-center">
-              {/* ICONS */}
-              <div>
-                {important ? (
-                  <i
-                    className="fas fa-star item--icon--packed"
-                    onClick={handleClick("important", index)}
-                  />
-                ) : (
-                  <i
-                    className="far fa-star item--icon--packed"
-                    onClick={handleClick("important", index)}
-                  />
-                )}
-              </div>
-              <div>
-                {flag ? (
-                  <i className="far fa-question-circle item--icon--packed" />
-                ) : (
-                  /* needs work */
-                  <div className="item--icon-filler"> </div>
-                )
-                /* needs work */
+        <div
+          className={
+            dynamicSize("unpacked") +
+            "  pItem my-2 pItem--content-main row no-gutters b-radius9"
+          }
+          style={{ backgroundImage: `url(${img})` }}
+        >
+          <div
+            className={
+              dynamicSize("header") + " col-12 pItem--head text-center p-0 "
+            }
+          >
+            <span className="pItem--title--font c-white">{name}</span>
+          </div>
+          <div className="col-12 pItem--buttons rounded">
+            <div className="row px-2 no-gutters">
+              <button
+                type="button"
+                className={
+                  dynamicSize("button") +
+                  " col  mali900 " +
+                  rightButton +
+                  " " +
+                  toDelete
                 }
-              </div>
-              <div className="item--icon-filler"> </div>
+                aria-label={`unpack ${name}`}
+                onClick={handleClick("unpack", index)}
+              >
+                <span className={dynamicSize("unpack")}>Unpack</span>
+              </button>
             </div>
           </div>
         </div>
-        <div className="col-12">
-          {/* Item Name */}
-          <div className={"row align-items-center justify-content-center"}>
-            <span className="item--title--font">
-              <span className="text-white">{name}</span>{" "}
-              <i className="fas fa-times item--count--packed" />{" "}
-              <span className="text-white">{quantity}</span>
-            </span>
-          </div>
-        </div>
-      </button>
+      </div>
     </div>
   );
 };

@@ -24,7 +24,7 @@ class Signup extends React.Component {
   handleSignupSubmit = e => {
     e.preventDefault();
 
-    const { closeMenu } = this.props;
+    const { closeMenu, openMenu } = this.props;
     const { inputs } = this.state;
     const { email, password, username } = inputs;
 
@@ -35,7 +35,10 @@ class Signup extends React.Component {
         response => response.user.uid,
 
         // This is the handling for the Firebase error when creating a user
-        ({ message }) => this.setState({ firebaseCreateUserError: message })
+        ({ message }) => {
+          openMenu();
+          this.setState({ firebaseCreateUserError: message });
+        }
       )
       .then(
         firebaseUid => {
@@ -63,26 +66,41 @@ class Signup extends React.Component {
 
     return (
       <form onSubmit={this.handleSignupSubmit}>
-        {firebaseCreateUserError ? <p>{firebaseCreateUserError}</p> : null}
         {inputsArray.map(([inputName, inputValue], index) => {
           const inputType =
             inputName.toLowerCase() === "password" ? "password" : "text";
           const isRequired =
             inputName.toLowerCase() !== "username" ? true : false;
+
           return (
-            <input
-              onChange={this.handleInputChange}
-              key={index}
-              type={inputType}
-              value={inputValue}
-              name={inputName}
-              placeholder={inputName}
-              required={isRequired}
-              min="1"
-            />
+            <div className="form-group" key={index}>
+              <label className="c-bundleBlue" htmlFor={inputName}>
+                {inputName}
+              </label>
+              <input
+                className="form-control c-denimBlue bundleBlue-border-bottom-3"
+                onChange={this.handleInputChange}
+                key={index}
+                type={inputType}
+                value={inputValue}
+                name={inputName}
+                required={isRequired}
+                aria-label={`${inputName}`}
+                id={inputName}
+                min="1"
+              />
+            </div>
           );
         })}
-        <button type="submit">Signup</button>
+        <small className="form-text c-bundleBlue">
+          {firebaseCreateUserError ? <p>{firebaseCreateUserError}</p> : null}
+        </small>
+        <button
+          className="bundleBlueButton border-0 p-2 b-radius18"
+          type="submit"
+        >
+          Signup
+        </button>
       </form>
     );
   }
