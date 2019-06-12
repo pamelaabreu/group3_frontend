@@ -126,7 +126,10 @@ export default (class PackingOverview extends Component {
     for (let item of this.state[bagKey]) {
       if (item.packed) packedCount += 1;
     }
-    return { count: this.state[bagKey].length - packedCount, key: bagKey };
+    const newCount = Math.floor(
+      (packedCount / this.state[bagKey].length) * 100
+    );
+    return { count: newCount, key: bagKey };
   };
 
   handleOnClick = (name, index) => e => {
