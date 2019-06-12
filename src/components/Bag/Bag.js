@@ -53,6 +53,9 @@ export default props => {
         );
       } else return null;
     });
+    if (packedCount === 0) packed.push(<div style={{ height: "5rem" }} />);
+    if (items.length - packedCount === 0)
+      unPacked.push(<div style={{ height: "5rem" }} />);
     const unpackedClass = unpacked ? "" : "bag--button-bottom";
     const packedClass = packedBag ? "" : "bag--button-bottom";
     return (
@@ -69,7 +72,7 @@ export default props => {
               packedBag
                 ? setTimeout(function() {
                     setPackedBag(!packedBag);
-                  }, 450)
+                  }, 282)
                 : setPackedBag(!packedBag)
             }
           >
@@ -96,7 +99,7 @@ export default props => {
               unpacked
                 ? setTimeout(function() {
                     setUnpacked(!unpacked);
-                  }, 450)
+                  }, 282)
                 : setUnpacked(!unpacked)
             }
           >
