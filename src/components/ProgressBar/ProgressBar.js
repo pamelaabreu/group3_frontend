@@ -2,18 +2,25 @@ import React from "react";
 import { CircularProgressbar } from "react-circular-progressbar";
 import "./ProgressBar.css";
 
-export default ({ total }) => {
+export default ({ total, width }) => {
+  let maxWidth = 60;
+  if (width < 500) maxWidth = 60;
+  if (width >= 500 && width < 1300) maxWidth = 70;
+  if (width > 1300) maxWidth = 90;
   return (
     <CircularProgressbar
       value={total}
       text={`${total}%`}
       strokeWidth={10}
       background={false}
-      className={"col-7 progress--style"}
+      className={" progress--style"}
       styles={{
         // Customize the root svg element
         root: {
-          maxHeight: "100px"
+          maxHeight: "100px",
+          minHeight: "50px",
+          minWidth: "50px",
+          maxWidth: `${maxWidth}px`
         },
         // Customize the path, i.e. the "completed progress"
         path: {
