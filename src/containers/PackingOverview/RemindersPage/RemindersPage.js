@@ -52,7 +52,6 @@ const RemindersPage = props => {
       }
     })
       .then(res => {
-        console.log("list created");
         updateLists();
       })
       .catch(err => {
@@ -104,7 +103,6 @@ const RemindersPage = props => {
       .then(({ data: { id } }) => {
         let newTodoList = [...todoList];
         data.id = id;
-        console.log(id, "ID");
         newTodoList.push(data);
         setTodoList(newTodoList);
         setTodoInput("");
