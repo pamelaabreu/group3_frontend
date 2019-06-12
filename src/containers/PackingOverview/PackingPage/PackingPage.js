@@ -2,6 +2,7 @@ import React from "react";
 import Bag from "../../../components/Bag/Bag";
 import DeleteConfirm from "../../../components/DeleteConfirm/DeleteConfirm";
 import AddItemButton from "../RemindersPage/AddItemButton/AddItemButton";
+import MenuBar from "../../../components/MenuBar/MenuBar";
 import "./PackingPage.css";
 
 //https://media.giphy.com/media/gngO1gmBhS9na/giphy.gif
@@ -36,8 +37,9 @@ export default props => {
             width={width}
           />
         </div>
-        <div className="row p-0">
-          <div className="col">
+        <div className="col-12">
+          <MenuBar />
+          {/* <div className="col">
             <AddItemButton
               itemInput={itemInput}
               handleOnChange={handleOnChange}
@@ -49,7 +51,7 @@ export default props => {
               deleteMode={deleteMode}
               handleOnClick={handleOnClick}
             />
-          </div>
+          </div> */}
         </div>
       </div>
     </div>
