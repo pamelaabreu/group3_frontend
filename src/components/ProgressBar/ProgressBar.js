@@ -25,13 +25,16 @@ export default ({ total, width }) => {
         // Customize the path, i.e. the "completed progress"
         path: {
           // Path color
-          stroke: "var(--safeGreen)",
+          // stroke: "var(--safeGreen)",
+          // stroke:"linear-gradient(180deg, var(--bundleBlue), var(--babyBlue))",
+          stroke: "var(--denimBlue)",
           // Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
           strokeLinecap: "round"
         },
         // Customize the circle behind the path, i.e. the "total progress"
         trail: {
-          stroke: "#ffffff",
+          // stroke: "#ffffff",
+          stroke: "var(--babyBlue)",
           // Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
           strokeLinecap: "round",
           // Rotate the trail
