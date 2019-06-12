@@ -17,6 +17,13 @@ const RemindersPage = props => {
   const [alertDisplay, setAlertDisplay] = useState(false);
   const [currentListDisplay, setCurrentListDisplay] = useState(true);
   const [todoInput, setTodoInput] = useState("");
+  const [height, setHeight] = useState(window.innerHeight);
+
+  useEffect(() => {
+    const handleResize = () => setHeight(window.innerHeight);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  });
 
   useEffect(() => {
     console.log(lists, "lists");
