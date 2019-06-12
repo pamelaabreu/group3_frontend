@@ -39,7 +39,7 @@ export default props => {
         </div>
         <div className="col-12">
           <div className="px-5">
-            <MenuBar />
+            <MenuBar deleteMode={deleteMode} handleOnClick={handleOnClick} />
           </div>
           {/* <div className="col">
             <AddItemButton
