@@ -15,13 +15,13 @@ const ShowLoginOrSignup = props => {
     <div className="bg-white80 b-radius9 ds-lightGrey m-5 p-5">
       <div className="d-flex justify-content-center">
         <button
-          className={`c-bundleBlue p-2 border-0 bg-transparent ${loginActiveStyle}`}
+          className={`c-bundleBlue p-2 border-0 bg-transparent h2 ${loginActiveStyle}`}
           onClick={() => setLoginOrSignup(true)}
         >
           Login
         </button>
         <button
-          className={`c-bundleBlue p-2 border-0 bg-transparent ${signupActiveStyle}`}
+          className={`c-bundleBlue p-2 border-0 bg-transparent h2 ${signupActiveStyle}`}
           onClick={() => setLoginOrSignup(false)}
         >
           Signup
