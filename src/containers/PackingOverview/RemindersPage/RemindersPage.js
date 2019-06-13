@@ -8,12 +8,19 @@ import TodoListView from "./TodoListView/TodoListView";
 import "./RemindersPage.css";
 
 const RemindersPage = props => {
-  const { lists, updateLists, trip_id, selectedList, handleSelectList } = props;
+  const {
+    lists,
+    updateLists,
+    trip_id,
+    selectedList,
+    handleSelectList,
+    handleAddTodo,
+    todoList,
+    todoListId,
+    shoppingList,
+    shoppingListId
+  } = props;
 
-  const [todoList, setTodoList] = useState([]);
-  const [todoListId, setTodoListId] = useState(null);
-  const [shoppingListId, setShoppingListId] = useState(null);
-  const [shoppingList, setShoppingList] = useState([]);
   const [alertDisplay, setAlertDisplay] = useState(false);
   const [currentListDisplay, setCurrentListDisplay] = useState(true);
   const [todoInput, setTodoInput] = useState("");
