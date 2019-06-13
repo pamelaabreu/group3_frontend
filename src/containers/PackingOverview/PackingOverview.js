@@ -28,7 +28,9 @@ import {
 import {
   fetchLists,
   addTodo,
-  completeTodo
+  completeTodo,
+  deleteTodo,
+  createList
 } from "../../services/remindersPage";
 
 export default (class PackingOverview extends Component {
