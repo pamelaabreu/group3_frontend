@@ -23,7 +23,7 @@ import {
   select,
   unpack
 } from "../../services/packingPage";
-import { fetchLists } from "../../services/remindersPage";
+import { fetchLists, addTodo } from "../../services/remindersPage";
 
 export default (class PackingOverview extends Component {
   constructor(props) {
@@ -190,6 +190,19 @@ export default (class PackingOverview extends Component {
         return;
     }
   };
+
+  /*
+    REMINDERS PAGE FUNCTIONS:
+  */
+
+  handleAddTodo = async todoInput => {
+    const newState = await addTodo(todoInput, this.state);
+    console.log(newState, "new");
+    if (newState) this.setState(newState);
+    return;
+  };
+
+  //  ------------------
 
   handleAddToDelete = (name, index) => {
     this.handleCloseLastQuantity();
@@ -401,6 +414,7 @@ export default (class PackingOverview extends Component {
                 todoListId={todoListId}
                 shoppingList={shoppingList}
                 shoppingListId={shoppingListId}
+                handleAddTodo={this.handleAddTodo}
               />
             )}
           </>
