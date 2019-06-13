@@ -116,16 +116,21 @@ export const completeTodo = (index, todo_id, state) => {
     });
 };
 
-//   const handleDeleteTodo = (index, todo_id) => {
-//     let copiedTodoList = [...todoList];
-//     copiedTodoList = copiedTodoList
-//       .slice(0, index)
-//       .concat(copiedTodoList.slice(index + 1));
+export const deleteTodo = (index, todo_id, state) => {
+  const { todoList } = state;
 
-//     axios
-//       .delete(BASE_URL + "/todolist/todo/" + todo_id)
-//       .then(() => {
-//         setTodoList(copiedTodoList);
-//       })
-//       .catch(err => console.log(err));
-//   };
+  let copiedTodoList = [...todoList];
+  copiedTodoList = copiedTodoList
+    .slice(0, index)
+    .concat(copiedTodoList.slice(index + 1));
+
+  return axios
+    .delete(BASE_URL + "/todolist/todo/" + todo_id)
+    .then(() => {
+      return { todoList: copiedTodoList };
+    })
+    .catch(err => {
+      console.log(err);
+      return null;
+    });
+};
