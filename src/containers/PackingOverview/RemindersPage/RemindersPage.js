@@ -18,7 +18,8 @@ const RemindersPage = props => {
     todoList,
     todoListId,
     shoppingList,
-    shoppingListId
+    shoppingListId,
+    handleCompleteTodo
   } = props;
 
   const [alertDisplay, setAlertDisplay] = useState(false);
