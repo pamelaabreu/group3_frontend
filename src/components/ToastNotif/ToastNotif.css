@@ -20,3 +20,7 @@
 .toastDropShadow {
   box-shadow: 5px 5px 20px 0px var(--bundleBlue);
 }
+
+.toast-text-color {
+  color: var(--denimBlue);
+}
