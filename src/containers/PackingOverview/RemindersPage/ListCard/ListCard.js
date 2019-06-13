@@ -13,9 +13,7 @@ const ListCard = props => {
         <p className="card-text">
           <span>{name}</span>
         </p>
-        <p>
-          <span>{totalTodos.complete + totalTodos.incomplete} todos</span>
-        </p>
+        <p>Percent%</p>
       </button>
     </div>
   );

@@ -159,15 +159,17 @@ const RemindersPage = props => {
         <>
           <div className="container">
             <div className="row justify-content-around">
+              {
+                // PROGRESS BAR HERE}
+              }
               {lists.map((e, i) => {
                 return (
-                  <div key={i} className="col-4">
-                    <ListCard
-                      {...e}
-                      currentListDisplay={currentListDisplay}
-                      handleCurrentListDisplay={handleCurrentListDisplay}
-                    />
-                  </div>
+                  <ListCard
+                    key={i}
+                    {...e}
+                    currentListDisplay={currentListDisplay}
+                    handleCurrentListDisplay={handleCurrentListDisplay}
+                  />
                 );
               })}
               <div className="col-3">
@@ -197,16 +199,18 @@ const RemindersPage = props => {
         <>
           <div className="container">
             <div className="row justify-content-between">
+              {
+                // PROGRESS BAR HERE}
+              }
               {lists.map((e, i) => {
                 return (
-                  <div key={i} className="col-4 m-3 card p-0 pack--bag-width">
-                    <ListCard
-                      {...e}
-                      currentListDisplay={currentListDisplay}
-                      handleCurrentListDisplay={handleCurrentListDisplay}
-                      list_count={todoList.length}
-                    />
-                  </div>
+                  <ListCard
+                    key={i}
+                    {...e}
+                    currentListDisplay={currentListDisplay}
+                    handleCurrentListDisplay={handleCurrentListDisplay}
+                    list_count={todoList.length}
+                  />
                 );
               })}
             </div>
