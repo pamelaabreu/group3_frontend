@@ -18,5 +18,5 @@
 }
 
 .toastDropShadow {
-  box-shadow: 5px 5px 20px 0px;
+  box-shadow: 5px 5px 20px 0px var(--bundleBlue);
 }
