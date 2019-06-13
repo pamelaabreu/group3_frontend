@@ -38,19 +38,23 @@ const Navbar = props => {
       onStateChange={state => handleStateChange(state)}
     >
       <div className="m-5 mt-4 p-5 d-flex flex-column ">
-        <Link onClick={closeMenu} to="/">
+        <Link onClick={closeMenu} className="mb-5" to="/">
           <img src={BundleLogo} width="100" height="100" alt="Bundle" />
         </Link>
-        <Link className="bm-item mali700" onClick={closeMenu} to="/">
+        <Link className="bm-item mali700 h2" onClick={closeMenu} to="/">
           Home
         </Link>
-        <Link className="bm-item mali700" onClick={closeMenu} to="packHacks">
+        <Link className="bm-item mali700 h2" onClick={closeMenu} to="packHacks">
           Pack Hacks
         </Link>
-        <Link className="bm-item mali700" onClick={closeMenu} to="/tsaGuides">
+        <Link
+          className="bm-item mali700 h2"
+          onClick={closeMenu}
+          to="/tsaGuides"
+        >
           TSA Guides
         </Link>
-        <Link className="bm-item mali700" onClick={closeMenu} to="/about">
+        <Link className="bm-item mali700 h2" onClick={closeMenu} to="/about">
           About
         </Link>
       </div>
@@ -59,7 +63,7 @@ const Navbar = props => {
         <ShowLoginOrSignup closeMenu={closeMenu} openMenu={openMenu} />
       ) : (
         <button
-          className="bundleBlueButton border-0 border-0 p-2 b-radius18"
+          className="bundleBlueButton logout-Button border-0 p-2 b-radius18 h2"
           onClick={UserLogout}
         >
           Logout

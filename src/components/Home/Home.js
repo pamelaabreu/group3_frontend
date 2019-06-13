@@ -11,8 +11,8 @@ const Home = props => {
   const FirebaseUserAuth = useContext(FirebaseAuthContext);
 
   const [destination, setDestination] = useState("");
-  const [departureDate, setDepartureDate] = useState("");
-  const [returnDate, setReturnDate] = useState("");
+  const [departureDate, setDepartureDate] = useState(null);
+  const [returnDate, setReturnDate] = useState(null);
   const [duration, setDuration] = useState(null);
   const [disabled, setDisable] = useState(true);
   const [loading, setLoadStatus] = useState(false);
@@ -23,12 +23,14 @@ const Home = props => {
     setDestination(e.target.value);
   };
 
-  const departureDateHandler = e => {
-    setDepartureDate(e.target.value);
+  const departureDateHandler = startDate => {
+    if (startDate === "Invalid date") return;
+    setDepartureDate(startDate);
   };
 
-  const returnDateHandler = e => {
-    setReturnDate(e.target.value);
+  const returnDateHandler = endDate => {
+    if (endDate === "Invalid date") return;
+    setReturnDate(endDate);
   };
 
   const createTripHandler = e => {
@@ -45,11 +47,11 @@ const Home = props => {
   const createTripForm = (
     <CreateTripForm
       destination={destination}
+      startDate={departureDate}
+      endDate={returnDate}
       destinationHandler={destinationHandler}
-      departureDate={departureDate}
-      departureDateHandler={departureDateHandler}
-      returnDate={returnDate}
-      returnDateHandler={returnDateHandler}
+      startDateHandler={departureDateHandler}
+      endDateHandler={returnDateHandler}
       duration={duration}
       createTripHandler={createTripHandler}
       disabled={disabled}
@@ -63,7 +65,6 @@ const Home = props => {
         duration={duration}
         departureDate={departureDate}
         returnDate={returnDate}
-        modalButtonText={"Bundle It!"}
       />
 
       {FirebaseUserAuth.user ? (
