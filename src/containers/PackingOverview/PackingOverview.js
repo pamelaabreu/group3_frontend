@@ -39,6 +39,10 @@ export default (class PackingOverview extends Component {
       bags: null,
       lists: null,
       list_id: null,
+      todoList: null,
+      shoppingList: null,
+      todoListId: null,
+      shoppingListId: null,
       loading: true,
       selectedList: null,
       lastInputIndex: null,
@@ -304,7 +308,11 @@ export default (class PackingOverview extends Component {
       totalItems,
       totalPacked,
       itemInput,
-      bagName
+      bagName,
+      todoList,
+      todoListId,
+      shoppingList,
+      shoppingListId
     } = this.state;
     const city = tripInfo ? tripInfo.city.replace(/\s/g, "%20") : "";
     const bagContents = displayBag ? this.state[displayBag] : [];
@@ -389,6 +397,10 @@ export default (class PackingOverview extends Component {
                 handleSelectList={this.handleSelectList}
                 bag_id={bags[1].bag_id}
                 windowHeight={height}
+                todoList={todoList}
+                todoListId={todoListId}
+                shoppingList={shoppingList}
+                shoppingListId={shoppingListId}
               />
             )}
           </>
