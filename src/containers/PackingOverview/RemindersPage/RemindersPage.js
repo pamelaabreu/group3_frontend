@@ -56,27 +56,6 @@ const RemindersPage = props => {
       });
   };
 
-  const getList = list => {
-    const { list_type, todolist_id } = list;
-
-    axios({
-      method: "get",
-      url: BASE_URL + "/todolist/" + todolist_id + "/all"
-    })
-      .then(({ data: listData }) => {
-        if (list_type === "Shopping List") {
-          setShoppingList(listData);
-          setShoppingListId(todolist_id);
-        } else {
-          setTodoList(listData);
-          setTodoListId(todolist_id);
-        }
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  };
-
   const handleCurrentListDisplay = bool => {
     setCurrentListDisplay(bool);
   };
