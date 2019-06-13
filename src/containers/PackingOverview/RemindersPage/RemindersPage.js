@@ -1,65 +1,20 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React, { useState } from "react";
 import NoLists from "./NoLists/NoLists";
-import AddListButton from "./AddListCard/AddListCard";
-import ListCard from "./ListCard/ListCard";
-import BASE_URL from "../../../services/backendUrlConnect";
 import TodoListView from "./TodoListView/TodoListView";
 import "./RemindersPage.css";
 
 const RemindersPage = props => {
   const {
     lists,
-    updateLists,
-    trip_id,
-    selectedList,
-    handleSelectList,
     handleAddTodo,
     todoList,
-    todoListId,
-    shoppingList,
-    shoppingListId,
-    handleCompleteTodo
+    handleCompleteTodo,
+    handleDeleteTodo,
+    currentListDisplay,
+    height
   } = props;
 
-  const [alertDisplay, setAlertDisplay] = useState(false);
-  const [currentListDisplay, setCurrentListDisplay] = useState(true);
   const [todoInput, setTodoInput] = useState("");
-  const [height, setHeight] = useState(window.innerHeight);
-
-  useEffect(() => {
-    const handleResize = () => setHeight(window.innerHeight);
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  });
-
-  const createList = () => {
-    for (let i = 0; i < lists.length; i++) {
-      if (lists[i].list_type === selectedList) {
-        setAlertDisplay(true);
-        return;
-      }
-    }
-    axios({
-      method: "post",
-      url: BASE_URL + "/todolist/",
-      data: {
-        name: "",
-        trip_id,
-        list_type: selectedList
-      }
-    })
-      .then(res => {
-        updateLists();
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  };
-
-  const handleCurrentListDisplay = bool => {
-    setCurrentListDisplay(bool);
-  };
 
   const handleTodoInputChange = e => {
     setTodoInput(e.target.value);
