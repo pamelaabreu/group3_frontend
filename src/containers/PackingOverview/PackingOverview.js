@@ -23,6 +23,7 @@ import {
   select,
   unpack
 } from "../../services/packingPage";
+import { fetchLists } from "../../services/remindersPage";
 
 export default (class PackingOverview extends Component {
   constructor(props) {
@@ -77,8 +78,10 @@ export default (class PackingOverview extends Component {
         },
         async () => {
           const { bags, lists, bagTypes } = this.state;
+          const { shoppingList, todoList } = await fetchLists(lists);
           const mountState = await mountPacking(bagTypes, bags, lists);
-          if (mountState) this.setState(mountState);
+          if (mountState)
+            this.setState({ ...mountState, ...shoppingList, ...todoList });
         }
       );
     } catch (err) {
