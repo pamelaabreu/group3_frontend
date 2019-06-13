@@ -41,33 +41,30 @@ const getList = list => {
     });
 };
 
-/*
-
-const createList = () => {
-    for (let i = 0; i < lists.length; i++) {
-      if (lists[i].list_type === selectedList) {
-        setAlertDisplay(true);
-        return;
-      }
+export const createList = (lists, selectedList, trip_id) => {
+  for (let i = 0; i < lists.length; i++) {
+    if (lists[i].list_type === selectedList) {
+      return false;
     }
-    axios({
-      method: "post",
-      url: BASE_URL + "/todolist/",
-      data: {
-        name: "",
-        trip_id,
-        list_type: selectedList
-      }
+  }
+  return axios({
+    method: "post",
+    url: BASE_URL + "/todolist/",
+    data: {
+      name: "",
+      trip_id,
+      list_type: selectedList
+    }
+  })
+    .then(({ data: { id } }) => {
+      return { trip_id, todolist_id: id, name: "", list_type: selectedList };
     })
-      .then(res => {
-        updateLists();
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  };
+    .catch(err => {
+      console.log(err);
+    });
+};
 
-
+/*
 
   const handleCurrentListDisplay = bool => {
     setCurrentListDisplay(bool);
