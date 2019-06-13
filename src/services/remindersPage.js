@@ -2,11 +2,12 @@ import axios from "axios";
 import BASE_URL from "./backendUrlConnect";
 
 export const fetchLists = async lists => {
-  if (!lists.length) return;
   let obj = {
-    shoppingList: { shoppingList: null, shoppingListId: null },
-    todoList: { todoList: null, todoListId: null }
+    shoppingList: { shoppingList: [], shoppingListId: null },
+    todoList: { todoList: [], todoListId: null }
   };
+
+  if (!lists.length) return obj;
 
   for (let list of lists) {
     let listData = await getList(list);
