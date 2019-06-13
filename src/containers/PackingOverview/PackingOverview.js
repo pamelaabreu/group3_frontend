@@ -486,6 +486,12 @@ export default (class PackingOverview extends Component {
                 shoppingListId={shoppingListId}
                 handleAddTodo={this.handleAddTodo}
                 handleCompleteTodo={this.handleCompleteTodo}
+                handleDeleteTodo={this.handleDeleteTodo}
+                createList={this.handleCreateList}
+                alertDisplay={alertDisplay}
+                currentListDisplay={currentListDisplay}
+                handleCurrentListDisplay={this.handleCurrentListDisplay}
+                height={height}
               />
             )}
           </>
