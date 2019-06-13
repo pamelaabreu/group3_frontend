@@ -1,9 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import UnpackedItem from "../UnpackedItem/UnpackedItem";
 import PackedItem from "../PackedItem/PackedItem";
+import "./Bag.css";
 
 export default props => {
-  const { items, handleOnClick, handleChange, onKeyPress, deleteMode } = props;
+  const {
+    items,
+    handleOnClick,
+    handleChange,
+    onKeyPress,
+    deleteMode,
+    width
+  } = props;
+  const [unpacked, setUnpacked] = useState(true);
+  const [packedBag, setPackedBag] = useState(false);
+
   if (!items) {
     return <p>EMPTY</p>;
   } else {
@@ -20,6 +31,7 @@ export default props => {
             handleClick={handleOnClick}
             handleChange={handleChange}
             onKeyPress={onKeyPress}
+            width={width}
           />
         );
       } else return null;
@@ -36,58 +48,98 @@ export default props => {
             handleClick={handleOnClick}
             handleChange={handleChange}
             onKeyPress={onKeyPress}
+            width={width}
           />
         );
       } else return null;
     });
+    if (packedCount === 0)
+      packed.push(<div style={{ height: "5rem" }} key={"packedEmptyBox"} />);
+    if (items.length - packedCount === 0)
+      unPacked.push(
+        <div style={{ height: "5rem" }} key={"unpackedEmptyBox"} />
+      );
+
+    const packedCollapse = packedBag ? " show" : "";
+    const unpackedCollapse = unpacked ? " show" : "";
+    const handleShow = call => {
+      if (call === "packed") {
+        if (unpacked) {
+          setTimeout(function() {
+            setUnpacked(!unpacked);
+          }, 282);
+          setPackedBag(!packedBag);
+        } else {
+          setPackedBag(!packedBag);
+        }
+      } else if (call === "unpacked") {
+        if (packedBag) {
+          setTimeout(function() {
+            setPackedBag(!packedBag);
+          }, 282);
+          setUnpacked(!unpacked);
+        } else {
+          setUnpacked(!unpacked);
+        }
+      }
+    };
+    const unpackedClass = unpacked ? "" : "bag--button-bottom";
+    const packedClass = packedBag ? "" : "bag--button-bottom";
+
     return (
-      <div className="accordion" id="accordionExample">
-        <div className="card">
-          <div className="card-header" id="headingOne">
-            <h2 className="mb-0">
-              <button
-                className="col-12 btn btn-link collapsed"
-                type="button"
-                data-toggle="collapse"
-                data-target="#collapseOne"
-                aria-expanded="true"
-                aria-controls="collapseOne"
-              >
-                Packed Items {packedCount + " of " + items.length}
-              </button>
-            </h2>
-          </div>
-          <div
-            id="collapseOne"
-            className="collapse"
-            aria-labelledby="headingOne"
-            data-parent="#accordionExample"
+      <div>
+        <div className="mb-2">
+          <button
+            className={"col-12 bag--packed-button " + packedClass}
+            type="button"
+            data-toggle="collapse"
+            data-target="#packed"
+            aria-expanded="false"
+            aria-controls="packed item expand"
+            onClick={() =>
+              packedBag
+                ? setTimeout(function() {
+                    setPackedBag(!packedBag);
+                  }, 282)
+                : handleShow("packed")
+            }
           >
-            <div className="card-body row">{packed}</div>
+            <div className="row justify-content-between mx-3">
+              <span className="bag--packed-title">Packed Items</span>
+              <span className="bag--packed-count pt-2">
+                {packedCount + " of " + items.length}
+              </span>
+            </div>
+          </button>
+          <div className={"collapse " + packedCollapse} id="packed">
+            <div className="row bag--packed-container px-3">{packed}</div>
           </div>
         </div>
-        <div className="card">
-          <div className="" id="headingTwo">
-            <h2 className="mb-0">
-              <button
-                className="col-12 btn btn-link"
-                type="button"
-                data-toggle="collapse"
-                data-target="#collapseTwo"
-                aria-expanded="false"
-                aria-controls="collapseTwo"
-              >
-                Unpacked Items {items.length - packedCount + " left"}
-              </button>
-            </h2>
-          </div>
-          <div
-            id="collapseTwo"
-            className="collapse show"
-            aria-labelledby="headingTwo"
-            data-parent="#accordionExample"
+        <div className="mt-2">
+          <button
+            className={"col-12 bag--unpacked-button " + unpackedClass}
+            type="button"
+            data-toggle="collapse"
+            data-target="#unpacked"
+            aria-expanded="false"
+            aria-controls="unpacked item expand"
+            onClick={() =>
+              unpacked
+                ? setTimeout(function() {
+                    setUnpacked(!unpacked);
+                  }, 282)
+                : handleShow("unpacked")
+            }
           >
-            <div className="card-body row bag--body-size">{unPacked}</div>
+            <div className="row justify-content-between mx-3">
+              <span className="bag--unpacked-title">Unpacked Items</span>
+              <span className="bag--unpacked-count pt-2">
+                {items.length - packedCount + " items left"}
+              </span>
+            </div>
+          </button>
+          <div className={"collapse " + unpackedCollapse} id="unpacked">
+            <div className="row bag--unpacked-container px-3">{unPacked}</div>
           </div>
         </div>
       </div>

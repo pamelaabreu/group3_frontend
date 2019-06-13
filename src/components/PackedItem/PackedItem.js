@@ -1,26 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import "./PackedItem.css";
 
 export default props => {
-  const [width, setWidth] = useState(window.innerWidth);
-
-  useEffect(() => {
-    const handleResize = () => setWidth(window.innerWidth);
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  });
-
   const {
     // flag,
     deleteMode,
     handleClick,
     image,
     name,
-    quantity,
     index,
-    toBeDeleted
+    toBeDeleted,
+    width
   } = props;
-
   const toDelete = toBeDeleted ? " bg-danger text-white" : " ";
   const img = image
     ? image
@@ -56,7 +47,7 @@ export default props => {
               dynamicSize("header") + " col-12 pItem--head text-center p-0 "
             }
           >
-            <span className="pItem--title--font c-white">{name}</span>
+            <span className="pItem--title--font c-denimBlue">{name}</span>
           </div>
           <div className="col-12 pItem--buttons rounded">
             <div className="row px-2 no-gutters">
