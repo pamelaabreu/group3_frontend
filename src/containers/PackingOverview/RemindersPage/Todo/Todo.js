@@ -1,4 +1,5 @@
 import React from "react";
+import "./Todo.css";
 
 const Todo = props => {
   const {
@@ -10,10 +11,10 @@ const Todo = props => {
     complete
   } = props;
 
-  const completed = <i className="far fa-check-circle" />;
+  const completed = <i className="far fa-check-circle c-bundleBlue" />;
   const incomplete = (
     <i
-      className="far fa-circle"
+      className="far fa-circle c-bundleBlue"
       onClick={() => handleCompleteTodo(index, value)}
     />
   );
@@ -22,14 +23,14 @@ const Todo = props => {
     <ul className="list-group">
       <li className="px-0 list-group-item d-flex">
         <div className="col-12 row justify-content-between no-gutters">
-          <div className="col-2 text-center">
+          <div className="col-1 text-center">
             <i
-              className="far fa-trash-alt"
+              className="far fa-trash-alt c-bundleBlue"
               onClick={() => handleDeleteTodo(index, value)}
             />
           </div>
-          <div className="col-8">{task_name}</div>
-          <div className="col-2 text-right">
+          <div className="col-8 c-bundleBlue mali300">{task_name}</div>
+          <div className="col-1 text-right">
             {complete === false ? incomplete : completed}
           </div>
         </div>

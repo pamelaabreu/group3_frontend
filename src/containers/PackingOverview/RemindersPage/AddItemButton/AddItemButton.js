@@ -16,13 +16,15 @@ const AddItemButton = props => {
         </button>
         <div className="dropdown-menu">
           <div className="p-2">
-            <label>
+            <label htmlFor="item-input">
               Select an item:
               <input
+                id="item-input"
                 type="text"
                 onChange={handleOnChange}
                 value={itemInput}
                 list="datalist"
+                aria-label="Add item"
               />
             </label>
             <datalist id="datalist">

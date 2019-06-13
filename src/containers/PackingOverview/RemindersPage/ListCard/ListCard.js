@@ -1,12 +1,12 @@
 import React from "react";
 
 const ListCard = props => {
-  const { list_type, name, handleCurrentListDisplay, list_count } = props;
+  const { list_type, name, handleCurrentListDisplay } = props;
   const bool = list_type === "To Do List" ? true : false;
   return (
-    <div className="card mx-1 mt-2 p-0 pack--bag-width">
+    <div className="col-4 m-3 card p-0 rounded">
       <button
-        className="card-body row"
+        className="card-body rounded"
         onClick={() => handleCurrentListDisplay(bool)}
       >
         <h5 className="card-title">{list_type}</h5>
@@ -14,7 +14,7 @@ const ListCard = props => {
           <span>{name}</span>
         </p>
         <p>
-          <span>{list_count} todos</span>
+          <span>{totalTodos.complete + totalTodos.incomplete} todos</span>
         </p>
       </button>
     </div>

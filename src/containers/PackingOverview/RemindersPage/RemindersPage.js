@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import NoReminders from "./NoReminders/NoReminders";
+import NoLists from "./NoLists/NoLists";
 import AddListButton from "./AddListCard/AddListCard";
 import ListCard from "./ListCard/ListCard";
 import BASE_URL from "../../../services/backendUrlConnect";
-import AddTodo from "./AddTodo/AddTodo";
 import TodoListView from "./TodoListView/TodoListView";
+import "./RemindersPage.css";
 
 const RemindersPage = props => {
   const { lists, updateLists, trip_id, selectedList, handleSelectList } = props;
@@ -17,6 +17,13 @@ const RemindersPage = props => {
   const [alertDisplay, setAlertDisplay] = useState(false);
   const [currentListDisplay, setCurrentListDisplay] = useState(true);
   const [todoInput, setTodoInput] = useState("");
+  const [height, setHeight] = useState(window.innerHeight);
+
+  useEffect(() => {
+    const handleResize = () => setHeight(window.innerHeight);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  });
 
   useEffect(() => {
     console.log(lists, "lists");
@@ -45,7 +52,6 @@ const RemindersPage = props => {
       }
     })
       .then(res => {
-        console.log("list created");
         updateLists();
       })
       .catch(err => {
@@ -97,7 +103,6 @@ const RemindersPage = props => {
       .then(({ data: { id } }) => {
         let newTodoList = [...todoList];
         data.id = id;
-        console.log(id, "ID");
         newTodoList.push(data);
         setTodoList(newTodoList);
         setTodoInput("");
@@ -137,90 +142,88 @@ const RemindersPage = props => {
 
   return (
     <>
-      {lists.length !== 0 ? (
-        <h4 className="ml-3">Here's your todos:</h4>
-      ) : (
-        <NoReminders />
-      )}
-      <div className="container">
-        <div className="row justify-content-between">
-          {lists.map((e, i) => {
-            return (
-              <div key={i} className="col-4">
-                <ListCard
-                  {...e}
-                  handleCurrentListDisplay={handleCurrentListDisplay}
-                  list_count={5}
+      {lists.length === 0 ? (
+        <>
+          <NoLists />
+          <div className="col-3">
+            <AddListButton
+              createList={createList}
+              handleSelectList={handleSelectList}
+              alertDisplay={alertDisplay}
+            />
+          </div>
+        </>
+      ) : null}
+
+      {lists.length === 1 ? (
+        <>
+          <div className="container">
+            <div className="row justify-content-around">
+              {lists.map((e, i) => {
+                return (
+                  <div key={i} className="col-4">
+                    <ListCard
+                      {...e}
+                      currentListDisplay={currentListDisplay}
+                      handleCurrentListDisplay={handleCurrentListDisplay}
+                    />
+                  </div>
+                );
+              })}
+              <div className="col-3">
+                <AddListButton
+                  createList={createList}
+                  handleSelectList={handleSelectList}
+                  alertDisplay={alertDisplay}
                 />
               </div>
-            );
-          })}
-          {lists.length === 2 ? null : (
-            <div className="col-3">
-              <AddListButton
-                createList={createList}
-                handleSelectList={handleSelectList}
-                alertDisplay={alertDisplay}
-              />
             </div>
-          )}
-        </div>
-        <div className="">
-          <p>
-            <a
-              className="btn btn-primary"
-              data-toggle="collapse"
-              href="#multiCollapseExample3"
-              role="button"
-              aria-expanded="false"
-              aria-controls="multiCollapseExample3"
-            >
-              To Be Completed
-            </a>
-            <button
-              className="btn btn-primary ml-2"
-              type="button"
-              data-toggle="collapse"
-              data-target="#multiCollapseExample2"
-              aria-expanded="false"
-              aria-controls="multiCollapseExample2"
-            >
-              Completed
-            </button>
-          </p>
+          </div>
           {currentListDisplay ? (
             <TodoListView
               todoList={todoList}
               handleCompleteTodo={handleCompleteTodo}
               handleDeleteTodo={handleDeleteTodo}
+              todoInput={todoInput}
+              handleTodoInputChange={handleTodoInputChange}
+              addTodo={addTodo}
+              height={height}
             />
-          ) : (
-            <div className="row">
-              <div className="col">
-                <div
-                  className="collapse multi-collapse"
-                  id="multiCollapseExample3"
-                >
-                  <h5>Shopping list stuff</h5>
-                </div>
-              </div>
-              <div className="col">
-                <div
-                  className="collapse multi-collapse"
-                  id="multiCollapseExample2"
-                >
-                  <h5>More Shopping list stuff</h5>
-                </div>
-              </div>
+          ) : null}
+        </>
+      ) : null}
+
+      {lists.length === 2 ? (
+        <>
+          <div className="container">
+            <div className="row justify-content-between">
+              {lists.map((e, i) => {
+                return (
+                  <div key={i} className="col-4 m-3 card p-0 pack--bag-width">
+                    <ListCard
+                      {...e}
+                      currentListDisplay={currentListDisplay}
+                      handleCurrentListDisplay={handleCurrentListDisplay}
+                      list_count={todoList.length}
+                    />
+                  </div>
+                );
+              })}
             </div>
-          )}
-        </div>
-      </div>
-      <AddTodo
-        todoInput={todoInput}
-        handleTodoInputChange={handleTodoInputChange}
-        addTodo={addTodo}
-      />
+          </div>
+          {currentListDisplay ? (
+            <TodoListView
+              todoList={todoList}
+              handleCompleteTodo={handleCompleteTodo}
+              handleDeleteTodo={handleDeleteTodo}
+              todoInput={todoInput}
+              handleTodoInputChange={handleTodoInputChange}
+              addTodo={addTodo}
+              height={height}
+            />
+          ) : null}
+        </>
+      ) : null}
     </>
   );
 };
