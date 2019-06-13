@@ -37,7 +37,7 @@ const TodoListView = ({
         className="todo-list-view"
         style={{ height: height75 + "px", maxHeight: height75 + "px" }}
       >
-        <div className="ml-2 bg-bundleBlue c-white">
+        <div className="ml-2 bg-bundleBlue c-white rounded">
           <a
             className="col-8 btn c-white"
             data-toggle="collapse"
@@ -48,7 +48,7 @@ const TodoListView = ({
           >
             <div className="row justify-content-between">
               <span>To Be Completed</span>
-              <span>{incompleteItems} items</span>
+              <span>{incompleteItems} items left</span>
             </div>
           </a>
         </div>
@@ -81,7 +81,7 @@ const TodoListView = ({
         </div>
 
         <button
-          className="col-8 btn bg-smokeGrey c-white ml-2"
+          className="col-8 btn bg-smokeGrey c-white ml-2 rounded"
           type="button"
           data-toggle="collapse"
           data-target="#multiCollapseExample2"
