@@ -425,25 +425,29 @@ export default (class PackingOverview extends Component {
                   <ProgressBar total={total} width={width} />
                 </div>
                 <div className="col-8 ">
-                  <div className="row justify-content-around no-gutters">
-                    {bags.map((e, i) => {
-                      return (
-                        <BagSelector
-                          {...e}
-                          bag_type={bagTypes[e.type_id]}
-                          key={i}
-                          countAndKey={this.getItemCountAndKey(
-                            bagTypes[e.type_id],
-                            e.trip_id,
-                            e.bag_id
-                          )}
-                          displayBag={displayBag}
-                          handleOnClick={this.handleOnClick}
-                          width={width}
-                        />
-                      );
-                    })}
-                  </div>
+                  {page === "reminders" ? (
+                    this.renderListCards()
+                  ) : (
+                    <div className="row justify-content-around no-gutters">
+                      {bags.map((e, i) => {
+                        return (
+                          <BagSelector
+                            {...e}
+                            bag_type={bagTypes[e.type_id]}
+                            key={i}
+                            countAndKey={this.getItemCountAndKey(
+                              bagTypes[e.type_id],
+                              e.trip_id,
+                              e.bag_id
+                            )}
+                            displayBag={displayBag}
+                            handleOnClick={this.handleOnClick}
+                            width={width}
+                          />
+                        );
+                      })}
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
