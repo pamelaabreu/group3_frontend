@@ -389,7 +389,9 @@ export default (class PackingOverview extends Component {
       todoList,
       todoListId,
       shoppingList,
-      shoppingListId
+      shoppingListId,
+      alertDisplay,
+      currentListDisplay
     } = this.state;
     const city = tripInfo ? tripInfo.city.replace(/\s/g, "%20") : "";
     const bagContents = displayBag ? this.state[displayBag] : [];
