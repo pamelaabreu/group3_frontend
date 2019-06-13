@@ -65,27 +65,8 @@ const RemindersPage = props => {
   };
 
   const addTodo = e => {
-    let data = {
-      task_name: todoInput,
-      complete: false,
-      todolist_id: todoListId
-    };
-
-    axios({
-      method: "post",
-      url: BASE_URL + "/todolist/todo/",
-      data
-    })
-      .then(({ data: { id } }) => {
-        let newTodoList = [...todoList];
-        data.id = id;
-        newTodoList.push(data);
-        setTodoList(newTodoList);
-        setTodoInput("");
-      })
-      .catch(err => {
-        console.log(err);
-      });
+    handleAddTodo(todoInput);
+    setTodoInput("");
   };
 
   const handleCompleteTodo = (index, todo_id) => {
