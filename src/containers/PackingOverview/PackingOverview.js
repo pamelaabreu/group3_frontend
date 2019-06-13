@@ -219,6 +219,56 @@ export default (class PackingOverview extends Component {
     return;
   };
 
+  handleDeleteTodo = async (index, todo_id) => {
+    const newState = await deleteTodo(index, todo_id, this.state);
+    if (newState) this.setState(newState);
+    return;
+  };
+
+  handleCreateList = async () => {
+    const { lists, selectedList, tripInfo } = this.state;
+    const response = await createList(lists, selectedList, tripInfo.id);
+    if (response) {
+      const copiedLists = [...lists];
+      copiedLists.push(response);
+      this.setState({ lists: copiedLists });
+    } else {
+      this.setState({ alertDisplay: true });
+    }
+  };
+
+  handleCurrentListDisplay = () => {
+    const { currentListDisplay } = this.state;
+    this.setState({ currentListDisplay: !currentListDisplay });
+  };
+
+  renderListCards = () => {
+    const { alertDisplay, lists, currentListDisplay } = this.state;
+    return (
+      <div className="row">
+        {lists.map((e, i) => {
+          return (
+            <ListCard
+              key={i}
+              {...e}
+              currentListDisplay={currentListDisplay}
+              handleCurrentListDisplay={this.handleCurrentListDisplay}
+            />
+          );
+        })}
+        {lists.length === 2 ? null : (
+          <div className="col-3">
+            <AddListButton
+              createList={this.handleCreateList}
+              handleSelectList={this.handleSelectList}
+              alertDisplay={alertDisplay}
+            />
+          </div>
+        )}
+      </div>
+    );
+  };
+
   //  ------------------
 
   handleAddToDelete = (name, index) => {
