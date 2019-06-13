@@ -11,10 +11,10 @@ const Todo = props => {
     complete
   } = props;
 
-  const completed = <i className="far fa-check-circle c-bundleBlue" />;
+  const completed = <i className="far fa-check-circle fa-lg c-bundleBlue" />;
   const incomplete = (
     <i
-      className="far fa-circle c-bundleBlue"
+      className="far fa-circle fa-lg c-bundleBlue"
       onClick={() => handleCompleteTodo(index, value)}
     />
   );
@@ -22,14 +22,15 @@ const Todo = props => {
   return (
     <ul className="list-group">
       <li className="px-0 list-group-item d-flex">
-        <div className="col-12 row justify-content-between no-gutters">
-          <div className="col-1 text-center">
+        <div className="col-12 row justify-content-around no-gutters align-middle">
+          <div className="col-1 text-left">
             <i
-              className="far fa-trash-alt c-bundleBlue"
+              className="far fa-trash-alt fa-lg c-bundleBlue"
               onClick={() => handleDeleteTodo(index, value)}
             />
           </div>
-          <div className="col-8 c-bundleBlue mali300">{task_name}</div>
+          <div className="bundleBlue-border-left-1 todo-divider py-0" />
+          <div className="col-8 c-bundleBlue mali700">{task_name}</div>
           <div className="col-1 text-right">
             {complete === false ? incomplete : completed}
           </div>
