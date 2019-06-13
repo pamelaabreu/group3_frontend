@@ -378,10 +378,7 @@ export default (class PackingOverview extends Component {
       tripInfo,
       selectedList,
       height,
-      width
-    } = this.state;
-
-    const {
+      width,
       bagTypes,
       displayBag,
       deleteMode,
