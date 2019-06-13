@@ -73,3 +73,12 @@
 .bm-overlay {
   background: var(--bundleBlue70);
 }
+
+.logout-Button {
+  transition: background 0.2s ease;
+}
+
+.logout-Button:hover {
+  color: var(--white);
+  background: var(--bundleBlue70);
+}

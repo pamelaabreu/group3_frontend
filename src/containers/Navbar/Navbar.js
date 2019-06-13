@@ -63,7 +63,7 @@ const Navbar = props => {
         <ShowLoginOrSignup closeMenu={closeMenu} openMenu={openMenu} />
       ) : (
         <button
-          className="bundleBlueButton border-0 p-2 b-radius18 h2"
+          className="bundleBlueButton logout-Button border-0 p-2 b-radius18 h2"
           onClick={UserLogout}
         >
           Logout
