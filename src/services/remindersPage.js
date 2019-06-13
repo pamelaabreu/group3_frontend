@@ -72,10 +72,6 @@ const createList = () => {
     setCurrentListDisplay(bool);
   };
 
-  const handleTodoInputChange = e => {
-    setTodoInput(e.target.value);
-  };
-
 */
 
 export const addTodo = (todoInput, state) => {
@@ -103,19 +99,24 @@ export const addTodo = (todoInput, state) => {
     });
 };
 
-//   const handleCompleteTodo = (index, todo_id) => {
-//     let copiedTodoList = [...todoList];
-//     axios
-//       .put(BASE_URL + "/todolist/todo/" + todo_id, {
-//         id: todo_id,
-//         complete: true
-//       })
-//       .then(() => {
-//         copiedTodoList[index].complete = true;
-//         setTodoList(copiedTodoList);
-//       })
-//       .catch(err => console.log(err));
-//   };
+export const completeTodo = (index, todo_id, state) => {
+  const { todoList } = state;
+
+  let copiedTodoList = [...todoList];
+  return axios
+    .put(BASE_URL + "/todolist/todo/" + todo_id, {
+      id: todo_id,
+      complete: true
+    })
+    .then(() => {
+      copiedTodoList[index].complete = true;
+      return { todoList: copiedTodoList };
+    })
+    .catch(err => {
+      console.log(err);
+      return null;
+    });
+};
 
 //   const handleDeleteTodo = (index, todo_id) => {
 //     let copiedTodoList = [...todoList];
