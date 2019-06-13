@@ -8,6 +8,8 @@ import LoadingScreen from "../../components/LoadingScreen/LoadingScreen";
 import BagSelector from "../../components/BagSelectorCard/BagSelectorCard";
 import Tabs from "../../components/PackingTabs/PackingTabs";
 import ProgressBar from "../../components/ProgressBar/ProgressBar";
+import ListCard from "./RemindersPage/ListCard/ListCard";
+import AddListButton from "./RemindersPage/AddListCard/AddListCard";
 import {
   addToDelete,
   addToShoppingCart,
