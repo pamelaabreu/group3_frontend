@@ -25,32 +25,11 @@ const RemindersPage = props => {
     setTodoInput("");
   };
 
-  const handleDeleteTodo = (index, todo_id) => {
-    let copiedTodoList = [...todoList];
-    copiedTodoList = copiedTodoList
-      .slice(0, index)
-      .concat(copiedTodoList.slice(index + 1));
-
-    axios
-      .delete(BASE_URL + "/todolist/todo/" + todo_id)
-      .then(() => {
-        setTodoList(copiedTodoList);
-      })
-      .catch(err => console.log(err));
-  };
-
   return (
     <>
       {lists.length === 0 ? (
         <>
           <NoLists />
-          <div className="col-3">
-            <AddListButton
-              createList={createList}
-              handleSelectList={handleSelectList}
-              alertDisplay={alertDisplay}
-            />
-          </div>
         </>
       ) : null}
 
@@ -61,23 +40,6 @@ const RemindersPage = props => {
               {
                 // PROGRESS BAR HERE}
               }
-              {lists.map((e, i) => {
-                return (
-                  <ListCard
-                    key={i}
-                    {...e}
-                    currentListDisplay={currentListDisplay}
-                    handleCurrentListDisplay={handleCurrentListDisplay}
-                  />
-                );
-              })}
-              <div className="col-3">
-                <AddListButton
-                  createList={createList}
-                  handleSelectList={handleSelectList}
-                  alertDisplay={alertDisplay}
-                />
-              </div>
             </div>
           </div>
           {currentListDisplay ? (
@@ -101,17 +63,6 @@ const RemindersPage = props => {
               {
                 // PROGRESS BAR HERE}
               }
-              {lists.map((e, i) => {
-                return (
-                  <ListCard
-                    key={i}
-                    {...e}
-                    currentListDisplay={currentListDisplay}
-                    handleCurrentListDisplay={handleCurrentListDisplay}
-                    list_count={todoList.length}
-                  />
-                );
-              })}
             </div>
           </div>
           {currentListDisplay ? (
