@@ -32,16 +32,6 @@ const RemindersPage = props => {
     return () => window.removeEventListener("resize", handleResize);
   });
 
-  useEffect(() => {
-    console.log(lists, "lists");
-    if (!lists.length) return;
-    for (let list of lists) {
-      getList(list);
-    }
-  }, [lists]);
-
-  useEffect(() => {}, [shoppingList, shoppingListId]);
-
   const createList = () => {
     for (let i = 0; i < lists.length; i++) {
       if (lists[i].list_type === selectedList) {
