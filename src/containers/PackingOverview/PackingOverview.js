@@ -258,7 +258,6 @@ export default (class PackingOverview extends Component {
     let total = completedTodos
       ? Math.floor((completedTodos / todoList.length) * 100)
       : 0;
-    // total = isNaN(total)? 0 : total;
     return (
       <>
         <div className="col-2 offset-2 pt-2">
