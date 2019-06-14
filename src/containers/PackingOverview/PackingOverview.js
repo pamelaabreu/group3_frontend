@@ -285,6 +285,22 @@ export default (class PackingOverview extends Component {
     );
   };
 
+  getListItemsCount = () => {
+    const { todoList } = this.state;
+    let completedTodos = 0;
+    let incompleteTodos = 0;
+    if (todoList.length > 0) {
+      todoList.forEach(todoItem => {
+        if (todoItem.complete === true) {
+          completedTodos += 1;
+        } else if (todoItem.complete === false) {
+          incompleteTodos += 1;
+        }
+      });
+    }
+    return { completedTodos, incompleteTodos };
+  };
+
   //  ------------------
 
   handleAddToDelete = (name, index) => {
