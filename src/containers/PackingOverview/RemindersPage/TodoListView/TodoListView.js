@@ -56,64 +56,71 @@ const TodoListView = ({
 
   return (
     <>
-      <div
-        className="todo-list-view"
-        style={{ height: height75 + "px", maxHeight: height75 + "px" }}
-      >
-        <div className="ml-2 bg-bundleBlue c-white rounded">
-          <a
-            className="col-8 btn c-white"
+      <div>
+        <div
+          className="todo-list-view"
+          style={{
+            height: height + "px",
+            maxHeight: height + "px",
+            marginBottom: "5rem"
+          }}
+        >
+          <div className="ml-2 shadow">
+            <div className="ml-2 bg-bundleBlue c-white rounded">
+              <a
+                className="col-8 btn c-white"
+                data-toggle="collapse"
+                href="#multiCollapseExample3"
+                role="button"
+                aria-expanded="false"
+                aria-controls="multiCollapseExample3"
+              >
+                <div className="row justify-content-between">
+                  <span className="mali700">To Be Completed</span>
+                  <span className="mali400">{incompleteCount} items left</span>
+                </div>
+              </a>
+            </div>
+            <div className="col">
+              <div
+                className="collapse show multi-collapse"
+                id="multiCollapseExample3"
+              >
+                <div className="">{incompleteTodos}</div>
+              </div>
+            </div>
+          </div>
+
+          <button
+            className="col-8 btn bg-smokeGrey c-white ml-2 rounded"
+            type="button"
             data-toggle="collapse"
-            href="#multiCollapseExample3"
-            role="button"
+            data-target="#multiCollapseExample2"
             aria-expanded="false"
-            aria-controls="multiCollapseExample3"
+            aria-controls="multiCollapseExample2"
           >
             <div className="row justify-content-between">
-              <span>To Be Completed</span>
-              <span>{incompleteCount} items left</span>
+              <span className="mali700">Completed</span>
+              <span className="mali400">{completedCount} items</span>
             </div>
-          </a>
-        </div>
-        <div className="col">
-          <div
-            className="collapse show multi-collapse"
-            id="multiCollapseExample3"
-          >
-            <div className="">{incompleteTodos}</div>
+          </button>
+
+          <div className="col">
+            <div
+              className="collapse show multi-collapse"
+              id="multiCollapseExample2"
+            >
+              <div className="">{completedTodos}</div>
+            </div>
           </div>
         </div>
-
-        <button
-          className="col-8 btn bg-smokeGrey c-white ml-2 rounded"
-          type="button"
-          data-toggle="collapse"
-          data-target="#multiCollapseExample2"
-          aria-expanded="false"
-          aria-controls="multiCollapseExample2"
-        >
-          <div className="row justify-content-between">
-            <span>Completed</span>
-            <span>{completedCount} items</span>
-          </div>
-        </button>
-
-        <div className="col">
-          <div
-            className="collapse show multi-collapse"
-            id="multiCollapseExample2"
-          >
-            <div className="">{completedTodos}</div>
-          </div>
+        <div className="button-container mx-auto">
+          <AddTodo
+            todoInput={todoInput}
+            handleTodoInputChange={handleTodoInputChange}
+            addTodo={addTodo}
+          />
         </div>
-      </div>
-
-      <div className="d-flex justify-content-center">
-        <AddTodo
-          todoInput={todoInput}
-          handleTodoInputChange={handleTodoInputChange}
-          addTodo={addTodo}
-        />
       </div>
     </>
   );
