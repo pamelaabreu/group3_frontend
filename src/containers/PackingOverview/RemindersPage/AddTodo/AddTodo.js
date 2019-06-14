@@ -50,7 +50,7 @@ const AddTodo = props => {
           <div className="col-12">
             <div className="row p-2">
               <button
-                className="add-button shadow bg-denimBlue c-white mali700 p-2 col-4 offset-7"
+                className="add-button p-2 shadow bg-denimBlue c-white mali700 col-4 offset-7"
                 type="submit"
                 onClick={addTodo}
               >
