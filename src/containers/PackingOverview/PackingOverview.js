@@ -209,14 +209,12 @@ export default (class PackingOverview extends Component {
 
   handleAddTodo = async todoInput => {
     const newState = await addTodo(todoInput, this.state);
-    console.log(newState, "new");
     if (newState) this.setState(newState);
     return;
   };
 
   handleCompleteTodo = async (index, todo_id) => {
     const newState = await completeTodo(index, todo_id, this.state);
-    console.log(newState, "new");
     if (newState) this.setState(newState);
     return;
   };
@@ -233,7 +231,15 @@ export default (class PackingOverview extends Component {
     if (response) {
       const copiedLists = [...lists];
       copiedLists.push(response);
-      this.setState({ lists: copiedLists });
+      response.list_type === "To Do List"
+        ? this.setState({
+            lists: copiedLists,
+            todoListId: response.todolist_id
+          })
+        : this.setState({
+            lists: copiedLists,
+            shoppingListId: response.todolist_id
+          });
     } else {
       this.setState({ alertDisplay: true });
     }
