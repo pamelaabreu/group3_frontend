@@ -44,6 +44,8 @@ export default (class PackingOverview extends Component {
       bagTypes: { 1: "Personal", 2: "Carry-On", 3: "Checked" },
       bagName: "Personal",
       destinationImage: null,
+      remindersImage:
+        "https://images.unsplash.com/photo-1501618669935-18b6ecb13d6d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2232&q=80",
       currentBag: null,
       currentCategory: null,
       bags: null,
@@ -455,7 +457,8 @@ export default (class PackingOverview extends Component {
       shoppingListId,
       alertDisplay,
       currentListDisplay,
-      destinationImage
+      destinationImage,
+      remindersImage
     } = this.state;
     const bagContents = displayBag ? this.state[displayBag] : [];
     const total = Math.floor((totalPacked / totalItems) * 100);
@@ -474,7 +477,7 @@ export default (class PackingOverview extends Component {
             >
               <img
                 className="packing--img-cover"
-                src={destinationImage}
+                src={page === "packing" ? destinationImage : remindersImage}
                 alt={`cover of ${tripInfo.city}`}
               />
               <Tabs
