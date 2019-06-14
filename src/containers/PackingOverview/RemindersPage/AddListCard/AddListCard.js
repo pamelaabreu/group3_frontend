@@ -55,7 +55,7 @@ const AddListButton = props => {
             <div className="modal-content">
               <div className="modal-header">
                 <h5 className="modal-title" id="exampleModalLabel">
-                  Modal title
+                  Type of List
                 </h5>
                 <button
                   type="button"
@@ -69,42 +69,28 @@ const AddListButton = props => {
               <div className="modal-body">
                 {/*     ///////////      /////////////  */}
 
-                <div className="card card-body">
-                  Type of List
-                  <hr />
-                  <div className="input-group mb-3">
-                    <select
-                      onChange={handleSelectList}
-                      className="custom-select"
-                      id="inputGroupSelect01"
-                    >
-                      <option defaultValue>Choose one...</option>
-                      <option value="To Do List">To Do List</option>
-                      <option value="Shopping List">Shopping List</option>
-                    </select>
-                    <button
-                      className="btn border border-info"
-                      data-dismiss="modal"
-                      onClick={createList}
-                    >
-                      Create
-                    </button>
-                  </div>
-                  {alertDisplay ? alert : null}
+                {/* <div className="card card-body"> */}
+                <div className="input-group mb-3">
+                  <select
+                    onChange={handleSelectList}
+                    className="custom-select"
+                    id="inputGroupSelect01"
+                  >
+                    <option defaultValue>Choose one...</option>
+                    <option value="To Do List">To Do List</option>
+                    <option value="Shopping List">Shopping List</option>
+                  </select>
+                  <button
+                    className="btn border border-info"
+                    data-dismiss="modal"
+                    onClick={createList}
+                  >
+                    Create
+                  </button>
                 </div>
+                {alertDisplay ? alert : null}
+                {/* </div> */}
                 {/*  /////////////         /////////////////// */}
-              </div>
-              <div className="modal-footer">
-                <button
-                  type="button"
-                  className="btn btn-secondary"
-                  data-dismiss="modal"
-                >
-                  Close
-                </button>
-                <button type="button" className="btn btn-primary">
-                  Save changes
-                </button>
               </div>
             </div>
           </div>
