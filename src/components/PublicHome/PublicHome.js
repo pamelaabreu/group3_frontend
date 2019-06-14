@@ -3,6 +3,7 @@ import "./PublicHome.css";
 import BundleLogo from "../../assets/images/logo/bundle_logo.svg";
 // import BundleLoad from "../../assets/images/background_images/bundle_load.gif";
 import LoadingScreen from "../LoadingScreen/LoadingScreen";
+import HomeTripCard from "../HomeTripCard/HomeTripCard";
 import { getTrips } from "../../services/homeLocalStorage";
 
 const PublicHome = props => {
@@ -10,7 +11,7 @@ const PublicHome = props => {
   const savedTripsFromLocalStorage = getTrips();
 
   return (
-    <div className="publicHomeBanner m-0 p-0 min-vh-100 min-vw-100 d-flex justify-content-center align-items-center">
+    <div className="publicHomeBanner m-0 p-5 min-vh-100 min-vw-100 d-flex justify-content-center align-items-center">
       {/* <div className="bg-bundleBlue m-0 p-0 min-vh-100 min-vw-100 d-flex justify-content-center align-items-center">   */}
       {!loading ? null : <LoadingScreen />}
 
@@ -32,10 +33,13 @@ const PublicHome = props => {
         </div>
 
         {savedTripsFromLocalStorage.length === 0 ? null : (
-          <div className="col-sm-6 col-md-6 col-lg-6 p-5 bg-transparent">
-            <h2>Recently Created Trips</h2>
+          <div className="col-sm-6 col-md-6 col-lg-6 row p-5 bg-transparent ">
+            {/* overflow-auto */}
+            <h2 className="c-white mali700 display-4 mb-2">
+              Recently Created Trips
+            </h2>
             <div className=" d-flex justify-content-around">
-              <h1>Trips</h1>
+              <HomeTripCard savedTrips={savedTripsFromLocalStorage} />
             </div>
           </div>
         )}
