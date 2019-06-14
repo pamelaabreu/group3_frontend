@@ -246,18 +246,32 @@ export default (class PackingOverview extends Component {
 
   renderListCards = () => {
     const { alertDisplay, lists, currentListDisplay } = this.state;
+    const { completedTodos, incompleteTodos } = this.getListItemsCount();
     return (
       <div className="row">
-        {lists.map((e, i) => {
-          return (
-            <ListCard
-              key={i}
-              {...e}
-              currentListDisplay={currentListDisplay}
-              handleCurrentListDisplay={this.handleCurrentListDisplay}
+        {lists.length === 0 ? (
+          <div className="col-3">
+            <AddListButton
+              createList={this.handleCreateList}
+              handleSelectList={this.handleSelectList}
+              alertDisplay={alertDisplay}
             />
-          );
-        })}
+          </div>
+        ) : null}
+        {lists.length
+          ? lists.map((e, i) => {
+              return (
+                <ListCard
+                  key={i}
+                  {...e}
+                  currentListDisplay={currentListDisplay}
+                  handleCurrentListDisplay={this.handleCurrentListDisplay}
+                  completedTodos={completedTodos}
+                  incompleteTodos={incompleteTodos}
+                />
+              );
+            })
+          : null}
         {lists.length === 2 ? null : (
           <div className="col-3">
             <AddListButton
