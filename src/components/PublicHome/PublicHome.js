@@ -3,6 +3,7 @@ import "./PublicHome.css";
 import BundleLogo from "../../assets/images/logo/bundle_logo.svg";
 // import BundleLoad from "../../assets/images/background_images/bundle_load.gif";
 import LoadingScreen from "../LoadingScreen/LoadingScreen";
+import { getTrips } from "../../services/homeLocalStorage";
 
 const PublicHome = props => {
   const { create_trip_form, loading } = props;
