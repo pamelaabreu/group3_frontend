@@ -13,23 +13,46 @@ const TodoListView = ({
   height
 }) => {
   const height75 = Math.floor(height * 0.75);
-
-  let completeItems = 0;
-  let incompleteItems = 0;
-
-  const getListCount = () => {
-    if (todoList.length > 0) {
-      todoList.forEach(todoItem => {
-        if (todoItem.complete === true) {
-          completeItems += 1;
-        } else if (todoItem.complete === false) {
-          incompleteItems += 1;
-        }
-      });
+  let incompleteCount = 0;
+  const incompleteTodos = todoList.map((e, i, a) => {
+    let t = a[a.length - 1 - i];
+    if (t.complete === false) {
+      incompleteCount += 1;
+      return (
+        <div className="todo" key={i}>
+          <Todo
+            task_name={t.task_name}
+            index={a.length - 1 - i}
+            value={t.id}
+            handleCompleteTodo={handleCompleteTodo}
+            handleDeleteTodo={handleDeleteTodo}
+            complete={t.complete}
+          />
+        </div>
+      );
     }
-  };
+    return null;
+  });
 
-  getListCount();
+  let completedCount = 0;
+  const completedTodos = todoList.map((e, i, a) => {
+    let t = a[a.length - 1 - i];
+    if (t.complete === true) {
+      completedCount += 1;
+      return (
+        <div className="todo" key={i}>
+          <Todo
+            task_name={t.task_name}
+            index={a.length - 1 - i}
+            value={t.id}
+            handleDeleteTodo={handleDeleteTodo}
+            complete={t.complete}
+          />
+        </div>
+      );
+    }
+    return null;
+  });
 
   return (
     <>
