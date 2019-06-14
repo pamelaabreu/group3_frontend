@@ -196,7 +196,7 @@ const clothing = [
   {
     name: "Shirts",
     image:
-      "https://firebasestorage.googleapis.com/v0/b/bundle-frontend.appspot.com/o/bag.png?alt=media&token=3b746443-51f2-4fb2-b60f-c2f245d42a11",
+      "https://firebasestorage.googleapis.com/v0/b/bundle-frontend.appspot.com/o/shirt.png?alt=media&token=b072c88c-a329-4f07-955e-3903279fa77e",
     quantity: { 2: 2, 4: 4, 7: 6, 10: 7, 14: 8 },
     bag_type: "checked"
   },
@@ -824,6 +824,11 @@ buildNewObjectArray("first-aid", firstAid, "checked");
 // buildNewObjectArray("children", children, "checked");
 // buildNewObjectArray("misc", backpack, "checked");
 console.log(array);
+array = array.sort(function(a, b) {
+  var textA = a.name.toUpperCase();
+  var textB = b.name.toUpperCase();
+  return textA < textB ? -1 : textA > textB ? 1 : 0;
+});
 itemsObject.general = array;
 // console.log(itemsObject);
 
