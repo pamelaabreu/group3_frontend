@@ -248,40 +248,53 @@ export default (class PackingOverview extends Component {
     const {
       alertDisplay,
       lists,
+      todoList,
       currentListDisplay,
       height,
       width
     } = this.state;
     const { completedTodos, incompleteTodos } = this.getListItemsCount();
     const infoBarHeight = Math.floor(height * 0.17);
+    const total = Math.floor((completedTodos / todoList.length) * 100);
     return (
-      <div className="row justify-content-around no-gutters">
-        {lists.length
-          ? lists.map((e, i) => {
-              return (
-                <ListCard
-                  key={i}
-                  {...e}
-                  currentListDisplay={currentListDisplay}
-                  handleCurrentListDisplay={this.handleCurrentListDisplay}
-                  completedTodos={completedTodos}
-                  incompleteTodos={incompleteTodos}
-                  infoBarHeight={infoBarHeight}
-                  width={width}
+      <>
+        <div className="col-2 offset-2 pt-2">
+          <ProgressBar
+            total={total}
+            width={width}
+            infoBarHeight={infoBarHeight}
+          />
+        </div>
+        <div className="col-8 ">
+          <div className="row justify-content-around no-gutters">
+            {lists.length
+              ? lists.map((e, i) => {
+                  return (
+                    <ListCard
+                      key={i}
+                      {...e}
+                      currentListDisplay={currentListDisplay}
+                      handleCurrentListDisplay={this.handleCurrentListDisplay}
+                      completedTodos={completedTodos}
+                      incompleteTodos={incompleteTodos}
+                      infoBarHeight={infoBarHeight}
+                      width={width}
+                    />
+                  );
+                })
+              : null}
+            {lists.length < 2 ? (
+              <div className="col-3">
+                <AddListButton
+                  createList={this.handleCreateList}
+                  handleSelectList={this.handleSelectList}
+                  alertDisplay={alertDisplay}
                 />
-              );
-            })
-          : null}
-        {lists.length < 2 ? (
-          <div className="col-3">
-            <AddListButton
-              createList={this.handleCreateList}
-              handleSelectList={this.handleSelectList}
-              alertDisplay={alertDisplay}
-            />
+              </div>
+            ) : null}
           </div>
-        ) : null}
-      </div>
+        </div>
+      </>
     );
   };
 
@@ -453,39 +466,41 @@ export default (class PackingOverview extends Component {
                 windowHeight={height}
               />
               <div className="row mt-1 no-gutters">
-                <div className="col-2 offset-2 pt-2">
-                  <ProgressBar
-                    total={total}
-                    width={width}
-                    infoBarHeight={infoBarHeight}
-                  />
-                </div>
-                <div className="col-8 ">
-                  {page === "reminders" ? (
-                    this.renderListCards()
-                  ) : (
-                    <div className="row justify-content-around no-gutters">
-                      {bags.map((e, i) => {
-                        return (
-                          <BagSelector
-                            {...e}
-                            bag_type={bagTypes[e.type_id]}
-                            key={i}
-                            countAndKey={this.getItemCountAndKey(
-                              bagTypes[e.type_id],
-                              e.trip_id,
-                              e.bag_id
-                            )}
-                            displayBag={displayBag}
-                            handleOnClick={this.handleOnClick}
-                            width={width}
-                            infoBarHeight={infoBarHeight}
-                          />
-                        );
-                      })}
+                {page === "reminders" ? (
+                  this.renderListCards()
+                ) : (
+                  <>
+                    <div className="col-2 offset-2 pt-2">
+                      <ProgressBar
+                        total={total}
+                        width={width}
+                        infoBarHeight={infoBarHeight}
+                      />
                     </div>
-                  )}
-                </div>
+                    <div className="col-8 ">
+                      <div className="row justify-content-around no-gutters">
+                        {bags.map((e, i) => {
+                          return (
+                            <BagSelector
+                              {...e}
+                              bag_type={bagTypes[e.type_id]}
+                              key={i}
+                              countAndKey={this.getItemCountAndKey(
+                                bagTypes[e.type_id],
+                                e.trip_id,
+                                e.bag_id
+                              )}
+                              displayBag={displayBag}
+                              handleOnClick={this.handleOnClick}
+                              width={width}
+                              infoBarHeight={infoBarHeight}
+                            />
+                          );
+                        })}
+                      </div>
+                    </div>
+                  </>
+                )}
               </div>
             </div>
             {page === "packing" ? (
