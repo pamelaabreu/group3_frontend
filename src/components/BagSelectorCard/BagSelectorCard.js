@@ -7,7 +7,8 @@ export default props => {
     handleOnClick,
     countAndKey: { count, key },
     displayBag,
-    width
+    width,
+    infoBarHeight
   } = props;
 
   const dynamicSize = name => {
@@ -17,12 +18,14 @@ export default props => {
     if (width >= 1200 && width < 1300) return `cbag--${name}-xlg`;
     if (width > 1300) return `cbag--${name}-xxlg`;
   };
+  const height = Math.floor(infoBarHeight / 2);
   const selected = key === displayBag ? " cbag--active " : " cbag--inactive ";
   return (
     <div className={"  pack--bag-width mx-1"}>
       <button
         className={dynamicSize("size") + " cbag--button"}
         onClick={handleOnClick("bag", { key, bag_type })}
+        style={{ height: height }}
       >
         <div className={selected + " p-2 text-left"}>
           <p className="row">
