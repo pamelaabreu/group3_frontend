@@ -51,19 +51,21 @@ const AddListButton = props => {
           aria-labelledby="exampleModalLabel"
           aria-hidden="true"
         >
-          <div className="modal-dialog" role="document">
+          <div className="modal-dialog modal-dialog-centered" role="document">
             <div className="modal-content">
               <div className="modal-header">
-                <h5 className="modal-title" id="exampleModalLabel">
-                  Type of List
-                </h5>
+                <h4 className="modal-title" id="exampleModalLabel">
+                  Create A List
+                </h4>
                 <button
                   type="button"
                   className="close"
                   data-dismiss="modal"
                   aria-label="Close"
                 >
-                  <span aria-hidden="true">&times;</span>
+                  <span aria-hidden="true" className="addlist--modal-close">
+                    &times;
+                  </span>
                 </button>
               </div>
               <div className="modal-body">
@@ -81,7 +83,7 @@ const AddListButton = props => {
                     <option value="Shopping List">Shopping List</option>
                   </select>
                   <button
-                    className="btn border border-info"
+                    className="addlist--modal-button"
                     data-dismiss="modal"
                     onClick={createList}
                   >
