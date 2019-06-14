@@ -79,6 +79,9 @@ export default withRouter(props => {
     buildBundle(items, destination, departureDate, returnDate, user)
       .then(tripId => {
         changeLoadStatus(false);
+        if (tripId && destination && duration && departureDate && returnDate) {
+          addTrip(tripId, destination, duration, departureDate, returnDate);
+        }
         props.history.push("/pack/" + tripId);
       })
       .catch(err => {
