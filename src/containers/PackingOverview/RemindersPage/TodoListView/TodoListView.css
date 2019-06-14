@@ -1,0 +1,9 @@
+.todo-list-view {
+  overflow-y: auto;
+}
+
+.todo {
+  margin: 4px;
+  box-shadow: 1px 1px #aaaaaa;
+  border-radius: 8px;
+}

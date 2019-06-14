@@ -8,6 +8,10 @@ export default props => {
     .add(1, "day")
     .format("YYYY-MM-DD");
 
+  const disabledButtonDisplay = props.disabled
+    ? "bg-white c-smokeGrey border-0 p-3 h4 baloo b-radius9"
+    : "bundleBlueButton border-0 p-3 createTripform-button h4 baloo";
+
   return (
     <>
       <div className="create-trip-form">
@@ -63,8 +67,11 @@ export default props => {
           </div>
           <div className="d-flex justify-content-center p-2">
             <button
-              className="bundleBlueButton border-0 p-3 createTripform-button h4 baloo"
-              type="submit"
+              type="submit button"
+              className={disabledButtonDisplay}
+              data-toggle="modal"
+              data-target="#modalScrollable"
+              disabled={props.disabled}
             >
               Next
             </button>

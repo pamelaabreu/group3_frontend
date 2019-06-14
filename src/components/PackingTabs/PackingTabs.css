@@ -1,0 +1,45 @@
+.tabs--main {
+  padding-top: 1.3rem;
+  margin-bottom: 1rem;
+}
+
+.tabs--header {
+  font-size: 2rem;
+}
+
+.tabs-active {
+  font-weight: 700;
+  color: var(--white);
+}
+
+.tabs-inactive {
+  color: rgba(251, 251, 251, 0.8);
+}
+
+.tabs--trip {
+  font-size: 1.5rem;
+  color: var(--white);
+}
+.tabs--details {
+  font-size: 1.5rem;
+  color: var(--white);
+}
+
+.tabs--button {
+  background: none;
+  display: inline-block;
+  border: none;
+  margin: 0;
+  text-decoration: none;
+  cursor: pointer;
+  text-align: center;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  text-align: left;
+}
+
+.tabs--button:hover,
+.tabs--button:focus {
+  font-weight: 700;
+  outline: var(--bundleBlue);
+}
