@@ -7,6 +7,7 @@ import { getTrips } from "../../services/homeLocalStorage";
 
 const PublicHome = props => {
   const { create_trip_form, loading } = props;
+  const savedTripsFromLocalStorage = getTrips();
 
   return (
     <div className="publicHomeBanner m-0 p-0 min-vh-100 min-vw-100 d-flex justify-content-center align-items-center">
@@ -29,6 +30,15 @@ const PublicHome = props => {
           <h2 className="c-huate mali700 mb-5 display-3">Let's get packing!</h2>
           {create_trip_form}
         </div>
+
+        {savedTripsFromLocalStorage.length === 0 ? null : (
+          <div className="col-sm-6 col-md-6 col-lg-6 p-5 bg-transparent">
+            <h2>Recently Created Trips</h2>
+            <div className=" d-flex justify-content-around">
+              <h1>Trips</h1>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
