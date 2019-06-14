@@ -103,25 +103,7 @@ const TodoListView = ({
             className="collapse show multi-collapse"
             id="multiCollapseExample2"
           >
-            <div className="">
-              {todoList.map((e, i, a) => {
-                let t = a[a.length - 1 - i];
-                if (t.complete === true) {
-                  return (
-                    <div className="todo" key={i}>
-                      <Todo
-                        task_name={t.task_name}
-                        index={a.length - 1 - i}
-                        value={t.id}
-                        handleDeleteTodo={handleDeleteTodo}
-                        complete={t.complete}
-                      />
-                    </div>
-                  );
-                }
-                return null;
-              })}
-            </div>
+            <div className="">{completedTodos}</div>
           </div>
         </div>
       </div>
