@@ -16,6 +16,6 @@ export const suggested_todos = [
   "Water the plants",
   "Turn off devices",
   "Lock windows and doors",
-  "Double check to have IDs ",
+  "Double check to have IDs",
   "Double check to have boarding passes"
 ];

@@ -8,6 +8,8 @@ import LoadingScreen from "../../components/LoadingScreen/LoadingScreen";
 import BagSelector from "../../components/BagSelectorCard/BagSelectorCard";
 import Tabs from "../../components/PackingTabs/PackingTabs";
 import ProgressBar from "../../components/ProgressBar/ProgressBar";
+import ListCard from "./RemindersPage/ListCard/ListCard";
+import AddListButton from "./RemindersPage/AddListCard/AddListCard";
 import {
   addToDelete,
   addToShoppingCart,
@@ -23,6 +25,13 @@ import {
   select,
   unpack
 } from "../../services/packingPage";
+import {
+  fetchLists,
+  addTodo,
+  completeTodo,
+  deleteTodo,
+  createList
+} from "../../services/remindersPage";
 
 export default (class PackingOverview extends Component {
   constructor(props) {
@@ -36,8 +45,16 @@ export default (class PackingOverview extends Component {
       currentBag: null,
       currentCategory: null,
       bags: null,
+      alertDisplay: false,
+      currentListDisplay: true,
       lists: null,
       list_id: null,
+      todoList: [],
+      shoppingList: [],
+      todoListId: null,
+      shoppingListId: null,
+      completedTodos: 0,
+      incompleteTodos: 0,
       loading: true,
       selectedList: null,
       lastInputIndex: null,
@@ -77,8 +94,10 @@ export default (class PackingOverview extends Component {
         },
         async () => {
           const { bags, lists, bagTypes } = this.state;
+          const { shoppingList, todoList } = await fetchLists(lists);
           const mountState = await mountPacking(bagTypes, bags, lists);
-          if (mountState) this.setState(mountState);
+          if (mountState)
+            this.setState({ ...mountState, ...shoppingList, ...todoList });
         }
       );
     } catch (err) {
@@ -183,6 +202,97 @@ export default (class PackingOverview extends Component {
         return;
     }
   };
+
+  /*
+    REMINDERS PAGE FUNCTIONS:
+  */
+
+  handleAddTodo = async todoInput => {
+    const newState = await addTodo(todoInput, this.state);
+    console.log(newState, "new");
+    if (newState) this.setState(newState);
+    return;
+  };
+
+  handleCompleteTodo = async (index, todo_id) => {
+    const newState = await completeTodo(index, todo_id, this.state);
+    console.log(newState, "new");
+    if (newState) this.setState(newState);
+    return;
+  };
+
+  handleDeleteTodo = async (index, todo_id) => {
+    const newState = await deleteTodo(index, todo_id, this.state);
+    if (newState) this.setState(newState);
+    return;
+  };
+
+  handleCreateList = async () => {
+    const { lists, selectedList, tripInfo } = this.state;
+    const response = await createList(lists, selectedList, tripInfo.id);
+    if (response) {
+      const copiedLists = [...lists];
+      copiedLists.push(response);
+      this.setState({ lists: copiedLists });
+    } else {
+      this.setState({ alertDisplay: true });
+    }
+  };
+
+  handleCurrentListDisplay = () => {
+    const { currentListDisplay } = this.state;
+    this.setState({ currentListDisplay: !currentListDisplay });
+  };
+
+  renderListCards = () => {
+    const { alertDisplay, lists, currentListDisplay } = this.state;
+    const { completedTodos, incompleteTodos } = this.getListItemsCount();
+    return (
+      <div className="row">
+        {lists.length
+          ? lists.map((e, i) => {
+              return (
+                <ListCard
+                  key={i}
+                  {...e}
+                  currentListDisplay={currentListDisplay}
+                  handleCurrentListDisplay={this.handleCurrentListDisplay}
+                  completedTodos={completedTodos}
+                  incompleteTodos={incompleteTodos}
+                />
+              );
+            })
+          : null}
+        {lists.length < 2 ? (
+          <div className="col-3">
+            <AddListButton
+              createList={this.handleCreateList}
+              handleSelectList={this.handleSelectList}
+              alertDisplay={alertDisplay}
+            />
+          </div>
+        ) : null}
+      </div>
+    );
+  };
+
+  getListItemsCount = () => {
+    const { todoList } = this.state;
+    let completedTodos = 0;
+    let incompleteTodos = 0;
+    if (todoList.length > 0) {
+      todoList.forEach(todoItem => {
+        if (todoItem.complete === true) {
+          completedTodos += 1;
+        } else if (todoItem.complete === false) {
+          incompleteTodos += 1;
+        }
+      });
+    }
+    return { completedTodos, incompleteTodos };
+  };
+
+  //  ------------------
 
   handleAddToDelete = (name, index) => {
     this.handleCloseLastQuantity();
@@ -291,17 +401,20 @@ export default (class PackingOverview extends Component {
       tripInfo,
       selectedList,
       height,
-      width
-    } = this.state;
-
-    const {
+      width,
       bagTypes,
       displayBag,
       deleteMode,
       totalItems,
       totalPacked,
       itemInput,
-      bagName
+      bagName,
+      todoList,
+      todoListId,
+      shoppingList,
+      shoppingListId,
+      alertDisplay,
+      currentListDisplay
     } = this.state;
     const city = tripInfo ? tripInfo.city.replace(/\s/g, "%20") : "";
     const bagContents = displayBag ? this.state[displayBag] : [];
@@ -332,28 +445,37 @@ export default (class PackingOverview extends Component {
               />
               <div className="row mt-1 no-gutters">
                 <div className="col-2 offset-2 pt-2">
-                  <ProgressBar total={total} width={width} />
+                  <ProgressBar
+                    total={total}
+                    width={width}
+                    infoBarHeight={infoBarHeight}
+                  />
                 </div>
                 <div className="col-8 ">
-                  <div className="row justify-content-around no-gutters">
-                    {bags.map((e, i) => {
-                      return (
-                        <BagSelector
-                          {...e}
-                          bag_type={bagTypes[e.type_id]}
-                          key={i}
-                          countAndKey={this.getItemCountAndKey(
-                            bagTypes[e.type_id],
-                            e.trip_id,
-                            e.bag_id
-                          )}
-                          displayBag={displayBag}
-                          handleOnClick={this.handleOnClick}
-                          width={width}
-                        />
-                      );
-                    })}
-                  </div>
+                  {page === "reminders" ? (
+                    this.renderListCards()
+                  ) : (
+                    <div className="row justify-content-around no-gutters">
+                      {bags.map((e, i) => {
+                        return (
+                          <BagSelector
+                            {...e}
+                            bag_type={bagTypes[e.type_id]}
+                            key={i}
+                            countAndKey={this.getItemCountAndKey(
+                              bagTypes[e.type_id],
+                              e.trip_id,
+                              e.bag_id
+                            )}
+                            displayBag={displayBag}
+                            handleOnClick={this.handleOnClick}
+                            width={width}
+                            infoBarHeight={infoBarHeight}
+                          />
+                        );
+                      })}
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
@@ -386,6 +508,18 @@ export default (class PackingOverview extends Component {
                 handleSelectList={this.handleSelectList}
                 bag_id={bags[1].bag_id}
                 windowHeight={height}
+                todoList={todoList}
+                todoListId={todoListId}
+                shoppingList={shoppingList}
+                shoppingListId={shoppingListId}
+                handleAddTodo={this.handleAddTodo}
+                handleCompleteTodo={this.handleCompleteTodo}
+                handleDeleteTodo={this.handleDeleteTodo}
+                createList={this.handleCreateList}
+                alertDisplay={alertDisplay}
+                currentListDisplay={currentListDisplay}
+                handleCurrentListDisplay={this.handleCurrentListDisplay}
+                height={height}
               />
             )}
           </>
