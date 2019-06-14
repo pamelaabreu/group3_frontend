@@ -45,3 +45,10 @@
 .add-button {
   border-radius: 14px;
 }
+
+.add-button:hover {
+  background: var(--white);
+  color: var(--denimBlue);
+  border: 1px solid var(--denimBlue);
+  transition: 0.2s;
+}
