@@ -23,7 +23,8 @@ import {
   newQuantity,
   quantity,
   select,
-  unpack
+  unpack,
+  getTripImg
 } from "../../services/packingPage";
 import {
   fetchLists,
@@ -42,6 +43,7 @@ export default (class PackingOverview extends Component {
       page: "packing",
       bagTypes: { 1: "Personal", 2: "Carry-On", 3: "Checked" },
       bagName: "Personal",
+      destinationImage: null,
       currentBag: null,
       currentCategory: null,
       bags: null,
@@ -84,13 +86,19 @@ export default (class PackingOverview extends Component {
         tripBagsAndLists,
         allCategories
       ]);
+      const destinationImage = await getTripImg(
+        tripDetails.trip.id,
+        tripDetails.trip.name,
+        tripDetails.trip.city
+      );
       this.setState(
         {
           tripInfo: tripDetails.trip,
           categories,
           bags: tripDetails.bags,
           lists: tripDetails.lists,
-          loading: false
+          loading: false,
+          destinationImage
         },
         async () => {
           const { bags, lists, bagTypes } = this.state;
@@ -446,9 +454,9 @@ export default (class PackingOverview extends Component {
       shoppingList,
       shoppingListId,
       alertDisplay,
-      currentListDisplay
+      currentListDisplay,
+      destinationImage
     } = this.state;
-    const city = tripInfo ? tripInfo.city.replace(/\s/g, "%20") : "";
     const bagContents = displayBag ? this.state[displayBag] : [];
     const total = Math.floor((totalPacked / totalItems) * 100);
     const infoBarHeight = Math.floor(height * 0.17);
@@ -466,8 +474,8 @@ export default (class PackingOverview extends Component {
             >
               <img
                 className="packing--img-cover"
-                src={`https://source.unsplash.com/weekly?${city}`}
-                alt={`cover of ${city}`}
+                src={destinationImage}
+                alt={`cover of ${tripInfo.city}`}
               />
               <Tabs
                 page={page}
