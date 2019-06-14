@@ -71,7 +71,7 @@ const TodoListView = ({
           >
             <div className="row justify-content-between">
               <span>To Be Completed</span>
-              <span>{incompleteItems} items left</span>
+              <span>{incompleteCount} items left</span>
             </div>
           </a>
         </div>
@@ -94,7 +94,7 @@ const TodoListView = ({
         >
           <div className="row justify-content-between">
             <span>Completed</span>
-            <span>{completeItems} items</span>
+            <span>{completedCount} items</span>
           </div>
         </button>
 
