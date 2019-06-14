@@ -245,10 +245,17 @@ export default (class PackingOverview extends Component {
   };
 
   renderListCards = () => {
-    const { alertDisplay, lists, currentListDisplay } = this.state;
+    const {
+      alertDisplay,
+      lists,
+      currentListDisplay,
+      height,
+      width
+    } = this.state;
     const { completedTodos, incompleteTodos } = this.getListItemsCount();
+    const infoBarHeight = Math.floor(height * 0.17);
     return (
-      <div className="row">
+      <div className="row justify-content-around no-gutters">
         {lists.length
           ? lists.map((e, i) => {
               return (
@@ -259,6 +266,8 @@ export default (class PackingOverview extends Component {
                   handleCurrentListDisplay={this.handleCurrentListDisplay}
                   completedTodos={completedTodos}
                   incompleteTodos={incompleteTodos}
+                  infoBarHeight={infoBarHeight}
+                  width={width}
                 />
               );
             })
