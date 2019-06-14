@@ -291,6 +291,8 @@ export default (class PackingOverview extends Component {
                   createList={this.handleCreateList}
                   handleSelectList={this.handleSelectList}
                   alertDisplay={alertDisplay}
+                  infoBarHeight={infoBarHeight}
+                  width={width}
                 />
               </div>
             ) : null}
