@@ -1,15 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import "./UnpackedItem.css";
 
 export default props => {
-  const [width, setWidth] = useState(window.innerWidth);
-
-  useEffect(() => {
-    const handleResize = () => setWidth(window.innerWidth);
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  });
-
   const {
     // flag,
     deleteMode,
@@ -18,7 +10,8 @@ export default props => {
     name,
     quantity,
     index,
-    toBeDeleted
+    toBeDeleted,
+    width
   } = props;
 
   const toDelete = toBeDeleted ? " bg-danger text-white" : " ";
@@ -47,14 +40,13 @@ export default props => {
         <div
           className={
             dynamicSize("unpacked") +
-            "  uItem my-2 border border-white uItem--content-main row no-gutters"
+            "  uItem my-2  uItem--content-main row no-gutters b-radius9"
           }
           style={{ backgroundImage: `url(${img})` }}
         >
           <div
             className={
-              dynamicSize("header") +
-              " col-12 uItem--head text-center p-0 rounded"
+              dynamicSize("header") + " col-12 uItem--head text-center p-0 "
             }
           >
             <span className="uItem--title--font c-denimBlue">{name}</span>

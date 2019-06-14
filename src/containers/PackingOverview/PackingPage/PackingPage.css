@@ -1,0 +1,7 @@
+.ppage--main {
+  background-color: var(--babyBlue);
+}
+
+.ppage--bag {
+  overflow-y: auto;
+}
