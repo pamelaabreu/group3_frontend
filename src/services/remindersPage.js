@@ -64,14 +64,6 @@ export const createList = (lists, selectedList, trip_id) => {
     });
 };
 
-/*
-
-  const handleCurrentListDisplay = bool => {
-    setCurrentListDisplay(bool);
-  };
-
-*/
-
 export const addTodo = (todoInput, state) => {
   const { todoListId, todoList } = state;
   let data = {
