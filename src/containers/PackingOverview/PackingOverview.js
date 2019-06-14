@@ -249,15 +249,6 @@ export default (class PackingOverview extends Component {
     const { completedTodos, incompleteTodos } = this.getListItemsCount();
     return (
       <div className="row">
-        {lists.length === 0 ? (
-          <div className="col-3">
-            <AddListButton
-              createList={this.handleCreateList}
-              handleSelectList={this.handleSelectList}
-              alertDisplay={alertDisplay}
-            />
-          </div>
-        ) : null}
         {lists.length
           ? lists.map((e, i) => {
               return (
@@ -272,7 +263,7 @@ export default (class PackingOverview extends Component {
               );
             })
           : null}
-        {lists.length === 2 ? null : (
+        {lists.length < 2 ? (
           <div className="col-3">
             <AddListButton
               createList={this.handleCreateList}
@@ -280,7 +271,7 @@ export default (class PackingOverview extends Component {
               alertDisplay={alertDisplay}
             />
           </div>
-        )}
+        ) : null}
       </div>
     );
   };
