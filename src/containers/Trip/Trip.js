@@ -2,11 +2,11 @@ import React, { Component } from "react";
 import axios from "axios";
 import moment from "moment";
 import APIKEYS from "../../config.json";
+import baseURL from "../../services/backendUrlConnect";
 
 import Itinerary from "../../components/Itinerary/Itinerary";
 import Weather from "../../components/Weather/Weather";
 
-const baseURL = "http://localhost:5000";
 const itineraryEndpointBase = "/itinerary/";
 const tripEndpointBase = "/trip/";
 const weatherEndpointBase = "/weather/";
