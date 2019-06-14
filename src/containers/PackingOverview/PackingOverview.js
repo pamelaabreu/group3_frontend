@@ -255,7 +255,10 @@ export default (class PackingOverview extends Component {
     } = this.state;
     const { completedTodos, incompleteTodos } = this.getListItemsCount();
     const infoBarHeight = Math.floor(height * 0.17);
-    const total = Math.floor((completedTodos / todoList.length) * 100);
+    let total = completedTodos
+      ? Math.floor((completedTodos / todoList.length) * 100)
+      : 0;
+    // total = isNaN(total)? 0 : total;
     return (
       <>
         <div className="col-2 offset-2 pt-2">
