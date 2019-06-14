@@ -5,6 +5,7 @@ import axios from "axios";
 import { buildBundle } from "../../services/backendCalls";
 import "./Suggestions.css";
 import FirebaseAuthContext from "../../context/FirebaseAuth";
+import Baseurl from "../../services/backendUrlConnect";
 
 export default withRouter(props => {
   const {
@@ -30,7 +31,7 @@ export default withRouter(props => {
 
     axios({
       method: "get",
-      url: "http://localhost:5000/categories/all"
+      url: `${Baseurl}/categories/all`
     })
       .then(res => {
         setCategories(res.data);

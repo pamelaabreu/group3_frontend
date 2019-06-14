@@ -6,7 +6,7 @@ const Modal = props => {
   return (
     <>
       <div
-        className="modal fade flipOutY"
+        className="modal fade"
         id="modalScrollable"
         tabIndex="-1"
         role="dialog"
