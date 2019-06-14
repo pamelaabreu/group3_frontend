@@ -16,8 +16,8 @@ const AddTodo = props => {
       >
         <i className="fas fa-plus fa-2x" />
       </button>
-      <div className="px-2 border-white dropdown-menu dropdown-container">
-        <div className="row border-denimBlue bg-babyBlue b-radius9">
+      <div className="px-3 dropdown-menu dropdown-container border-denimBlue bg-babyBlue b-radius9">
+        <div className="row">
           <div className="col-12">
             <label
               htmlFor="todo-input"
