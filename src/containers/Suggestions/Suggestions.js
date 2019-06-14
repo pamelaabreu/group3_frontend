@@ -5,6 +5,7 @@ import axios from "axios";
 import { buildBundle } from "../../services/backendCalls";
 import "./Suggestions.css";
 import FirebaseAuthContext from "../../context/FirebaseAuth";
+import { addTrip } from "../../services/homeLocalStorage";
 
 export default withRouter(props => {
   const {
