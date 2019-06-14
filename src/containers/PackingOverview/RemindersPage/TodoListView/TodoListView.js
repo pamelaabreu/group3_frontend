@@ -13,23 +13,46 @@ const TodoListView = ({
   height
 }) => {
   const height75 = Math.floor(height * 0.75);
-
-  let completeItems = 0;
-  let incompleteItems = 0;
-
-  const getListCount = () => {
-    if (todoList.length > 0) {
-      todoList.forEach(todoItem => {
-        if (todoItem.complete === true) {
-          completeItems += 1;
-        } else if (todoItem.complete === false) {
-          incompleteItems += 1;
-        }
-      });
+  let incompleteCount = 0;
+  const incompleteTodos = todoList.map((e, i, a) => {
+    let t = a[a.length - 1 - i];
+    if (t.complete === false) {
+      incompleteCount += 1;
+      return (
+        <div className="todo" key={i}>
+          <Todo
+            task_name={t.task_name}
+            index={a.length - 1 - i}
+            value={t.id}
+            handleCompleteTodo={handleCompleteTodo}
+            handleDeleteTodo={handleDeleteTodo}
+            complete={t.complete}
+          />
+        </div>
+      );
     }
-  };
+    return null;
+  });
 
-  getListCount();
+  let completedCount = 0;
+  const completedTodos = todoList.map((e, i, a) => {
+    let t = a[a.length - 1 - i];
+    if (t.complete === true) {
+      completedCount += 1;
+      return (
+        <div className="todo" key={i}>
+          <Todo
+            task_name={t.task_name}
+            index={a.length - 1 - i}
+            value={t.id}
+            handleDeleteTodo={handleDeleteTodo}
+            complete={t.complete}
+          />
+        </div>
+      );
+    }
+    return null;
+  });
 
   return (
     <>
@@ -48,7 +71,7 @@ const TodoListView = ({
           >
             <div className="row justify-content-between">
               <span>To Be Completed</span>
-              <span>{incompleteItems} items left</span>
+              <span>{incompleteCount} items left</span>
             </div>
           </a>
         </div>
@@ -57,26 +80,7 @@ const TodoListView = ({
             className="collapse show multi-collapse"
             id="multiCollapseExample3"
           >
-            <div className="">
-              {todoList.map((e, i, a) => {
-                let t = a[a.length - 1 - i];
-                if (t.complete === false) {
-                  return (
-                    <div className="todo" key={i}>
-                      <Todo
-                        task_name={t.task_name}
-                        index={a.length - 1 - i}
-                        value={t.id}
-                        handleCompleteTodo={handleCompleteTodo}
-                        handleDeleteTodo={handleDeleteTodo}
-                        complete={t.complete}
-                      />
-                    </div>
-                  );
-                }
-                return null;
-              })}
-            </div>
+            <div className="">{incompleteTodos}</div>
           </div>
         </div>
 
@@ -90,7 +94,7 @@ const TodoListView = ({
         >
           <div className="row justify-content-between">
             <span>Completed</span>
-            <span>{completeItems} items</span>
+            <span>{completedCount} items</span>
           </div>
         </button>
 
@@ -99,25 +103,7 @@ const TodoListView = ({
             className="collapse show multi-collapse"
             id="multiCollapseExample2"
           >
-            <div className="">
-              {todoList.map((e, i, a) => {
-                let t = a[a.length - 1 - i];
-                if (t.complete === true) {
-                  return (
-                    <div className="todo" key={i}>
-                      <Todo
-                        task_name={t.task_name}
-                        index={a.length - 1 - i}
-                        value={t.id}
-                        handleDeleteTodo={handleDeleteTodo}
-                        complete={t.complete}
-                      />
-                    </div>
-                  );
-                }
-                return null;
-              })}
-            </div>
+            <div className="">{completedTodos}</div>
           </div>
         </div>
       </div>
