@@ -53,6 +53,8 @@ export default (class PackingOverview extends Component {
       shoppingList: [],
       todoListId: null,
       shoppingListId: null,
+      completedTodos: 0,
+      incompleteTodos: 0,
       loading: true,
       selectedList: null,
       lastInputIndex: null,
