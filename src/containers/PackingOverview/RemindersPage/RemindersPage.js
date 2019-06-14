@@ -21,6 +21,7 @@ const RemindersPage = props => {
   };
 
   const addTodo = e => {
+    if (todoInput.trim() === "") return;
     handleAddTodo(todoInput);
     setTodoInput("");
   };

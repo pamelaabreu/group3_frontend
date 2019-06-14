@@ -7,3 +7,9 @@
   box-shadow: 1px 1px #aaaaaa;
   border-radius: 8px;
 }
+
+.button-container {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+}
