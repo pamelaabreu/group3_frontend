@@ -16,7 +16,7 @@ const buildBundle = async (
       data: { trip_id }
     } = await axios({
       method: "post",
-      url: BASE_URL + "/trip/v2",
+      url: BASE_URL + "/trip/",
       data: {
         name,
         city: temp.city,
