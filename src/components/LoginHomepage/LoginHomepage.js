@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 
 import LoginHomepageTripCard from "../LoginHomepageTripCard/LoginHomepageTripCard";
-const baseURL = "http://localhost:5000";
+import baseURL from "../../services/backendUrlConnect";
 const tripEndpointBase = "/login_homepage/";
 
 class LoginHomepage extends Component {
