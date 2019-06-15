@@ -823,7 +823,6 @@ buildNewObjectArray("first-aid", firstAid, "checked");
 // buildNewObjectArray("essentials", essentials, "carry-on");
 // buildNewObjectArray("children", children, "checked");
 // buildNewObjectArray("misc", backpack, "checked");
-console.log(array);
 array = array.sort(function(a, b) {
   var textA = a.name.toUpperCase();
   var textB = b.name.toUpperCase();
