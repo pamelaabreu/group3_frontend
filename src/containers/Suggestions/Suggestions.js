@@ -114,10 +114,16 @@ export default withRouter(props => {
             {categories ? (
               <div className="suggestions-categories d-flex justify-content-between align-items-center overflow-auto pb-5">
                 {categories.map(e => {
+                  console.log(e.name);
                   const activeCatergoryStyle =
-                    "c-bundleBlue ds-lightGrey b-radius9 ";
+                    "c-bundleBlue ds-lightGrey b-radius9 bg-white";
                   const inactiveCategoryStyle =
                     "c-huate bg-transparent inactiveCategory-item";
+
+                  if (e.name === "misc") return null;
+                  if (e.name === "personal") return null;
+                  if (e.name === "children") return null;
+                  if (e.name === "essentials") return null;
 
                   let activeCatergoryClassname = null;
                   if (!currCategory) {
@@ -154,18 +160,12 @@ export default withRouter(props => {
                   const activeCardBorder = e.pack
                     ? "ds-lightGrey activeSuggestedItem-border"
                     : "border-0";
-                  const activeCardText = e.pack
-                    ? "c-bundleBlue"
-                    : "c-smokeGrey";
-                  const activeIconColor = e.pack
-                    ? "activeSuggestedItem-color "
-                    : "c-smokeGrey";
-
+                  const activeCardText = e.pack ? "c-denimBlue" : "c-smokeGrey";
                   return (
                     <div
                       key={i}
                       onClick={handleItemClick(e.name, i)}
-                      className="col-m m-3 b-radius9"
+                      className="col-sm-4 col-m-6 col-lg-6 b-radius9 my-3 p-0"
                     >
                       <div
                         className={
@@ -174,7 +174,7 @@ export default withRouter(props => {
                       >
                         <div
                           className={
-                            "p-3 bg-white text-center b-radius9 h4 border-0 " +
+                            "pt-3 bg-white text-center mali700 b-radius9 h1 border-0" +
                             activeCardText
                           }
                         >
@@ -182,12 +182,12 @@ export default withRouter(props => {
                         </div>
                         <div className="card-body b-radius9">
                           <div className="container-fluid px-5">
-                            <div className="row justify-content-center">
-                              <i
-                                className={
-                                  "fas fa-tshirt suggested-icon-size " +
-                                  activeIconColor
-                                }
+                            <div className="row">
+                              <img
+                                src={e.image}
+                                alt={e.name}
+                                className="col-12 p-0 m-0"
+                                height="80%"
                               />
                             </div>
                             <div className="row justify-content-center pt-5 pb-2">
