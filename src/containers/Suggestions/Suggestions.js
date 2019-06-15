@@ -114,10 +114,16 @@ export default withRouter(props => {
             {categories ? (
               <div className="suggestions-categories d-flex justify-content-between align-items-center overflow-auto pb-5">
                 {categories.map(e => {
+                  console.log(e.name);
                   const activeCatergoryStyle =
                     "c-bundleBlue ds-lightGrey b-radius9 bg-white";
                   const inactiveCategoryStyle =
                     "c-huate bg-transparent inactiveCategory-item";
+
+                  if (e.name === "misc") return null;
+                  if (e.name === "personal") return null;
+                  if (e.name === "children") return null;
+                  if (e.name === "essentials") return null;
 
                   let activeCatergoryClassname = null;
                   if (!currCategory) {
