@@ -4,7 +4,7 @@ import "./NoLists.css";
 export default props => {
   return (
     <>
-      <div className="jumbotron jumbotron-fluid m-5 bg-babyBlue mali700">
+      <div className="jumbotron jumbotron-fluid p-6 bg-babyBlue mali700 no-lists">
         <div className="container">
           <h1 className="display-4 align-baseline">
             Looks like you have no todos!
