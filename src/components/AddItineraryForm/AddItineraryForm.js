@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
+import "./AddItineraryForm.css";
+
 import BASE_URL from "../../services/backendUrlConnect";
 
 const itineraryTypesEndpointBase = "/itinerary/";
@@ -70,6 +72,12 @@ const AddItineraryForm = props => {
     });
   }, []);
 
+  const capitalize = target => {
+    return target
+      .split(" ")
+      .map(e => `${e[0].toUpperCase()}${e.slice(1)}`)
+      .join(" ");
+  };
   const handleChangeItineraryTypes = event => {
     const value = itineraryTypes.filter(
       element => element.name === event.target.value
@@ -79,53 +87,57 @@ const AddItineraryForm = props => {
   };
 
   return (
-    <div className="col-3 card">
+    <div className="global-card add-itinerary-form-container">
       <form>
-        <div className="form-group">
-          <label>Name:</label>
+        <select
+          className="form-control-lg add-itinerary-form-type-selector col-12"
+          value={itineraryTypes[0]}
+          onChange={handleChangeItineraryTypes}
+        >
+          {itineraryTypes.map((e, i) => (
+            <option key={i} value={e.value}>
+              {capitalize(e.name)}
+            </option>
+          ))}
+        </select>
+        <div className="form-group row mt-4">
+          <label className="col-lg-4 add-itinerary-form-label">Name:</label>
           <input
-            className="form-control"
+            className="col-lg-8 form-control form-control-lg"
             type="text"
             onChange={itineraryInputHandler(setItineraryName)}
           />
         </div>
-        <div className="form-group">
-          <label>Address:</label>
+        <div className="form-group row">
+          <label className="col-lg-4 add-itinerary-form-label">Address:</label>
           <input
-            className="form-control"
+            className="col-lg-8 form-control form-control-lg"
             type="text"
             onChange={itineraryInputHandler(setItineraryAddress)}
           />
         </div>
-        <div className="form-group">
-          <label>Phone:</label>
+        <div className="form-group row">
+          <label className="col-lg-4 add-itinerary-form-label">Phone:</label>
           <input
-            className="form-control"
+            className="col-lg-8 form-control form-control-lg"
             type="text"
             onChange={itineraryInputHandler(setItineraryPhone)}
           />
         </div>
-        <div className="form-group">
-          <label>Note:</label>
+        <div className="form-group row">
+          <label className="col-lg-4 add-itinerary-form-label">Note:</label>
           <input
-            className="form-control"
+            className="col-lg-8 form-control form-control-lg"
             type="text"
             onChange={itineraryInputHandler(setItineraryNote)}
           />
         </div>
-        <div>
-          <select
-            valu={itineraryTypes[0]}
-            onChange={handleChangeItineraryTypes}
-          >
-            {itineraryTypes.map((e, i) => (
-              <option key={i} value={e.value}>
-                {e.name}
-              </option>
-            ))}
-          </select>
-        </div>
-        <button onClick={submitFormHandler}>Submit</button>
+        <button
+          className="btn btn-outline-success btn-lg mt-2"
+          onClick={submitFormHandler}
+        >
+          Submit
+        </button>
       </form>
     </div>
   );

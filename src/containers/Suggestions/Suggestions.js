@@ -114,7 +114,6 @@ export default withRouter(props => {
             {categories ? (
               <div className="suggestions-categories d-flex justify-content-between align-items-center overflow-auto pb-5">
                 {categories.map(e => {
-                  console.log(e.name);
                   const activeCatergoryStyle =
                     "c-bundleBlue ds-lightGrey b-radius9 bg-white";
                   const inactiveCategoryStyle =
@@ -165,7 +164,7 @@ export default withRouter(props => {
                     <div
                       key={i}
                       onClick={handleItemClick(e.name, i)}
-                      className="col-5 col-m-4 col-lg-2 b-radius9 my-3 mx-2 p-0"
+                      className="col-5 col-m-4 col-lg-3 b-radius9 my-3 mx-2 p-0"
                     >
                       <div
                         className={
@@ -174,7 +173,7 @@ export default withRouter(props => {
                       >
                         <div
                           className={
-                            "pt-3 bg-white text-center mali700 b-radius9 h3 border-0" +
+                            "pt-3 bg-white text-center mali700 b-radius9 h1 border-0" +
                             activeCardText
                           }
                         >

@@ -1,13 +1,15 @@
 import React from "react";
 import moment from "moment";
 
+import "./WeatherCard.css";
+
 const WeatherCard = props => {
   const { weather } = props;
 
   return (
-    <div className="card ml-2">
+    <div className="global-card ml-2 weather-card">
       <div className="card-body">
-        <h6 className="card-title">
+        <h6 className="card-title weather-card-title-text">
           {moment
             .unix(weather.time)
             .format("llll")
@@ -19,14 +21,22 @@ const WeatherCard = props => {
             "_"
           )}.svg`)}
           alt=""
-          style={{ width: "75%" }}
+          className="weather-icon"
         />
-        <p className="card-text">
-          Hi: {Math.trunc(weather.temperatureHigh)}&#176; F
-        </p>
-        <p className="card-text">
-          Lo: {Math.trunc(weather.temperatureLow)}&#176; F
-        </p>
+        <div className="weather-card-temp-container justify-content-around">
+          <div className="px-2">
+            <p className="weather-card-label-text font-weight-bold">High</p>
+            <p className="card-text weather-card-weather-text">
+              {Math.trunc(weather.temperatureHigh)}&#176; F
+            </p>
+          </div>
+          <div className="px-2">
+            <p className="weather-card-label-text font-weight-bold">Low</p>
+            <p className="card-text weather-card-weather-text">
+              {Math.trunc(weather.temperatureLow)}&#176; F
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   );

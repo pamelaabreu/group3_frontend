@@ -4,6 +4,8 @@ import moment from "moment";
 import APIKEYS from "../../config.json";
 import baseURL from "../../services/backendUrlConnect";
 
+import "./Trip.css";
+
 import Itinerary from "../../components/Itinerary/Itinerary";
 import Weather from "../../components/Weather/Weather";
 
@@ -78,36 +80,47 @@ class Trip extends Component {
     const { city, country, departure_date, return_date } = this.state.trip;
     const { trip_id: tripID } = this.props.match.params;
     return (
-      <div className="container mt-5">
-        <div className="row justify-content-end">
-          <div className="col-2">
-            <button className="row" onClick={this.moveToPack}>
-              <span className="col-12 text-center">Pack</span>
-              <i className="col-12 fas fa-long-arrow-alt-right text-center pack--arrow-transform" />
-            </button>
+      <div
+        className="trip-container"
+        style={{
+          backgroundColor: "#C3D8E7",
+          paddingBottom: "3rem",
+          height: "100vh"
+        }}
+      >
+        <div className="trip-details-section">
+          <div className="trip-details-section-background-gradient">
+            <div className="row justify-content-end m-0">
+              <div className="pack-button-container">
+                <button className="pack-button" onClick={this.moveToPack}>
+                  <span className="col-12 text-center">Pack</span>
+                  <i className="col-12 fas fa-long-arrow-alt-right text-center pack--arrow-transform" />
+                </button>
+              </div>
+            </div>
+            <div className="trip-details-container">
+              <div className="col-10 col-lg-4 trip-details-header">
+                <h5 className="trip-details-title">Trip Details</h5>
+                <h6 className="trip-destination-title">
+                  {city}, {country}
+                </h6>
+                <p className="trip-destination-dates">{`${moment(
+                  departure_date
+                ).format("l")} - ${moment(return_date).format("l")}`}</p>
+                <div className="trip-departure-time-text">
+                  <p>
+                    {moment()
+                      .endOf(departure_date)
+                      .to(return_date)}
+                  </p>
+                </div>
+              </div>
+              <Weather weatherInfo={this.state.weather_info} />
+            </div>
           </div>
         </div>
-        <div className="row justify-content-between">
-          <div className="col-lg-4">
-            <div>
-              <h5 className="trip-details-title">Trip Details</h5>
-              <h6 className="trip-destination-title">
-                {city}, {country}
-              </h6>
-            </div>
-            <div>
-              <p>
-                {moment()
-                  .endOf(departure_date)
-                  .to(return_date)}
-              </p>
-            </div>
-          </div>
-          <div className="col-lg-8">
-            <Weather weatherInfo={this.state.weather_info} />
-          </div>
-        </div>
-        <div className="col-12 row mt-3">
+
+        <div className="trip-itinerary-container">
           <Itinerary
             info={this.state.itinerary}
             trip={this.state.trip}
