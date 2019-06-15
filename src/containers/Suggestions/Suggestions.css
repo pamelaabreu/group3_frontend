@@ -32,7 +32,7 @@
 
 .activeSuggestedItem-border {
   transition: 0.2s ease;
-  border: 2px solid var(--safeGreen);
+  border: 3px solid var(--safeGreen);
 }
 
 .activeSuggestedItem-color {

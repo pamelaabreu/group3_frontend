@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 
 import ItineraryCategory from "../ItineraryCategory/ItineraryCategory";
 import AddItineraryForm from "../AddItineraryForm/AddItineraryForm";
+
+import "./Itinerary.css";
 
 const findCategories = categories => {
   const uniqueCategoryNames = {};
@@ -24,30 +26,54 @@ const findCategories = categories => {
 };
 
 const Itinerary = props => {
+  const [itineraryFormDisplay, setItineraryFormDisplay] = useState(false);
   // const itineraryCategoryNames = props.info.map(e => e.itinerary_name);
   // const categories = findCategories(itineraryCategoryNames);
+
+  const itineraryDisplayHandler = e => {
+    if (itineraryFormDisplay) {
+      e.target.innerHTML = "add";
+    } else {
+      e.target.innerHTML = "cancel";
+    }
+    setItineraryFormDisplay(prevState => !prevState);
+  };
   console.log(props.info);
   return (
-    <div className="col-12">
+    <div className="itinerary-container">
       <div className="row">
-        <h3>Itinerary</h3>
-        <button className="btn btn-primary ml-3">add</button>
+        <h3 className="mt-4 text-white itinerary-title">Itinerary</h3>
+        <button
+          className="btn btn-primary ml-3 mt-4"
+          onClick={itineraryDisplayHandler}
+        >
+          add
+        </button>
       </div>
       <div className="row">
-        <AddItineraryForm
-          trip_id={props.trip_id}
-          setTripItinerary={props.setTripItinerary}
-        />
-        {props.info.map((e, i) => {
-          return (
-            <div key={i} className="col-3 card ml-3">
-              <div className="card-header">
-                <h4 className="card-title">{e.itinerary_name}</h4>
+        {itineraryFormDisplay ? (
+          <AddItineraryForm
+            trip_id={props.trip_id}
+            setTripItinerary={props.setTripItinerary}
+          />
+        ) : null}
+        {props.info.length === 0 ? (
+          <div
+            className="col-12 row justify-content-center"
+            style={{ color: "white" }}
+          >
+            {" "}
+            <h1 style={{ fontSize: "5rem" }}>No itineraries yet</h1>{" "}
+          </div>
+        ) : (
+          props.info.map((e, i) => {
+            return (
+              <div key={i} className="global-card itinerary-card-container">
+                <ItineraryCategory category={e} trip={props.trip} />
               </div>
-              <ItineraryCategory category={e} trip={props.trip} />
-            </div>
-          );
-        })}
+            );
+          })
+        )}
       </div>
     </div>
   );
