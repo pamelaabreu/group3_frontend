@@ -80,7 +80,14 @@ class Trip extends Component {
     const { city, country, departure_date, return_date } = this.state.trip;
     const { trip_id: tripID } = this.props.match.params;
     return (
-      <div className="trip-container" style={{ backgroundColor: "#C3D8E7" }}>
+      <div
+        className="trip-container"
+        style={{
+          backgroundColor: "#C3D8E7",
+          paddingBottom: "3rem",
+          height: "100vh"
+        }}
+      >
         <div className="trip-details-section">
           <div className="trip-details-section-background-gradient">
             <div className="row justify-content-end m-0">

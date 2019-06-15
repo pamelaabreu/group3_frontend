@@ -57,13 +57,23 @@ const Itinerary = props => {
             setTripItinerary={props.setTripItinerary}
           />
         ) : null}
-        {props.info.map((e, i) => {
-          return (
-            <div key={i} className="global-card itinerary-card-container">
-              <ItineraryCategory category={e} trip={props.trip} />
-            </div>
-          );
-        })}
+        {props.info.length === 0 ? (
+          <div
+            className="col-12 row justify-content-center"
+            style={{ color: "white" }}
+          >
+            {" "}
+            <h1 style={{ fontSize: "5rem" }}>No itineraries yet</h1>{" "}
+          </div>
+        ) : (
+          props.info.map((e, i) => {
+            return (
+              <div key={i} className="global-card itinerary-card-container">
+                <ItineraryCategory category={e} trip={props.trip} />
+              </div>
+            );
+          })
+        )}
       </div>
     </div>
   );
