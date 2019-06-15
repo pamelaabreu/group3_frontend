@@ -173,7 +173,7 @@ export default withRouter(props => {
                       >
                         <div
                           className={
-                            "pt-3 bg-white text-center mali700 b-radius9 h1 border-0" +
+                            "pt-3 bg-white text-center mali700 b-radius9 h3 border-0" +
                             activeCardText
                           }
                         >
