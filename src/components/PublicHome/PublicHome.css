@@ -13,3 +13,7 @@
 .publicHome-width {
   width: 120rem;
 }
+
+.publicHome-c-babyBlue {
+  color: var(--babyBlue);
+}
