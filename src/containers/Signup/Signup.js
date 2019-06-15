@@ -74,7 +74,7 @@ class Signup extends React.Component {
 
           return (
             <div className="form-group" key={index}>
-              <label className="c-bundleBlue" htmlFor={inputName}>
+              <label className="c-bundleBlue h4" htmlFor={inputName}>
                 {inputName}
               </label>
               <input
@@ -96,7 +96,7 @@ class Signup extends React.Component {
           {firebaseCreateUserError ? <p>{firebaseCreateUserError}</p> : null}
         </small>
         <button
-          className="bundleBlueButton border-0 p-2 b-radius18"
+          className="bundleBlueButton border-0 p-2 b-radius18 h2"
           type="submit"
         >
           Signup

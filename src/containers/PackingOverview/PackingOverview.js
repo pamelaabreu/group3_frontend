@@ -8,6 +8,8 @@ import LoadingScreen from "../../components/LoadingScreen/LoadingScreen";
 import BagSelector from "../../components/BagSelectorCard/BagSelectorCard";
 import Tabs from "../../components/PackingTabs/PackingTabs";
 import ProgressBar from "../../components/ProgressBar/ProgressBar";
+import ListCard from "./RemindersPage/ListCard/ListCard";
+import AddListButton from "./RemindersPage/AddListCard/AddListCard";
 import {
   addToDelete,
   addToShoppingCart,
@@ -21,8 +23,16 @@ import {
   newQuantity,
   quantity,
   select,
-  unpack
+  unpack,
+  getTripImg
 } from "../../services/packingPage";
+import {
+  fetchLists,
+  addTodo,
+  completeTodo,
+  deleteTodo,
+  createList
+} from "../../services/remindersPage";
 
 export default (class PackingOverview extends Component {
   constructor(props) {
@@ -33,11 +43,22 @@ export default (class PackingOverview extends Component {
       page: "packing",
       bagTypes: { 1: "Personal", 2: "Carry-On", 3: "Checked" },
       bagName: "Personal",
+      destinationImage: null,
+      remindersImage:
+        "https://images.unsplash.com/photo-1501618669935-18b6ecb13d6d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2232&q=80",
       currentBag: null,
       currentCategory: null,
       bags: null,
+      alertDisplay: false,
+      currentListDisplay: true,
       lists: null,
       list_id: null,
+      todoList: [],
+      shoppingList: [],
+      todoListId: null,
+      shoppingListId: null,
+      completedTodos: 0,
+      incompleteTodos: 0,
       loading: true,
       selectedList: null,
       lastInputIndex: null,
@@ -67,18 +88,26 @@ export default (class PackingOverview extends Component {
         tripBagsAndLists,
         allCategories
       ]);
+      const destinationImage = await getTripImg(
+        tripDetails.trip.id,
+        tripDetails.trip.name,
+        tripDetails.trip.city
+      );
       this.setState(
         {
           tripInfo: tripDetails.trip,
           categories,
           bags: tripDetails.bags,
           lists: tripDetails.lists,
-          loading: false
+          loading: false,
+          destinationImage
         },
         async () => {
           const { bags, lists, bagTypes } = this.state;
+          const { shoppingList, todoList } = await fetchLists(lists);
           const mountState = await mountPacking(bagTypes, bags, lists);
-          if (mountState) this.setState(mountState);
+          if (mountState)
+            this.setState({ ...mountState, ...shoppingList, ...todoList });
         }
       );
     } catch (err) {
@@ -183,6 +212,129 @@ export default (class PackingOverview extends Component {
         return;
     }
   };
+
+  /*
+    REMINDERS PAGE FUNCTIONS:
+  */
+
+  handleAddTodo = async todoInput => {
+    const newState = await addTodo(todoInput, this.state);
+    if (newState) this.setState(newState);
+    return;
+  };
+
+  handleCompleteTodo = async (index, todo_id) => {
+    const newState = await completeTodo(index, todo_id, this.state);
+    if (newState) this.setState(newState);
+    return;
+  };
+
+  handleDeleteTodo = async (index, todo_id) => {
+    const newState = await deleteTodo(index, todo_id, this.state);
+    if (newState) this.setState(newState);
+    return;
+  };
+
+  handleCreateList = async () => {
+    const { lists, selectedList, tripInfo } = this.state;
+    const response = await createList(lists, selectedList, tripInfo.id);
+    if (response) {
+      const copiedLists = [...lists];
+      copiedLists.push(response);
+      response.list_type === "To Do List"
+        ? this.setState({
+            lists: copiedLists,
+            todoListId: response.todolist_id
+          })
+        : this.setState({
+            lists: copiedLists,
+            shoppingListId: response.todolist_id
+          });
+    } else {
+      this.setState({ alertDisplay: true });
+    }
+  };
+
+  handleCurrentListDisplay = () => {
+    const { currentListDisplay } = this.state;
+    this.setState({ currentListDisplay: !currentListDisplay });
+  };
+
+  renderListCards = () => {
+    const {
+      alertDisplay,
+      lists,
+      todoList,
+      currentListDisplay,
+      height,
+      width
+    } = this.state;
+    const { completedTodos, incompleteTodos } = this.getListItemsCount();
+    const infoBarHeight = Math.floor(height * 0.17);
+    let total = completedTodos
+      ? Math.floor((completedTodos / todoList.length) * 100)
+      : 0;
+    return (
+      <>
+        <div className="col-2 offset-2 pt-2">
+          <ProgressBar
+            total={total}
+            width={width}
+            infoBarHeight={infoBarHeight}
+          />
+        </div>
+        <div className="col-8 ">
+          <div className="row justify-content-around no-gutters">
+            {lists.length
+              ? lists.map((e, i) => {
+                  return (
+                    <ListCard
+                      key={i}
+                      {...e}
+                      currentListDisplay={currentListDisplay}
+                      handleCurrentListDisplay={this.handleCurrentListDisplay}
+                      completedTodos={completedTodos}
+                      incompleteTodos={incompleteTodos}
+                      infoBarHeight={infoBarHeight}
+                      width={width}
+                    />
+                  );
+                })
+              : null}
+            {lists.length < 2 ? (
+              <div className="col-3">
+                <AddListButton
+                  createList={this.handleCreateList}
+                  handleSelectList={this.handleSelectList}
+                  alertDisplay={alertDisplay}
+                  infoBarHeight={infoBarHeight}
+                  width={width}
+                />
+              </div>
+            ) : null}
+          </div>
+        </div>
+      </>
+    );
+  };
+
+  getListItemsCount = () => {
+    const { todoList } = this.state;
+    let completedTodos = 0;
+    let incompleteTodos = 0;
+    if (todoList.length > 0) {
+      todoList.forEach(todoItem => {
+        if (todoItem.complete === true) {
+          completedTodos += 1;
+        } else if (todoItem.complete === false) {
+          incompleteTodos += 1;
+        }
+      });
+    }
+    return { completedTodos, incompleteTodos };
+  };
+
+  //  ------------------
 
   handleAddToDelete = (name, index) => {
     this.handleCloseLastQuantity();
@@ -291,19 +443,23 @@ export default (class PackingOverview extends Component {
       tripInfo,
       selectedList,
       height,
-      width
-    } = this.state;
-
-    const {
+      width,
       bagTypes,
       displayBag,
       deleteMode,
       totalItems,
       totalPacked,
       itemInput,
-      bagName
+      bagName,
+      todoList,
+      todoListId,
+      shoppingList,
+      shoppingListId,
+      alertDisplay,
+      currentListDisplay,
+      destinationImage,
+      remindersImage
     } = this.state;
-    const city = tripInfo ? tripInfo.city.replace(/\s/g, "%20") : "";
     const bagContents = displayBag ? this.state[displayBag] : [];
     const total = Math.floor((totalPacked / totalItems) * 100);
     const infoBarHeight = Math.floor(height * 0.17);
@@ -321,8 +477,8 @@ export default (class PackingOverview extends Component {
             >
               <img
                 className="packing--img-cover"
-                src={`https://source.unsplash.com/weekly?${city}`}
-                alt={`cover of ${city}`}
+                src={page === "packing" ? destinationImage : remindersImage}
+                alt={`cover of ${tripInfo.city}`}
               />
               <Tabs
                 page={page}
@@ -331,30 +487,41 @@ export default (class PackingOverview extends Component {
                 windowHeight={height}
               />
               <div className="row mt-1 no-gutters">
-                <div className="col-2 offset-2 pt-2">
-                  <ProgressBar total={total} width={width} />
-                </div>
-                <div className="col-8 ">
-                  <div className="row justify-content-around no-gutters">
-                    {bags.map((e, i) => {
-                      return (
-                        <BagSelector
-                          {...e}
-                          bag_type={bagTypes[e.type_id]}
-                          key={i}
-                          countAndKey={this.getItemCountAndKey(
-                            bagTypes[e.type_id],
-                            e.trip_id,
-                            e.bag_id
-                          )}
-                          displayBag={displayBag}
-                          handleOnClick={this.handleOnClick}
-                          width={width}
-                        />
-                      );
-                    })}
-                  </div>
-                </div>
+                {page === "reminders" ? (
+                  this.renderListCards()
+                ) : (
+                  <>
+                    <div className="col-2 offset-2 pt-2">
+                      <ProgressBar
+                        total={total}
+                        width={width}
+                        infoBarHeight={infoBarHeight}
+                      />
+                    </div>
+                    <div className="col-8 ">
+                      <div className="row justify-content-around no-gutters">
+                        {bags.map((e, i) => {
+                          return (
+                            <BagSelector
+                              {...e}
+                              bag_type={bagTypes[e.type_id]}
+                              key={i}
+                              countAndKey={this.getItemCountAndKey(
+                                bagTypes[e.type_id],
+                                e.trip_id,
+                                e.bag_id
+                              )}
+                              displayBag={displayBag}
+                              handleOnClick={this.handleOnClick}
+                              width={width}
+                              infoBarHeight={infoBarHeight}
+                            />
+                          );
+                        })}
+                      </div>
+                    </div>
+                  </>
+                )}
               </div>
             </div>
             {page === "packing" ? (
@@ -386,6 +553,18 @@ export default (class PackingOverview extends Component {
                 handleSelectList={this.handleSelectList}
                 bag_id={bags[1].bag_id}
                 windowHeight={height}
+                todoList={todoList}
+                todoListId={todoListId}
+                shoppingList={shoppingList}
+                shoppingListId={shoppingListId}
+                handleAddTodo={this.handleAddTodo}
+                handleCompleteTodo={this.handleCompleteTodo}
+                handleDeleteTodo={this.handleDeleteTodo}
+                createList={this.handleCreateList}
+                alertDisplay={alertDisplay}
+                currentListDisplay={currentListDisplay}
+                handleCurrentListDisplay={this.handleCurrentListDisplay}
+                height={height}
               />
             )}
           </>

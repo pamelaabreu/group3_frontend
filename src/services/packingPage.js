@@ -421,3 +421,16 @@ export const addToShoppingCart = async (index, state, list_id) => {
     return false;
   }
 };
+
+export const getTripImg = async (id, name, city = "city") => {
+  if (localStorage.getItem(`${name}-${id}-img`)) {
+    return JSON.parse(localStorage.getItem(`${name}-${id}-img`));
+  } else {
+    city = city.includes(" ") ? city.replace(/\s/g, "%20") : city;
+    const { url } = await fetch(`https://source.unsplash.com/weekly?${city}`, {
+      method: "get"
+    });
+    localStorage.setItem(`${name}-${id}-img`, JSON.stringify(url));
+    return url;
+  }
+};

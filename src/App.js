@@ -9,6 +9,10 @@ import Home from "./components/Home/Home";
 import RemindersPage from "./containers/PackingOverview/RemindersPage/RemindersPage";
 import Pack from "./containers/PackingOverview/PackingOverview";
 
+import "react-dates/initialize";
+import "react-dates/lib/css/_datepicker.css";
+import "./containers/CreateTripForm/react_dates_overrides.css";
+
 class App extends Component {
   componentDidMount() {
     // Call it once in your app. At the root of your app is the best place

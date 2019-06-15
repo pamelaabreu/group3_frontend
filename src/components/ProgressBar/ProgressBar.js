@@ -2,11 +2,12 @@ import React from "react";
 import { CircularProgressbar } from "react-circular-progressbar";
 import "./ProgressBar.css";
 
-export default ({ total, width }) => {
+export default ({ total, width, infoBarHeight }) => {
   let maxWidth = 60;
   if (width < 500) maxWidth = 60;
   if (width >= 500 && width < 1300) maxWidth = 70;
   if (width > 1300) maxWidth = 90;
+  const height = Math.floor(infoBarHeight / 2);
   return (
     <CircularProgressbar
       value={total}
@@ -17,8 +18,8 @@ export default ({ total, width }) => {
       styles={{
         // Customize the root svg element
         root: {
-          maxHeight: "100px",
-          minHeight: "50px",
+          maxHeight: `${height}px`,
+          minHeight: `${height}px`,
           minWidth: "50px",
           maxWidth: `${maxWidth}px`
         },
