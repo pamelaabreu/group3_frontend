@@ -6,6 +6,7 @@ import { buildBundle } from "../../services/backendCalls";
 import "./Suggestions.css";
 import FirebaseAuthContext from "../../context/FirebaseAuth";
 import Baseurl from "../../services/backendUrlConnect";
+import { addTrip } from "../../services/homeLocalStorage";
 
 export default withRouter(props => {
   const {
@@ -79,6 +80,9 @@ export default withRouter(props => {
     buildBundle(items, destination, departureDate, returnDate, user)
       .then(tripId => {
         changeLoadStatus(false);
+        if (tripId && destination && duration && departureDate && returnDate) {
+          addTrip(tripId, destination, duration, departureDate, returnDate);
+        }
         props.history.push("/pack/" + tripId);
       })
       .catch(err => {

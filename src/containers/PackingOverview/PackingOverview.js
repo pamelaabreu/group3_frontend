@@ -23,7 +23,8 @@ import {
   newQuantity,
   quantity,
   select,
-  unpack
+  unpack,
+  getTripImg
 } from "../../services/packingPage";
 import {
   fetchLists,
@@ -42,6 +43,9 @@ export default (class PackingOverview extends Component {
       page: "packing",
       bagTypes: { 1: "Personal", 2: "Carry-On", 3: "Checked" },
       bagName: "Personal",
+      destinationImage: null,
+      remindersImage:
+        "https://images.unsplash.com/photo-1501618669935-18b6ecb13d6d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2232&q=80",
       currentBag: null,
       currentCategory: null,
       bags: null,
@@ -84,13 +88,19 @@ export default (class PackingOverview extends Component {
         tripBagsAndLists,
         allCategories
       ]);
+      const destinationImage = await getTripImg(
+        tripDetails.trip.id,
+        tripDetails.trip.name,
+        tripDetails.trip.city
+      );
       this.setState(
         {
           tripInfo: tripDetails.trip,
           categories,
           bags: tripDetails.bags,
           lists: tripDetails.lists,
-          loading: false
+          loading: false,
+          destinationImage
         },
         async () => {
           const { bags, lists, bagTypes } = this.state;
@@ -209,14 +219,12 @@ export default (class PackingOverview extends Component {
 
   handleAddTodo = async todoInput => {
     const newState = await addTodo(todoInput, this.state);
-    console.log(newState, "new");
     if (newState) this.setState(newState);
     return;
   };
 
   handleCompleteTodo = async (index, todo_id) => {
     const newState = await completeTodo(index, todo_id, this.state);
-    console.log(newState, "new");
     if (newState) this.setState(newState);
     return;
   };
@@ -233,7 +241,15 @@ export default (class PackingOverview extends Component {
     if (response) {
       const copiedLists = [...lists];
       copiedLists.push(response);
-      this.setState({ lists: copiedLists });
+      response.list_type === "To Do List"
+        ? this.setState({
+            lists: copiedLists,
+            todoListId: response.todolist_id
+          })
+        : this.setState({
+            lists: copiedLists,
+            shoppingListId: response.todolist_id
+          });
     } else {
       this.setState({ alertDisplay: true });
     }
@@ -245,34 +261,60 @@ export default (class PackingOverview extends Component {
   };
 
   renderListCards = () => {
-    const { alertDisplay, lists, currentListDisplay } = this.state;
+    const {
+      alertDisplay,
+      lists,
+      todoList,
+      currentListDisplay,
+      height,
+      width
+    } = this.state;
     const { completedTodos, incompleteTodos } = this.getListItemsCount();
+    const infoBarHeight = Math.floor(height * 0.17);
+    let total = completedTodos
+      ? Math.floor((completedTodos / todoList.length) * 100)
+      : 0;
     return (
-      <div className="row">
-        {lists.length
-          ? lists.map((e, i) => {
-              return (
-                <ListCard
-                  key={i}
-                  {...e}
-                  currentListDisplay={currentListDisplay}
-                  handleCurrentListDisplay={this.handleCurrentListDisplay}
-                  completedTodos={completedTodos}
-                  incompleteTodos={incompleteTodos}
+      <>
+        <div className="col-2 offset-2 pt-2">
+          <ProgressBar
+            total={total}
+            width={width}
+            infoBarHeight={infoBarHeight}
+          />
+        </div>
+        <div className="col-8 ">
+          <div className="row justify-content-around no-gutters">
+            {lists.length
+              ? lists.map((e, i) => {
+                  return (
+                    <ListCard
+                      key={i}
+                      {...e}
+                      currentListDisplay={currentListDisplay}
+                      handleCurrentListDisplay={this.handleCurrentListDisplay}
+                      completedTodos={completedTodos}
+                      incompleteTodos={incompleteTodos}
+                      infoBarHeight={infoBarHeight}
+                      width={width}
+                    />
+                  );
+                })
+              : null}
+            {lists.length < 2 ? (
+              <div className="col-3">
+                <AddListButton
+                  createList={this.handleCreateList}
+                  handleSelectList={this.handleSelectList}
+                  alertDisplay={alertDisplay}
+                  infoBarHeight={infoBarHeight}
+                  width={width}
                 />
-              );
-            })
-          : null}
-        {lists.length < 2 ? (
-          <div className="col-3">
-            <AddListButton
-              createList={this.handleCreateList}
-              handleSelectList={this.handleSelectList}
-              alertDisplay={alertDisplay}
-            />
+              </div>
+            ) : null}
           </div>
-        ) : null}
-      </div>
+        </div>
+      </>
     );
   };
 
@@ -414,9 +456,10 @@ export default (class PackingOverview extends Component {
       shoppingList,
       shoppingListId,
       alertDisplay,
-      currentListDisplay
+      currentListDisplay,
+      destinationImage,
+      remindersImage
     } = this.state;
-    const city = tripInfo ? tripInfo.city.replace(/\s/g, "%20") : "";
     const bagContents = displayBag ? this.state[displayBag] : [];
     const total = Math.floor((totalPacked / totalItems) * 100);
     const infoBarHeight = Math.floor(height * 0.17);
@@ -434,8 +477,8 @@ export default (class PackingOverview extends Component {
             >
               <img
                 className="packing--img-cover"
-                src={`https://source.unsplash.com/weekly?${city}`}
-                alt={`cover of ${city}`}
+                src={page === "packing" ? destinationImage : remindersImage}
+                alt={`cover of ${tripInfo.city}`}
               />
               <Tabs
                 page={page}
@@ -444,39 +487,41 @@ export default (class PackingOverview extends Component {
                 windowHeight={height}
               />
               <div className="row mt-1 no-gutters">
-                <div className="col-2 offset-2 pt-2">
-                  <ProgressBar
-                    total={total}
-                    width={width}
-                    infoBarHeight={infoBarHeight}
-                  />
-                </div>
-                <div className="col-8 ">
-                  {page === "reminders" ? (
-                    this.renderListCards()
-                  ) : (
-                    <div className="row justify-content-around no-gutters">
-                      {bags.map((e, i) => {
-                        return (
-                          <BagSelector
-                            {...e}
-                            bag_type={bagTypes[e.type_id]}
-                            key={i}
-                            countAndKey={this.getItemCountAndKey(
-                              bagTypes[e.type_id],
-                              e.trip_id,
-                              e.bag_id
-                            )}
-                            displayBag={displayBag}
-                            handleOnClick={this.handleOnClick}
-                            width={width}
-                            infoBarHeight={infoBarHeight}
-                          />
-                        );
-                      })}
+                {page === "reminders" ? (
+                  this.renderListCards()
+                ) : (
+                  <>
+                    <div className="col-2 offset-2 pt-2">
+                      <ProgressBar
+                        total={total}
+                        width={width}
+                        infoBarHeight={infoBarHeight}
+                      />
                     </div>
-                  )}
-                </div>
+                    <div className="col-8 ">
+                      <div className="row justify-content-around no-gutters">
+                        {bags.map((e, i) => {
+                          return (
+                            <BagSelector
+                              {...e}
+                              bag_type={bagTypes[e.type_id]}
+                              key={i}
+                              countAndKey={this.getItemCountAndKey(
+                                bagTypes[e.type_id],
+                                e.trip_id,
+                                e.bag_id
+                              )}
+                              displayBag={displayBag}
+                              handleOnClick={this.handleOnClick}
+                              width={width}
+                              infoBarHeight={infoBarHeight}
+                            />
+                          );
+                        })}
+                      </div>
+                    </div>
+                  </>
+                )}
               </div>
             </div>
             {page === "packing" ? (
