@@ -13,7 +13,10 @@ const Modal = props => {
         aria-labelledby="modalScrollableTitle"
         aria-hidden="true"
       >
-        <div className="modal-dialog modal-dialog-scrollable" role="document">
+        <div
+          className="modal-dialog modal-dialog-scrollable modal-xl"
+          role="document"
+        >
           <div className="modal-content b-radius9 position-relative">
             <Suggestions
               changeLoadStatus={props.changeLoadStatus}
