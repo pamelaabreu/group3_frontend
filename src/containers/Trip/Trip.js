@@ -80,25 +80,27 @@ class Trip extends Component {
     const { city, country, departure_date, return_date } = this.state.trip;
     const { trip_id: tripID } = this.props.match.params;
     return (
-      <div
-        className="trip-container"
-        style={{
-          backgroundColor: "#C3D8E7",
-          paddingBottom: "3rem",
-          height: "100vh"
-        }}
-      >
-        <div className="trip-details-section">
+      <div className={`trip-container`}>
+        <div
+          className="trip-details-section"
+          style={{
+            backgroundImage: `url(https://source.unsplash.com/weekly?${city})`,
+            backgroundSize: "cover"
+          }}
+        >
           <div className="trip-details-section-background-gradient">
             <div className="row justify-content-end m-0">
               <div className="pack-button-container">
-                <button className="pack-button" onClick={this.moveToPack}>
+                <button
+                  className="pack-button btn btn-info btn-lg"
+                  onClick={this.moveToPack}
+                >
                   <span className="col-12 text-center">Pack</span>
-                  <i className="col-12 fas fa-long-arrow-alt-right text-center pack--arrow-transform" />
+                  <i className="col-6 col-lg-12 fas fa-long-arrow-alt-right text-center pack--arrow-transform" />
                 </button>
               </div>
             </div>
-            <div className="trip-details-container">
+            <div className="trip-details-container mt-5 pt-4 container">
               <div className="col-10 col-lg-4 trip-details-header">
                 <h5 className="trip-details-title">Trip Details</h5>
                 <h6 className="trip-destination-title">
@@ -110,8 +112,8 @@ class Trip extends Component {
                 <div className="trip-departure-time-text">
                   <p>
                     {moment()
-                      .endOf(departure_date)
-                      .to(return_date)}
+                      .endOf(moment())
+                      .to(departure_date)}
                   </p>
                 </div>
               </div>

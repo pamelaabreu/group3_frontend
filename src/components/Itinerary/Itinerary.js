@@ -31,11 +31,6 @@ const Itinerary = props => {
   // const categories = findCategories(itineraryCategoryNames);
 
   const itineraryDisplayHandler = e => {
-    if (itineraryFormDisplay) {
-      e.target.innerHTML = "add";
-    } else {
-      e.target.innerHTML = "cancel";
-    }
     setItineraryFormDisplay(prevState => !prevState);
   };
   console.log(props.info);
@@ -43,12 +38,21 @@ const Itinerary = props => {
     <div className="itinerary-container">
       <div className="row">
         <h3 className="mt-4 text-white itinerary-title">Itinerary</h3>
-        <button
-          className="btn btn-primary ml-3 mt-4"
-          onClick={itineraryDisplayHandler}
-        >
-          add
-        </button>
+        {!itineraryFormDisplay ? (
+          <button
+            className="btn btn-primary ml-3 mt-4 col-2 col-lg-1"
+            onClick={itineraryDisplayHandler}
+          >
+            add
+          </button>
+        ) : (
+          <button
+            className="btn btn-danger ml-3 mt-4 col-2 col-lg-1"
+            onClick={itineraryDisplayHandler}
+          >
+            cancel
+          </button>
+        )}
       </div>
       <div className="row">
         {itineraryFormDisplay ? (
