@@ -1,5 +1,6 @@
 .mbutton--container {
   background: var(--denimBlue);
+  border: 1px solid var(--denimBlue);
   min-height: 4.5rem;
   min-width: 4.5rem;
 }

@@ -36,7 +36,8 @@
 
 .bag--packed-container {
   background-color: var(--bundleBlue);
-  border-radius: var(--br-9);
+  border-bottom-left-radius: var(--br-9);
+  border-bottom-right-radius: var(--br-9);
 }
 
 /*    ---------     */

@@ -20,7 +20,7 @@ const ToastNotif = (image, text) => {
   );
 
   return toast(ToastNotifContent, {
-    autoClose: 3000,
+    autoClose: 1800,
     transition: Bounce,
     progressClassName: "fancy-progress-bar",
     className: "toastDropShadow",
