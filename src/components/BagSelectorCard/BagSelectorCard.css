@@ -5,13 +5,14 @@
 .cbag--active-color {
   background-color: #4896c9;
 }
+
 .cbag--active {
   width: 100%;
   height: 100%;
   font-weight: 700;
-  font-size: 1.2rem;
+  font-size: 1.3em;
   color: var(--bundleBlue);
-  border: solid 1px var(--bundleBlue);
+  border: solid 0.3em var(--bundleBlue);
   border-radius: var(--br-9);
   box-shadow: var(--ds-lightGrey);
   background-color: var(--white);
@@ -21,7 +22,7 @@
 .cbag--inactive {
   width: 100%;
   height: 100%;
-  font-size: 1.2rem;
+  font-size: 1em;
   border: solid 1px var(--smokeGrey30);
   color: var(--bundleBlue70);
   border-radius: var(--br-9);
@@ -33,9 +34,10 @@
 .cbag--inactive:hover {
   width: 100%;
   height: 100%;
+  font-size: 1.2em;
   font-weight: 700;
   color: var(--bundleBlue);
-  border: solid 1px var(--bundleBlue);
+  /* border: solid .5rem v; */
   border-radius: var(--br-9);
   box-shadow: var(--ds-lightGrey);
   background-color: var(--white);
@@ -71,24 +73,24 @@
 
 .cbag--size-md {
   height: 7rem;
-  width: 8.2rem;
+  width: 9em;
   font-size: 1.1rem;
 }
 
 .cbag--size-lg {
   height: 8rem;
-  width: 10rem;
+  width: 11em;
   font-size: 1.2rem;
 }
 
 .cbag--size-xlg {
   height: 8rem;
-  width: 12rem;
+  width: 13em;
   font-size: 1.3rem;
 }
 
 .cbag--size-xxlg {
   height: 9rem;
-  width: 13rem;
+  width: 15em;
   font-size: 1.5rem;
 }

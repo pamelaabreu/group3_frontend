@@ -472,7 +472,7 @@ export default (class PackingOverview extends Component {
     } = this.state;
     const bagContents = displayBag ? this.state[displayBag] : [];
     const total = Math.floor((totalPacked / totalItems) * 100);
-    const infoBarHeight = Math.floor(height * 0.17);
+    const infoBarHeight = Math.floor(height * 0.2);
     return (
       <>
         {loading ? (
