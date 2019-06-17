@@ -19,7 +19,7 @@ export default props => {
     bagName
   } = props;
   // const containerHeight = Math.floor(height * 0.83);
-  const containerHeight = Math.floor(height * 0.83);
+  const containerHeight = Math.floor(height * 0.8);
   const bagHeight = Math.floor(containerHeight * 0.98);
   // const bagHeight = Math.floor(height * 0.83);
   return (
