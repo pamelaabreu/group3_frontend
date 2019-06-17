@@ -9,8 +9,8 @@ export default ({ page, handleOnClick, moveToTrip, windowHeight }) => {
   return (
     <div className="container" style={{ height: `${height}px` }}>
       <div className="row align-items-center tabs--main no-gutters">
-        <div className="pl-2 col-8 offset-2 tabs--header">
-          <div className="row">
+        <div className="pl-2 col-7 offset-3 tabs--header">
+          <div className="row no-gutters">
             <button
               type="button"
               aria-pressed={ariaPressed}
@@ -35,11 +35,13 @@ export default ({ page, handleOnClick, moveToTrip, windowHeight }) => {
           <button
             type="button"
             aria-label="Trip Details Page"
-            className="row tabs--button align-items-top"
+            className="tabs--button"
             onClick={moveToTrip}
           >
-            <span className="col-12 text-left tabs--trip">Trip</span>
-            <span className="col-12 text-left tabs--details">Details</span>
+            <div className="row align-items-top">
+              <span className="col-12 text-left tabs--trip">Trip</span>
+              <span className="col-12 text-left tabs--details">Details</span>
+            </div>
           </button>
         </div>
       </div>

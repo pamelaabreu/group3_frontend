@@ -33,9 +33,12 @@ const AddListButton = props => {
           data-target="#exampleModal"
           style={{ height: height }}
         >
-          <div className={"cList--inactive p-2 text-left"}>
+          <div className={"cList--inactive p-0 text-left"}>
             <p className="row">
-              <span className="col-12">+Add</span>
+              <span className="col-12 text-nowrap">
+                <i className="fas fa-plus-circle fa-sm m-1 align-baseline" />
+                Add List
+              </span>
             </p>
           </div>
         </button>

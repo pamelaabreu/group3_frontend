@@ -24,7 +24,8 @@ import {
   quantity,
   select,
   unpack,
-  getTripImg
+  getTripImg,
+  packAll
 } from "../../services/packingPage";
 import {
   fetchLists,
@@ -208,6 +209,9 @@ export default (class PackingOverview extends Component {
       case "decreaseQuantity":
         this.handleNewQuantity("decrease", index);
         break;
+      case "packALL":
+        this.handlePackAll();
+        break;
       default:
         return;
     }
@@ -336,6 +340,12 @@ export default (class PackingOverview extends Component {
 
   //  ------------------
 
+  handlePackAll = () => {
+    const newState = packAll(this.state);
+    if (newState) this.setState(newState);
+    return;
+  };
+
   handleAddToDelete = (name, index) => {
     this.handleCloseLastQuantity();
     if (name === "bag") return;
@@ -462,7 +472,7 @@ export default (class PackingOverview extends Component {
     } = this.state;
     const bagContents = displayBag ? this.state[displayBag] : [];
     const total = Math.floor((totalPacked / totalItems) * 100);
-    const infoBarHeight = Math.floor(height * 0.17);
+    const infoBarHeight = Math.floor(height * 0.2);
     return (
       <>
         {loading ? (

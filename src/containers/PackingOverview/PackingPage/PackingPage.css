@@ -5,3 +5,7 @@
 .ppage--bag {
   overflow-y: auto;
 }
+
+.ppage--menubar-position {
+  bottom: 4.7em;
+}

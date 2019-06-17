@@ -7,6 +7,7 @@
   min-width: 4.5rem;
   bottom: 0;
   color: var(--white);
+  border: 1px solid var(--denimBlue);
 }
 
 .add-todo-button:hover {

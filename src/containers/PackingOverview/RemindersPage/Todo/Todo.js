@@ -23,7 +23,7 @@ const Todo = props => {
     <ul className="list-group">
       <li className="px-0 list-group-item d-flex">
         <div className="col-12 row justify-content-around no-gutters align-middle">
-          <div className="col-1 text-left">
+          <div className="col-1 text-center">
             <i
               className="far fa-trash-alt fa-lg c-bundleBlue"
               onClick={() => handleDeleteTodo(index, value)}
