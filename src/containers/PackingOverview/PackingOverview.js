@@ -24,7 +24,8 @@ import {
   quantity,
   select,
   unpack,
-  getTripImg
+  getTripImg,
+  packAll
 } from "../../services/packingPage";
 import {
   fetchLists,
@@ -208,6 +209,9 @@ export default (class PackingOverview extends Component {
       case "decreaseQuantity":
         this.handleNewQuantity("decrease", index);
         break;
+      case "packALL":
+        this.handlePackAll();
+        break;
       default:
         return;
     }
@@ -335,6 +339,12 @@ export default (class PackingOverview extends Component {
   };
 
   //  ------------------
+
+  handlePackAll = () => {
+    const newState = packAll(this.state);
+    if (newState) this.setState(newState);
+    return;
+  };
 
   handleAddToDelete = (name, index) => {
     this.handleCloseLastQuantity();
