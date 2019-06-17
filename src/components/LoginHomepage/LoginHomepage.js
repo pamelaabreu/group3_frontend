@@ -33,7 +33,7 @@ class LoginHomepage extends Component {
   render() {
     const { trips, create_new_trip: createNewTrip } = this.state;
     const { upcoming_trips, past_trips } = trips;
-    const { create_trip_form: createTripForm, user } = this.props;
+    const { create_trip_form: createTripForm } = this.props;
     return (
       <div className="container-fluid login-home-container">
         <div className="container">

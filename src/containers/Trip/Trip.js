@@ -108,11 +108,13 @@ class Trip extends Component {
                 </h6>
                 <p className="trip-destination-dates">{`${moment(
                   departure_date
-                ).format("l")} - ${moment(return_date).format("l")}`}</p>
+                ).format("MMM DD")} - ${moment(return_date).format(
+                  "MMM DD"
+                )}`}</p>
                 <div className="trip-departure-time-text">
                   <p>
                     {moment()
-                      .endOf(moment())
+                      .startOf(moment())
                       .to(departure_date)}
                   </p>
                 </div>

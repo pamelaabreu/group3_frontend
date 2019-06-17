@@ -5,35 +5,11 @@ import AddItineraryForm from "../AddItineraryForm/AddItineraryForm";
 
 import "./Itinerary.css";
 
-const findCategories = categories => {
-  const uniqueCategoryNames = {};
-  categories.forEach(e => {
-    if (!uniqueCategoryNames[e]) {
-      uniqueCategoryNames[e] = 1;
-    } else {
-      uniqueCategoryNames[e]++;
-    }
-  });
-
-  let categoryNamesUsedOnce = [];
-  Object.entries(uniqueCategoryNames).forEach(e => {
-    if (e[1] === 1) {
-      categoryNamesUsedOnce.push(e[0]);
-    }
-  });
-
-  return categoryNamesUsedOnce;
-};
-
 const Itinerary = props => {
   const [itineraryFormDisplay, setItineraryFormDisplay] = useState(false);
-  // const itineraryCategoryNames = props.info.map(e => e.itinerary_name);
-  // const categories = findCategories(itineraryCategoryNames);
-
   const itineraryDisplayHandler = e => {
     setItineraryFormDisplay(prevState => !prevState);
   };
-  console.log(props.info);
   return (
     <div className="itinerary-container">
       <div className="row">
