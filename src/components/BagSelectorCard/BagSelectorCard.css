@@ -73,24 +73,24 @@
 
 .cbag--size-md {
   height: 7rem;
-  width: 8.2rem;
+  width: 9em;
   font-size: 1.1rem;
 }
 
 .cbag--size-lg {
   height: 8rem;
-  width: 10rem;
+  width: 11em;
   font-size: 1.2rem;
 }
 
 .cbag--size-xlg {
   height: 8rem;
-  width: 12rem;
+  width: 13em;
   font-size: 1.3rem;
 }
 
 .cbag--size-xxlg {
   height: 9rem;
-  width: 13rem;
+  width: 15em;
   font-size: 1.5rem;
 }
