@@ -30,16 +30,18 @@ export default withRouter(props => {
     const allTheItems = getSuggestions(duration);
     setItems(allTheItems);
 
-    axios({
-      method: "get",
-      url: `${Baseurl}/categories/all`
-    })
-      .then(res => {
-        setCategories(res.data);
-      })
-      .catch(err => {
-        console.log(err);
-      });
+    const categoryObj = [
+      { name: "clothing", id: 1 },
+      { name: "accessories", id: 2 },
+      { name: "electronics", id: 3 },
+      { name: "personals", id: 4 },
+      { name: "documents", id: 5 },
+      { name: "first-aid", id: 6 },
+      { name: "essentials", id: 7 },
+      { name: "children", id: 8 },
+      { name: "misc", id: 9 }
+    ];
+    setCategories(categoryObj);
   }, [duration]);
 
   useEffect(() => {
