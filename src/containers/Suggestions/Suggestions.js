@@ -192,9 +192,9 @@ export default withRouter(props => {
                             </div>
                             <div className="row justify-content-center pt-1 pb-2">
                               {e.pack ? (
-                                <i className="far fa-check-circle activeSuggestedItem-color suggestions-checked-icon-size" />
+                                <i className="far fa-check-circle fa-3x activeSuggestedItem-color " />
                               ) : (
-                                <i className="far fa-times-circle c-smokeGrey suggestions-checked-icon-size" />
+                                <i className="far fa-times-circle fa-3x c-smokeGrey " />
                               )}
                             </div>
                           </div>
