@@ -95,7 +95,7 @@ export default withRouter(props => {
     <>
       <div className="modal-header bg-bundleBlue border-0">
         <div className="container-fluid">
-          <h2 className="c-white h1">Remove items you don't need.</h2>
+          <h2 className="c-white display-4">Remove items you don't need.</h2>
         </div>
 
         <button
@@ -142,7 +142,7 @@ export default withRouter(props => {
                       key={e.id}
                       onClick={handleCategoryClick(e.name)}
                       className={
-                        "mx-3 p-2 h4 capitalizeText border-0 " +
+                        "mx-3 p-4 h1 capitalizeText border-0 " +
                         activeCatergoryClassname
                       }
                     >
@@ -173,7 +173,7 @@ export default withRouter(props => {
                       >
                         <div
                           className={
-                            "pt-3 bg-white text-center mali700 b-radius9 h3 border-0" +
+                            "pt-3 bg-white text-center mali700 b-radius9 h2 border-0" +
                             activeCardText
                           }
                         >
@@ -210,13 +210,13 @@ export default withRouter(props => {
       <div className="modal-footer">
         <button
           type="button"
-          className="b-radius9 c-bundleBlue bundeBlue-border-1 p-3 h4 cancelBundleButton bg-transparent"
+          className="b-radius9 c-bundleBlue bundeBlue-border-1 p-3 h1 cancelBundleButton bg-transparent"
           data-dismiss="modal"
         >
           Cancel
         </button>
         <button
-          className="bundleBlueButton border-0 p-3 h4 bundleItSubmitButton "
+          className="bundleBlueButton border-0 p-3 h1 bundleItSubmitButton "
           data-dismiss="modal"
           onClick={handleBundle}
         >
