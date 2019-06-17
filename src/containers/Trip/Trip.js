@@ -41,7 +41,7 @@ class Trip extends Component {
     const location = `${this.state.trip.city} ${this.state.trip.country}`;
     const mqLocation = await axios({
       method: "get",
-      url: `http://www.mapquestapi.com/geocoding/v1/address?key=${
+      url: `https://www.mapquestapi.com/geocoding/v1/address?key=${
         APIKEYS.MQ_API_KEY
       }&location=${location}`
     });
