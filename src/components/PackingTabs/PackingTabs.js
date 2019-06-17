@@ -35,11 +35,13 @@ export default ({ page, handleOnClick, moveToTrip, windowHeight }) => {
           <button
             type="button"
             aria-label="Trip Details Page"
-            className="row tabs--button align-items-top"
+            className="tabs--button"
             onClick={moveToTrip}
           >
-            <span className="col-12 text-left tabs--trip">Trip</span>
-            <span className="col-12 text-left tabs--details">Details</span>
+            <div className="row align-items-top">
+              <span className="col-12 text-left tabs--trip">Trip</span>
+              <span className="col-12 text-left tabs--details">Details</span>
+            </div>
           </button>
         </div>
       </div>
