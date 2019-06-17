@@ -120,7 +120,6 @@ export default withRouter(props => {
                     "c-huate bg-transparent inactiveCategory-item";
 
                   if (e.name === "misc") return null;
-                  if (e.name === "personal") return null;
                   if (e.name === "children") return null;
                   if (e.name === "essentials") return null;
 
