@@ -39,7 +39,7 @@ const PublicHome = props => {
           <h2 className="c-huate mali700 mb-5 display-3">Let's get packing!</h2>
           <p className="h3 mb-5 publicHome-c-babyBlue">
             Bundle takes your destination and travel dates to assemble a
-            pre-selected customized packing list.{" "}
+            customized packing list.
           </p>
           {create_trip_form}
         </div>
