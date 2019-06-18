@@ -36,8 +36,8 @@ const PublicHome = props => {
             showMbCreateTrip
           }
         >
-          <h2 className="c-huate mali700 mb-5 display-3">Let's get packing!</h2>
-          <p className="h3 mb-5 publicHome-c-babyBlue">
+          <h2 className="c-huate mali700 mb-5 display-2">Let's get packing!</h2>
+          <p className="display-4 mb-5 publicHome-c-babyBlue">
             Bundle takes your destination and travel dates to assemble a
             customized packing list.
           </p>
@@ -48,8 +48,8 @@ const PublicHome = props => {
       {savedTripsFromLocalStorage.length === 0 ? null : (
         <div className="row m-2 bg-babyBlue b-radius9 ds-lightGrey">
           <div className="col-12">
-            <h2 className="c-denimBlue mali700 display-4 mb-1 p-5 text-center">
-              Recently Created Trips
+            <h2 className="c-denimBlue mali700 display-2 mb-1 p-5 text-center">
+              Recently Made Trips
             </h2>
             <div className={"row p-5 " + changeJustifyTrips}>
               <HomeTripCard savedTrips={savedTripsFromLocalStorage} />
