@@ -6,7 +6,7 @@ const AddTodo = props => {
   const { todoInput, handleTodoInputChange, addTodo } = props;
 
   return (
-    <div className="btn dropup add-todo-button-container">
+    <div className="btn dropup">
       <button
         type="button"
         className="add-todo-button rounded-circle bg-denimBlue shadow"
