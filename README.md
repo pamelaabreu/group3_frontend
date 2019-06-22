@@ -7,10 +7,6 @@ Bundle relieves packing worries by showing you what to pack from one place.
 Given the destination and duration of your trip, Bundle will create a customizable packing list.
 Once you confirm what you do and don’t need, you can start tracking your packing progress. Bundle also has handy features like creating last-minute todo lists and storing booking information so that you never have to feel like you’ve forgotten something important.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-<!-- ## Table of Contents -->
-<!-- * **[Usage and Installation](#usage-and-installation)** -->
 | | Table of Contents|
 |:-:|:--:|
 |1|**[Getting Started](#getting-started)**|
@@ -18,10 +14,12 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 |3|**[Usage and Installation](#usage-and-installation)**|
 |4||
 
-### Getting Started
+### **Getting Started**
 ___
 #### Prerequisites
-1. [Bundle Back-End API](https://github.com/aionate0812/bundle_backend) 
+1. This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+2. [Bundle Back-End API](https://github.com/aionate0812/bundle_backend) 
 
 *  _**Minimum requirement**_**:**
     - `git clone https://github.com/aionate0812/bundle_backend`
@@ -33,7 +31,7 @@ ___
       * *Console*: `https://console.firebase.google.com/project/_/authentication/users`
 
 #### Usage and Installation
-2. In /src rename * **`firebaseConfigExample`** to * **`firebaseConfig`** and replace the Firebase Configurations with your own.
+3. In /src rename * **`firebaseConfigExample`** to * **`firebaseConfig`** and replace the Firebase Configurations with your own.
 
 ```javascript
 export default {
@@ -47,7 +45,7 @@ export default {
   };
 ```
 
-3. In /src rename * **`configExample.json`** to * **`config.json`** and replace the API configurations with your own.
+4. In /src rename * **`configExample.json`** to * **`config.json`** and replace the API configurations with your own.
 
 ```javascript
 // Map Quest API used to parse city name into longitude and latitude coordinates
@@ -58,4 +56,4 @@ export default {
 }
 ```
 
-4. `npm install`
+5. `npm install`
