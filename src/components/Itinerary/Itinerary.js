@@ -16,14 +16,14 @@ const Itinerary = props => {
         <h3 className="mt-4 text-white itinerary-title">Itinerary</h3>
         {!itineraryFormDisplay ? (
           <button
-            className="btn btn-primary ml-3 mt-4 col-2 col-lg-1"
+            className="itinerary-add-btn btn ml-3 mt-4 col-2 col-lg-1"
             onClick={itineraryDisplayHandler}
           >
             add
           </button>
         ) : (
           <button
-            className="btn btn-danger ml-3 mt-4 col-2 col-lg-1"
+            className="itinerary-cancel-btn btn ml-3 mt-4 col-2 col-lg-1"
             onClick={itineraryDisplayHandler}
           >
             cancel

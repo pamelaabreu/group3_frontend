@@ -21,6 +21,18 @@
     border: 1px solid rgba(0, 0, 0, 0.125);
     border-radius: 0.75rem;
   }
+
+  .itinerary-add-btn {
+    color: white !important;
+    background-color: #2541b2 !important;
+    border-color: #2541b2 !important;
+  }
+
+  .itinerary-cancel-btn {
+    color: white !important;
+    background-color: #d9534f !important;
+    border-color: #d9534f !important;
+  }
 }
 
 @media only screen and (min-width: 992px) {
@@ -55,5 +67,19 @@
 
   .itinerary-container {
     padding: 1rem;
+  }
+
+  .itinerary-add-btn {
+    color: white !important;
+    background-color: #2541b2 !important;
+    border-color: #2541b2 !important;
+    font-size: 1.5rem !important;
+  }
+
+  .itinerary-cancel-btn {
+    color: white !important;
+    background-color: #d9534f !important;
+    border-color: #d9534f !important;
+    font-size: 1.5rem !important;
   }
 }
