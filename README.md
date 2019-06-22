@@ -1,5 +1,5 @@
 ![Bundle The Trip Readiness](https://lh3.googleusercontent.com/1KVsbCJ0Z6z7bUxsN6YgSwKtxI5adDgww0q2nP2Lf2i2Jc3Bzcz6mZ8Brpnf0x9yaH9eUPzX2vBD4CjNyZywyFeAssyvyahFW-elfycirHGFxAYVrWNbJAhrcqS9LYiglxg7c4kYJw=w1135-h709-no "Bundle Logo")
-# **Bundle**
+# [**Bundle**](http://bundle.tips)
 ### _A **mobile-first**, trip-readiness app_
 ---
 
