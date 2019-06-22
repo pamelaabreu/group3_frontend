@@ -111,6 +111,6 @@ ___
 ### **Acknowledgments**  🤜🤛
 ---
  Special thanks to our tech mentor Josh & our instructors Mo & Taq.
-* **Josh Goldberg**: [GitHub](https://github.com/JoshuaKGoldberg)
+* **Josh Goldberg**: [GitHub](https://github.com/JoshuaKGoldberg) 🐐
 * **Mo Mosayed**: [GitHub](https://github.com/mmosayed)
 * **Taq Karim**: [GitHub](https://github.com/mottaquikarim)
