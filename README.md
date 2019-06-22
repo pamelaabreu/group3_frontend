@@ -61,6 +61,7 @@ export default {
 
 5. `npm install`
 
+6. `npm start`
 
 ### **Deployment**
 ---
@@ -69,9 +70,8 @@ export default {
 
 ### **Built With**
 ___
-|| Libraries|||
+|Libraries||||
 |:--|:---:|:---:|---:| 
-|**Name**| 
 |**axios**|[GitHub](https://github.com/axios/axios)| [npm](https://www.npmjs.com/package/axios)| |
 |**Bootstrap**|[GitHub](https://github.com/twbs/bootstrap) | [npm](https://www.npmjs.com/package/bootstrap) | [Web](https://getbootstrap.com/)|
 |**Firebase**|[GitHub](https://github.com/firebase/)|[npm](https://www.npmjs.com/package/firebase)|[Web](https://firebase.google.com/)|
@@ -89,7 +89,7 @@ ___
 
 ### **Contributing**
 ___
-1. Clone/Fork repo
+1. Clone or Fork repo
 2. Switch to `developmentMaster` branch
 3. Fork a branch for each new feature you'd like to add
 4. Before pushing changes, switch to `developmentMaster` then `git pull` for latest updates.
