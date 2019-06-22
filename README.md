@@ -12,7 +12,7 @@ Once you confirm what you do and don’t need, you can start tracking your packi
 |1|**[Getting Started](#getting-started)**|
 |2|**[Prerequisites](#prerequisites)**|
 |3|**[Usage and Installation](#usage-and-installation)**|
-|4||
+|4|**[Built With](#built-with)**|
 
 ### **Getting Started**
 ___
@@ -57,3 +57,57 @@ export default {
 ```
 
 5. `npm install`
+
+
+### **Deployment**
+---
+1. **We recommend Firebase:** Docs: `https://firebase.google.com/docs/hosting?authuser=0`
+
+
+### **Built With**
+___
+|| Libraries|||
+|:--|:---:|:---:|---:| 
+|**Name**| 
+|**axios**|[GitHub](https://github.com/axios/axios)| [npm](https://www.npmjs.com/package/axios)| |
+|**Bootstrap**|[GitHub](https://github.com/twbs/bootstrap) | [npm](https://www.npmjs.com/package/bootstrap) | [Web](https://getbootstrap.com/)|
+|**Firebase**|[GitHub](https://github.com/firebase/)|[npm](https://www.npmjs.com/package/firebase)|[Web](https://firebase.google.com/)|
+|**i18n-iso-countries**| [Github](https://github.com/michaelwittig/node-i18n-iso-countries) | [npm](https://www.npmjs.com/package/i18n-iso-countries)| |
+| **libphonenumber-js**|[Github](https://github.com/catamphetamine/libphonenumber-js) | [npm](https://www.npmjs.com/package/libphonenumber-js) | [Web](https://catamphetamine.github.io/libphonenumber-js/)|
+| **moment**| [GitHub](https://github.com/moment/moment) | [npm](https://www.npmjs.com/package/moment) | [Web](https://momentjs.com/) |
+|**react**| [Github](https://github.com/facebook/react) | [npm](https://www.npmjs.com/package/react) | [Web](https://reactjs.org/)|
+|**react-burger-menu**| [Github](https://github.com/negomi/react-burger-menu) | [npm](https://www.npmjs.com/package/react-burger-menu) | [Web](http://negomi.github.io/react-burger-menu/)|
+|**react-circular-progressbar**| [Github](https://github.com/kevinsqi/react-circular-progressbar) | [npm](https://www.npmjs.com/package/react-circular-progressbar) | [Web](https://www.kevinqi.com/react-circular-progressbar/)|
+|**react-dates**| [Github](https://github.com/airbnb/react-dates) | [npm](https://www.npmjs.com/package/react-dates) | [Web](http://airbnb.io/react-dates/?path=/story/daterangepicker-drp--default)|
+|**react-router-dom**| [Github](https://github.com/ReactTraining/react-router) | [npm](https://www.npmjs.com/package/react-router-dom) | [Web](https://reacttraining.com/react-router/web/guides/quick-start)|
+|**react-toastify**| [Github](https://github.com/fkhadra/react-toastify) | [npm](https://www.npmjs.com/package/react-toastify) | [Web](https://fkhadra.github.io/react-toastify/)|
+|**react-with-direction**| [Github](https://github.com/airbnb/react-with-direction) | [npm](https://www.npmjs.com/package/react-with-direction) | |
+
+
+### **Contributing**
+___
+1. Clone/Fork repo
+2. Switch to `developmentMaster` branch
+3. Fork a branch for each new feature you'd like to add
+4. Before pushing changes, switch to `developmentMaster` then `git pull` for latest updates.
+    - Switch to your branch
+    - Merge `developmentMaster` into your branch
+    - Resolve any conflicts
+5. Push your branch
+6. Create Pull Request against `developmentMaster`
+
+### **Authors**
+---
+| | | |
+|:---| :---: | :---:| 
+|**Pam** | [GitHub](https://github.com/pamelaabreu) | [LinkedIn](https://www.linkedin.com/in/pamela-abreu/) |
+|**Rupa**| [GitHub](https://github.com/Rupa1216) | [LinkedIn](https://www.linkedin.com/in/sdatta87/)|
+|**Alex**| [GitHub](https://github.com/aionate0812) | [LinkedIn](https://www.linkedin.com/in/alexander-onate/)| 
+|**Robert**| [GitHub](https://github.com/FiveEightyEight) | [LinkedIn](https://www.linkedin.com/in/robert-abreu/)
+
+### **Acknowledgments**
+---
+ Special thanks to our tech mentor Josh & our instructors Mo & Taq.
+* **Josh Goldberg**: [GitHub](https://github.com/JoshuaKGoldberg)
+* **Mo Mosayed**: [GitHub](https://github.com/mmosayed)
+* **Taq Karim**: [GitHub](https://github.com/mottaquikarim)
