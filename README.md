@@ -73,8 +73,8 @@ ___
 |Libraries||||
 |:--|:---:|:---:|---:| 
 |**axios**|[GitHub](https://github.com/axios/axios)| [npm](https://www.npmjs.com/package/axios)| |
-|**Bootstrap**|[GitHub](https://github.com/twbs/bootstrap) | [npm](https://www.npmjs.com/package/bootstrap) | [Web](https://getbootstrap.com/)|
-|**Firebase**|[GitHub](https://github.com/firebase/)|[npm](https://www.npmjs.com/package/firebase)|[Web](https://firebase.google.com/)|
+|**bootstrap**|[GitHub](https://github.com/twbs/bootstrap) | [npm](https://www.npmjs.com/package/bootstrap) | [Web](https://getbootstrap.com/)|
+|**firebase**|[GitHub](https://github.com/firebase/)|[npm](https://www.npmjs.com/package/firebase)|[Web](https://firebase.google.com/)|
 |**i18n-iso-countries**| [Github](https://github.com/michaelwittig/node-i18n-iso-countries) | [npm](https://www.npmjs.com/package/i18n-iso-countries)| |
 | **libphonenumber-js**|[Github](https://github.com/catamphetamine/libphonenumber-js) | [npm](https://www.npmjs.com/package/libphonenumber-js) | [Web](https://catamphetamine.github.io/libphonenumber-js/)|
 | **moment**| [GitHub](https://github.com/moment/moment) | [npm](https://www.npmjs.com/package/moment) | [Web](https://momentjs.com/) |
