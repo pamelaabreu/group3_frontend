@@ -7,7 +7,7 @@ Bundle relieves packing worries by showing you what to pack from one place.
 Given the destination and duration of your trip, Bundle will create a customizable packing list.
 Once you confirm what you do and don’t need, you can start tracking your packing progress. Bundle also has handy features like creating last-minute todo lists and storing booking information so that you never have to feel like you’ve forgotten something important.
 
-| | Table of Contents|
+| | Table of Contents 🗂|
 |:-:|:--:|
 |1|**[Getting Started](#getting-started)**|
 |2|**[Prerequisites](#prerequisites)**|
@@ -17,7 +17,7 @@ Once you confirm what you do and don’t need, you can start tracking your packi
 |6|**[Authors](#authors)**|
 |7|**[Acknowledgments](#acknowledgments)**|
 
-### **Getting Started**
+### **Getting Started** 📄
 ___
 #### Prerequisites
 1. This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -63,12 +63,12 @@ export default {
 
 6. `npm start`
 
-### **Deployment**
+### **Deployment** ⛓
 ---
 1. **We recommend Firebase:** Docs: `https://firebase.google.com/docs/hosting?authuser=0`
 
 
-### **Built With**
+### **Built With** 🛠
 ___
 |Libraries||||
 |:--|:---:|:---:|---:| 
@@ -87,7 +87,7 @@ ___
 |**react-with-direction**| [Github](https://github.com/airbnb/react-with-direction) | [npm](https://www.npmjs.com/package/react-with-direction) | |
 
 
-### **Contributing**
+### **Contributing** 👁
 ___
 1. Clone or Fork repo
 2. Switch to `developmentMaster` branch
@@ -99,16 +99,16 @@ ___
 5. Push your branch
 6. Create Pull Request against `developmentMaster`
 
-### **Authors**
+### **Authors** 📚
 ---
 | | | |
 |:---| :---: | :---:| 
-|**Pam** | [GitHub](https://github.com/pamelaabreu) | [LinkedIn](https://www.linkedin.com/in/pamela-abreu/) |
-|**Rupa**| [GitHub](https://github.com/Rupa1216) | [LinkedIn](https://www.linkedin.com/in/sdatta87/)|
-|**Alex**| [GitHub](https://github.com/aionate0812) | [LinkedIn](https://www.linkedin.com/in/alexander-onate/)| 
-|**Robert**| [GitHub](https://github.com/FiveEightyEight) | [LinkedIn](https://www.linkedin.com/in/robert-abreu/)
+|🧙‍**Pam** | [GitHub](https://github.com/pamelaabreu) | [LinkedIn](https://www.linkedin.com/in/pamela-abreu/) |
+|🧛‍**Rupa**| [GitHub](https://github.com/Rupa1216) | [LinkedIn](https://www.linkedin.com/in/sdatta87/)|
+|👨‍🎤**Alex**| [GitHub](https://github.com/aionate0812) | [LinkedIn](https://www.linkedin.com/in/alexander-onate/)| 
+|👨‍🚀**Robert**| [GitHub](https://github.com/FiveEightyEight) | [LinkedIn](https://www.linkedin.com/in/robert-abreu/)
 
-### **Acknowledgments**
+### **Acknowledgments**  🤜🤛
 ---
  Special thanks to our tech mentor Josh & our instructors Mo & Taq.
 * **Josh Goldberg**: [GitHub](https://github.com/JoshuaKGoldberg)
