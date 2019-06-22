@@ -12,10 +12,10 @@ Once you confirm what you do and don’t need, you can start tracking your packi
 |1|**[Getting Started](#getting-started)**|
 |2|**[Prerequisites](#prerequisites)**|
 |3|**[Usage and Installation](#usage-and-installation)**|
-|4|**[Built With](#built-with)**|
-|5|**[Contributing](#contributing)**|
-|6|**[Authors](#authors)**|
-|7|**[Acknowledgments](#acknowledgments)**|
+|4|**[Built With](#built-with-)**|
+|5|**[Contributing](#contributing-)**|
+|6|**[Authors](#authors-)**|
+|7|**[Acknowledgments](#acknowledgments-)**|
 
 ### **Getting Started** 📄
 ___
