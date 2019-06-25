@@ -102,7 +102,7 @@ ___
 ---
 | | | |
 |:---| :---: | :---:| 
-|🧙‍**Pam** | [GitHub](https://github.com/pamelaabreu) | [LinkedIn](https://www.linkedin.com/in/pamela-abreu/) |
+|🧙‍♀️**Pam** | [GitHub](https://github.com/pamelaabreu) | [LinkedIn](https://www.linkedin.com/in/pamela-abreu/) |
 |👩‍🚀**Rupa**| [GitHub](https://github.com/Rupa1216) | [LinkedIn](https://www.linkedin.com/in/sdatta87/)|
 |👨‍🎤**Alex**| [GitHub](https://github.com/aionate0812) | [LinkedIn](https://www.linkedin.com/in/alexander-onate/)| 
 |👨‍🚀**Robert**| [GitHub](https://github.com/FiveEightyEight) | [LinkedIn](https://www.linkedin.com/in/robert-abreu/)
