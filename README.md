@@ -1,10 +1,9 @@
 ![Bundle The Trip Readiness](https://lh3.googleusercontent.com/1KVsbCJ0Z6z7bUxsN6YgSwKtxI5adDgww0q2nP2Lf2i2Jc3Bzcz6mZ8Brpnf0x9yaH9eUPzX2vBD4CjNyZywyFeAssyvyahFW-elfycirHGFxAYVrWNbJAhrcqS9LYiglxg7c4kYJw=w1135-h709-no "Bundle Logo")
 # [**Bundle**](http://bundle.tips)
 ### _A **mobile-first**, trip-readiness app_
----
 
-Bundle relieves packing worries by showing travel goers what to pack from one place. 
-Given the destination and duration of a trip, Bundle will create a customizable packing list. Once items are confirmed for a trip, travel goers can start tracking their packing progress. Bundle also has handy features like creating last-minute todo lists and storing booking information so that travel goers never have to feel like they’ve forgotten something important.
+ Bundle relieves packing worries by showing travel goers what to pack from one place. Given the destination and duration of a trip, Bundle will create a customizable packing list. Once items are confirmed for a trip, travel goers can start tracking their packing progress. Bundle also has handy features like creating last-minute todo lists and storing booking information so that travel goers never have to feel like they’ve forgotten something important.
+
 
 | | Table of Contents 🗂|
 |:-:|:--:|
@@ -15,6 +14,7 @@ Given the destination and duration of a trip, Bundle will create a customizable 
 |5|**[Contributing](#contributing-)**|
 |6|**[Authors](#authors-)**|
 |7|**[Acknowledgments](#acknowledgments-)**|
+
 
 ### **Getting Started** 📄
 ___
