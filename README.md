@@ -3,9 +3,8 @@
 ### _A **mobile-first**, trip-readiness app_
 ---
 
-Bundle relieves packing worries by showing you what to pack from one place. 
-Given the destination and duration of your trip, Bundle will create a customizable packing list.
-Once you confirm what you do and don’t need, you can start tracking your packing progress. Bundle also has handy features like creating last-minute todo lists and storing booking information so that you never have to feel like you’ve forgotten something important.
+Bundle relieves packing worries by showing travel goers what to pack from one place. 
+Given the destination and duration of a trip, Bundle will create a customizable packing list. Once items are confirmed for a trip, travel goers can start tracking their packing progress. Bundle also has handy features like creating last-minute todo lists and storing booking information so that travel goers never have to feel like they’ve forgotten something important.
 
 | | Table of Contents 🗂|
 |:-:|:--:|
@@ -104,7 +103,7 @@ ___
 | | | |
 |:---| :---: | :---:| 
 |🧙‍**Pam** | [GitHub](https://github.com/pamelaabreu) | [LinkedIn](https://www.linkedin.com/in/pamela-abreu/) |
-|🧛‍**Rupa**| [GitHub](https://github.com/Rupa1216) | [LinkedIn](https://www.linkedin.com/in/sdatta87/)|
+|👩‍🚀**Rupa**| [GitHub](https://github.com/Rupa1216) | [LinkedIn](https://www.linkedin.com/in/sdatta87/)|
 |👨‍🎤**Alex**| [GitHub](https://github.com/aionate0812) | [LinkedIn](https://www.linkedin.com/in/alexander-onate/)| 
 |👨‍🚀**Robert**| [GitHub](https://github.com/FiveEightyEight) | [LinkedIn](https://www.linkedin.com/in/robert-abreu/)
 
