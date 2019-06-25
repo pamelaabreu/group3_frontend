@@ -13,7 +13,7 @@
 |4|**[Built With](#built-with-)**|
 |5|**[Contributing](#contributing-)**|
 |6|**[Authors](#authors-)**|
-|7|**[Acknowledgments](#acknowledgments-)**|
+|7|**[Acknowledgments](#acknowledgments--)**|
 
 
 ### **Getting Started** 📄
