@@ -33,6 +33,7 @@ class App extends Component {
                   <Route path="/trip/:trip_id" exact component={Trip} />
                   <Route path="/" exact component={Home} />
                   <Route path="/reminders" exact component={RemindersPage} />
+                  <Route path="/packHacks" exact component={PackHacks} />
                 </Switch>
               </div>
             </main>
