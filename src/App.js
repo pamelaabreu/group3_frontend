@@ -8,6 +8,7 @@ import Navbar from "./containers/Navbar/Navbar";
 import Home from "./components/Home/Home";
 import RemindersPage from "./containers/PackingOverview/RemindersPage/RemindersPage";
 import Pack from "./containers/PackingOverview/PackingOverview";
+import PackHacks from "./components/PackHacks/PackHacks";
 
 import "react-dates/initialize";
 import "react-dates/lib/css/_datepicker.css";
