@@ -35,6 +35,7 @@ export default props => {
     "4bcfd5173b255b51aae8491409e4ab29"
   );
 
+  console.log(props);
   return (
     <form className="px-1 pb-1 pt-0 w-100" onSubmit={props.createTripHandler}>
       <div className="form-group mx-1 mb-5">
@@ -43,11 +44,9 @@ export default props => {
         </label>
 
         <div className="d-flex">
-          <div className="bg-white d-flex justify-content-center align-items-center">
-            <i className="fas fa-globe-americas createTrip-icon" />
-          </div>
           <InstantSearch indexName="airports" searchClient={searchClient}>
             <Places
+              destinationHandler={props.destinationHandler}
               defaultRefinement={{
                 lat: 37.7793,
                 lng: -122.419

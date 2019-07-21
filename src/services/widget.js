@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import places from "places.js";
 import connect from "./connector";
+import "../containers/CreateTripForm/CreateTripForm.css";
 
 class Places extends Component {
   createRef = c => (this.element = c);
@@ -14,7 +15,14 @@ class Places extends Component {
     });
 
     autocomplete.on("change", event => {
-      console.log(event);
+      this.props.destinationHandler(
+        `${event.suggestion.name}, ${
+          (event.suggestion.administrative || event.suggestion.country) ===
+          "United States of America"
+            ? "United States"
+            : event.suggestion.administrative || event.suggestion.country
+        }`
+      );
       refine(event.suggestion.latlng);
     });
 
@@ -30,9 +38,9 @@ class Places extends Component {
           ref={this.createRef}
           type="search"
           id="address-input"
-          className="createTripform-input c-smokeBlack mali400 border-0 p-3 w-100"
+          className="createTripform-input c-smokeBlack mali400 border-0 p-3 w-100 placeholder-destination"
           name="destination"
-          placeholder="City, Country"
+          placeholder="Destination"
           aria-label="Destination by City, Country"
           aria-describedby="basic-addon1"
           required
