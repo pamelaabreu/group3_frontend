@@ -1,5 +1,6 @@
 import React from "react";
 import PackHacksCard from "../PackHacksCard/PackHacksCard";
+import PackHacksJSON from "../../assets/json/packHacks";
 
 const PackHacks = () => {
   return (
