@@ -1,4 +1,5 @@
 import React from "react";
+import PackHacksCard from "../PackHacksCard/PackHacksCard";
 
 const PackHacks = () => {
   return (
@@ -7,7 +8,9 @@ const PackHacks = () => {
         <h1 className="c-white mali900 display-3 text-center">Pack Hacks</h1>
       </header>
 
-      <div className="container overflow-auto m-5 p-5">//... the cards</div>
+      <div className="container overflow-auto m-5 p-5">
+        <PackHacksCard />
+      </div>
     </div>
   );
 };
