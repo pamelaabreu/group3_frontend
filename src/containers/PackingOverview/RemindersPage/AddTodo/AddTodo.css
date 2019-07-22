@@ -3,7 +3,7 @@
   min-width: 4.5rem;
   bottom: 0;
   color: var(--white);
-  border: 1px solid var(--denimBlue);
+  border: 0.2em solid var(--denimBlue);
 }
 
 .add-todo-button:hover {
