@@ -1,7 +1,15 @@
 .todo-list-view {
-  overflow-y: auto;
+  /* overflow-y: auto; */
   width: 100%;
   justify-content: center;
+}
+
+.tdl-view-font-lg {
+  font-size: 1.8em;
+}
+
+.tdl-view-font-md {
+  font-size: 1.3em;
 }
 
 .todo {
@@ -44,10 +52,4 @@
 
 .complete-header:focus {
   outline: none !important;
-}
-
-.button-container {
-  position: fixed;
-  bottom: 0;
-  /* left: 40%; */
 }
