@@ -39,7 +39,7 @@ const ListCard = props => {
           <p className="row">
             <span className="col-12">{list_type}</span>
             <span className="col-12">
-              {completedTodos ? percentage + "%" : 0 + "%"}
+              {completedTodos ? percentage + " %" : 0 + " %"}
             </span>
           </p>
         </div>
