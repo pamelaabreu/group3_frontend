@@ -30,7 +30,9 @@ const Todo = props => {
             />
           </div>
           <div className="bundleBlue-border-left-1 todo-divider py-0" />
-          <div className="col-8 c-bundleBlue mali700">{task_name}</div>
+          <div className="col-8 c-bundleBlue mali700 todo-font-sm">
+            {task_name}
+          </div>
           <div className="col-1 text-right">
             {complete === false ? incomplete : completed}
           </div>
