@@ -1,6 +1,6 @@
 @media only screen and (max-width: 600px) {
   .weather-card {
-    font-size: 10px;
+    font-size: 1rem;
     width: 18%;
     padding: 0;
     background-color: #eef0f2;
@@ -25,15 +25,15 @@
   }
 
   .weather-card-title-text {
-    font-size: 1.8rem;
+    font-size: 1.65rem;
   }
 
   .weather-card-weather-text {
-    font-size: 1.7rem;
+    font-size: 1.115rem;
   }
 
   .weather-card-label-text {
-    font-size: 1.25rem;
+    font-size: 1.1rem;
   }
 }
 

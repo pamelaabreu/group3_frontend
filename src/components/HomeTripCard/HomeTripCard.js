@@ -18,9 +18,8 @@ const HomeTripCard = ({ savedTrips }) => {
 
     return (
       <div
-        className="b-radius9 card border-0 mx-1 my-4 col-sm-3 col-md-3 col-lg-3 p-0 ds-lightGrey homeSavedImage-card "
+        className="b-radius9 card border-0 mx-1 my-4 col-12 col-md-4 col-lg-5 p-0 ds-lightGrey homeSavedImage-card "
         key={index}
-        style={{ textDecoration: "none" }}
       >
         <div className="card-body p-0">
           <Link to={`/trip/${id}`}>

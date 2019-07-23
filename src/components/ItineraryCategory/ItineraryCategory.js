@@ -1,25 +1,10 @@
 import React from "react";
 import countries from "i18n-iso-countries";
-import { parsePhoneNumber, ParseError } from "libphonenumber-js";
 import "./ItineraryCategory.css";
 countries.registerLocale(require("i18n-iso-countries/langs/en.json"));
 
 const ItineraryCategory = props => {
-  const { category, trip } = props;
-  let phoneNumber = "";
-  const countryCode = countries.getAlpha2Code(trip.country, "en");
-
-  console.log(category);
-  try {
-    phoneNumber = parsePhoneNumber(`+ ${category.phone_number}`, countryCode);
-  } catch (error) {
-    if (error instanceof ParseError) {
-      console.log("error", error.message);
-      phoneNumber = category.phone_number;
-    } else {
-      phoneNumber = category.phone_number;
-    }
-  }
+  const { category } = props;
 
   console.log(category);
   return (
