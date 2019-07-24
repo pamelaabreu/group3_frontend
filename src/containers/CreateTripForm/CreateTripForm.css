@@ -51,3 +51,15 @@
   -webkit-text-fill-color: var(--smokeblack);
   transition: background-color 5000s ease-in-out 0s;
 }
+
+.ap-input {
+  height: 45px;
+}
+
+.ais-InstantSearch__root {
+  width: 100%;
+}
+
+.placeholder-destination::placeholder {
+  color: grey;
+}

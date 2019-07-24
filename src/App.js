@@ -14,6 +14,10 @@ import "react-dates/initialize";
 import "react-dates/lib/css/_datepicker.css";
 import "./containers/CreateTripForm/react_dates_overrides.css";
 
+import "react-dates/initialize";
+import "react-dates/lib/css/_datepicker.css";
+import "./containers/CreateTripForm/react_dates_overrides.css";
+
 class App extends Component {
   componentDidMount() {
     // Call it once in your app. At the root of your app is the best place
