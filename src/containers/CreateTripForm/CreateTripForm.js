@@ -59,8 +59,7 @@ export default props => {
             name="destination"
             placeholder="City, Country"
             aria-label="Destination by City, Country"
-            aria-describedby="basic-addon1"
-            
+            aria-describedby="basic-addon1"   
             required
   />*/}
         </div>
