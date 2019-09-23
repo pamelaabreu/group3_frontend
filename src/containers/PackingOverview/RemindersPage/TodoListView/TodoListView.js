@@ -11,7 +11,6 @@ const TodoListView = ({
   addTodo,
   height
 }) => {
-  const height75 = Math.floor(height * 0.75);
   let incompleteCount = 0;
   const incompleteTodos = todoList.map((e, i, a) => {
     let t = a[a.length - 1 - i];
