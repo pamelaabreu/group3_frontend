@@ -35,7 +35,7 @@ export default props => {
     "4bcfd5173b255b51aae8491409e4ab29"
   );
 
-  console.log(props);
+  // console.log(props);
   return (
     <form className="px-1 pb-1 pt-0 w-100" onSubmit={props.createTripHandler}>
       <div className="form-group mx-1 mb-5">

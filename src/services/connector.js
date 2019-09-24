@@ -8,8 +8,8 @@ export default createConnector({
   },
 
   refine(props, searchState, nextValue) {
-    console.log(searchState);
-    console.log(nextValue);
+    // console.log(searchState);
+    // console.log(nextValue);
     return {
       ...searchState,
       aroundLatLng: nextValue,

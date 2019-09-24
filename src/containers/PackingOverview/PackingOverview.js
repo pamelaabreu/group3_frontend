@@ -139,7 +139,7 @@ export default (class PackingOverview extends Component {
       method: "get",
       url: BASEURL + "/trip/init/" + trip_id
     }).then(({ data: trip }) => {
-      console.log("trip.list", trip.lists);
+      // console.log("trip.list", trip.lists);
       this.setState({ lists: trip.lists });
     });
   };
