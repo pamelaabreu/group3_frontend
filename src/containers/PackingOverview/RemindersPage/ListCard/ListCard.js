@@ -4,7 +4,7 @@ import "./ListCard.css";
 const ListCard = props => {
   const {
     list_type,
-    name,
+    // name,
     handleCurrentListDisplay,
     completedTodos,
     incompleteTodos,
@@ -12,6 +12,7 @@ const ListCard = props => {
     infoBarHeight,
     currentListDisplay
   } = props;
+  /** Commented out unused name variable */
   const dynamicSize = name => {
     if (width < 500) return `cList--${name}`;
     if (width >= 500 && width < 990) return `cList--${name}-md`;
