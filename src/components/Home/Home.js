@@ -20,7 +20,7 @@ const Home = props => {
   const changeLoadStatus = status => setLoadStatus(status);
 
   const destinationHandler = e => {
-    setDestination(e.target.value);
+    setDestination(e);
   };
 
   const departureDateHandler = startDate => {

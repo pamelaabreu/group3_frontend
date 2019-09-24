@@ -6,6 +6,7 @@ countries.registerLocale(require("i18n-iso-countries/langs/en.json"));
 const ItineraryCategory = props => {
   const { category } = props;
 
+  console.log(category);
   return (
     <>
       <div className="itinerary-category-card-header">

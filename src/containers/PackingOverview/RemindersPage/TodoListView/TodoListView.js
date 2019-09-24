@@ -76,8 +76,10 @@ const TodoListView = ({
                 style={{ textDecoration: "none" }}
               >
                 <div className="row justify-content-between bg-bundleBlue b-radius9 incomplete-header">
-                  <span className="p-3 mali700">To Be Completed</span>
-                  <span className="p-3 mali400">
+                  <span className="p-3 mali700 tdl-view-font-lg">
+                    To Be Completed
+                  </span>
+                  <span className="p-3 mali400 tdl-view-font-md">
                     {incompleteCount} items left
                   </span>
                 </div>
@@ -104,8 +106,10 @@ const TodoListView = ({
               aria-controls="todoList2"
             >
               <div className="row justify-content-between b-radius9 complete-header">
-                <span className="mali700 p-3">Completed</span>
-                <span className="mali400 p-3">{completedCount} items</span>
+                <span className="mali700 p-3 tdl-view-font-lg">Completed</span>
+                <span className="mali400 p-3 tdl-view-font-md">
+                  {completedCount} items
+                </span>
               </div>
             </button>
 

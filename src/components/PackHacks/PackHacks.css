@@ -1,0 +1,12 @@
+.packHacks-cardContainer {
+  overflow-x: scroll;
+  display: flex;
+  flex: 3;
+  align-items: center;
+}
+
+.packHacks-cardContainer::-webkit-scrollbar {
+  /* WebKit */
+  width: 0;
+  height: 0;
+}
