@@ -21,7 +21,7 @@
   }
 }
 
-<<<<<<< head ======= @media only screen and (max-width: 768px) {
+@media only screen and (max-width: 768px) {
   .itinerary-card-body {
     margin-left: 3.5rem;
     text-transform: capitalize;
@@ -72,7 +72,7 @@
   }
 }
 
->>>>>>>master @media only screen and (min-width: 992px) {
+@media only screen and (min-width: 992px) {
   .itinerary-card-body {
     margin-left: 3.5rem;
     text-transform: capitalize;

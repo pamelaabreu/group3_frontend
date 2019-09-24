@@ -35,7 +35,7 @@
   }
 }
 
-<<<<<<< head ======= @media only screen and (max-width: 768px) {
+@media only screen and (max-width: 768px) {
   .itinerary-card-container {
     margin-top: 2.5rem;
     width: 100%;
@@ -121,7 +121,7 @@
   }
 }
 
->>>>>>>master @media only screen and (min-width: 992px) {
+@media only screen and (min-width: 992px) {
   .itinerary-card-container {
     margin-top: 2.5rem;
     width: 30%;
