@@ -37,7 +37,7 @@
   }
 }
 
-<<<<<<< head ======= @media only screen and (max-width: 768px) {
+@media only screen and (max-width: 768px) {
   .weather-card {
     font-size: 1rem;
     width: 18%;
@@ -120,7 +120,7 @@
   }
 }
 
->>>>>>>master @media only screen and (min-width: 992px) {
+@media only screen and (min-width: 992px) {
   .weather-card {
     font-size: 10px;
     width: 18%;
