@@ -1,11 +1,9 @@
 import React, { useEffect, useState, useContext } from "react";
 import { withRouter } from "react-router-dom";
 import { getSuggestions } from "../../services/suggestions";
-import axios from "axios";
 import { buildBundle } from "../../services/backendCalls";
 import "./Suggestions.css";
 import FirebaseAuthContext from "../../context/FirebaseAuth";
-import Baseurl from "../../services/backendUrlConnect";
 import { addTrip } from "../../services/homeLocalStorage";
 
 export default withRouter(props => {
