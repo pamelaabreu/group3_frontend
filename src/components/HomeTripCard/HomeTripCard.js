@@ -5,7 +5,7 @@ import "./HomeTripCard.css";
 
 const HomeTripCard = ({ savedTrips }) => {
   return savedTrips.map((trips, index) => {
-    const { id, destination, duration, departureDate, returnDate } = trips;
+    const { id, destination, departureDate, returnDate } = trips; // duration,
 
     const [city, state] = destination.split(",");
 
